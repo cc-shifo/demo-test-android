@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DemoZxingLib</string>
+    <string name="btn_bar_code_name_EAN13">Bar Code 1D EAN13</string>
+    <string name="btn_bar_code_name_EAN8">Bar Code 1D EAN8</string>
+    <string name="btn_bar_code_name_128">Bar Code 1D CODE 128</string>
+    <string name="btn_qr_code_name">Bar Code 2D</string>
+</resources>
