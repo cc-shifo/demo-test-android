@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--count-down timer dialog-->
+    <dimen name="dialog_timer_count_down_width">150dp</dimen>
+    <dimen name="dialog_timer_count_down_height">150dp</dimen>
+    <dimen name="dialog_timer_count_down_tittle_size">45sp</dimen>
+    <dimen name="dialog_timer_count_down_stroke_width">15dp</dimen>
+
+    <dimen name="dialog_common_width">330dp</dimen>
+    <dimen name="dialog_common_height">345dp</dimen>
+    <dimen name="dialog_common_tittle_w">330dp</dimen>
+    <dimen name="dialog_common_tittle_h">45dp</dimen>
+    <dimen name="dialog_common_tittle_txt_size">15sp</dimen>
+
+    <dimen name="dialog_common_content_iv_width">120dp</dimen>
+    <dimen name="dialog_common_content_iv_height">120dp</dimen>
+    <dimen name="dialog_common_content_iv_margin_top">30dp</dimen>
+    <dimen name="dialog_common_content_mgs_margin_top">15dp</dimen>
+    <dimen name="dialog_common_content_mgs_txt_size">20sp</dimen>
+    <dimen name="dialog_common_content_btn_top">15dp</dimen>
+    <dimen name="dialog_common_content_btn_interval_space">15dp</dimen>
+</resources>

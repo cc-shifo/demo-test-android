@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dialog_common_width"
+    android:layout_height="@dimen/dialog_common_height"
+    android:background="#FFFFFFFF">
+
+    <com.example.democircleprogressbar.dialog.CustomProgressBar
+        android:id="@+id/dialog_progress_bar"
+        android:layout_width="@dimen/dialog_timer_count_down_width"
+        android:layout_height="@dimen/dialog_timer_count_down_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dialog_progress_dialog_title"
+        app:progressTextColor="@android:color/holo_blue_light"
+        app:progressTextSize="@dimen/dialog_timer_count_down_tittle_size"
+        app:progressStrokeWidth="@dimen/dialog_timer_count_down_stroke_width"
+        app:progressColor="@android:color/holo_blue_light"
+        app:progressRemainedColor="@android:color/white"
+        app:progressRadius="0dp"
+        android:max="60"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/dialog_progress_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:textSize="@dimen/dialog_common_tittle_txt_size"
+        app:layout_constraintTop_toBottomOf="@id/dialog_progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="reprint" />
+
+</android.support.constraint.ConstraintLayout>

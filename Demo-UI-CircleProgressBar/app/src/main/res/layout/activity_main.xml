@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    
+    
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="25dp" >
+
+                <com.example.mylibrary.HorizontalProgressBarWithNumber
+                    android:id="@+id/id_progressbar01"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:padding="5dp" />
+
+                <com.example.mylibrary.HorizontalProgressBarWithNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:padding="5dp"
+                    android:progress="10"
+                   app:progress_text_color="#ff2903FC"
+                   app:progress_unreached_color="#ffBCB4E8" />
+
+                <com.example.mylibrary.HorizontalProgressBarWithNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:background="#44ff0000"
+                    android:progress="30"
+                   app:progress_text_color="#ff03F793"
+                   app:progress_text_size="30dp"
+                   app:progress_unreached_color="#ffAFF2D6" />
+
+                <com.example.mylibrary.HorizontalProgressBarWithNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:padding="5dp"
+                    android:progress="50"
+                   app:progress_text_color="#ffF53B03"
+                   app:progress_unreached_color="#ffF7C6B7" />
+
+                <com.example.mylibrary.RoundProgressBarWidthNumber
+                    android:id="@+id/id_progress02"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="50dip"
+                    android:background="#44ff0000"
+                    android:progress="30" />
+
+                <com.example.mylibrary.RoundProgressBarWidthNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:background="#44ff0000"
+                    android:padding="5dp"
+                    android:progress="50"
+                   app:progress_reached_bar_height="20dp"
+                   app:progress_text_color="#ffF53B03"
+                   app:radius="60dp" />
+
+                <com.example.mylibrary.RoundProgressBarWidthNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:background="#44ff0000"
+                    android:padding="15dp"
+                    android:progress="70"
+                   app:progress_text_color="#ff2903FC"
+                   app:progress_text_size="30sp"
+                   app:progress_unreached_color="#ffBCB4E8"
+                   app:radius="80dp" />
+
+                <com.example.mylibrary.HorizontalProgressBarWithNumber
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dip"
+                    android:background="#44ff0000"
+                    android:padding="5dp"
+                    android:progress="70"
+                   app:progress_reached_bar_height="20dp"
+                   app:progress_text_color="#ffF53B03"
+                   app:progress_unreached_color="#00F7C6B7" />
+
+                <Button
+                    android:id="@+id/btn_start_count_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_start_count_down"/>
+
+                <com.example.democircleprogressbar.dialog.CustomProgressBar
+                    android:id="@+id/custom_progress_bar"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                   app:progressColor="@android:color/tab_indicator_text"
+                   app:progressRemainedColor="@android:color/holo_blue_bright"
+                   app:progressTextColor="@android:color/holo_blue_bright"
+                   app:progressTextSize="30sp"
+                   app:progressStrokeWidth="20dp"
+                   app:progressRadius="300dp"
+                    android:progress="0"
+                    android:max="60">
+
+                </com.example.democircleprogressbar.dialog.CustomProgressBar>
+
+                <Button
+                    android:id="@+id/btn_start_activity2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_start_count_down"/>
+            </LinearLayout>
+
+        </ScrollView>
+    
+</android.support.constraint.ConstraintLayout>
