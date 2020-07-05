@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">demoBottomSheetDialogFragment</string>
+    <string name="home_menu_item_pos_sign_on">终端签到</string>
+    <string name="home_menu_item_pre_auth">预授权</string>
+    <string name="home_menu_item_printer">打印</string>
+    <string name="home_menu_item_balance_inquiry">余额查询</string>
+    <string name="home_menu_item_txn_info_inquiry">交易查询</string>
+    <string name="home_menu_item_refund">退款</string>
+    <string name="home_menu_item_icc_sale">插卡消费</string>
+    <string name="home_menu_item_settlement">结算</string>
+    <string name="home_menu_item_setting">终端设置</string>
+    <string name="home_menu_item_sale">消费</string>
+    <string name="home_menu_item_off_duty">换班</string>
+    <string name="home_menu_item_binding">绑定激活</string>
+    <string name="home_menu_item_txn_statistics">交易统计</string>
+    <string name="home_menu_item_qr_code_inquiry">扫码查询</string>
+</resources>

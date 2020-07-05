@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="#11FFEE">
+<!--    android:layout_height="@dimen/home_menu_dialog_height"-->
+
+
+    <!--    android:layout_marginBottom="@dimen/activity_home_menu_indicator_layout_margin_bottom"-->
+    <!--    tools:layout_marginBottom="@dimen/activity_home_menu_indicator_layout_margin_bottom"-->
+    <com.example.demo.demobottomsheetdialogfragment.home.CustomViewPager
+        android:id="@+id/home_menu_dialog_vpg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        tools:background="#737373"
+        >
+    </com.example.demo.demobottomsheetdialogfragment.home.CustomViewPager>
+
+    <LinearLayout
+        android:id="@+id/home_view_page_indicator_lt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:background="#ffff00"
+        tools:layout_height="@dimen/home_menu_indicator_size_active">
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="home_menu_column">3</integer>
+    <integer name="home_menu_row">3</integer>
+
+    <array name="home_menu_icons">
+        <item>@drawable/home_menu_item_pos_sign_on</item>
+        <item>@drawable/home_menu_item_pre_auth</item>
+        <item>@drawable/home_menu_item_printer</item>
+        <item>@drawable/home_menu_item_balance_inquiry</item>
+        <item>@drawable/home_menu_item_txn_info_inquiry</item>
+        <item>@drawable/home_menu_item_refund</item>
+        <item>@drawable/home_menu_item_icc_sale</item>
+        <item>@drawable/home_menu_item_settlement</item>
+        <item>@drawable/home_menu_item_setting</item>
+        <item>@drawable/home_menu_item_sale</item>
+        <item>@drawable/home_menu_item_off_duty</item>
+        <item>@drawable/home_menu_item_binding</item>
+        <item>@drawable/home_menu_item_txn_statistics</item>
+        <item>@drawable/home_menu_item_qr_code_inquiry</item>
+    </array>
+
+    <string-array name="home_menu_labels">
+        <item>@string/home_menu_item_pos_sign_on</item>
+        <item>@string/home_menu_item_pre_auth</item>
+        <item>@string/home_menu_item_printer</item>
+        <item>@string/home_menu_item_balance_inquiry</item>
+        <item>@string/home_menu_item_txn_info_inquiry</item>
+        <item>@string/home_menu_item_refund</item>
+        <item>@string/home_menu_item_icc_sale</item>
+        <item>@string/home_menu_item_settlement</item>
+        <item>@string/home_menu_item_setting</item>
+        <item>@string/home_menu_item_sale</item>
+        <item>@string/home_menu_item_off_duty</item>
+        <item>@string/home_menu_item_binding</item>
+        <item>@string/home_menu_item_txn_statistics</item>
+        <item>@string/home_menu_item_qr_code_inquiry</item>
+    </string-array>
+
+    <!-- activity name -->
+    <string-array name="home_menu_onclick_actions">
+        <item>com.example.demo.demobottomsheetdialogfragment.SecondActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+        <item>com.example.demo.demobottomsheetdialogfragment.ThirdActivity</item>
+    </string-array>
+
+
+
+<!--    &lt;!&ndash;second method&ndash;&gt;-->
+<!--    &lt;!&ndash;actions&ndash;&gt;-->
+<!--    <string name="home_menu_item_action_pos_sign_on">SecondActivity</string>-->
+<!--    <string name="home_menu_item_action_pre_auth">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_printer">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_balance_inquiry">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_txn_info_inquiry">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_refund">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_icc_sale">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_settlement">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_setting">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_sale">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_off_duty">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_binding">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_txn_statistics">ThirdActivity</string>-->
+<!--    <string name="home_menu_item_action_qr_code_inquiry">ThirdActivity</string>-->
+
+<!--    &lt;!&ndash;items&ndash;&gt;-->
+<!--    <array name="home_menu_item_pos_sign_on">-->
+<!--        <item>@drawable/home_menu_item_pos_sign_on</item>-->
+<!--        <item>@string/home_menu_item_pos_sign_on</item>-->
+<!--        <item>@string/home_menu_item_action_pos_sign_on</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_pre_auth">-->
+<!--        <item>@drawable/home_menu_item_pre_auth</item>-->
+<!--        <item>@string/home_menu_item_pre_auth</item>-->
+<!--        <item>@string/home_menu_item_action_pre_auth</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_printer">-->
+<!--        <item>@drawable/home_menu_item_printer</item>-->
+<!--        <item>@string/home_menu_item_printer</item>-->
+<!--        <item>@string/home_menu_item_action_printer</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_balance_inquiry">-->
+<!--        <item>@drawable/home_menu_item_balance_inquiry</item>-->
+<!--        <item>@string/home_menu_item_balance_inquiry</item>-->
+<!--        <item>@string/home_menu_item_action_balance_inquiry</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_txn_info_inquiry">-->
+<!--        <item>@drawable/home_menu_item_txn_info_inquiry</item>-->
+<!--        <item>@string/home_menu_item_txn_info_inquiry</item>-->
+<!--        <item>@string/home_menu_item_action_txn_info_inquiry</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_refund">-->
+<!--        <item>@drawable/home_menu_item_refund</item>-->
+<!--        <item>@string/home_menu_item_refund</item>-->
+<!--        <item>@string/home_menu_item_action_refund</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_icc_sale">-->
+<!--        <item>@drawable/home_menu_item_icc_sale</item>-->
+<!--        <item>@string/home_menu_item_icc_sale</item>-->
+<!--        <item>@string/home_menu_item_action_icc_sale</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_settlement">-->
+<!--        <item>@drawable/home_menu_item_settlement</item>-->
+<!--        <item>@string/home_menu_item_settlement</item>-->
+<!--        <item>@string/home_menu_item_action_settlement</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_setting">-->
+<!--        <item>@drawable/home_menu_item_setting</item>-->
+<!--        <item>@string/home_menu_item_setting</item>-->
+<!--        <item>@string/home_menu_item_action_setting</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_sale">-->
+<!--        <item>@drawable/home_menu_item_sale</item>-->
+<!--        <item>@string/home_menu_item_sale</item>-->
+<!--        <item>@string/home_menu_item_action_sale</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_off_duty">-->
+<!--        <item>@drawable/home_menu_item_off_duty</item>-->
+<!--        <item>@string/home_menu_item_off_duty</item>-->
+<!--        <item>@string/home_menu_item_action_off_duty</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_binding">-->
+<!--        <item>@drawable/home_menu_item_binding</item>-->
+<!--        <item>@string/home_menu_item_binding</item>-->
+<!--        <item>@string/home_menu_item_action_binding</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_txn_statistics">-->
+<!--        <item>@drawable/home_menu_item_txn_statistics</item>-->
+<!--        <item>@string/home_menu_item_txn_statistics</item>-->
+<!--        <item>@string/home_menu_item_action_txn_statistics</item>-->
+<!--    </array>-->
+<!--    <array name="home_menu_item_qr_code_inquiry">-->
+<!--        <item>@drawable/home_menu_item_qr_code_inquiry</item>-->
+<!--        <item>@string/home_menu_item_qr_code_inquiry</item>-->
+<!--        <item>@string/home_menu_item_action_qr_code_inquiry</item>-->
+<!--    </array>-->
+
+<!--    &lt;!&ndash;item array&ndash;&gt;-->
+<!--    <array name="home_menu_items">-->
+<!--        <item>@array/home_menu_item_pos_sign_on</item>-->
+<!--        <item>@array/home_menu_item_pre_auth</item>-->
+<!--        <item>@array/home_menu_item_printer</item>-->
+<!--        <item>@array/home_menu_item_balance_inquiry</item>-->
+<!--        <item>@array/home_menu_item_txn_info_inquiry</item>-->
+<!--        <item>@array/home_menu_item_refund</item>-->
+<!--        <item>@array/home_menu_item_icc_sale</item>-->
+<!--        <item>@array/home_menu_item_settlement</item>-->
+<!--        <item>@array/home_menu_item_setting</item>-->
+<!--        <item>@array/home_menu_item_sale</item>-->
+<!--        <item>@array/home_menu_item_off_duty</item>-->
+<!--        <item>@array/home_menu_item_binding</item>-->
+<!--        <item>@array/home_menu_item_txn_statistics</item>-->
+<!--        <item>@array/home_menu_item_qr_code_inquiry</item>-->
+<!--    </array>-->
+
+</resources>

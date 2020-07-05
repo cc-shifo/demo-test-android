@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/v_dot"
+    android:layout_width="@dimen/home_menu_indicator_size"
+    android:layout_height="@dimen/home_menu_indicator_size"
+    android:layout_marginStart="@dimen/home_menu_indicator_margin_start"
+    android:layout_marginEnd="@dimen/home_menu_indicator_margin_end"
+    android:background="@drawable/home_menu_indicator_selector" />
+
+

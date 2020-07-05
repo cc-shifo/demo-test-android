@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="navigation_height">88dp</dimen>
+    <dimen name="home_menu_dialog_height">500dp</dimen>
+    <dimen name="home_menu_indicator_size_active">20dp</dimen>
+    <dimen name="home_menu_indicator_size">20dp</dimen>
+    <dimen name="home_menu_indicator_margin_start">6dp</dimen>
+    <dimen name="home_menu_indicator_margin_end">6dp</dimen>
+    <dimen name="activity_home_menu_indicator_layout_margin_bottom">50dp</dimen>
+</resources>
