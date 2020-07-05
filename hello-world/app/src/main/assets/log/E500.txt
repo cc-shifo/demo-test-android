@@ -1,0 +1,46 @@
+10-18 10:27:44.083 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:163): E500 Window Attributes width: -1
+10-18 10:27:44.083 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:164): E500 Window Attributes height: -1
+10-18 10:27:44.083 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:166): E500 density: 1.0
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:167): E500 densityDpi: 160
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:168): E500 scaledDensity: 1.0
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:169): E500 widthPixels: 1280
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:170): E500 heightPixels: 752
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:171): E500 xdpi: 189.023
+10-18 10:27:44.084 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:172): E500 ydpi: 188.148
+10-18 10:27:44.093 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法heightPixels：752
+10-18 10:27:44.093 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法widthPixels：1280
+10-18 10:27:44.093 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法real heightPixels：800
+10-18 10:27:44.093 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法real widthPixels：1280
+10-18 10:27:44.094 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 状态栏-方法4:0
+10-18 10:27:44.094 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 top:0
+10-18 10:27:44.094 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 bottom:752
+10-18 10:27:44.094 7521-7521/com.pax.launcher D/E500: 应用区域 v height:752
+10-18 10:27:44.095 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-错误方法：0
+10-18 10:27:44.095 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法top：0
+10-18 10:27:44.095 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法Bottom：800
+10-18 10:27:44.095 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法Height：800
+10-18 10:27:44.095 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法MeasuredHeight：800
+10-18 10:27:44.096 7521-7521/com.pax.launcher D/E500: 状态栏 正确方法 statusBarHeight1：24
+10-18 10:27:44.686 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:163): E500 Window Attributes width: -1
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:164): E500 Window Attributes height: -1
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:166): E500 density: 1.0
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:167): E500 densityDpi: 160
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:168): E500 scaledDensity: 1.0
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:169): E500 widthPixels: 1280
+10-18 10:27:44.687 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:170): E500 heightPixels: 752
+10-18 10:27:44.688 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:171): E500 xdpi: 189.023
+10-18 10:27:44.688 7521-7521/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:172): E500 ydpi: 188.148
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法heightPixels：752
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法widthPixels：1280
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法real heightPixels：800
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 屏幕-正确方法real widthPixels：1280
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 状态栏-方法4:-48
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 top:0
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 应用区域 正确方法 bottom:800
+10-18 10:27:44.689 7521-7521/com.pax.launcher D/E500: 应用区域 v height:800
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-错误方法：0
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法top：0
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法Bottom：800
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法Height：800
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: View绘制区域顶部-正确方法MeasuredHeight：800
+10-18 10:27:44.690 7521-7521/com.pax.launcher D/E500: 状态栏 正确方法 statusBarHeight1：24

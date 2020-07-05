@@ -1,0 +1,46 @@
+2019-10-18 10:49:20.691 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:163): E500 Window Attributes width: -1
+2019-10-18 10:49:20.693 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:164): E500 Window Attributes height: -1
+2019-10-18 10:49:20.694 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:166): E500 density: 1.5
+2019-10-18 10:49:20.696 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:167): E500 densityDpi: 240
+2019-10-18 10:49:20.697 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:168): E500 scaledDensity: 1.5
+2019-10-18 10:49:20.697 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:169): E500 widthPixels: 1920
+2019-10-18 10:49:20.697 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:170): E500 heightPixels: 1008
+2019-10-18 10:49:20.697 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:171): E500 xdpi: 160.0
+2019-10-18 10:49:20.697 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:172): E500 ydpi: 160.0
+2019-10-18 10:49:20.699 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法heightPixels：1008
+2019-10-18 10:49:20.699 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法widthPixels：1920
+2019-10-18 10:49:20.699 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法real heightPixels：1080
+2019-10-18 10:49:20.700 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法real widthPixels：1920
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 状态栏-方法4:36
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 top:36
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 bottom:1008
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: 应用区域 v height:972
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-错误方法：0
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法top：0
+2019-10-18 10:49:20.701 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法Bottom：1080
+2019-10-18 10:49:20.702 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法Height：1080
+2019-10-18 10:49:20.702 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法MeasuredHeight：1080
+2019-10-18 10:49:20.715 5096-5096/com.pax.launcher D/E500: 状态栏 正确方法 statusBarHeight1：36
+2019-10-18 10:49:21.831 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:163): E500 Window Attributes width: -1
+2019-10-18 10:49:21.831 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:164): E500 Window Attributes height: -1
+2019-10-18 10:49:21.832 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:166): E500 density: 1.5
+2019-10-18 10:49:21.832 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:167): E500 densityDpi: 240
+2019-10-18 10:49:21.832 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:168): E500 scaledDensity: 1.5
+2019-10-18 10:49:21.834 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:169): E500 widthPixels: 1920
+2019-10-18 10:49:21.834 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:170): E500 heightPixels: 1008
+2019-10-18 10:49:21.834 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:171): E500 xdpi: 160.0
+2019-10-18 10:49:21.834 5096-5096/com.pax.launcher D/com.pax.launcher.splash.SplashActivity.onWindowFocusChanged(line:172): E500 ydpi: 160.0
+2019-10-18 10:49:21.835 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法heightPixels：1008
+2019-10-18 10:49:21.835 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法widthPixels：1920
+2019-10-18 10:49:21.835 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法real heightPixels：1080
+2019-10-18 10:49:21.835 5096-5096/com.pax.launcher D/E500: 屏幕-正确方法real widthPixels：1920
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 状态栏-方法4:-72
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 top:0
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: 应用区域 正确方法 bottom:1080
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: 应用区域 v height:1080
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-错误方法：0
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法top：0
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法Bottom：1080
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法Height：1080
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: View绘制区域顶部-正确方法MeasuredHeight：1080
+2019-10-18 10:49:21.836 5096-5096/com.pax.launcher D/E500: 状态栏 正确方法 statusBarHeight1：36

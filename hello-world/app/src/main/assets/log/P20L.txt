@@ -1,0 +1,19 @@
+2018-03-15 10:46:31.125 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法heightPixels：788
+2018-03-15 10:46:31.125 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法widthPixels：480
+2018-03-15 10:46:31.125 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法real heightPixels：854
+2018-03-15 10:46:31.125 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法real widthPixels：480
+2018-03-15 10:46:31.126 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法density：1.375
+2018-03-15 10:46:31.126 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法densityDpi：220
+2018-03-15 10:46:31.126 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法widthDp(dp * (dpi/160))：320.0
+2018-03-15 10:46:31.126 5239-5239/com.pax.helloworld E/WangJ: 屏幕-正确方法widthDp(dp * (dm.densityDpi/160))：349.0909
+2018-03-15 10:46:31.131 5239-5239/com.pax.helloworld E/WangJ: 应用区域 正确方法 状态栏-方法4:33
+2018-03-15 10:46:31.131 5239-5239/com.pax.helloworld E/WangJ: 应用区域 正确方法 top:33
+2018-03-15 10:46:31.131 5239-5239/com.pax.helloworld E/WangJ: 应用区域 正确方法 bottom:788
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: 应用区域 v height:755
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: View绘制区域顶部-错误方法：0
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: View绘制区域顶部-正确方法top：77
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: View绘制区域顶部-正确方法Bottom：755
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: View绘制区域顶部-正确方法Height：678
+2018-03-15 10:46:31.132 5239-5239/com.pax.helloworld E/WangJ: View绘制区域顶部-正确方法MeasuredHeight：678
+2018-03-15 10:46:31.133 5239-5239/com.pax.helloworld E/WangJ: 状态栏 正确方法 statusBarHeight1：33
+2018-03-15 10:46:31.137 5239-5239/com.pax.helloworld E/WangJ: 导航栏 正确方法 NavigationBarrHeight2：66
