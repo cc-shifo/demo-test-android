@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DemoPainter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="fragment_signature_btn_cancel">Cancel</string>
+    <string name="fragment_signature_btn_clean">Clean</string>
+    <string name="fragment_signature_btn_confirm">Confirm</string>
+</resources>
