@@ -2,17 +2,17 @@ package com.example.demopainter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -21,7 +21,6 @@ import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -127,7 +126,8 @@ public class PainterFragment extends Fragment {
                     @Override
                     public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Bitmap> emitter) throws Throwable {
                         mPainter.setWatermark("0011223344");
-                        Bitmap bitmap = mPainter.getCropPainting(384, 200);
+                        mPainter.setBrushColor(Color.rgb(0xFF, 0xFF, 0));
+                        Bitmap bitmap = mPainter.getCropPaintingWithWaterMark(384, 200);
                         if (!emitter.isDisposed()) {
                             if (bitmap == null) {
                                 emitter.onError(new Throwable("null bitmap"));
