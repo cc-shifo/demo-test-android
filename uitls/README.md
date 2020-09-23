@@ -1,3 +1,11 @@
+# Utilities
+- FileUtils, DateUtils, StringUtils, LongHashMap, LongHashSet, Base64, CheckSum,
+- Big&Little endian
+
+
+
+
+
 # Essentials
 
 [![Build Status](https://travis-ci.org/greenrobot/essentials.svg?branch=master)](https://travis-ci.org/greenrobot/essentials) 
