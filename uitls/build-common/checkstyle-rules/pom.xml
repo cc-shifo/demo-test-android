@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.greenrobot</groupId>
+    <artifactId>checkstyle-rules</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>2.10</version>
+                <!-- Sticking to 2.4, had trouble with 2.5 and 2.6:-->
+                <!--Error injecting constructor, java.lang.NoClassDefFoundError: org/apache/commons/logging/LogFactory
+                at org.apache.maven.wagon.providers.webdav.WebDavWagon.<init>(Unknown Source)
+                while locating org.apache.maven.wagon.providers.webdav.WebDavWagon -->
+            </extension>
+        </extensions>
+    </build>
+
+    <!-- ####################################################################################### -->
+    <!-- #################### Remainder of the POM contains deployment info #################### -->
+    <!-- ####################################################################################### -->
+
+    <profiles>
+        <profile>
+            <id>deploy-to-mvn-central</id>
+            <activation>
+                <!--<activeByDefault>true</activeByDefault>-->
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+    </profiles>
+
+    <name>greenrobot-common's Checkstyle ruleset</name>
+    <description>Checkstyle configuration file</description>
+    <url>https://github.com/greenrobot/essentials</url>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>greenrobot</name>
+            <organization>greenrobot</organization>
+            <organizationUrl>http://greenrobot.org</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git@github.com:greenrobot/essentials.git</connection>
+        <developerConnection>scm:git@github.com:greenrobot/essentials.git</developerConnection>
+        <url>https://github.com/greenrobot/essentials</url>
+    </scm>
+</project>

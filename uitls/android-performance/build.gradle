@@ -1,0 +1,91 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation project(':java-essentials-performance')
+    implementation 'com.android.support.test:runner:0.5'
+    implementation 'com.android.support.test:rules:0.5'
+}
+
+android {
+    buildToolsVersion '27.0.3' // When updating, don't forget to adjust .travis.yml
+    compileSdkVersion 27
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+
+    defaultConfig {
+        minSdkVersion 8
+        versionCode 1
+        versionName "1.0"
+
+        testApplicationId "de.greenrobot.essentials.androidperformance"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+ext.reportsDir = file("$buildDir/outputs/androidTest-results/connected")
+ext.outputReportFile = reportFile(file("$buildDir/reports"), "android-performance-%index%.tsv")
+
+task generateReport {
+    inputs.dir reportsDir
+
+    doLast {
+        // take first file from reports directory
+        def xmlFile = fileTree(dir: reportsDir, include: '*.xml').first()
+        def suite = new XmlSlurper().parse(xmlFile)
+        def testData = { String caseName ->
+            def m = caseName =~ /performance\[(.+)\]/
+            if (m) {
+                def (name, impl, runs) = m[0][1].split("[/:]") + [null]
+                runs = runs ? runs.replaceAll("[^0-9]", "") as int : 1
+                [name: name, impl: impl, runs: runs]
+            } else {
+                System.err.println "Can't parse data from test name '$caseName'"
+                [:]
+            }
+
+        }
+        def results = suite.testcase
+                .collect { testData(it.@name.toString()) + [time: it.@time.toString() as float] }
+                .findAll { it.name != null }
+                .collect {
+                    [name: it.name, impl: it.impl, time: it.time * 1000 / it.runs]
+                }
+
+        def allImpl = results*.impl.unique()
+        def header = ([""] + allImpl).join('\t') + "\n"
+        def tsv = header + results.groupBy { it.name }
+            .collect { name, value ->
+                def times = value.collectEntries { [(it.impl): it.time] }
+                [name] + allImpl.collect { times[it].trunc(3).toString().replaceAll('[.]', ',') }
+            }
+            .collect { it.join('\t') }
+            .join('\n')
+
+        outputReportFile.write tsv
+    }
+}
+
+task measurePerformance(dependsOn: ['connectedDebugAndroidTest', 'generateReport'])
