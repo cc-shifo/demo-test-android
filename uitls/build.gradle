@@ -1,0 +1,27 @@
+repositories {
+    google()
+}
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+//task wrapper(type: Wrapper) {
+//    group = "build setup"
+//    gradleVersion = '4.5.1'
+//    distributionType = org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
+//}
+
+def reportFile(File parentDir, String templateName) {
+    def file
+    for (int i = 0; i < 1000; i++) {
+        file = new File(parentDir, templateName.replaceAll('%index%', i as String))
+        if (!file.exists()) {
+            return file;
+        }
+    }
+    return file
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="brush_width">8dp</dimen>
+    <dimen name="crop_padding">20dp</dimen>
+    <dimen name="watermark_txt_size">15sp</dimen>
+</resources>

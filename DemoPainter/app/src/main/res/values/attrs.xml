@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Painter">
+        <attr name="brushColor" format="color" />
+        <attr name="brushWidth" format="dimension" />
+        <attr name="cropPadding" format="dimension" />
+        <attr name="watermarkTextColor" format="color" />
+        <attr name="watermarkTextSize" format="dimension" />
+    </declare-styleable>
+</resources>
