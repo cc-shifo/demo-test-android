@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:customKey="http://schemas.android.com/apk/res-auto"
+    customKey:horizontalGap="0dp"
+    customKey:keyWidth="@dimen/keyboard_key_width"
+    customKey:keyHeight="@dimen/keyboard_key_height"
+    customKey:verticalGap="0dp">
+    <Row>
+        <Key
+            customKey:codes="49"
+            customKey:keyLabel="1" />
+        <Key
+            customKey:codes="50"
+            customKey:keyLabel="2" />
+        <Key
+            customKey:codes="51"
+            customKey:keyLabel="3" />
+    </Row>
+
+    <Row>
+        <Key
+            customKey:codes="52"
+            customKey:keyLabel="4" />
+        <Key
+            customKey:codes="53"
+            customKey:keyLabel="5" />
+        <Key
+            customKey:codes="54"
+            customKey:keyLabel="6" />
+    </Row>
+
+    <Row>
+        <Key
+            customKey:codes="55"
+            customKey:keyLabel="7" />
+        <Key
+            customKey:codes="56"
+            customKey:keyLabel="8" />
+        <Key
+            customKey:codes="57"
+            customKey:keyLabel="9" />
+    </Row>
+
+    <Row>
+        <Key
+            customKey:codes="-5"
+            customKey:isRepeatable="true"
+            customKey:keyIcon="@drawable/key_delete" />
+        <Key
+            customKey:codes="48"
+            customKey:keyLabel="0" />
+        <Key
+            customKey:codes="-3"
+            customKey:isRepeatable="false"
+            customKey:keyIcon="@drawable/key_hide" />
+    </Row>
+
+</Keyboard>

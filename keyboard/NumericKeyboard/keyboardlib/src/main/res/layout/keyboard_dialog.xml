@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:alpha="0.8">
+
+    <!--<View-->
+        <!--android:id="@+id/dialog_blank"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1.0"/>-->
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f3f3f3"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="18dp">
+
+
+            <ImageView
+                android:id="@+id/dialog_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/keyboard_icon_close"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/keyboard_title"
+                android:textColor="#454a4d"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@drawable/keyboard_divider_line"/>
+
+        <com.xyzlf.custom.keyboardlib.PasswordView
+            android:id="@+id/dialog_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:inputType="numberPassword"
+            app:pwd_circle_radius="4dp"
+            app:pwd_board_corner_size="4dp"/>
+    </LinearLayout>
+
+    <!--android:listSelector="@android:color/transparent"-->
+    <com.xyzlf.custom.keyboardlib.KeyboardGirdView
+        android:id="@+id/dialog_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:stretchMode="columnWidth"
+
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:horizontalSpacing="0.0dip"
+        android:verticalSpacing="0.0dip"
+        app:grid_line_color="#999999"/>
+</RelativeLayout>
