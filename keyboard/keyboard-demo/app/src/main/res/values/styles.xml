@@ -42,8 +42,8 @@
         <!-- Layout resource for popup keyboards. -->
         <attr name="popupLayout" format="reference" />
 
-        <attr name="shadowColor" />
-        <attr name="shadowRadius" />
+        <attr name="shadowColor" format="color" />
+        <attr name="shadowRadius" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="KeyboardViewPreviewState">
@@ -107,6 +107,9 @@
         <!-- Mode of the keyboard. If the mode doesn't match the
              requested keyboard mode, the key will be skipped. -->
         <attr name="keyboardMode" />
+
+        <!-- key background -->
+        <attr name="background" format="reference" />
     </declare-styleable>
 
 </resources>

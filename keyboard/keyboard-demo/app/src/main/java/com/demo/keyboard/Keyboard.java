@@ -240,6 +240,8 @@ public class Keyboard {
         
         /** Icon to display instead of a label. Icon takes precedence over a label */
         public Drawable icon;
+        /** key background */
+        public Drawable background;
         /** Preview version of the icon, for the preview popup */
         public Drawable iconPreview;
         /** Width of the key, not including the gap */
@@ -388,6 +390,12 @@ public class Keyboard {
             
             if (codes == null && !TextUtils.isEmpty(label)) {
                 codes = new int[] { label.charAt(0) };
+            }
+
+            background = a.getDrawable(
+                    R.styleable.Keyboard_Key_background);
+            if (background != null) {
+                background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
             }
             a.recycle();
         }

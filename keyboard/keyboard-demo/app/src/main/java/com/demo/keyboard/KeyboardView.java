@@ -706,18 +706,27 @@ public class KeyboardView extends View implements View.OnClickListener {
                 continue;
             }
             int[] drawableState = key.getCurrentDrawableState();
-            keyBackground.setState(drawableState);
+            if (key.background != null) {
+                key.background.setState(drawableState);
+            } else {
+                keyBackground.setState(drawableState);
+            }
 
             // Switch the character to uppercase if shift is pressed
             String label = key.label == null? null : adjustCase(key.label).toString();
 
-            final Rect bounds = keyBackground.getBounds();
+
+            final Rect bounds = key.background != null ? key.background.getBounds() : keyBackground.getBounds();
             if (key.width != bounds.right ||
                     key.height != bounds.bottom) {
                 keyBackground.setBounds(0, 0, key.width, key.height);
             }
             canvas.translate(key.x + kbdPaddingLeft, key.y + kbdPaddingTop);
-            keyBackground.draw(canvas);
+            if (key.background != null) {
+                key.background.draw(canvas);
+            } else {
+                keyBackground.draw(canvas);
+            }
 
             if (label != null) {
                 // For characters, use large font. For labels like "Done", use small font.

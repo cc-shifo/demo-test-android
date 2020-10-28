@@ -27,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         customKeyboard:keyTextColor="@color/colorPrimaryDark"
         customKeyboard:keyTextSize="@dimen/keyboard_key_size"
-        customKeyboard:keyBackground="@drawable/keyboard_key_bg"
+        customKeyboard:labelTextSize="@dimen/keyboard_key_size"
+        customKeyboard:keyBackground="@drawable/keyboard_key_enter_bg"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false" />

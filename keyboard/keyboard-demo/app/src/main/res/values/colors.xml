@@ -6,4 +6,8 @@
 
     <color name="special_key_normal_color">#f8f7fa</color>
     <color name="special_key_pressed_color">#ECEEF4</color>
+
+
+    <color name="key_enter_normal_color">#FF458DE6</color>
+    <color name="key_enter_pressed_color">#66458DE6</color>
 </resources>

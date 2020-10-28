@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:customKey="http://schemas.android.com/apk/res-auto"
-    customKey:horizontalGap="0dp"
-    customKey:keyWidth="@dimen/keyboard_key_width"
+    customKey:horizontalGap="2dp"
+    customKey:keyWidth="23.5%p"
     customKey:keyHeight="@dimen/keyboard_key_height"
-    customKey:verticalGap="0dp">
+    customKey:verticalGap="2dp">
+    <!--@dimen/keyboard_key_width-->
     <Row>
         <Key
             customKey:codes="49"
@@ -15,6 +16,10 @@
         <Key
             customKey:codes="51"
             customKey:keyLabel="3" />
+        <Key
+            customKey:codes="-5"
+            customKey:isRepeatable="true"
+            customKey:keyIcon="@drawable/key_delete" />
     </Row>
 
     <Row>
@@ -27,6 +32,13 @@
         <Key
             customKey:codes="54"
             customKey:keyLabel="6" />
+
+        <Key
+            customKey:codes="-10"
+            customKey:keyLabel="En"
+            customKey:keyHeight="160dp"
+            customKey:keyOutputText="Enter"
+            customKey:background="@drawable/keyboard_key_enter_bg" />
     </Row>
 
     <Row>
@@ -42,17 +54,19 @@
     </Row>
 
     <Row>
-        <Key
-            customKey:codes="-5"
-            customKey:isRepeatable="true"
-            customKey:keyIcon="@drawable/key_delete" />
+
         <Key
             customKey:codes="48"
-            customKey:keyLabel="0" />
+            customKey:keyLabel="0"
+            customKey:keyWidth="49%p" />
+
         <Key
-            customKey:codes="-3"
-            customKey:isRepeatable="false"
-            customKey:keyIcon="@drawable/key_hide" />
+            customKey:codes="46"
+            customKey:keyLabel="." />
+<!--        <Key-->
+<!--            customKey:codes="-3"-->
+<!--            customKey:isRepeatable="false"-->
+<!--            customKey:keyIcon="@drawable/key_hide" />-->
     </Row>
 
 </Keyboard>

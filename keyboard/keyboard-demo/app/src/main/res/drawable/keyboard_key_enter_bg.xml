@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:drawable="@color/key_enter_normal_color" />
+    <item android:state_pressed="true">
+        <color android:color="@color/key_enter_pressed_color" android:alpha="0.4" />
+    </item>
+    <item android:drawable="@color/key_enter_normal_color" />
+</selector>
