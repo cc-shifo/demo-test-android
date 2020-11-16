@@ -32,6 +32,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -708,8 +709,12 @@ public class KeyboardView extends View implements View.OnClickListener {
             int[] drawableState = key.getCurrentDrawableState();
             if (key.background != null) {
                 key.background.setState(drawableState);
+                Log.d("[bg] key setState:", key.background.setState(drawableState) ? "true" :
+                        "false");
             } else {
                 keyBackground.setState(drawableState);
+                Log.d("key setState:", keyBackground.setState(drawableState) ? "true" : "false");
+
             }
 
             // Switch the character to uppercase if shift is pressed

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".BlankFragment"
+    android:clickable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/test_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_fragment"
+            android:background="@color/purple_200"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:ignore="LabelFor" />
+        <Button
+            android:layout_marginTop="30dp"
+            android:id="@+id/test_btn_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hello_activity"
+            android:background="@color/purple_200"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:ignore="LabelFor" />
+        <Button
+            android:layout_marginTop="30dp"
+            android:id="@+id/test_btn_activity3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hello_activity"
+            android:background="@color/purple_200"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+</FrameLayout>
