@@ -51,7 +51,6 @@ public class ProcessStateDialog extends BasicDialog {
      * count-down dialog
      */
     private CompositeDisposable mCompositeDisposable;
-    private Scheduler mTimerScheduler;
 
     public ProcessStateDialog(Context context) {
         super(context, R.style.dialog_common_style);
@@ -101,7 +100,6 @@ public class ProcessStateDialog extends BasicDialog {
     protected void onStart() {
         super.onStart();
         mCompositeDisposable = new CompositeDisposable();
-        mTimerScheduler = Schedulers.single();
         setState();
     }
 
@@ -114,7 +112,6 @@ public class ProcessStateDialog extends BasicDialog {
             mCompositeDisposable.clear();
             mCompositeDisposable = null;
         }
-        mTimerScheduler = null;
     }
 
     public void setState(ProcessStateView.State state, String message,
@@ -208,7 +205,7 @@ public class ProcessStateDialog extends BasicDialog {
                 })
                 .onTerminateDetach() // method 2
                 //.subscribeOn(Schedulers.io())
-                .subscribeOn(mTimerScheduler)
+                .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override

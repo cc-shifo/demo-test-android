@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mScheduler = Schedulers.single();
+        mScheduler = Schedulers.newThread();
         mProcessStateDialog = new ProcessStateDialog(this);
 
         Button button = findViewById(R.id.hello_btn);
