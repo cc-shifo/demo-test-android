@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TimerLooper</string>
+
+    <string name="dialog_processing_message">正在处理…</string>
+    <string name="dialog_common_btn_OK">确定</string>
+    <string name="dialog_common_btn_cancel">取消</string>
+</resources>
