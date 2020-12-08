@@ -111,10 +111,15 @@ public class BlankFragment extends Fragment {
 //        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.d(TAG, "onHiddenChanged: " + hidden);
+    }
+
     /* (non-Javadoc)
      * @see android.app.Activity#dispatchTouchEvent(android.view.MotionEvent)
      */
-
     @Override
     public void onPause() {
         super.onPause();

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG, "getSupportFragmentManager: " + getSupportFragmentManager());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.test_content, FirstBlankFragment.newInstance("12", "34"));
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 

@@ -97,10 +97,10 @@ public class FirstBlankFragment extends Fragment {
                 //transaction.replace(R.id.test_content, BlankFragment.newInstance("12", "34"));
 
                 // test remove
-                List<Fragment> list = getFragmentManager().getFragments();
-                for (Fragment f : list) {
-                    transaction.remove(f);
-                }
+//                List<Fragment> list = getFragmentManager().getFragments();
+//                for (Fragment f : list) {
+//                    transaction.remove(f);
+//                }
 
                 // test popBackStack
                 // getFragmentManager().popBackStack();
@@ -143,6 +143,13 @@ public class FirstBlankFragment extends Fragment {
         Log.d(TAG, "onStart: ");
     }
 
+    /**
+     * Fragment A adds(not replace) fragment B, fragment B return(not remove fragment A) to
+     * fragment A, onResume and onStart are not called.
+     *
+     * onResume, onStart are only call when if this fragment is loaded firstly, or it is removed or
+     * destroyed then recreate.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -162,6 +169,13 @@ public class FirstBlankFragment extends Fragment {
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: ");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.d(TAG, "onHiddenChanged: " + hidden);
+        /*只在使用fragment show和hide接口来显示和隐藏fragment时，这个接口才会被调用到。*/
     }
 
     @Override
