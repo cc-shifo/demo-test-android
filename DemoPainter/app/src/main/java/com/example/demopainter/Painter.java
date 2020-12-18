@@ -123,7 +123,9 @@ public class Painter extends View {
                 + ", t: " + rectF.top + ", b: " + rectF.bottom);
         LogUtils.d("ex: " + event.getX() + ", " + "ey: " + event.getY());
         LogUtils.d("eRx: " + event.getRawX() + ", " + "eRy: " + event.getRawY());
-        invalidate();
+
+        //invalidate();//move事件比较频繁，改post绘制。
+        postInvalidate();
         return true;
     }
 
@@ -308,8 +310,8 @@ public class Painter extends View {
         float top = 0;
         float end = maxW;
         float bottom = maxH;
-        mPath.close();
         if (!mPath.isEmpty()) {
+            //mPath.close(); //因此闭合，图片起点到终点会连线。
             RectF rect = new RectF();
             mPath.computeBounds(rect, true);
             start = rect.left;
@@ -436,6 +438,21 @@ public class Painter extends View {
         float translateX;
         float translateY;
         if (deltaW < pW || deltaH < pH) {
+            float sx = deltaW * 1.0f / pW;
+            float sy = deltaH * 1.0f / pH;
+            //整体缩变
+            float scaledFactor = Math.min(sx, sy);
+            matrix.postScale(scaledFactor, scaledFactor);
+            translateX = (width - (pW * scaledFactor)) / 2.0f - 0.5f;
+            translateY = (height - (pH * scaledFactor)) / 2.0f - 0.5f;
+        } else {
+            translateX = (width - pW) / 2.0f;
+            translateY = (height - pH) / 2.0f;
+        }
+        matrix.postTranslate(translateX, translateY);
+
+        // 算法有误差
+        /*if (deltaW < pW || deltaH < pH) {
             float sx;
             float sy;
             if (pW > deltaW) {
@@ -463,7 +480,7 @@ public class Painter extends View {
             translateX = (width - pW) / 2.0f;
             translateY = (height - pH) / 2.0f;
         }
-        matrix.postTranslate(translateX, translateY);
+        matrix.postTranslate(translateX, translateY);*/
 
         return matrix;
     }
