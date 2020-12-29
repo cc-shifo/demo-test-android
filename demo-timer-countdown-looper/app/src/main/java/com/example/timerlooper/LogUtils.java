@@ -1,13 +1,3 @@
-/*
- * = COPYRIGHT
- *     TianYu
- *
- * Description:
- *
- * Date                    Author                    Action
- * 2020-06-30              LiuJian                    update
- */
-
 package com.example.timerlooper;
 
 import android.util.Log;

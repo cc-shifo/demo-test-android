@@ -1,15 +1,3 @@
-
-/*
- *
- * = COPYRIGHT
- *          TianYu
- * Description: // Detail description about the function of this module,
- *             // interfaces with the other modules, and dependencies.
- * Revision History:
- * Date	                 Author	                Action
- * 20200916    	         LiuJian                  Create
- */
-
 package com.example.timerlooper;
 
 import android.content.Context;
