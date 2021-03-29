@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoSafeOnClickListener</string>
+    <string name="btn_name">click</string>
+</resources>
