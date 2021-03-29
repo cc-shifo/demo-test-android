@@ -24,22 +24,22 @@
             tools:ignore="LabelFor" />
         <Button
             android:layout_marginTop="30dp"
-            android:id="@+id/test_btn_activity"
+            android:id="@+id/test_btnA_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/hello_activity"
+            android:text="@string/helloA_activity"
             android:background="@color/purple_200"
             android:textColor="@color/white"
             android:textSize="25sp"
             tools:ignore="LabelFor" />
         <Button
             android:layout_marginTop="30dp"
-            android:id="@+id/test_btn_activity3"
+            android:id="@+id/test_btnB_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/hello_activity"
+            android:text="@string/helloB_activity"
             android:background="@color/purple_200"
             android:textColor="@color/white"
             android:textSize="25sp"

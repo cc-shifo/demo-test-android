@@ -8,6 +8,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
 import static org.junit.Assert.*;
 
 /**
@@ -58,5 +61,29 @@ public class ExampleInstrumentedTest {
         } else {
             System.out.println("PRE_AUTH_COMPLETE((byte)0x00) != GOOD_SERVICES((byte) 0x00)");
         }
+    }
+
+    @Test
+    public void testString() {
+        String abc = "abc";
+        String hanzi= "中国古文";
+        String abcHanzi= "abc中国古文";
+
+        try {
+            System.out.println("abc byte length= " + abc.getBytes().length);
+            System.out.println("hanzi byte length= " + hanzi.getBytes().length);
+            System.out.println("abcHanzi byte length= " + abcHanzi.getBytes().length);
+
+            System.out.println("abc byte length= " + abc.getBytes("gbk").length);
+            System.out.println("hanzi byte length= " + hanzi.getBytes("gbk").length);
+            System.out.println("abcHanzi byte length= " + abcHanzi.getBytes("gbk").length);
+
+            System.out.println("abc byte length= " + abc.getBytes("UTF-8").length);
+            System.out.println("hanzi byte length= " + hanzi.getBytes("UTF-8").length);
+            System.out.println("abcHanzi byte length= " + abcHanzi.getBytes("UTF-8").length);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
     }
 }

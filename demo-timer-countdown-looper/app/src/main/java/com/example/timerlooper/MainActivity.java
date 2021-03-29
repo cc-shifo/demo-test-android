@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         })
-                                .subscribeOn(mScheduler)
+                                .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Consumer<Integer>() {
                                     @Override

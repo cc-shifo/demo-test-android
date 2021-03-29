@@ -7,16 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,19 +107,19 @@ public class FirstBlankFragment extends Fragment {
 
             }
         });
-        mButtonA = v.findViewById(R.id.test_btn_activity);
+        mButtonA = v.findViewById(R.id.test_btnA_activity);
         mButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity2.class);
+                Intent intent = new Intent(getActivity(), MainActivityA.class);
                 getActivity().startActivity(intent);
             }
         });
-        mButtonB = v.findViewById(R.id.test_btn_activity3);
+        mButtonB = v.findViewById(R.id.test_btnB_activity);
         mButtonB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity3.class);
+                Intent intent = new Intent(getActivity(), MainActivityB.class);
                 getActivity().startActivity(intent);
             }
         });
