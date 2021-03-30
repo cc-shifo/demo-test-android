@@ -2,6 +2,7 @@ package com.demo.demosafeonclicklistener;
 
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,52 +23,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        final int INTERVAL = 500;
+        final int INTERVAL = 200;
         TextView tv = findViewById(R.id.tv_click);
         Button btn = findViewById(R.id.btn_click);
-        btn.setOnClickListener(new OnSafeClickListener(R.id.btn_click, INTERVAL) {
+        btn.setOnClickListener(new OnSafeClickListener(INTERVAL) {
             @Override
             public void onSafeClick(View v) {
                 String text = SystemClock.uptimeMillis() + "";
-                Snackbar.make(v, text, BaseTransientBottomBar.LENGTH_LONG)
+                Snackbar.make(v, text, BaseTransientBottomBar.LENGTH_SHORT)
                         .show();
                 tv.setText(text);
+            }
+
+            @Override
+            public void onQuickClick(View v) {
+                tv.setText("Not Safe click");
             }
         });
     }
 
     private abstract static class OnSafeClickListener implements View.OnClickListener {
+        private static final String TAG = "OnSafeClickListener";
         private final int mInterval;
         private long mMilliseconds;
-        @IdRes
-        private final int mId;
 
-        public OnSafeClickListener(@IdRes int id) {
-            this(id, 500);
+        public OnSafeClickListener() {
+            this(500);
         }
 
         /**
          * @param interval the interval milliseconds between two clicking actions.
          */
-        public OnSafeClickListener(@IdRes int id, int interval) {
-            mId = id;
+        public OnSafeClickListener(int interval) {
             mInterval = interval;
+            mMilliseconds = 0;
         }
 
         @Override
         public void onClick(View v) {
-            mMilliseconds = v.getTag(mId) == null ? 0 : (long) v.getTag(mId);
-            if (SystemClock.uptimeMillis() - mMilliseconds > mInterval) {
-                mMilliseconds = SystemClock.uptimeMillis();
-                v.setTag(mId, mMilliseconds);
+            final long ms = SystemClock.uptimeMillis();
+            Log.d(TAG, "onClick: " + ms);
+            long interval = ms - mMilliseconds;
+            if (ms - mMilliseconds > mInterval) {
+                Log.d(TAG, "SafeClick: " + ms + ", interval=" + interval);
+                mMilliseconds = ms;
                 onSafeClick(v);
+            } else {
+                Log.d(TAG, "QuickClick: " + ms + ", interval=" + interval);
+                onQuickClick(v);
             }
         }
 
         public abstract void onSafeClick(View v);
-
-        public boolean isSafetyClicked() {
-            return SystemClock.uptimeMillis() - mMilliseconds > mInterval;
+        public void onQuickClick(View v) {
+            //nothing
         }
     }
 }
