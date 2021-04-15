@@ -1,0 +1,6 @@
+
+[
+java:S20959"EUse try-with-resources or close this "Scanner" in a "finally" clause.(‹™ÔË
+Z	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(Â©½D
+E
+java:S20937"*Change this "try" to a try-with-resources.(ç£êúÿÿÿÿ

@@ -1,0 +1,91 @@
+
+E
+java:S3740#"/Provide the parametrized type for this generic.(¯„Ç™
+J
+java:S3740$"/Provide the parametrized type for this generic.(à‡„ÿÿÿÿÿ
+J
+java:S3740."/Provide the parametrized type for this generic.( ÿ¸¡ÿÿÿÿÿ
+E
+java:S37408"/Provide the parametrized type for this generic.(¤ŠÛ¿
+E
+java:S3740J"/Provide the parametrized type for this generic.(¤ŠÛ¿
+F
+java:S3740Ú"/Provide the parametrized type for this generic.(Ô»ıæ
+K
+java:S3740­"/Provide the parametrized type for this generic.(¼Š–ñúÿÿÿÿ
+F
+java:S3740Á"/Provide the parametrized type for this generic.(¤ŠÛ¿
+F
+java:S3740Ô"/Provide the parametrized type for this generic.(¤ŠÛ¿
+F
+java:S3740ç"/Provide the parametrized type for this generic.(…ô°
+F
+java:S3740ç"/Provide the parametrized type for this generic.(…ô°
+F
+java:S3740ù"/Provide the parametrized type for this generic.(…ô°
+F
+java:S3740ù"/Provide the parametrized type for this generic.(…ô°
+K
+java:S3740¢"/Provide the parametrized type for this generic.(è‘©üùÿÿÿÿ
+E
+java:S3740ª"/Provide the parametrized type for this generic.(‰æ’s
+F
+java:S3740®"/Provide the parametrized type for this generic.(ƒç–Â
+F
+java:S3740¯"/Provide the parametrized type for this generic.(Ô»ıæ
+K
+java:S3740±"/Provide the parametrized type for this generic.(ÒÀşŠıÿÿÿÿ
+F
+java:S3740·"/Provide the parametrized type for this generic.(Ô»ıæ
+F
+java:S3740Õ"/Provide the parametrized type for this generic.(Ô»ıæ
+F
+java:S3740×"/Provide the parametrized type for this generic.(ÄÖı÷
+K
+java:S3740ó"/Provide the parametrized type for this generic.(ÄĞì‹şÿÿÿÿ
+K
+java:S3740ö"/Provide the parametrized type for this generic.(÷å»›ıÿÿÿÿ
+K
+java:S3740„"/Provide the parametrized type for this generic.(®Ññµüÿÿÿÿ
+d
+java:S11926"IDefine a constant instead of duplicating this literal ", value=" 6 times.(¡§ÚÀùÿÿÿÿ
+a
+java:S2184%"FCast one of the operands of this multiplication operation to a "long".(Õ™‡Êıÿÿÿÿ
+a
+java:S2184&"FCast one of the operands of this multiplication operation to a "long".(ü¥Çøÿÿÿÿ
+e
+java:S3824¯"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(Ô»ıæ
+t	java:S135Ù"YReduce the total number of break and continue statements in this loop to use at most one.(€È¶ƒşÿÿÿÿ
+U
+java:S1155¹">Use isEmpty() to check whether the collection is empty or not.(İõÎı
+J
+java:S1121±".Extract the assignment out of this expression.(ÒÀşŠıÿÿÿÿ
+a
+java:S2142j"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108j")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142y"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108y")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+b
+java:S2142„"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108„")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+b
+java:S2142“"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108“")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+]
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142«"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108«")Either remove or fill this block of code.(´í­Œ
+p
+java:S2293ú"YReplace the type specification in this constructor call with the diamond operator ("<>").(´¤ı
+>
+java:S1659 ""Declare "exp1" on a separate line.(¦¢šúÿÿÿÿ
+b
+java:S2142˜"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108˜")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+u
+java:S1210¢"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(Åªßøÿÿÿÿ
+C
+java:S1948ˆ"'Make "value" transient or serializable.(““šçıÿÿÿÿ

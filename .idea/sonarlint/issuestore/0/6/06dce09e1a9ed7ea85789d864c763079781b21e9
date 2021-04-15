@@ -1,0 +1,15 @@
+
+F
+java:S1066¦"/Merge this if statement with the enclosing one.(º¨Ø‹
+F
+java:S1066µ"/Merge this if statement with the enclosing one.(½¶÷ÿ
+R
+java:S1117J"7Rename "mux" which hides the field declared at line 39.(Àâ–•ÿÿÿÿÿ
+R
+java:S1117U"7Rename "mux" which hides the field declared at line 39.(Àâ–•ÿÿÿÿÿ
+S
+java:S1117…"7Rename "mux" which hides the field declared at line 39.(Àâ–•ÿÿÿÿÿ
+Q
+java:S1161":Add the "@Override" annotation above this method signature(“–ış
+O
+java:S4838¤"3Change "MUX" to the type handled by the Collection.(µŠ’Úüÿÿÿÿ

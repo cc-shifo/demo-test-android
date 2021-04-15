@@ -1,0 +1,27 @@
+
+h
+java:S1192F"MDefine a constant instead of duplicating this literal "CVR matches." 7 times.(ÊçĞ‚øÿÿÿÿ
+c
+java:S1192G"MDefine a constant instead of duplicating this literal "KDI matches." 6 times.(Æ›”„
+c
+java:S1192H"MDefine a constant instead of duplicating this literal "CVN matches." 6 times.(‘ì¹³
+G
+java:S1602",Remove useless curly braces around statement(ˆ‰Êúÿÿÿÿ
+G
+java:S1602&",Remove useless curly braces around statement(ˆ‰Êúÿÿÿÿ
+B
+java:S1602-",Remove useless curly braces around statement(íÉè¨
+G
+java:S16024",Remove useless curly braces around statement(ˆ‰Êúÿÿÿÿ
+c	java:S100A"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œã–Ò
+N	java:S106D"9Replace this use of System.out or System.err by a logger.(º†î”
+c	java:S100M"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à²¿µ
+N	java:S106O"9Replace this use of System.out or System.err by a logger.(º†î”
+N	java:S106["9Replace this use of System.out or System.err by a logger.(º†î”
+c	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„İŸ
+N	java:S106c"9Replace this use of System.out or System.err by a logger.(º†î”
+h	java:S100k"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜€«¤ûÿÿÿÿ
+N	java:S106n"9Replace this use of System.out or System.err by a logger.(º†î”
+c	java:S100w"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì¯µ½
+N	java:S106z"9Replace this use of System.out or System.err by a logger.(º†î”
+O	java:S106†"9Replace this use of System.out or System.err by a logger.(º†î”

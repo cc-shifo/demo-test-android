@@ -1,0 +1,9 @@
+
+D
+java:S3740M"/Provide the parametrized type for this generic.(Òáé	
+E
+java:S3740Z"/Provide the parametrized type for this generic.(Ì–ý„
+Œ
+java:S11921"qDefine a constant instead of duplicating this literal "<h3>a</h3><h3>b</h3><h3>2019-01-01 00:00:00</h3>" 3 times.(ÅßÃúþÿÿÿÿ
+™
+java:S1192/"~Define a constant instead of duplicating this literal "<h3 th:each=\"item : ${list}\" th:text=\"${item.name}\"></h3>" 3 times.(Ä†ï®úÿÿÿÿ

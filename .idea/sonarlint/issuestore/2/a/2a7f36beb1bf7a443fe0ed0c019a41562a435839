@@ -1,0 +1,15 @@
+
+l
+java:S11922"QDefine a constant instead of duplicating this literal "testSMExceptions" 5 times.(„öÔıÿÿÿÿ
+n
+java:S1192$"SDefine a constant instead of duplicating this literal "sMException.nested" 4 times.(ûÇÇèùÿÿÿÿ
+m
+java:S1192%"XDefine a constant instead of duplicating this literal "sMException.getNested()" 4 times.(ìŠöV
+o
+java:S1192#"YDefine a constant instead of duplicating this literal "sMException.getMessage()" 3 times.(ÌªŠÍ
+`	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+[	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(ÅªÁ
+`	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(Ë›†¨şÿÿÿÿ

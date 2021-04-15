@@ -1,0 +1,14 @@
+
+F
+java:S1066¾"/Merge this if statement with the enclosing one.(Ç¥üö
+o	java:S135Ì"YReduce the total number of break and continue statements in this loop to use at most one.(ã ³
+E
+java:S1125’")Remove the literal "false" boolean value.(Å¦Ê·ÿÿÿÿÿ
+E
+java:S1125ƒ")Remove the literal "false" boolean value.(×Úçµşÿÿÿÿ
+E
+java:S1125ƒ")Remove the literal "false" boolean value.(×Úçµşÿÿÿÿ
+H
+java:S1172±"1Remove this unused method parameter "ignoreCase".(¬©ıø
+@
+java:S1125·")Remove the literal "false" boolean value.(½—ì

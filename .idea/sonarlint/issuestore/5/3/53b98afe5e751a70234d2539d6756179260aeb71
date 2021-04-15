@@ -1,0 +1,7 @@
+
+c	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¸ß‡
+h	java:S100_"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯¸Ïëøÿÿÿÿ
+V	java:S1255"<This block of commented-out lines of code should be removed.(ÖÄ·½üÿÿÿÿ
+V	java:S125I"<This block of commented-out lines of code should be removed.(¨¶½•øÿÿÿÿ
+Q	java:S125V"<This block of commented-out lines of code should be removed.(¼ž¤‰
+Q	java:S125c"<This block of commented-out lines of code should be removed.(¼ž¤‰

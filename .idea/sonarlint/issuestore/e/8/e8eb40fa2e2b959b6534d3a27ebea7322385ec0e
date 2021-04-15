@@ -1,0 +1,15 @@
+
+J
+java:S1444B"/Make this "public static TAG_FIRST" field final(Ú—ûþÿÿÿÿÿ
+M
+java:S1444C"2Make this "public static LENGTH_FIRST" field final(˜‘ÿýüÿÿÿÿ
+p
+java:S1104B"UMake TAG_FIRST a static final constant or non-public and provide accessors if needed.(Ú—ûþÿÿÿÿÿ
+s
+java:S1104C"XMake LENGTH_FIRST a static final constant or non-public and provide accessors if needed.(˜‘ÿýüÿÿÿÿ
+o
+java:S3008B"TRename this field "TAG_FIRST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú—ûþÿÿÿÿÿ
+r
+java:S3008C"WRename this field "LENGTH_FIRST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜‘ÿýüÿÿÿÿ
+<
+java:S11680"&Return an empty array instead of null.(¥¹ï

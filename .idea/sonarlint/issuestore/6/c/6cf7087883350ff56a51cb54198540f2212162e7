@@ -1,0 +1,11 @@
+
+h	java:S101©	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ñ¾ÛÇøÿÿÿÿ
+m	java:S127W"XRefactor the code in order to not assign to this loop counter from within the loop body.(›Ÿ³Ë
+f	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á³îœ
+k	java:S117O"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çÜÍ¨øÿÿÿÿ
+T
+java:S1117H"9Rename "rules" which hides the field declared at line 27.(Êï†Ùüÿÿÿÿ
+g	java:S128É"LEnd this switch case with an unconditional break, return or throw statement.(úâúÿÿÿÿ
+g	java:S128Â"LEnd this switch case with an unconditional break, return or throw statement.(‰ÆÄÎşÿÿÿÿ
+g	java:S128¿"LEnd this switch case with an unconditional break, return or throw statement.(µ»ïşıÿÿÿÿ
+=	java:S131¾""Add a default case to this switch.(›å¥øÿÿÿÿ

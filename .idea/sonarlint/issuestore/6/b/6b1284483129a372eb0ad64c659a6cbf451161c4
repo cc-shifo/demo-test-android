@@ -1,0 +1,193 @@
+
+b
+java:S1192ã"FDefine a constant instead of duplicating this literal "cvk-b" 4 times.(ô‘Îˆûÿÿÿÿ
+j
+java:S1192Ó"SDefine a constant instead of duplicating this literal "Excluded PINs list" 5 times.(ùˆÙç
+d
+java:S1192"HDefine a constant instead of duplicating this literal "result" 55 times.(†«Í÷şÿÿÿÿ
+d
+java:S1192ü"HDefine a constant instead of duplicating this literal "results" 7 times.(ÏÖŞ…ıÿÿÿÿ
+n
+java:S1192"RDefine a constant instead of duplicating this literal "Key Specification" 4 times.(ù¯–œùÿÿÿÿ
+b
+java:S1192â"FDefine a constant instead of duplicating this literal "cvk-a" 4 times.(Ü«¬øúÿÿÿÿ
+g
+java:S1192Û"KDefine a constant instead of duplicating this literal "skd method" 5 times.(™šõ£ıÿÿÿÿ
+m
+java:S1192›	"VDefine a constant instead of duplicating this literal "Initialization Vector" 8 times.(é¤Ÿø
+j
+java:S1192ª"NDefine a constant instead of duplicating this literal "PIN under LMK" 7 times.(ı€Éøÿÿÿÿ
+l
+java:S1192ü"PDefine a constant instead of duplicating this literal "Complex results" 3 times.(ÏÖŞ…ıÿÿÿÿ
+g
+java:S1192¤"PDefine a constant instead of duplicating this literal "account number" 24 times.(Ú™ÛÓ
+i
+java:S1192å"MDefine a constant instead of duplicating this literal "Service code" 6 times.(Ü ®İøÿÿÿÿ
+^
+java:S1192ú"GDefine a constant instead of duplicating this literal "imk-ac" 6 times.(¥º‹±
+g
+java:S1192z"LDefine a constant instead of duplicating this literal "parameter" 236 times.(¼ŸÑöüÿÿÿÿ
+`
+java:S1192ä"IDefine a constant instead of duplicating this literal "Exp date" 6 times.(ï÷¿é
+q
+java:S1192í"UDefine a constant instead of duplicating this literal "PIN under Data Key 2" 3 times.(¦éÈ·ùÿÿÿÿ
+c
+java:S1192¶
+"LDefine a constant instead of duplicating this literal "Private Key" 3 times.(ÆêÇ‘
+o
+java:S1192Í"SDefine a constant instead of duplicating this literal "Key-Encrypting Key" 4 times.(ÀşÅ¹şÿÿÿÿ
+l
+java:S1192Î"UDefine a constant instead of duplicating this literal "PIN under Data Key 1" 6 times.(©ßÚÙ
+k
+java:S1192Ğ"TDefine a constant instead of duplicating this literal "Verification status" 9 times.(¤Éå¥
+z
+java:S1192Ç"^Define a constant instead of duplicating this literal "Operation not supported in: " 53 times.(šˆîôşÿÿÿÿ
+b
+java:S1192ÿ"KDefine a constant instead of duplicating this literal "mkd method" 8 times.(•Ÿß÷
+]
+java:S1192Ğ"FDefine a constant instead of duplicating this literal "valid" 8 times.(¤Éå¥
+i
+java:S1192À"MDefine a constant instead of duplicating this literal "accnt seq no" 6 times.(è¨êËüÿÿÿÿ
+j
+java:S1192ë"SDefine a constant instead of duplicating this literal "minimum PIN length" 3 times.(·ı¤÷
+g
+java:S1192Ï"KDefine a constant instead of duplicating this literal "Data Key 1" 6 times.(£ †Îşÿÿÿÿ
+e
+java:S1192|"ODefine a constant instead of duplicating this literal "s-m-operation" 50 times.(¢Şø„
+_
+java:S1192Ğ"HDefine a constant instead of duplicating this literal "invalid" 8 times.(¤Éå¥
+b
+java:S1192å"KDefine a constant instead of duplicating this literal "Data Key 2" 3 times.(ğŠÿ†
+d
+java:S1192}"IDefine a constant instead of duplicating this literal "command" 50 times.(‹ÿÅÿÿÿÿÿ
+b
+java:S1192Š"FDefine a constant instead of duplicating this literal "PVK-B" 3 times.(½—„”úÿÿÿÿ
+k
+java:S1192£	"ODefine a constant instead of duplicating this literal "Encrypted Data" 3 times.(•¨ùºøÿÿÿÿ
+b
+java:S1192‰"FDefine a constant instead of duplicating this literal "PVK-A" 3 times.(ˆÎŒúÿÿÿÿ
+k
+java:S1192ê"TDefine a constant instead of duplicating this literal "PIN validation data" 4 times.(çÛ×
+k
+java:S1192é"UDefine a constant instead of duplicating this literal "decimalisation table" 3 times.(ëâµ
+y
+java:S1192æ"]Define a constant instead of duplicating this literal "Destination PIN Block Format" 4 times.(óŞ°úÿÿÿÿ
+W	java:S107½"<Method has 8 parameters, which is greater than 7 authorized.(±½Åàúÿÿÿÿ
+W	java:S107Ñ"<Method has 9 parameters, which is greater than 7 authorized.(õû‰şÿÿÿÿ
+X	java:S107ç"=Method has 11 parameters, which is greater than 7 authorized.(¾°–ÿÿÿÿÿ
+S	java:S107ÿ"=Method has 12 parameters, which is greater than 7 authorized.(è¿
+R	java:S107•"<Method has 8 parameters, which is greater than 7 authorized.(¶¹ª³
+S	java:S107¯"=Method has 15 parameters, which is greater than 7 authorized.(Å‰»§
+\
+java:S1193„"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193—"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ª"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¿"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193×"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193î"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193‚"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193˜"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193­"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ä"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ø"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ğ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Œ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ª"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¿"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193İ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ö"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193–"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¹"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ô"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193÷"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¼"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Õ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193î"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193‡"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193 "@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193º"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ó"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ì"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ˆ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193£"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Î"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ë"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193´"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ğ"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193€	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193©	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ó	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193ç	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193û	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193
+"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¢
+"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193º
+"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193Ò
+"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193é
+"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193¹"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+Q
+java:S1133Ù"5Do not forget to remove this deprecated code someday.(ë¢Àúÿÿÿÿ
+C
+java:S1123Ù"'Add the missing @Deprecated annotation.(ë¢Àúÿÿÿÿ
+Q
+java:S1133÷"5Do not forget to remove this deprecated code someday.(½íª§ùÿÿÿÿ
+C
+java:S1123÷"'Add the missing @Deprecated annotation.(½íª§ùÿÿÿÿ
+d	java:S100•"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶¹ª³
+d	java:S100¯"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å‰»§
+i	java:S100Û"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ãùµüÿÿÿÿ
+i	java:S100æ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÏİ¿üÿÿÿÿ

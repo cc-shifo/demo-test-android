@@ -1,0 +1,33 @@
+
+K
+java:S3740ª"/Provide the parametrized type for this generic.(‹õ¿Ãüÿÿÿÿ
+K
+java:S3740¼"/Provide the parametrized type for this generic.(‹õ¿Ãüÿÿÿÿ
+p
+java:S1192ä"TDefine a constant instead of duplicating this literal "Client disconnected" 3 times.(Š– ·ùÿÿÿÿ
+c
+java:S1192é"GDefine a constant instead of duplicating this literal "notify" 3 times.(Áªüùùÿÿÿÿ
+}
+java:S1192á"aDefine a constant instead of duplicating this literal "Server has no active connections" 3 times.(ûÖØøÿÿÿÿ
+b
+java:S1192"FDefine a constant instead of duplicating this literal "class" 3 times.(ÆŒœüÿÿÿÿ
+G
+java:S1659=",Declare "packagerString" on a separate line.(â²ıÁúÿÿÿÿ
+L
+java:S1659="1Declare "socketFactoryString" on a separate line.(â²ıÁúÿÿÿÿ
+d
+java:S4201s"IRemove this unnecessary null check; "instanceof" returns false for nulls.(ÇóÎÊıÿÿÿÿ
+X
+java:S2886Å"BSynchronize this method to match the synchronization on "setPort".(¨Äã3
+b
+java:S2886Ñ"FSynchronize this method to match the synchronization on "setPackager".(Ìüùûÿÿÿÿ
+a
+java:S2886İ"ESynchronize this method to match the synchronization on "setChannel".(¸§ÎÉşÿÿÿÿ
+`
+java:S2886é"ISynchronize this method to match the synchronization on "setMaxSessions".(§Äİ´
+e
+java:S2886õ"ISynchronize this method to match the synchronization on "setMinSessions".( °ışÿÿÿÿ
+g
+java:S2886"KSynchronize this method to match the synchronization on "setSocketFactory".(¼Åˆ§úÿÿÿÿ
+M
+java:S1117Í"6Rename "sp" which hides the field declared at line 64.(í‡å´

@@ -1,0 +1,22 @@
+
+F
+java:S3740­"/Provide the parametrized type for this generic.(§ùÿ
+E
+java:S3740¯"/Provide the parametrized type for this generic.(šŞ:
+K
+java:S3740±"/Provide the parametrized type for this generic.(ìÀºåùÿÿÿÿ
+^
+java:S1128"CRemove this unused import 'java.util.concurrent.ConcurrentHashMap'.(ÓŠÓøúÿÿÿÿ
+<
+java:S1948%"&Make "pmap" transient or serializable.(ì¯Çâ
+]
+java:S2142§"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108§")Either remove or fill this block of code.(´í­Œ
+j
+java:S2975Å"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(ì™á†
+\
+java:S1124µ"EReorder the modifiers to comply with the Java Language Specification.(‡”Ø¢
+a
+java:S1124Â"EReorder the modifiers to comply with the Java Language Specification.(²Æöëûÿÿÿÿ
+a
+java:S1124Ï"EReorder the modifiers to comply with the Java Language Specification.(Ô²äÎûÿÿÿÿ

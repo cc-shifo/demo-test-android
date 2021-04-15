@@ -1,0 +1,17 @@
+
+g
+java:S1192"KDefine a constant instead of duplicating this literal "Tag id: 0x" 4 times.(¾¯µœşÿÿÿÿ
+ƒ
+java:S1130U"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ñ°Øğ
+K
+java:S1133U"5Do not forget to remove this deprecated code someday.(ñ°Øğ
+^
+java:S1123T"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+ˆ
+java:S1130Z"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ó’Úıÿÿÿÿ
+‰
+java:S1130ƒ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(§ØÜîşÿÿÿÿ
+„
+java:S1130¤"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(†Ìî¾
+„
+java:S1130®"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¯’æö

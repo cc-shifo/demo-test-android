@@ -1,0 +1,40 @@
+
+f
+java:S1192Â"JDefine a constant instead of duplicating this literal "Message 3" 3 times.(’¯ŠÅşÿÿÿÿ
+†
+java:S1192/"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 4 times.(áÆ”Óÿÿÿÿÿ
+a
+java:S1192°"JDefine a constant instead of duplicating this literal "Message 2" 7 times.(óµşÔ
+a
+java:S1192ª"JDefine a constant instead of duplicating this literal "Message 1" 7 times.(ßäë€
+j
+java:S11922"TDefine a constant instead of duplicating this literal "rotateLogListener.f" 4 times.(»€
+j
+java:S11923"TDefine a constant instead of duplicating this literal "rotateLogListener.p" 4 times.(€³ºœ
+m
+java:S1192ô"QDefine a constant instead of duplicating this literal "%s-important-log" 3 times.(›áµÿÿÿÿÿ
+˜
+java:S1192¼"|Define a constant instead of duplicating this literal "Logger element should have been closed in the archived file" 3 times.(™ò¬Åúÿÿÿÿ
+˜
+java:S1192»"|Define a constant instead of duplicating this literal "Logger element should have been opened in the archived file" 3 times.(ˆÆÃ¡úÿÿÿÿ
+
+java:S1192T"fDefine a constant instead of duplicating this literal "(DailyLogListener) dailyLogListener.p" 5 times.(øé¬øÿÿÿÿ
+e
+java:S1192µ"IDefine a constant instead of duplicating this literal "<logger " 5 times.(´ûÙáùÿÿÿÿ
+a
+java:S1192¶"JDefine a constant instead of duplicating this literal "</logger>" 6 times.(Æˆ¥¦
+`	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(¼ëè¹ùÿÿÿÿ
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(Ÿúíúÿÿÿÿ
+`	java:S112@"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(ÇÇ©áşÿÿÿÿ
+`	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(ıÌÂäıÿÿÿÿ
+`	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(ãç„Œüÿÿÿÿ
+`	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(ï¹¿¢üÿÿÿÿ
+Z	java:S112l"FDefine and throw a dedicated exception instead of using a generic one.(Ò–[
+`	java:S112u"FDefine and throw a dedicated exception instead of using a generic one.(£Å®¨ıÿÿÿÿ
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(š©œ¥øÿÿÿÿ
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Šñûÿÿÿÿ
+a	java:S112“"FDefine and throw a dedicated exception instead of using a generic one.(‡Ğ¹şÿÿÿÿ
+\	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(’™Ú
+\	java:S112Ú"FDefine and throw a dedicated exception instead of using a generic one.(£Ú½ı
+T	java:S106é"9Replace this use of System.out or System.err by a logger.(Ö‰½½üÿÿÿÿ

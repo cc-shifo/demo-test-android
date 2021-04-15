@@ -1,0 +1,37 @@
+
+N
+java:S1444³"2Make this "public static BANNER_ITEMS" field final(¿ÁòŠûÿÿÿÿ
+H
+java:S1444º"1Make this "public static JSON_MOVIES" field final(©È…»
+n
+java:S1104"RMake actors a static final constant or non-public and provide accessors if needed.(ÄØ¨°ÿÿÿÿÿ
+p
+java:S1104"TMake filmName a static final constant or non-public and provide accessors if needed.(›À†±üÿÿÿÿ
+m
+java:S1104Ÿ"QMake grade a static final constant or non-public and provide accessors if needed.(ì’¿½üÿÿÿÿ
+g
+java:S1104 "PMake info a static final constant or non-public and provide accessors if needed.(éš…ü
+o
+java:S1104¡"SMake picaddr a static final constant or non-public and provide accessors if needed.(²Š»Àúÿÿÿÿ
+q
+java:S1104¢"UMake shortinfo a static final constant or non-public and provide accessors if needed.(¬ºé¾úÿÿÿÿ
+k
+java:S1104§"OMake pic a static final constant or non-public and provide accessors if needed.(Şá¾âşÿÿÿÿ
+h
+java:S1104¨"QMake title a static final constant or non-public and provide accessors if needed.(Å¬õ
+t
+java:S1104³"XMake BANNER_ITEMS a static final constant or non-public and provide accessors if needed.(¿ÁòŠûÿÿÿÿ
+n
+java:S1104º"WMake JSON_MOVIES a static final constant or non-public and provide accessors if needed.(©È…»
+s
+java:S3008³"WRename this field "BANNER_ITEMS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ÁòŠûÿÿÿÿ
+m
+java:S3008º"VRename this field "JSON_MOVIES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©È…»
+9
+java:S2386³"Make this member "protected".(¿ÁòŠûÿÿÿÿ
+H
+java:S3599³",Use another way to initialize this instance.(¿ÁòŠûÿÿÿÿ
+u
+java:S1171³"YMove the contents of this initializer to a standard constructor or to field initializers.(¿ÁòŠûÿÿÿÿ
+V	java:S125U"<This block of commented-out lines of code should be removed.(Ş•øùÿÿÿÿ
+V	java:S125W"<This block of commented-out lines of code should be removed.(ìİŠøúÿÿÿÿ

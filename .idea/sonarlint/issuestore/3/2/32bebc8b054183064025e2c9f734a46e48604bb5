@@ -1,0 +1,37 @@
+
+g
+java:S1192¸"KDefine a constant instead of duplicating this literal "2018-03-01" 3 times.(¬´í³ùÿÿÿÿ
+g
+java:S1192¹"KDefine a constant instead of duplicating this literal "2018-04-01" 3 times.(ò™¥¥úÿÿÿÿ
+a
+java:S1192‚"JDefine a constant instead of duplicating this literal "[a, b, c]" 4 times.(î ®ö
+b
+java:S1192·"KDefine a constant instead of duplicating this literal "2018-05-01" 3 times.(Øî‹
+Z
+java:S1155¡">Use isEmpty() to check whether the collection is empty or not.(ÜşŒìüÿÿÿÿ
+C
+java:S2175J"-A "ArrayList<Object>" cannot contain a "int".(û®À
+H
+java:S2175K"-A "ArrayList<Object>" cannot contain a "int".(ÄÈÕùÿÿÿÿ
+H
+java:S2175O"-A "ArrayList<Object>" cannot contain a "int".(Õ¼ÌÏøÿÿÿÿ
+H
+java:S2175P"-A "ArrayList<Object>" cannot contain a "int".(§•Ø·øÿÿÿÿ
+@
+java:S1125õ")Remove the literal "false" boolean value.(ŠÚ—É
+j
+java:S1602£"SRemove useless curly braces around statement and then remove useless return keyword(œ¨´Ô
+=
+java:S2129×"!Remove this "Integer" constructor(­ºÎâıÿÿÿÿ
+=
+java:S2129Ø"!Remove this "Integer" constructor(ï‚òèûÿÿÿÿ
+=
+java:S2129Ù"!Remove this "Integer" constructor(ÄÄŸØûÿÿÿÿ
+J
+java:S1611‘"3Remove the parentheses around the "value" parameter(çæÒš
+?
+java:S1068ë"(Remove this unused "name" private field.(Ë¥¼
+C
+java:S1068ì"'Remove this unused "age" private field.(Æ†´¦şÿÿÿÿ
+D
+java:S1068í".Remove this unused "createTime" private field.(ßÈ¨L

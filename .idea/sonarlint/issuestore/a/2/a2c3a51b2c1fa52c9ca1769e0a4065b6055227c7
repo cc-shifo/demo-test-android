@@ -1,0 +1,11 @@
+
+K
+java:S1133"5Do not forget to remove this deprecated code someday.(‹ûÆ©
+^
+java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+[
+java:S1124;"EReorder the modifiers to comply with the Java Language Specification.(«Á¸“
+i	java:S100Ã"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹™äÇûÿÿÿÿ
+@
+java:S1125Ò")Remove the literal "false" boolean value.(ûï•Å
+R	java:S125É"<This block of commented-out lines of code should be removed.(öç‰

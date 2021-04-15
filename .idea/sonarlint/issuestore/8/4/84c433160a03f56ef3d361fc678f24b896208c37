@@ -1,0 +1,10 @@
+
+g	java:S101!"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ßÆÿˆûÿÿÿÿ
+k	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁğÈşÿÿÿÿ
+k	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡£°¨øÿÿÿÿ
+e	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–œÓ\
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£¶Œ¸ıÿÿÿÿ
+k	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊÃË§ûÿÿÿÿ
+f	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Èá¾
+[
+java:S1193X"@Replace the usage of the "instanceof" operator by a catch block.(ºùÓêıÿÿÿÿ

@@ -1,0 +1,13 @@
+
+F
+java:S2160."+Override the "equals" method in this class.(ğñ¬Ÿüÿÿÿÿ
+D
+java:S1948E")Make "charset" transient or serializable.(ª’ê‹ûÿÿÿÿ
+[
+java:S11244"EReorder the modifiers to comply with the Java Language Specification.(ª¤Áë
+
+java:S1130€"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(·ŸÀ†
+
+java:S1130…"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(ÌóĞÛ
+E
+java:S1125­")Remove the literal "false" boolean value.(Â¯ä²üÿÿÿÿ

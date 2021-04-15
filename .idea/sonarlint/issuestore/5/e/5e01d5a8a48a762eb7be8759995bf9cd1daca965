@@ -1,0 +1,19 @@
+
+V
+java:S2184"@Cast one of the operands of this integer division to a "double".(Ä»™(
+B
+java:S1905Æ"&Remove this unnecessary cast to "int".(Í—û©şÿÿÿÿ
+=
+java:S1905Ç"&Remove this unnecessary cast to "int".(åÏúô
+B
+java:S1905È"&Remove this unnecessary cast to "int".(€ô…Çşÿÿÿÿ
+B
+java:S1905É"&Remove this unnecessary cast to "int".(èÈÆğüÿÿÿÿ
+=
+java:S1110É"!Remove these useless parentheses.(èÈÆğüÿÿÿÿ
+R	java:S125Î"<This block of commented-out lines of code should be removed.(×Ô–‡
+R	java:S125ô"<This block of commented-out lines of code should be removed.(©İÒÌ
+W	java:S125÷"<This block of commented-out lines of code should be removed.(´şâüÿÿÿÿ
+W	java:S125Û"<This block of commented-out lines of code should be removed.(«ªà¦ùÿÿÿÿ
+W	java:S125ü"<This block of commented-out lines of code should be removed.(‡¬ğ‡ıÿÿÿÿ
+W	java:S125€"<This block of commented-out lines of code should be removed.(û€»İşÿÿÿÿ

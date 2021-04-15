@@ -1,0 +1,19 @@
+
+†
+java:S11929"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 3 times.(áÆ”Óÿÿÿÿÿ
+k
+java:S1192;"PDefine a constant instead of duplicating this literal "ex.getMessage()" 3 times.(«€×ˆùÿÿÿÿ
+t
+java:S1192+"YDefine a constant instead of duplicating this literal "taskAdaptor.isModified()" 4 times.(­±áùÿÿÿÿ
+g
+java:S1192<"QDefine a constant instead of duplicating this literal "taskAdaptor.task" 3 times.(êÛÜ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(²º‘
+[	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(êŞ£²
+[	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(µàÙ¯
+[	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(¹…Í
+[	java:S112]"FDefine and throw a dedicated exception instead of using a generic one.(ÕŸ­É
+S
+java:S1854D"8Remove this useless assignment to local variable "args".(•„Õüÿÿÿÿ
+D
+java:S1481D")Remove this unused "args" local variable.(•„Õüÿÿÿÿ

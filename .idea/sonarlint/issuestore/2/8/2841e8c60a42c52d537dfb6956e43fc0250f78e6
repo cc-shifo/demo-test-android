@@ -1,0 +1,30 @@
+
+[	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(Â¶Ä“
+s	java:S135u"YReduce the total number of break and continue statements in this loop to use at most one.(’Ý„‘ûÿÿÿÿ
+s	java:S135o"YReduce the total number of break and continue statements in this loop to use at most one.(ñ›“¦øÿÿÿÿ
+Q
+java:S1141†"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141•"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+–
+java:S1186C"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ø¼™m
+œ
+java:S1186E"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³ª™ýÿÿÿÿ
+–
+java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŒÖÍj
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¡Õú²ÿÿÿÿÿ
+`
+java:S1124 "EReorder the modifiers to comply with the Java Language Specification.(¯íßþÿÿÿÿ
+N	java:S106."9Replace this use of System.out or System.err by a logger.(²íý½
+‚
+java:S1130_"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Â¶Ä“
+\
+java:S2142k"FEither re-interrupt this method or rethrow the "InterruptedException".(®©®²
+>	java:S108k")Either remove or fill this block of code.(®©®²
+U
+java:S1117q":Rename "reader" which hides the field declared at line 40.(•ô€²üÿÿÿÿ
+L
+java:S1117È"5Rename "t" which hides the field declared at line 33.(¿•ÛŸ
+Q
+java:S1117Ò":Rename "reader" which hides the field declared at line 40.(™°¡¯

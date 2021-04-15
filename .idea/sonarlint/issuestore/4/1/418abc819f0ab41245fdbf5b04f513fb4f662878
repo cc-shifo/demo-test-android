@@ -1,0 +1,29 @@
+
+D
+java:S1121C".Extract the assignment out of this expression.(‘…è£
+L
+java:S26969"6Make the enclosing method "static" or remove this set.(Ó’ÏÉ
+G
+java:S3599~",Use another way to initialize this instance.(ßœ°˜ûÿÿÿÿ
+t
+java:S1171~"YMove the contents of this initializer to a standard constructor or to field initializers.(ßœ°˜ûÿÿÿÿ
+H
+java:S3599ƒ",Use another way to initialize this instance.(å¼Ÿ•úÿÿÿÿ
+u
+java:S1171ƒ"YMove the contents of this initializer to a standard constructor or to field initializers.(å¼Ÿ•úÿÿÿÿ
+H
+java:S3599ˆ",Use another way to initialize this instance.(å¼Ÿ•úÿÿÿÿ
+u
+java:S1171ˆ"YMove the contents of this initializer to a standard constructor or to field initializers.(å¼Ÿ•úÿÿÿÿ
+H
+java:S3599",Use another way to initialize this instance.(å¼Ÿ•úÿÿÿÿ
+u
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(å¼Ÿ•úÿÿÿÿ
+H
+java:S3599’",Use another way to initialize this instance.(å¼Ÿ•úÿÿÿÿ
+u
+java:S1171’"YMove the contents of this initializer to a standard constructor or to field initializers.(å¼Ÿ•úÿÿÿÿ
+H
+java:S3599—",Use another way to initialize this instance.(å¼Ÿ•úÿÿÿÿ
+u
+java:S1171—"YMove the contents of this initializer to a standard constructor or to field initializers.(å¼Ÿ•úÿÿÿÿ

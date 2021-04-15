@@ -1,0 +1,17 @@
+
+[
+java:S1444 "@Make this "public static INTERPOLATOR_VISCOUS_FLUID" field final(ïŞéÅûÿÿÿÿ
+X
+java:S1444!"=Make this "public static INTERPOLATOR_DECELERATE" field final(Ûú“éûÿÿÿÿ
+
+java:S1104 "fMake INTERPOLATOR_VISCOUS_FLUID a static final constant or non-public and provide accessors if needed.(ïŞéÅûÿÿÿÿ
+~
+java:S1104!"cMake INTERPOLATOR_DECELERATE a static final constant or non-public and provide accessors if needed.(Ûú“éûÿÿÿÿ
+€
+java:S3008 "eRename this field "INTERPOLATOR_VISCOUS_FLUID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïŞéÅûÿÿÿÿ
+}
+java:S3008!"bRename this field "INTERPOLATOR_DECELERATE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûú“éûÿÿÿÿ
+8
+java:S1110Å"!Remove these useless parentheses.(„áó•
+R	java:S125¿"<This block of commented-out lines of code should be removed.(íëù
+W	java:S125Â"<This block of commented-out lines of code should be removed.(¶ó¼ïüÿÿÿÿ

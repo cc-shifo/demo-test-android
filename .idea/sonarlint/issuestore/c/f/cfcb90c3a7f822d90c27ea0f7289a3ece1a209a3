@@ -1,0 +1,62 @@
+
+N
+java:S2755e"3Disable access to external entities in XML parsing.(¨øé¼üÿÿÿÿ
+F
+java:S3740Ñ"/Provide the parametrized type for this generic.(çà¢
+K
+java:S3740Ô"/Provide the parametrized type for this generic.(š“Ÿÿÿÿÿÿ
+K
+java:S3740Ô"/Provide the parametrized type for this generic.(š“Ÿÿÿÿÿÿ
+K
+java:S3740Õ"/Provide the parametrized type for this generic.(“‡Ûòşÿÿÿÿ
+K
+java:S3740á"/Provide the parametrized type for this generic.(½åšóúÿÿÿÿ
+K
+java:S3740é"/Provide the parametrized type for this generic.(åÕ²…üÿÿÿÿ
+K
+java:S3740ñ"/Provide the parametrized type for this generic.(½åšóúÿÿÿÿ
+K
+java:S3740ƒ"/Provide the parametrized type for this generic.(½åšóúÿÿÿÿ
+K
+java:S3740«"/Provide the parametrized type for this generic.(š“Ÿÿÿÿÿÿ
+K
+java:S3740«"/Provide the parametrized type for this generic.(š“Ÿÿÿÿÿÿ
+K
+java:S3740¬"/Provide the parametrized type for this generic.(“‡Ûòşÿÿÿÿ
+F
+java:S3740®"/Provide the parametrized type for this generic.(çà¢
+E
+java:S3740Ê"/Provide the parametrized type for this generic.(â™
+E
+java:S3740÷"/Provide the parametrized type for this generic.(â™
+F
+java:S3740…"/Provide the parametrized type for this generic.(„‰Ã
+F
+java:S3740’"/Provide the parametrized type for this generic.(úöš“
+E
+java:S3740›"/Provide the parametrized type for this generic.(×±Û
+b
+java:S1192İ"FDefine a constant instead of duplicating this literal "class" 4 times.(ñë‘Öøÿÿÿÿ
+u	java:S115º"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢ÛÒÿÿÿÿÿ
+g
+java:S1149¯"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Í‰Ò™
+g
+java:S1149¯"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Í‰Ò™
+S
+java:S1197X"8Move the array designator from the variable to the type.(ê¶Ä½ıÿÿÿÿ
+X
+java:S4838"<Change "ISOValidator" to the type handled by the Collection.(¹¸§ˆıÿÿÿÿ
+C
+java:S1659¯",Declare "validatorStack" on a separate line.(Í‰Ò™
+g
+java:S1149¯"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Í‰Ò™
+g
+java:S1149¯"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Í‰Ò™
+p
+java:S2293Á"YReplace the type specification in this constructor call with the diamond operator ("<>").(ºƒ¯¼
+u
+java:S2293Â"YReplace the type specification in this constructor call with the diamond operator ("<>").(µÖğµüÿÿÿÿ
+T
+java:S1197À"8Move the array designator from the variable to the type.(ê¶Ä½ıÿÿÿÿ
+M
+java:S3398N"7Move this method into "GenericValidatorContentHandler".(İ¶ÅÜ

@@ -1,0 +1,19 @@
+
+]
+java:S1192("GDefine a constant instead of duplicating this literal "result" 8 times.(¢Õ¡ä
+|
+java:S11926"aDefine a constant instead of duplicating this literal "testVolatileSequencerCounterName" 5 times.(è¹’µûÿÿÿÿ
+f
+java:S1192D"KDefine a constant instead of duplicating this literal "testString" 5 times.(ä±çšúÿÿÿÿ
+[	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(ïúø¸
+[	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(‡™×é
+[	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(ÄÃ‹Û
+`	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(¿Ûàúÿÿÿÿ
+[	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(Ã®ëĞ
+Z	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(’…¸
+[	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(Ø¼Ã×
+[	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(á¤ìÊ
+`	java:S112c"FDefine and throw a dedicated exception instead of using a generic one.(¥‰¼¼ûÿÿÿÿ
+[	java:S112k"FDefine and throw a dedicated exception instead of using a generic one.(¿úãë
+Q	java:S125"<This block of commented-out lines of code should be removed.(Û âÒ
+V	java:S125"<This block of commented-out lines of code should be removed.(œíÍ¤ùÿÿÿÿ

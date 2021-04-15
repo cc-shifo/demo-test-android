@@ -1,0 +1,8 @@
+
+`	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(ùªâœüÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(­¿œüÿÿÿÿ
+o
+java:S2293V"YReplace the type specification in this constructor call with the diamond operator ("<>").(œœÕ¼
+t
+java:S3012X"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(œñÓ­ıÿÿÿÿ

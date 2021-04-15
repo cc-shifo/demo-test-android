@@ -1,0 +1,31 @@
+
+k
+java:S1192"UDefine a constant instead of duplicating this literal "<taskID>885</taskID>" 4 times.(±Ç”«
+h
+java:S1192!"MDefine a constant instead of duplicating this literal "</returnsms>" 4 times.(šé”œûÿÿÿÿ
+b
+java:S1192"LDefine a constant instead of duplicating this literal "<returnsms>" 4 times.(·ÄÆà
+‡
+java:S1192"lDefine a constant instead of duplicating this literal "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" 4 times.(˜×­©üÿÿÿÿ
+{
+java:S1192"`Define a constant instead of duplicating this literal "<remainpoint>1490</remainpoint>" 4 times.(ù­¢áùÿÿÿÿ
+w
+java:S1192 "aDefine a constant instead of duplicating this literal "<successCounts>1</successCounts>" 4 times.(ú€ŒÖ
+q
+java:S1192"VDefine a constant instead of duplicating this literal "<message>ok</message>" 4 times.(Ø·£ìýÿÿÿÿ
+m	java:S116É"RRename this field "ReqCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öÉšƒøÿÿÿÿ
+l	java:S116Ê"VRename this field "AccountName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(žë“Ž
+n	java:S116Ë"SRename this field "Operator" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸¦ñüøÿÿÿÿ
+k	java:S116Ì"VRename this field "ProjectCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú£›W
+i	java:S116Í"SRename this field "BankCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”œË½
+G
+java:S1068É"+Remove this unused "ReqCode" private field.(öÉšƒøÿÿÿÿ
+F
+java:S1068Ê"/Remove this unused "AccountName" private field.(žë“Ž
+H
+java:S1068Ë",Remove this unused "Operator" private field.(¸¦ñüøÿÿÿÿ
+E
+java:S1068Ì"/Remove this unused "ProjectCode" private field.(ú£›W
+C
+java:S1068Í",Remove this unused "BankCode" private field.(”œË½
+Q	java:S125t"<This block of commented-out lines of code should be removed.(¼õÞ€

@@ -1,0 +1,57 @@
+
+~
+java:S1192f"hDefine a constant instead of duplicating this literal "--||--  <inner-tag name=\"Inner Name\">" 4 times.(â—’¯
+k
+java:S11923"UDefine a constant instead of duplicating this literal "simpleMsg.msgContent" 6 times.(Ç‰öå
+k
+java:S1192h"UDefine a constant instead of duplicating this literal "--||--  </inner-tag>" 4 times.(£«ï
+{
+java:S1192e"`Define a constant instead of duplicating this literal "--||--<tag name=\"Some Name\">" 13 times.(î§ÃÀøÿÿÿÿ
+e
+java:S1192c"JDefine a constant instead of duplicating this literal "inner-tag" 4 times.( •Ó´üÿÿÿÿ
+f
+java:S1192c"KDefine a constant instead of duplicating this literal "Inner Name" 4 times.( •Ó´üÿÿÿÿ
+d
+java:S1192"MDefine a constant instead of duplicating this literal "--||--  null" 4 times.(€÷£ø
+a
+java:S11922"KDefine a constant instead of duplicating this literal "Some Name" 28 times.(ãÚ®è
+d
+java:S1192g"NDefine a constant instead of duplicating this literal "--||--    100" 3 times.(ıÇêë
+m
+java:S11924"RDefine a constant instead of duplicating this literal "simpleMsg.tagName" 6 times.(çı•òÿÿÿÿÿ
+^
+java:S1192d"HDefine a constant instead of duplicating this literal "--||--" 21 times.(—áÛ
+h
+java:S11925"RDefine a constant instead of duplicating this literal "simpleMsg.msgName" 6 times.(¥½¼
+d
+java:S1192i"NDefine a constant instead of duplicating this literal "--||--</tag>" 13 times.(Å°–û
+`	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+[	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(£ÙğÉ
+`	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(¬Ï÷ıÿÿÿÿ
+[	java:S112b"FDefine and throw a dedicated exception instead of using a generic one.(îüšÕ
+`	java:S112n"FDefine and throw a dedicated exception instead of using a generic one.(Û­ŸÒÿÿÿÿÿ
+[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(å•£—
+\	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(‡˜ì
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(÷ôÍöıÿÿÿÿ
+a	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(ïæıÃşÿÿÿÿ
+a	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(Ë¾Ì“şÿÿÿÿ
+a	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(ªÖ¨‰şÿÿÿÿ
+\	java:S112»"FDefine and throw a dedicated exception instead of using a generic one.(Ûüˆ›
+\	java:S112Â"FDefine and throw a dedicated exception instead of using a generic one.(¶îÛì
+a	java:S112Ì"FDefine and throw a dedicated exception instead of using a generic one.(œ‘»Íûÿÿÿÿ
+\	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(‡îÃ
+a	java:S112İ"FDefine and throw a dedicated exception instead of using a generic one.(‹´ìŠùÿÿÿÿ
+a	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(®õ‚ûÿÿÿÿ
+\	java:S112ï"FDefine and throw a dedicated exception instead of using a generic one.(à£áÊ
+a	java:S112ø"FDefine and throw a dedicated exception instead of using a generic one.(„ÇÍÕıÿÿÿÿ
+a	java:S112ÿ"FDefine and throw a dedicated exception instead of using a generic one.(Å†×éıÿÿÿÿ
+a	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(Î¼´•şÿÿÿÿ
+a	java:S112¨"FDefine and throw a dedicated exception instead of using a generic one.(†ˆÙÆıÿÿÿÿ
+a	java:S112µ"FDefine and throw a dedicated exception instead of using a generic one.(½Âœüÿÿÿÿ
+€
+java:S4144­"dUpdate this method so that its implementation is not identical to "testDumpContentNull" on line 166.(Ë¾Ì“şÿÿÿÿ
+C
+java:S1602¶",Remove useless curly braces around statement(íÉè¨

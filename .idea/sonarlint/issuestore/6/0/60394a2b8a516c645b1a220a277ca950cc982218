@@ -1,0 +1,21 @@
+
+g
+java:S1192–"PDefine a constant instead of duplicating this literal "channel-worker-" 3 times.(ÍÛ§“
+_
+java:S1192¿"HDefine a constant instead of duplicating this literal "channel" 7 times.(“ˆê¢
+<
+java:S1659:"!Declare "out" on a separate line.(×¼©Ëÿÿÿÿÿ
+e
+java:S4201È"IRemove this unnecessary null check; "instanceof" returns false for nulls.(ÇóÎÊıÿÿÿÿ
+X
+java:S1117Ù"<Rename "channel" which hides the field declared at line 143.(ÑË—°ıÿÿÿÿ
+a
+java:S2886"ESynchronize this method to match the synchronization on "setInQueue".(ğ¾Œ­ıÿÿÿÿ
+b
+java:S2886™"FSynchronize this method to match the synchronization on "setOutQueue".(¢äÆıÿÿÿÿ
+^
+java:S2886¢"BSynchronize this method to match the synchronization on "setHost".(ÊøñÆşÿÿÿÿ
+X
+java:S2886¬"BSynchronize this method to match the synchronization on "setPort".(¨Äã3
+g
+java:S2886»"KSynchronize this method to match the synchronization on "setSocketFactory".(¼Åˆ§úÿÿÿÿ

@@ -1,0 +1,17 @@
+
+\
+java:S1192,"GDefine a constant instead of duplicating this literal "result" 4 times.(ñ¢‘e
+f
+java:S1192["PDefine a constant instead of duplicating this literal "ex.getMessage()" 4 times.(Œ¢Š
+j
+java:S11922"TDefine a constant instead of duplicating this literal "testQExecScriptPath" 8 times.(§…³
+`	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ÖÇ¶Ý
+`	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(ôØ›˜üÿÿÿÿ
+[	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(Ê»¿¢
+[	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(Ý Ê©
+`	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(µ±¸©úÿÿÿÿ
+`	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(Ñû¿ëþÿÿÿÿ
+[	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(Í×ü×
+`	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(ÔäãÀþÿÿÿÿ
+[	java:S112q"FDefine and throw a dedicated exception instead of using a generic one.(ýÐ¾…

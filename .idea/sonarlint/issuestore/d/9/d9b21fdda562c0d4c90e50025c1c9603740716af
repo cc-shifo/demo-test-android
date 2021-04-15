@@ -1,0 +1,12 @@
+
+g
+java:S1301ã"KReplace this "switch" statement by "if" statements to increase readability.(±Çõþýÿÿÿÿ
+Q
+java:S1117Ö":Rename "engine" which hides the field declared at line 41.(Ó€×û
+Q
+java:S1117þ":Rename "engine" which hides the field declared at line 41.(Ó€×û
+Q
+java:S1117²":Rename "signer" which hides the field declared at line 42.(çƒò·
+Q
+java:S1117ð":Rename "signer" which hides the field declared at line 42.(çƒò·
+=	java:S131ã""Add a default case to this switch.(±Çõþýÿÿÿÿ

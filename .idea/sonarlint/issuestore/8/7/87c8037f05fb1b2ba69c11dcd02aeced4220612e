@@ -1,0 +1,23 @@
+
+k
+java:S1192ü"ODefine a constant instead of duplicating this literal "[url] is null!" 3 times.(İÜ¯Õúÿÿÿÿ
+„
+java:S1192"mDefine a constant instead of duplicating this literal "Server response error with status code: [{}]" 3 times.(»ìõª
+U
+java:S1118#":Add a private constructor to hide the implicit public one.(ë¢ñãûÿÿÿÿ
+U
+java:S1854†">Remove this useless assignment to local variable "writeBytes".(Ç–âë
+F
+java:S1172”"/Remove this unused method parameter "destFile".(ÁÊ¨É
+E
+java:S1125")Remove the literal "false" boolean value.(²şµÊúÿÿÿÿ
+L
+java:S1133ï"5Do not forget to remove this deprecated code someday.(É˜­©
+_
+java:S1123î"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+E
+java:S1125Ò")Remove the literal "false" boolean value.(ó””Úşÿÿÿÿ
+E
+java:S1125­")Remove the literal "false" boolean value.(¹‡µ½øÿÿÿÿ
+F
+java:S1481†"/Remove this unused "writeBytes" local variable.(Ç–âë

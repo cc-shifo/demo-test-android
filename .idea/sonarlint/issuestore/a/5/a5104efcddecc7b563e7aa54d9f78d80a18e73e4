@@ -1,0 +1,17 @@
+
+f
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(×®‘­
+f
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(êÿåÈ
+k
+java:S1149G"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(£¢¹åÿÿÿÿÿ
+D
+java:S1659J")Declare "secondValue" on a separate line.(ø˜åÈûÿÿÿÿ
+E
+java:S1659J"*Declare "currentValue" on a separate line.(ø˜åÈûÿÿÿÿ
+>
+java:S1125K")Remove the literal "false" boolean value.(Êö¼~
+D
+java:S1125M")Remove the literal "false" boolean value.(Ûƒÿúÿÿÿÿ
+?
+java:S1659i"$Declare "peekOp" on a separate line.(åªÖŠıÿÿÿÿ

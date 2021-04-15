@@ -1,0 +1,28 @@
+
+y
+java:S11920"^Define a constant instead of duplicating this literal "dailyTaskAdaptor.isModified()" 3 times.(ø’¾›ûÿÿÿÿ
+†
+java:S11928"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 5 times.(áÆ”Óÿÿÿÿÿ
+k
+java:S1192:"PDefine a constant instead of duplicating this literal "ex.getMessage()" 8 times.(«€×ˆùÿÿÿÿ
+y
+java:S1192;"dDefine a constant instead of duplicating this literal "dailyTaskAdaptor.getConfiguration()" 7 times.(Ï…¢4
+‡
+java:S1192F"lDefine a constant instead of duplicating this literal "Expected NumberFormatException to be thrown" 3 times.(ÚÛÜúøÿÿÿÿ
+o
+java:S1192H"YDefine a constant instead of duplicating this literal "For input string: \":0\"" 3 times.(ÃøÁÌ
+`	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(ùşÿ´ûÿÿÿÿ
+`	java:S112@"FDefine and throw a dedicated exception instead of using a generic one.(‡½˜ôıÿÿÿÿ
+[	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(êŞ£²
+[	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(µàÙ¯
+`	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(‰šÑşÿÿÿÿ
+[	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(úËˆĞ
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÈÆÉáşÿÿÿÿ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(à·†
+\	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(ÕŸ­É
+\	java:S112Ÿ"FDefine and throw a dedicated exception instead of using a generic one.(ÿ³¡³
+\	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(¨İ¼¶
+a	java:S112²"FDefine and throw a dedicated exception instead of using a generic one.(ıŒÆ®úÿÿÿÿ
+
+java:S1186À"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨—¤—üÿÿÿÿ

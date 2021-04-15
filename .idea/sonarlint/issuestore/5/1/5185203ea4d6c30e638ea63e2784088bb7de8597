@@ -1,0 +1,21 @@
+
+K
+java:S1066µ"/Merge this if statement with the enclosing one.(²ƒêŒúÿÿÿÿ
+@
+java:S1125Š")Remove the literal "false" boolean value.(Ì‰®À
+G
+java:S1905ö"+Remove this unnecessary cast to "Resource".(¦Ì«§şÿÿÿÿ
+E
+java:S1125ö")Remove the literal "false" boolean value.(´™Óûÿÿÿÿ
+Q
+java:S1133£"5Do not forget to remove this deprecated code someday.(ƒ¡‘Øúÿÿÿÿ
+_
+java:S1123¢"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+E
+java:S1125”")Remove the literal "false" boolean value.(ÃÉÏşÿÿÿÿ
+\
+java:S1068."ARemove this unused "CONTENT_TYPE_MULTIPART_PREFIX" private field.(¬Û’ªøÿÿÿÿ
+T
+java:S1068/">Remove this unused "CONTENT_TYPE_FILE_TEMPLATE" private field.(áÒÚ
+W	java:S125Ş"<This block of commented-out lines of code should be removed.(ş œÈıÿÿÿÿ
+Q	java:S125ê"<This block of commented-out lines of code should be removed.(î‘§~

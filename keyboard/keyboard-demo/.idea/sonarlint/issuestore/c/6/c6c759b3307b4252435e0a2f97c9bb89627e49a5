@@ -1,0 +1,101 @@
+
+X
+java:S2184î"ACast one of the operands of this addition operation to a "float".(ÖœĞã
+8	java:S131""Add a default case to this switch.(ÍëÑô
+C
+java:S1199¶	"-Extract this nested code block into a method.(Ãéå=
+K
+java:S1066"/Merge this if statement with the enclosing one.(ÒÔÏ¶üÿÿÿÿ
+F
+java:S1066˜"/Merge this if statement with the enclosing one.(ò¾Òã
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùˆÏÕ
+I
+java:S1135Î"2Complete the task associated to this TODO comment.(²õüı
+W	java:S125é"<This block of commented-out lines of code should be removed.(ÈÂ³Áøÿÿÿÿ
+W	java:S125ø"<This block of commented-out lines of code should be removed.(ÎæĞ×şÿÿÿÿ
+R	java:S125‘	"<This block of commented-out lines of code should be removed.(Ê¼Ø
+`
+java:S2184ÿ"DCast one of the operands of this subtraction operation to a "float".(­¬çéøÿÿÿÿ
+y
+java:S1450¶"]Remove the "mPopupPreviewY" field and declare it as a local variable in the relevant methods.(ïÀ«Îúÿÿÿÿ
+H
+java:S1135"2Complete the task associated to this TODO comment.(•åJ
+Q
+java:S1068š":Remove this unused "mMiniKeyboardContainer" private field.(ÉÆ¹·
+X
+java:S2184Ù"ACast one of the operands of this addition operation to a "float".(€ÎŠ…
+G
+java:S1068Î"+Remove this unused "mPopupY" private field.(—ÄšÌùÿÿÿÿ
+=	java:S131¯	""Add a default case to this switch.(ë´åİşÿÿÿÿ
+W	java:S125à"<This block of commented-out lines of code should be removed.(áº¹¤øÿÿÿÿ
+R	java:S125¬"<This block of commented-out lines of code should be removed.(Ÿ‰íÄ
+I
+java:S1199°	"-Extract this nested code block into a method.(¥üÀáùÿÿÿÿ
+X
+java:S2184Ù"ACast one of the operands of this addition operation to a "float".(€ÎŠ…
+W
+java:S2184ï"@Cast one of the operands of this integer division to a "double".(´¡Õä
+=	java:S131Œ
+""Add a default case to this switch.(ë´åİşÿÿÿÿ
+R	java:S125×"<This block of commented-out lines of code should be removed.(ÄçÚ‰
+R	java:S125Ş"<This block of commented-out lines of code should be removed.(®øÄ
+R	java:S125â"<This block of commented-out lines of code should be removed.(ƒõúü
+]
+java:S2184"ACast one of the operands of this division operation to a "float".(”˜‚ıÿÿÿÿ
+`
+java:S2184ÿ"DCast one of the operands of this subtraction operation to a "float".(­¬çéøÿÿÿÿ
+T
+java:S1197Ø"8Move the array designator from the variable to the type.(´û¥—ùÿÿÿÿ
+H
+java:S1135„"2Complete the task associated to this TODO comment.(•åJ
+Q	java:S125ó"<This block of commented-out lines of code should be removed.(ÄÍË
+]
+java:S2184"ACast one of the operands of this division operation to a "float".(”˜‚ıÿÿÿÿ
+`
+java:S2259Ñ"IA "NullPointerException" could be thrown; "adjustCase()" can return null.(®ëÃù
+p
+java:S2293ã"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿ‚ìË
+V	java:S125"<This block of commented-out lines of code should be removed.(€¡›Ûşÿÿÿÿ
+R	java:S125Ò"<This block of commented-out lines of code should be removed.(¾îÈ‘
+D
+java:S1199³	"-Extract this nested code block into a method.(»³½
+W	java:S125Ê"<This block of commented-out lines of code should be removed.(ÚúÒÛøÿÿÿÿ
+=	java:S131ù""Add a default case to this switch.(ıŞ³‹ùÿÿÿÿ
+c
+java:S1068ş"LRemove this unused "mHeadsetRequiredToHearPasswordsAnnounced" private field.(«·
+K
+java:S1066·"/Merge this if statement with the enclosing one.(–ì˜Ìıÿÿÿÿ
+O
+java:S1197Ú"8Move the array designator from the variable to the type.(šá¯Ş
+Q	java:S125Ú"<This block of commented-out lines of code should be removed.(±Š
+t
+java:S1450µ"]Remove the "mPopupPreviewX" field and declare it as a local variable in the relevant methods.(Ä–šˆ
+W	java:S125æ"<This block of commented-out lines of code should be removed.(İ¹‡Óûÿÿÿÿ
+W	java:S125	"<This block of commented-out lines of code should be removed.(òˆúúÿÿÿÿ
+B
+java:S1068Í"+Remove this unused "mPopupX" private field.(á¼Ó²
+R	java:S125ç"<This block of commented-out lines of code should be removed.(Îúâ¯
+R	java:S125ë"<This block of commented-out lines of code should be removed.(…üŸå
+R	java:S125‡	"<This block of commented-out lines of code should be removed.(¤×Œ¶
+W	java:S125‡"<This block of commented-out lines of code should be removed.(ôÆº”şÿÿÿÿ
+R	java:S125â"<This block of commented-out lines of code should be removed.(ùé¢Ú
+W	java:S125¿"<This block of commented-out lines of code should be removed.(§×Ëùÿÿÿÿ
+R	java:S125ê	"<This block of commented-out lines of code should be removed.(Äà’™
+v
+java:S3008ä"ZRename this field "MAX_NEARBY_KEYS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØæÒûÿÿÿÿ
+W	java:S125º"<This block of commented-out lines of code should be removed.(§×Ëùÿÿÿÿ
+W	java:S125”	"<This block of commented-out lines of code should be removed.(ÈÂ³Áøÿÿÿÿ
+R	java:S125ê"<This block of commented-out lines of code should be removed.(ùåÍ
+N
+java:S1874À"2Remove this use of "invalidate"; it is deprecated.(úºƒ–şÿÿÿÿ
+H
+java:S1068›"1Remove this unused "mMiniKeyboard" private field.(åøÕí
+O
+java:S1197Ù"8Move the array designator from the variable to the type.(£¯„Ì
+R	java:S125Å"<This block of commented-out lines of code should be removed.(ÖÉÒÁ
+
+java:S1186ª"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÕÈ¯Òûÿÿÿÿ
+@
+java:S1172Ä")Remove this unused method parameter "me".(¢Û‚Á
+H
+java:S1068ü"1Remove this unused "mAudioManager" private field.(©ÌìÇ

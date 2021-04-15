@@ -1,0 +1,32 @@
+
+E
+java:S1066["/Merge this if statement with the enclosing one.(œ…é
+k
+java:S1128"URemove this unused import 'com.scwang.smart.refresh.layout.listener.OnMultiListener'.(«ŸÂ¸
+R
+java:S1128
+"7Remove this unused import 'android.widget.FrameLayout'.(ºÍ‹Ùúÿÿÿÿ
+V
+java:S1128	"@Remove this unused import 'android.view.animation.Interpolator'.(×çÉ
+z
+java:S1128"_Remove this unused import 'com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener'.(€û¶Àùÿÿÿÿ
+m
+java:S1128"RRemove this unused import 'com.scwang.smart.refresh.layout.constant.RefreshState'.(‚µšÈıÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ
+i
+java:S1128"NRemove this unused import 'com.scwang.smart.refresh.layout.api.RefreshHeader'.(—Ï÷›ÿÿÿÿÿ
+d
+java:S1128"NRemove this unused import 'com.scwang.smart.refresh.layout.api.RefreshLayout'.(‡½‚Á
+T
+java:S1128"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß
+m
+java:S1128"WRemove this unused import 'com.scwang.smart.refresh.layout.listener.OnRefreshListener'.(óÖÉë
+f
+java:S1128"KRemove this unused import 'com.scwang.smart.refresh.layout.util.SmartUtil'.(íĞö®øÿÿÿÿ
+i
+java:S1128"NRemove this unused import 'com.scwang.smart.refresh.layout.api.RefreshFooter'.(‡õÆ–ÿÿÿÿÿ
+q
+java:S1128"[Remove this unused import 'com.scwang.smart.refresh.layout.listener.ScrollBoundaryDecider'.(î¸şı
+m
+java:S1128"XRemove this unused import 'com.scwang.smart.refresh.layout.listener.OnLoadMoreListener'.(ÿ»éo

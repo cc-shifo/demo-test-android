@@ -1,0 +1,23 @@
+
+D
+java:S3740d"/Provide the parametrized type for this generic.(ƒÛ²r
+b
+java:S1192É"KDefine a constant instead of duplicating this literal " consumed=" 3 times.(ûÓ÷
+{
+java:S1192]"eDefine a constant instead of duplicating this literal "Can't call packager on non Composite" 3 times.(°˜÷è
+o	java:S135Ÿ"YReduce the total number of break and continue statements in this loop to use at most one.(†³«É
+Q
+java:S1141«"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141 "5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+n
+java:S2293_"YReplace the type specification in this constructor call with the diamond operator ("<>").(¬¾
+E
+java:S1125‘")Remove the literal "false" boolean value.(µ¾ßøÿÿÿÿ
+@
+java:S1940ˆ")Use the opposite operator ("!=") instead.(¼ÏÆ©
+N
+java:S1197Æ"8Move the array designator from the variable to the type.(ÙØø
+P
+java:S3400÷"9Remove this method and declare a constant for this value.(ÖÏ•Ã
+R	java:S125¾"<This block of commented-out lines of code should be removed.(ªå‹ÿ

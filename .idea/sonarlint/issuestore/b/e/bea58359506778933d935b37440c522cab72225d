@@ -1,0 +1,38 @@
+
+J
+java:S3740$"/Provide the parametrized type for this generic.(œò¡½ÿÿÿÿÿ
+J
+java:S3740$"/Provide the parametrized type for this generic.(œò¡½ÿÿÿÿÿ
+K
+java:S3740«"/Provide the parametrized type for this generic.(ì“’ëÿÿÿÿÿ
+F
+java:S3740¯"/Provide the parametrized type for this generic.(ÂÌËô
+r
+java:S1192"VDefine a constant instead of duplicating this literal "Unsupported operation" 4 times.(Åğï›øÿÿÿÿ
+o	java:S135º"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+o	java:S135Ì"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+/
+java:S1700«"Rename field "data"(ì“’ëÿÿÿÿÿ
+@
+java:S1948$"%Make "map" transient or serializable.(œò¡½ÿÿÿÿÿ
+K
+java:S1133#"5Do not forget to remove this deprecated code someday.(éæ¯‰
+=
+java:S1123#"'Add the missing @Deprecated annotation.(éæ¯‰
+a
+java:S2142a"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108a")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142n"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108n")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142w"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108w")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+b
+java:S2142„"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108„")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+b
+java:S2142˜"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108˜")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+C
+java:S1172¸",Remove this unused method parameter "value".(ï»¯ö

@@ -1,0 +1,14 @@
+
+f
+java:S1104,"PMake name a static final constant or non-public and provide accessors if needed.( þÍ¾
+l
+java:S1104-"QMake clazz a static final constant or non-public and provide accessors if needed.(„ª°¥þÿÿÿÿ
+9
+java:S3066,"#Lower the visibility of this field.( þÍ¾
+>
+java:S3066-"#Lower the visibility of this field.(„ª°¥þÿÿÿÿ
+t	java:S115("ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¥ž¤Öüÿÿÿÿ
+t	java:S115)"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.( ù‘ƒúÿÿÿÿ
+t	java:S115*"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(•ÿ±Æýÿÿÿÿ
+Š
+java:S1845,"tRename field "name" to prevent any misunderstanding/clash with method "name" defined in superclass "java.lang.Enum".( þÍ¾

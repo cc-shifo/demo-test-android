@@ -1,0 +1,25 @@
+
+Z
+java:S4348§"CRefactor this code so that the Iterator supports multiple traversal(ü¿œ©
+<
+java:S1948"&Make "lock" transient or serializable.(‰ »¯
+=
+java:S1948"'Make "start" transient or serializable.(¬ºÏÅ
+@
+java:S1948 "%Make "end" transient or serializable.(ÕÛ¥¬ýÿÿÿÿ
+?
+java:S1948"")Make "current" transient or serializable.(Ã»öÒ
+A
+java:S1948$"&Make "next" transient or serializable.(¸’Îÿÿÿÿÿ
+>
+java:S1948&"(Make "steper" transient or serializable.(Äé»Ü
+c
+java:S1871k"MThis branch's code block is the same as the block for the branch on line 105.(ÝÎ§Ê
+?
+java:S1125k")Remove the literal "false" boolean value.(ÝÎ§Ê
+?
+java:S1125x")Remove the literal "false" boolean value.(³¼Ÿã
+E
+java:S1125…")Remove the literal "false" boolean value.(¬ùô¯üÿÿÿÿ
+O
+java:S1117—"8Rename "next" which hides the field declared at line 36.( ‹ôé

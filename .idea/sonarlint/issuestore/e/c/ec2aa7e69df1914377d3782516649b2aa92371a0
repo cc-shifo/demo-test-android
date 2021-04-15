@@ -1,0 +1,41 @@
+
+c
+java:S1192ˆ"GDefine a constant instead of duplicating this literal "strong" 3 times.(¾ØñÑıÿÿÿÿ
+K
+java:S1066Ş"/Merge this if statement with the enclosing one.(şä‹âøÿÿÿÿ
+K
+java:S1066ß"/Merge this if statement with the enclosing one.(„–…Œûÿÿÿÿ
+k	java:S117z"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğŞïƒùÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õ®ÓÊıÿÿÿÿ
+f	java:S117†"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š´‰D
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õĞá›øÿÿÿÿ
+D
+java:S4274«"(Replace this assert with a proper check.( Í¨öøÿÿÿÿ
+D
+java:S4274¬"(Replace this assert with a proper check.(ñŸ¦‰şÿÿÿÿ
+?
+java:S4274­"(Replace this assert with a proper check.(À«œ¾
+?
+java:S4274®"(Replace this assert with a proper check.(ÆªÀ
+?
+java:S4274¯"(Replace this assert with a proper check.(‚õÛ
+?
+java:S4274°"(Replace this assert with a proper check.(÷Ü•º
+D
+java:S4274±"(Replace this assert with a proper check.(õÓï¡øÿÿÿÿ
+>
+java:S4274²"(Replace this assert with a proper check.(‰¬f
+?
+java:S1125¼"(Remove the literal "true" boolean value.(¢·£Ä
+>
+java:S1125½"(Remove the literal "true" boolean value.(òİ•
+?
+java:S1125¾"(Remove the literal "true" boolean value.(¼¶ŞŞ
+P
+java:S2864¹"4Iterate over the "entrySet" instead of the "keySet".(”ıİîùÿÿÿÿ
+E
+java:S1125Ş")Remove the literal "false" boolean value.(şä‹âøÿÿÿÿ
+?
+java:S1659ÿ"(Declare "paramValue" on a separate line.(ŸÉÛÚ
+R	java:S125î"<This block of commented-out lines of code should be removed.(Ò»´
+W	java:S125„"<This block of commented-out lines of code should be removed.(ñç¤Üÿÿÿÿÿ

@@ -1,0 +1,10 @@
+
+[
+java:S2184Ò"DCast one of the operands of this subtraction operation to a "float".(¬³¹
+=	java:S131ñ""Add a default case to this switch.(³ÒÂŒÿÿÿÿÿ
+Q
+java:S1133"5Do not forget to remove this deprecated code someday.(§Òíûÿÿÿÿ
+_
+java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(áçù
+Q	java:S125Q"<This block of commented-out lines of code should be removed.(Â¨ğ£
+R	java:S125¬"<This block of commented-out lines of code should be removed.(ÿşäı

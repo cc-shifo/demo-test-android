@@ -1,0 +1,14 @@
+
+J
+java:S3740<"/Provide the parametrized type for this generic.(ª‚Ίόÿÿÿÿ
+J
+java:S3740>"/Provide the parametrized type for this generic.(μΐΊεωÿÿÿÿ
+J
+java:S3740D"/Provide the parametrized type for this generic.(μΐΊεωÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ωΤϋιωÿÿÿÿ
+‡
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ωΤϋιωÿÿÿÿ
+Q
+java:S1854:"6Remove this useless assignment to local variable "nr".(ώ®—³ÿÿÿÿÿ
+B
+java:S1481:"'Remove this unused "nr" local variable.(ώ®—³ÿÿÿÿÿ

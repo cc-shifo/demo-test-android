@@ -1,0 +1,10 @@
+
+k
+java:S1192."UDefine a constant instead of duplicating this literal "testSpaceFactoryName" 3 times.(îüÁ”
+`	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Úº¿³üÿÿÿÿ
+`	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(Â§¶Ûşÿÿÿÿ
+[	java:S1126"FDefine and throw a dedicated exception instead of using a generic one.(Æ¸Öæ
+`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(¨æâøÿÿÿÿ
+B
+java:S16027",Remove useless curly braces around statement(íÉè¨

@@ -1,0 +1,17 @@
+
+P
+java:S1191"5Use classes from the Java API instead of Sun classes.(¬„úïùÿÿÿÿ
+K
+java:S1066¼"/Merge this if statement with the enclosing one.(ç¦øıÿÿÿÿ
+E
+java:S1125¼")Remove the literal "false" boolean value.(ç¦øıÿÿÿÿ
+?
+java:S1125ë")Remove the literal "false" boolean value.(æÜõv
+R
+java:S1117÷";Rename "charset" which hides the field declared at line 33.(ÜÑÌŸ
+R
+java:S1117";Rename "charset" which hides the field declared at line 33.(ÜÑÌŸ
+R
+java:S1117ä";Rename "charset" which hides the field declared at line 33.(ÜÑÌŸ
+E
+java:S1125æ")Remove the literal "false" boolean value.(â©Ãëùÿÿÿÿ

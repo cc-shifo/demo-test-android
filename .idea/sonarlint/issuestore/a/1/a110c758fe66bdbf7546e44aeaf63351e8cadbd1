@@ -1,0 +1,12 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©Ô
+X
+java:S1172 "=Remove this unused method parameter "isoClientEventListener".(ÁîË¾ÿÿÿÿÿ
+C	java:S108.")Either remove or fill this block of code.(óèÀ¬ÿÿÿÿÿ
+S
+java:S1172E"=Remove this unused method parameter "isoClientEventListener".(½Ùã
+C	java:S108L")Either remove or fill this block of code.(óèÀ¬ÿÿÿÿÿ
+T	java:S106–"9Replace this use of System.out or System.err by a logger.(ÍÍ›üÿÿÿÿ
+]
+java:S2142Ò"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+R	java:S125Œ"<This block of commented-out lines of code should be removed.(¯°Ö³

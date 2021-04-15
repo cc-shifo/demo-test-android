@@ -1,0 +1,39 @@
+
+W	java:S107Å"<Method has 8 parameters, which is greater than 7 authorized.(ÑŠ¿®ıÿÿÿÿ
+R	java:S107ê"<Method has 9 parameters, which is greater than 7 authorized.(ıÕÒ©
+X	java:S107	"=Method has 11 parameters, which is greater than 7 authorized.(ëåÄøÿÿÿÿ
+X	java:S107Ã	"=Method has 12 parameters, which is greater than 7 authorized.(“Üåøÿÿÿÿ
+W	java:S107ä	"<Method has 8 parameters, which is greater than 7 authorized.( í¤¶ùÿÿÿÿ
+X	java:S107¨
+"=Method has 15 parameters, which is greater than 7 authorized.(¸™´…ÿÿÿÿÿ
+^
+java:S1214-"CMove constants defined in this interfaces to another class or enum.(ºşÄûÿÿÿÿ
+M
+java:S1135'"2Complete the task associated to this TODO comment.(¸—Å™ıÿÿÿÿ
+L
+java:S1133½"5Do not forget to remove this deprecated code someday.(ÿ¶ª
+>
+java:S1123½"'Add the missing @Deprecated annotation.(ÿ¶ª
+Q
+java:S1133ß"5Do not forget to remove this deprecated code someday.(à£ı”üÿÿÿÿ
+C
+java:S1123ß"'Add the missing @Deprecated annotation.(à£ı”üÿÿÿÿ
+L
+java:S1133Ë"5Do not forget to remove this deprecated code someday.(äÈí
+_
+java:S1123Ê"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+L
+java:S1133Ÿ"5Do not forget to remove this deprecated code someday.(‹¥„ù
+_
+java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+Q
+java:S1133÷"5Do not forget to remove this deprecated code someday.(”³¨ƒüÿÿÿÿ
+_
+java:S1123ö"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+i	java:S100ä	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( í¤¶ùÿÿÿÿ
+i	java:S100¨
+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸™´…ÿÿÿÿÿ
+d	java:S100ß
+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Öë
+d	java:S100ê
+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğƒßã

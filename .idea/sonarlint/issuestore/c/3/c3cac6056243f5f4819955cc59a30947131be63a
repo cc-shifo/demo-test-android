@@ -1,0 +1,9 @@
+
+f	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÂùë
+f	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«€À
+P
+java:S1118":Add a private constructor to hide the implicit public one.(œ§â·
+`
+java:S2674>"JCheck the return value of the "read" call to see how many bytes were read.(Êûÿ
+<
+java:S1168D"&Return an empty array instead of null.(¥¹ï

@@ -1,0 +1,14 @@
+
+\
+java:S1192<"FDefine a constant instead of duplicating this literal "uI.ui" 3 times.(­‚Àµ
+†
+java:S1192,"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 3 times.(áÆ”Óÿÿÿÿÿ
+k
+java:S1192."PDefine a constant instead of duplicating this literal "ex.getMessage()" 3 times.(«€×ˆùÿÿÿÿ
+k
+java:S1192%"PDefine a constant instead of duplicating this literal "uI.isModified()" 3 times.(¨‰Åºúÿÿÿÿ
+`	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(ÔğƒÉıÿÿÿÿ
+[	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(¹…Í
+[	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(ÀÔ¬Ú
+[	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(ÕŸ­É

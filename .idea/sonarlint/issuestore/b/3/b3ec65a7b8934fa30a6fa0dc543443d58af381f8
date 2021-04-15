@@ -1,0 +1,75 @@
+
+y
+java:S1192×"bDefine a constant instead of duplicating this literal "Length must be between {} and {}." 4 times.(ó ğâ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(ƒù¯
+?
+java:S1125!")Remove the literal "false" boolean value.(¸‘„
+ˆ
+java:S11302"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(íÔ¾§úÿÿÿÿ
+?
+java:S11253")Remove the literal "false" boolean value.(¸‘„
+ƒ
+java:S1130B"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(›¢ã¢
+ƒ
+java:S1130R"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÖáÑÓ
+ˆ
+java:S1130b"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(µŞşúÿÿÿÿ
+‚
+java:S1130r"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(´ì±3
+‰
+java:S1130‚"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(º÷äêùÿÿÿÿ
+‰
+java:S1130•"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ˆÄÊşÿÿÿÿÿ
+„
+java:S1130¨"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(çºœÖ
+‰
+java:S1130¼"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‘²Ñ¶ùÿÿÿÿ
+„
+java:S1130Ğ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(«•ªÒ
+ƒ
+java:S1130ã"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(íç
+‰
+java:S1130÷"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¸æ¯Öüÿÿÿÿ
+ƒ
+java:S1130‰"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(’Ğ¦#
+‰
+java:S1130œ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(©Í±„øÿÿÿÿ
+‰
+java:S1130­"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Ø¡Óõÿÿÿÿÿ
+„
+java:S1130¿"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ïƒö¦
+‰
+java:S1130Ñ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(§…©ïüÿÿÿÿ
+„
+java:S1130ä"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ä„şÅ
+‰
+java:S1130ö"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‰î‰Èøÿÿÿÿ
+„
+java:S1130‰"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(§Å¹
+„
+java:S1130"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ƒÍ›©
+ƒ
+java:S1130²"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‡Î‘b
+‰
+java:S1130Ø"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.( òĞ’ÿÿÿÿÿ
+E
+java:S1125Ú")Remove the literal "false" boolean value.(˜À¶õıÿÿÿÿ
+‰
+java:S1130ë"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(º­¨¼ıÿÿÿÿ
+ƒ
+java:S1130ü"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(áZ
+€
+java:S1130"jRemove the declaration of thrown exception 'java.lang.IllegalStateException' which is a runtime exception.(€ÄÀk
+@
+java:S1125")Remove the literal "false" boolean value.(¸‘„
+†
+java:S1130Ÿ"jRemove the declaration of thrown exception 'java.lang.IllegalStateException' which is a runtime exception.(Œ¨Ş°üÿÿÿÿ
+„
+java:S1130±"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(èó½ç
+…
+java:S1130±"nRemove the declaration of thrown exception 'java.lang.IndexOutOfBoundsException' which is a runtime exception.(èó½ç
+‰
+java:S1130Å"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(€•æ€øÿÿÿÿ
+Š
+java:S1130Å"nRemove the declaration of thrown exception 'java.lang.IndexOutOfBoundsException' which is a runtime exception.(€•æ€øÿÿÿÿ

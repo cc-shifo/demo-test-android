@@ -1,0 +1,37 @@
+
+g
+java:S1192å"PDefine a constant instead of duplicating this literal "channel-worker-" 3 times.(ÍÛ§“
+^
+java:S1192\"HDefine a constant instead of duplicating this literal "channel" 7 times.(¸éÉœ
+Q
+java:S1141õ"5Extract this nested try block into a separate method.(ç£êúÿÿÿÿ
+7
+java:S1659B"!Declare "out" on a separate line.(Ê’Ê÷
+9
+java:S1659B"#Declare "ready" on a separate line.(Ê’Ê÷
+o
+java:S2293{"YReplace the type specification in this constructor call with the diamond operator ("<>").(ËºØ±
+b
+java:S2142“"FEither re-interrupt this method or rethrow the "InterruptedException".(ÇâŞáøÿÿÿÿ
+D	java:S108”")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+b
+java:S2142Ÿ"FEither re-interrupt this method or rethrow the "InterruptedException".(ÇâŞáøÿÿÿÿ
+D	java:S108 ")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+<
+java:S1181î"%Catch Exception instead of Throwable.(çãòó
+e
+java:S4201â"IRemove this unnecessary null check; "instanceof" returns false for nulls.(½È™ıùÿÿÿÿ
+[
+java:S2886Œ"ESynchronize this method to match the synchronization on "setInQueue".(üµÖ
+]
+java:S2886"FSynchronize this method to match the synchronization on "setOutQueue".(Şô¡Á
+^
+java:S2886ª"BSynchronize this method to match the synchronization on "setHost".(£³§óûÿÿÿÿ
+X
+java:S2886µ"BSynchronize this method to match the synchronization on "setPort".(„çÙ&
+b
+java:S2886Í"KSynchronize this method to match the synchronization on "setSocketFactory".(ó«’ù
+<
+java:S1181ù"%Catch Exception instead of Throwable.(çãòó
+E
+java:S3398Ÿ")Move this method into "CheckChannelTask".(½Ìäóşÿÿÿÿ

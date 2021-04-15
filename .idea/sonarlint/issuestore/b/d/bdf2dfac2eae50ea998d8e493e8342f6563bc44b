@@ -1,0 +1,23 @@
+
+]
+java:S1192˜"FDefine a constant instead of duplicating this literal "false" 3 times.(È«»
+D
+java:S1199¡"-Extract this nested code block into a method.(“Â©Œ
+
+java:S1157å"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(”ìöîüÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(è£Ì¼
+E
+java:S1125Õ")Remove the literal "false" boolean value.(ûßˆÚıÿÿÿÿ
+E
+java:S1125÷")Remove the literal "false" boolean value.(»œ—åûÿÿÿÿ
+=
+java:S1168ˆ"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168¤"&Return an empty array instead of null.(¥¹ï
+V
+java:S1854Ü":Remove this useless assignment to local variable "iStart".(õ¿à¢úÿÿÿÿ
+G
+java:S1481Ü"+Remove this unused "iStart" local variable.(õ¿à¢úÿÿÿÿ

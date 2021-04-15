@@ -1,0 +1,21 @@
+
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÿëî²ùÿÿÿÿ
+W
+java:S3078a"AUse an "AtomicInteger" for this field; its operations are atomic.( ‡¤¬
+W
+java:S3078y"AUse an "AtomicInteger" for this field; its operations are atomic.(ÓµÓ¬
+D
+java:S1185¾"(Remove this method to simply inherit it.(‘€‹şüÿÿÿÿ
+?
+java:S1185Ã"(Remove this method to simply inherit it.(İÙèâ
+D
+java:S1185È"(Remove this method to simply inherit it.(”æ‡Ùûÿÿÿÿ
+?
+java:S1185Í"(Remove this method to simply inherit it.(š‰ğ
+D
+java:S1185Ò"(Remove this method to simply inherit it.(ôÃ°áùÿÿÿÿ
+D
+java:S1185×"(Remove this method to simply inherit it.(“Ğ¾ûÿÿÿÿ
+?
+java:S1185Ü"(Remove this method to simply inherit it.(¾”·”

@@ -1,0 +1,14 @@
+
+j
+java:S1192&"TDefine a constant instead of duplicating this literal "simpleLogListener.p" 5 times.(¤ˆóû
+[	java:S112#"FDefine and throw a dedicated exception instead of using a generic one.(îğ¸Ÿ
+[	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ä¾Š€
+`	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(ıÌÂäıÿÿÿÿ
+`	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(ãç„Œüÿÿÿÿ
+[	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(ÖÃÓ
+N	java:S106t"9Replace this use of System.out or System.err by a logger.(ïàö¢
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ô¤«óúÿÿÿÿ
+N	java:S106’"9Replace this use of System.out or System.err by a logger.(»Íµ9
+T	java:S106–"9Replace this use of System.out or System.err by a logger.(ŸÁ×ßùÿÿÿÿ

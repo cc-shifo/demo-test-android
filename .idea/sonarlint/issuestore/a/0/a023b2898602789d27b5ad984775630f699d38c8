@@ -1,0 +1,79 @@
+
+J
+java:S37409"/Provide the parametrized type for this generic.(¯˜ öüÿÿÿÿ
+J
+java:S3740:"/Provide the parametrized type for this generic.(ïí·üøÿÿÿÿ
+E
+java:S3740k"/Provide the parametrized type for this generic.(í›É½
+E
+java:S3740l"/Provide the parametrized type for this generic.(¿¨Ö¥
+K
+java:S3740¡"/Provide the parametrized type for this generic.(¹”³Ùýÿÿÿÿ
+h
+java:S1192©"LDefine a constant instead of duplicating this literal "muxreceiver" 3 times.(€™Ô¶þÿÿÿÿ
+U
+java:S1155Æ">Use isEmpty() to check whether the collection is empty or not.(¶¸×ù
+Z
+java:S1155Š">Use isEmpty() to check whether the collection is empty or not.(†¼ÞÅýÿÿÿÿ
+Q
+java:S1141ƒ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+;
+java:S16598" Declare "tx" on a separate line.(ÚÂ“ûÿÿÿÿ
+q
+java:S1845E"[Rename field "TX" to prevent any misunderstanding/clash with field "tx" defined on line 56.(¹Ÿøù
+v
+java:S1845F"[Rename field "RX" to prevent any misunderstanding/clash with field "rx" defined on line 56.(ïÒŠ„ùÿÿÿÿ
+
+java:S1186¼"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(„Æ»òÿÿÿÿÿ
+A
+java:S1181¥"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+\
+java:S1193¨"@Replace the usage of the "instanceof" operator by a catch block.(½‡Áüÿÿÿÿ
+L
+java:S2446«"0"notify" may not wake up the appropriate thread.(ïØ¶âüÿÿÿÿ
+]
+java:S2142µ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+l
+java:S2236³"PRefactor the synchronisation mechanism to not use a Thread instance as a monitor(ìíøîÿÿÿÿÿ
+l
+java:S2236Ó"PRefactor the synchronisation mechanism to not use a Thread instance as a monitor(Þ·§ìþÿÿÿÿ
+L
+java:S2446Ó"0"notify" may not wake up the appropriate thread.(Þ·§ìþÿÿÿÿ
+g
+java:S2236ÿ"PRefactor the synchronisation mechanism to not use a Thread instance as a monitor(©Úöñ
+G
+java:S2446ÿ"0"notify" may not wake up the appropriate thread.(©Úöñ
+b
+java:S2142…"FEither re-interrupt this method or rethrow the "InterruptedException".(ÚíÐÝþÿÿÿÿ
+D	java:S108…")Either remove or fill this block of code.(ÚíÐÝþÿÿÿÿ
+b
+java:S2142˜"FEither re-interrupt this method or rethrow the "InterruptedException".(ÚíÐÝþÿÿÿÿ
+D	java:S108˜")Either remove or fill this block of code.(ÚíÐÝþÿÿÿÿ
+b
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ÚíÐÝþÿÿÿÿ
+D	java:S108")Either remove or fill this block of code.(ÚíÐÝþÿÿÿÿ
+]
+java:S2142¥"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+>	java:S108¬")Either remove or fill this block of code.(Éò§+
+g
+java:S2236¯"PRefactor the synchronisation mechanism to not use a Thread instance as a monitor(©Úöñ
+G
+java:S2446¯"0"notify" may not wake up the appropriate thread.(©Úöñ
+b
+java:S2142³"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108³")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S1124¹"EReorder the modifiers to comply with the Java Language Specification.(È¯²Þýÿÿÿÿ
+G
+java:S2446»"0"notify" may not wake up the appropriate thread.(­ÀôÉ
+\
+java:S1124Á"EReorder the modifiers to comply with the Java Language Specification.(ªûû¬
+G
+java:S2446Ã"0"notify" may not wake up the appropriate thread.(­ÀôÉ
+G
+java:S2446Ò"0"notify" may not wake up the appropriate thread.(­ÀôÉ
+b
+java:S2142ä"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+D	java:S108ä")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+G
+java:S2446¦"0"notify" may not wake up the appropriate thread.(­ÀôÉ

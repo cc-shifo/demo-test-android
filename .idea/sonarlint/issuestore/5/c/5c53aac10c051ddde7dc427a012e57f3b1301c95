@@ -1,0 +1,7 @@
+
+Y
+java:S4348,"CRefactor this code so that the Iterator supports multiple traversal(ü¿œ©
+9
+java:S1948"#Make "e" transient or serializable.(ÇÌÏÅ
+i
+java:S2272!"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(¤¿ðßýÿÿÿÿ

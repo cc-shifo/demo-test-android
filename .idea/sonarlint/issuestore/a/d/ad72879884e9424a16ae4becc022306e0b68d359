@@ -1,0 +1,53 @@
+
+E
+java:S3740"/Provide the parametrized type for this generic.(»Ã´Ò
+J
+java:S3740$"/Provide the parametrized type for this generic.(«ñ•øÿÿÿÿ
+J
+java:S3740'"/Provide the parametrized type for this generic.(“ÖÃÏıÿÿÿÿ
+J
+java:S37401"/Provide the parametrized type for this generic.(ºš×Úÿÿÿÿÿ
+K
+java:S3740“"/Provide the parametrized type for this generic.(ì“’ëÿÿÿÿÿ
+K
+java:S3740”"/Provide the parametrized type for this generic.(ëÄûÿÿÿÿ
+F
+java:S3740˜"/Provide the parametrized type for this generic.(ÂÌËô
+K
+java:S3740É"/Provide the parametrized type for this generic.(ª­Œíùÿÿÿÿ
+K
+java:S3740Ó"/Provide the parametrized type for this generic.(ĞÎşÄşÿÿÿÿ
+F
+java:S3740ì"/Provide the parametrized type for this generic.(ü¯«®
+F
+java:S3740í"/Provide the parametrized type for this generic.(™Şğ½
+K
+java:S3740õ"/Provide the parametrized type for this generic.(¼¥˜‚øÿÿÿÿ
+q
+java:S1192z"VDefine a constant instead of duplicating this literal "Unsupported operation" 6 times.(Åğï›øÿÿÿÿ
+o	java:S135¤"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+o	java:S135¶"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+/
+java:S1700“"Rename field "data"(ì“’ëÿÿÿÿÿ
+C
+java:S1121+".Extract the assignment out of this expression.(¿¨Ìj
+D
+java:S1121‚".Extract the assignment out of this expression.(¿¨Ìj
+v
+java:S1149ô"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+a
+java:S2142R"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108R")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142_"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108_")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142h"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108h")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142u"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108u")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+E
+java:S1172†".Remove this unused method parameter "timeout".(íë•
+C
+java:S1172¢",Remove this unused method parameter "value".(ï»¯ö

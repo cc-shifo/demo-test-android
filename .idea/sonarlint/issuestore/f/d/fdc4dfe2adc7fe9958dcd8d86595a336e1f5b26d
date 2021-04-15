@@ -1,0 +1,29 @@
+
+g
+java:S3008"QRename this field "FORMAT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¬’
+9
+java:S2885"#Make "FORMAT" an instance variable.(¼¬’
+g
+java:S3457D"Q%n should be used in place of \n to produce the platform-specific line separator.(ĞñòÆ
+l
+java:S3457\"Q%n should be used in place of \n to produce the platform-specific line separator.(ğœ²ğøÿÿÿÿ
+W
+java:S3457d"AFormat specifiers should be used instead of string concatenation.( †Úš
+l
+java:S3457j"Q%n should be used in place of \n to produce the platform-specific line separator.(Á¹°ßşÿÿÿÿ
+m
+java:S3457‚"Q%n should be used in place of \n to produce the platform-specific line separator.(ÕÜƒåùÿÿÿÿ
+]
+java:S3457Š"AFormat specifiers should be used instead of string concatenation.(Õğƒ×şÿÿÿÿ
+M
+java:S2696§"6Make the enclosing method "static" or remove this set.(Ó’ÏÉ
+Q	java:S125 "<This block of commented-out lines of code should be removed.(®Äùã
+Q	java:S125#"<This block of commented-out lines of code should be removed.(Šò€ß
+P	java:S125K"<This block of commented-out lines of code should be removed.(ÎÀ¦4
+Q	java:S125N"<This block of commented-out lines of code should be removed.(¸òÅÇ
+Q	java:S125S"<This block of commented-out lines of code should be removed.(¯ÛĞ§
+Q	java:S125V"<This block of commented-out lines of code should be removed.(¸òÅÇ
+V	java:S125q"<This block of commented-out lines of code should be removed.(¾Ô×½ùÿÿÿÿ
+V	java:S125t"<This block of commented-out lines of code should be removed.(†ìåúÿÿÿÿ
+Q	java:S125y"<This block of commented-out lines of code should be removed.(ÍÖÑ
+V	java:S125|"<This block of commented-out lines of code should be removed.(†ìåúÿÿÿÿ

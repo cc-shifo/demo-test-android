@@ -1,0 +1,18 @@
+
+J
+java:S3740\"/Provide the parametrized type for this generic.(ª‚ºüÿÿÿÿ
+J
+java:S3740_"/Provide the parametrized type for this generic.(ìÀºåùÿÿÿÿ
+c
+java:S11920"HDefine a constant instead of duplicating this literal "logger." 3 times.(­ÍØßúÿÿÿÿ
+`	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(ùÔûéùÿÿÿÿ
+Q
+java:S1854Z"6Remove this useless assignment to local variable "nr".(ş®—³ÿÿÿÿÿ
+B
+java:S1481Z"'Remove this unused "nr" local variable.(ş®—³ÿÿÿÿÿ
+D
+java:S1481[")Remove this unused "maxw" local variable.(ê‡êÉøÿÿÿÿ
+V	java:S125)"<This block of commented-out lines of code should be removed.(ÓÖš‡ùÿÿÿÿ
+V	java:S1256"<This block of commented-out lines of code should be removed.(ËŠÓ¿üÿÿÿÿ
+V	java:S125J"<This block of commented-out lines of code should be removed.(Ãº“àüÿÿÿÿ
+V	java:S125Q"<This block of commented-out lines of code should be removed.(Ãº“àüÿÿÿÿ

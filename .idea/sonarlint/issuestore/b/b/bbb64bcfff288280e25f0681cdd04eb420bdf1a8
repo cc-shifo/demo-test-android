@@ -1,0 +1,63 @@
+
+J
+java:S3740C"/Provide the parametrized type for this generic.(¼°†€øÿÿÿÿ
+K
+java:S3740Ä"/Provide the parametrized type for this generic.(Ï¾Î˜ûÿÿÿÿ
+K
+java:S3740Æ"/Provide the parametrized type for this generic.(´Ñ¼öùÿÿÿÿ
+K
+java:S3740È"/Provide the parametrized type for this generic.(à¢Ö‡üÿÿÿÿ
+K
+java:S3740Í"/Provide the parametrized type for this generic.(²Œıÿÿÿÿ
+F
+java:S3740¤"/Provide the parametrized type for this generic.(ü¯«®
+E
+java:S3740¥"/Provide the parametrized type for this generic.(Ç·Ë
+E
+java:S3740¥"/Provide the parametrized type for this generic.(Ç·Ë
+K
+java:S3740‚"/Provide the parametrized type for this generic.(èÿù“ÿÿÿÿÿ
+K
+java:S3740‰"/Provide the parametrized type for this generic.(†‹Âäùÿÿÿÿ
+K
+java:S3740˜"/Provide the parametrized type for this generic.(†‹Âäùÿÿÿÿ
+N
+java:S1128-"3Remove this unused import 'org.jpos.util.Profiler'.(‘Ö„ıÿÿÿÿ
+o
+java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(ßİÍ³
+]
+java:S2142©"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108©")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142·"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108·")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142Â"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108Â")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142Ğ"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108Ğ")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142Ø"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108Ø")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142ä"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108ä")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142‚"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108‚")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142¾"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108¾")Either remove or fill this block of code.(´í­Œ
+a
+java:S1124Ä"EReorder the modifiers to comply with the Java Language Specification.(Ï¾Î˜ûÿÿÿÿ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ìÉÛ¥úÿÿÿÿ
+u
+java:S2293‰"YReplace the type specification in this constructor call with the diamond operator ("<>").(×óÑüÿÿÿÿ
+E
+java:S1172›".Remove this unused method parameter "timeout".(ìœ”Â
+m
+java:S3457Ğ"Q%n should be used in place of \n to produce the platform-specific line separator.(Îúú½ùÿÿÿÿ
+h
+java:S3457Ò"Q%n should be used in place of \n to produce the platform-specific line separator.(ºğ¦ÿ

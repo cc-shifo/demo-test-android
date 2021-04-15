@@ -1,0 +1,13 @@
+
+z
+java:S1157è"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(­œ¼¦
+c
+java:S2259ç"GA "NullPointerException" could be thrown; "userAgent" is nullable here.(üÏ±—úÿÿÿÿ
+U
+java:S11182":Add a private constructor to hide the implicit public one.(×â»¸ûÿÿÿÿ
+@
+java:S1125ë")Remove the literal "false" boolean value.(¡íˆÑ
+@
+java:S1125ˆ")Remove the literal "false" boolean value.(§þší
+>
+java:S1872è"'Use an "instanceof" comparison instead.(­œ¼¦

@@ -1,0 +1,17 @@
+
+h
+java:S21844"FCast one of the operands of this multiplication operation to a "long".(€£àøûÿÿÿÿ8¥¨¤Ş.
+{
+java:S1450"YRemove the "mScheduler" field and declare it as a local variable in the relevant methods.(ö¦Û°øÿÿÿÿ8÷µçê.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(¨Œşÿÿÿÿ8¿íÔãê.
+C
+java:S1170"!Make this final field static too.(ßôãöÿÿÿÿÿ8°ıÅ£Ş.
+X	java:S125q"<This block of commented-out lines of code should be removed.(™ø©˜8™•ß§Ş.
+J
+java:S1604&"(Make this anonymous inner class a lambda(Êœüûÿÿÿÿ8¿íÔãê.
+:
+java:S2119-"Save and re-use this "Random".(¼İÅf8ëÑÍ§Ş.
+P
+java:S1068".Remove this unused "mScheduler" private field.(ö¦Û°øÿÿÿÿ8÷µçê.
+X	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8ÉÈ½£Ş.

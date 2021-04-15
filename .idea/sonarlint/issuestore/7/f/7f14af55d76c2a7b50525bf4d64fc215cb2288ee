@@ -1,0 +1,31 @@
+
+‚
+java:S1192l"lDefine a constant instead of duplicating this literal "src/main/resources/packager/iso87binary.xml" 3 times.(à¥¼ë
+\
+java:S1192Y"FDefine a constant instead of duplicating this literal "ISO87" 6 times.(¯†Ğ
+\
+java:S1192q"FDefine a constant instead of duplicating this literal "ISO93" 4 times.(ÁŞıÛ
+e
+java:S1192Y"ODefine a constant instead of duplicating this literal "ISO87APackager" 3 times.(¯†Ğ
+[	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(‡™
+[	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(ÛÏ¹¨
+[	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(·™„ß
+`	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(‚ëô¡şÿÿÿÿ
+a	java:S112¹"FDefine and throw a dedicated exception instead of using a generic one.(ó‰§Üÿÿÿÿÿ
+\	java:S112½"FDefine and throw a dedicated exception instead of using a generic one.(ÚÜ‰
+a	java:S112Ã"FDefine and throw a dedicated exception instead of using a generic one.(Ìƒä¨ÿÿÿÿÿ
+`
+java:S26741"JCheck the return value of the "read" call to see how many bytes were read.(¥×é¡
+`
+java:S2674?"JCheck the return value of the "read" call to see how many bytes were read.(¥×é¡
+E
+java:S2093="*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+E
+java:S2093H"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+O	java:S106—"9Replace this use of System.out or System.err by a logger.(ğ§‘
+T	java:S106¶"9Replace this use of System.out or System.err by a logger.(ôˆà×üÿÿÿÿ
+T	java:S106·"9Replace this use of System.out or System.err by a logger.(ŞÒ—üÿÿÿÿ
+W	java:S125Ü"<This block of commented-out lines of code should be removed.(Ê½Ãºüÿÿÿÿ
+W	java:S125ò"<This block of commented-out lines of code should be removed.(ĞäüÌıÿÿÿÿ
+W	java:S125ı"<This block of commented-out lines of code should be removed.(ˆÓÕ¤úÿÿÿÿ
+W	java:S125Ÿ"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ

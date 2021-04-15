@@ -1,0 +1,14 @@
+
+m
+java:S1192“"VDefine a constant instead of duplicating this literal "RESERVED NATIONAL USE" 8 times.(ƒ‰Ò«
+m
+java:S1192\"RDefine a constant instead of duplicating this literal "RESERVED NATIONAL" 3 times.(”¤‰Õûÿÿÿÿ
+m
+java:S1192Œ"QDefine a constant instead of duplicating this literal "RESERVED ISO USE" 7 times.(ÀŸş„øÿÿÿÿ
+q
+java:S1192›"UDefine a constant instead of duplicating this literal "RESERVED PRIVATE USE" 8 times.(«ƒš§ÿÿÿÿÿ
+g
+java:S1192_"QDefine a constant instead of duplicating this literal "RESERVED PRIVATE" 4 times.(¤®¿¨
+o	java:S115!"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŸŒØÆ
+N
+java:S1197""8Move the array designator from the variable to the type.(æ„…

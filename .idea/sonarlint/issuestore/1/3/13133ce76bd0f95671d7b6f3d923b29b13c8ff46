@@ -1,0 +1,49 @@
+
+ƒ
+java:S1319k"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(´‰Ëİ
+ƒ
+java:S1319y"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÿÜ‚
+‰
+java:S1319†"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(—œ±¢şÿÿÿÿ
+‰
+java:S1319’"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ª¿ îÿÿÿÿÿ
+
+java:S1319Ÿ"sThe return type of this method should be an interface such as "SortedMap" rather than the implementation "TreeMap".(å»Åïüÿÿÿÿ
+Š
+java:S1319­"sThe return type of this method should be an interface such as "SortedMap" rather than the implementation "TreeMap".(şš»Ğ
+™
+java:S1319É"The return type of this method should be an interface such as "ConcurrentMap" rather than the implementation "ConcurrentHashMap".(¾¸«¥
+˜
+java:S1319Õ"The return type of this method should be an interface such as "ConcurrentMap" rather than the implementation "ConcurrentHashMap".(©—˜'
+
+java:S1319â"The return type of this method should be an interface such as "ConcurrentMap" rather than the implementation "ConcurrentHashMap".(±œ—Ûøÿÿÿÿ
+‰
+java:S1319†"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¿¡Öâıÿÿÿÿ
+ƒ
+java:S1319”"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(û·…
+„
+java:S1319Å"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(˜Ş¤ç
+
+java:S1319ı"sThe return type of this method should be an interface such as "SortedMap" rather than the implementation "TreeMap".(²ƒ´‰ùÿÿÿÿ
+Š
+java:S1319Œ"sThe return type of this method should be an interface such as "SortedMap" rather than the implementation "TreeMap".(¥ˆâå
+K
+java:S3740Í"/Provide the parametrized type for this generic.(µó‹¶ûÿÿÿÿ
+E
+java:S3740Õ"/Provide the parametrized type for this generic.(Ÿ¨Î
+K
+java:S3740Ş"/Provide the parametrized type for this generic.(ÅĞ‹øÿÿÿÿ
+O
+java:S1118&":Add a private constructor to hide the implicit public one.(Òù‹T
+?
+java:S1125B")Remove the literal "false" boolean value.(ç¶†“
+@
+java:S1125¯")Remove the literal "false" boolean value.(À¥´ù
+@
+java:S1125Û")Remove the literal "false" boolean value.(—Ú‘§
+E
+java:S1125ß")Remove the literal "false" boolean value.(øŠî¡ûÿÿÿÿ
+=
+java:S1168û"&Return an empty array instead of null.(¥¹ï
+E
+java:S1125Î")Remove the literal "false" boolean value.(ËßÃËşÿÿÿÿ

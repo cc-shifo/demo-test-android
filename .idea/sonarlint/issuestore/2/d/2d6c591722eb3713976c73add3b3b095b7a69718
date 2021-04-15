@@ -1,0 +1,22 @@
+
+i
+java:S1192("SDefine a constant instead of duplicating this literal "testX25ChannelHost" 3 times.(”±˜Ô
+r
+java:S11926"WDefine a constant instead of duplicating this literal "x25Channel.getLogger()" 3 times.(Å†Äñıÿÿÿÿ
+{
+java:S11921"`Define a constant instead of duplicating this literal "org.jpos.iso.channel.X25Channel" 3 times.(«ìêûÿÿÿÿ
+q
+java:S11923"VDefine a constant instead of duplicating this literal "x25Channel.getRealm()" 3 times.(Ëááóşÿÿÿÿ
+v
+java:S11922"`Define a constant instead of duplicating this literal "x25Channel.getCounters().length" 3 times.(›¬¦™
+y
+java:S11921"^Define a constant instead of duplicating this literal "x25Channel.getOriginalRealm()" 3 times.(«ìêûÿÿÿÿ
+m
+java:S11920"RDefine a constant instead of duplicating this literal "x25Channel.reader" 3 times.(›¿Ù©ÿÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(òÒµ»üÿÿÿÿ
+[	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(³Ì’«
+`	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(Ñ®ä÷
+Z	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(ÌÃà)
+`	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(æı¯çıÿÿÿÿ
+[	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(†ñÄİ

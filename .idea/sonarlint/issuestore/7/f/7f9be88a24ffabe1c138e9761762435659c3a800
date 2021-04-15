@@ -1,0 +1,43 @@
+
+p
+java:S1192B"UDefine a constant instead of duplicating this literal "logChannel.getPort()" 4 times.(÷—š´úÿÿÿÿ
+|
+java:S1192@"gDefine a constant instead of duplicating this literal "logChannel.getIncomingFilters().size()" 4 times.(İ·c
+}
+java:S1192H"gDefine a constant instead of duplicating this literal "logChannel.getOutgoingFilters().size()" 4 times.(ÙúáÃ
+i
+java:S1192S"SDefine a constant instead of duplicating this literal "testLogChannelHost" 4 times.(Ä™Ó“
+v
+java:S11923"`Define a constant instead of duplicating this literal "logChannel.getCounters().length" 5 times.(äôÛÃ
+t
+java:S11922"^Define a constant instead of duplicating this literal "logChannel.getOriginalRealm()" 5 times.(«¢ ƒ
+k
+java:S1192M"UDefine a constant instead of duplicating this literal "logChannel.getHost()" 4 times.(É¦º¼
+r
+java:S11927"WDefine a constant instead of duplicating this literal "logChannel.getLogger()" 5 times.(á€Ïéıÿÿÿÿ
+o
+java:S1192V"YDefine a constant instead of duplicating this literal "logChannel.getPackager()" 3 times.(í¢ü
+{
+java:S1192A"`Define a constant instead of duplicating this literal "logChannel.getMaxPacketLength()" 4 times.(Õ‹Ğ˜ùÿÿÿÿ
+y
+java:S1192F"^Define a constant instead of duplicating this literal "logChannel.getSocketFactory()" 4 times.(¢öûÿÿÿÿÿ
+m
+java:S1192G"WDefine a constant instead of duplicating this literal "logChannel.getHeader()" 4 times.(şÒ›ª
+h
+java:S11928"RDefine a constant instead of duplicating this literal "logChannel.reader" 6 times.(á€×™
+x
+java:S1192I"]Define a constant instead of duplicating this literal "logChannel.getServerSocket()" 5 times.(ÎŸàÿùÿÿÿÿ
+k
+java:S1192C"UDefine a constant instead of duplicating this literal "logChannel.getName()" 4 times.(ŸÛ¶
+v
+java:S11922"`Define a constant instead of duplicating this literal "org.jpos.iso.channel.LogChannel" 5 times.(«¢ ƒ
+l
+java:S11924"VDefine a constant instead of duplicating this literal "logChannel.getRealm()" 5 times.(§úïó
+[	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(³Ì’«
+`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S112f"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S112|"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+a	java:S112‘"FDefine and throw a dedicated exception instead of using a generic one.(‰˜¯Âùÿÿÿÿ
+\	java:S112›"FDefine and throw a dedicated exception instead of using a generic one.(Ñ®ä÷
+a	java:S112¢"FDefine and throw a dedicated exception instead of using a generic one.(Å›°”şÿÿÿÿ

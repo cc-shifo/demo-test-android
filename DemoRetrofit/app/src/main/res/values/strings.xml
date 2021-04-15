@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DemoRetrofit</string>
+    <string name="tv_api_name">api</string>
+    <string name="btn_start_request">start</string>
+    <string name="btn_stop_request">stop</string>
+</resources>

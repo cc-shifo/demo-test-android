@@ -1,0 +1,10 @@
+
+[
+java:S2184f"FCast one of the operands of this multiplication operation to a "long".(™½¡
+`	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ÖÅ´œúÿÿÿÿ
+t
+java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(×Ðµ¾ûÿÿÿÿ
+@
+java:S1181]"%Catch Exception instead of Throwable.(ëÄ£Îþÿÿÿÿ
+Q	java:S125?"<This block of commented-out lines of code should be removed.(ÂÍß–
+Q	java:S125E"<This block of commented-out lines of code should be removed.(í­ô®

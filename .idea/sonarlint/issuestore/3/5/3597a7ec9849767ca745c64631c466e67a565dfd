@@ -1,0 +1,12 @@
+
+^
+java:S3973Ü"GUse indentation to denote the code conditionally executed by this "if".(—îğ
+^
+java:S3973ß"GUse indentation to denote the code conditionally executed by this "if".(é•ıò
+t	java:S135ï"YReduce the total number of break and continue statements in this loop to use at most one.(Ë¼Á»şÿÿÿÿ
+l
+java:S3008"WRename this field "TANK_ROW_NUM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëË¬z
+?
+java:S1659P")Declare "bulletSpace" on a separate line.(ììİÄ
+?
+java:S1659Z")Declare "bulletSpeed" on a separate line.(âìúÍ

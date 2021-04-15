@@ -1,0 +1,60 @@
+
+a
+java:S1301-"KReplace this "switch" statement by "if" statements to increase readability.(°Ó÷
+e
+java:S1192R"JDefine a constant instead of duplicating this literal "11213232" 10 times.(Â‡Óƒüÿÿÿÿ
+]
+java:S1192Y"GDefine a constant instead of duplicating this literal "openid" 3 times.(¼ù§ò
+a
+java:S1192T"KDefine a constant instead of duplicating this literal "subåå­—" 13 times.(×È™Ó
+^
+java:S1192ñ"HDefine a constant instead of duplicating this literal "subName" 5 times.(Ë§0
+a
+java:S1192©"JDefine a constant instead of duplicating this literal "subæµ‹è¯•" 4 times.(ù˜Ë‡
+f
+java:S1192S"KDefine a constant instead of duplicating this literal "æµ‹è¯•A11" 11 times.(ÁŠ˜ùÿÿÿÿ
+g
+java:S1104ı"PMake name a static final constant or non-public and provide accessors if needed.( şÍ¾
+f
+java:S1104ş"OMake age a static final constant or non-public and provide accessors if needed.(×Áò¿
+i
+java:S1104ÿ"RMake openid a static final constant or non-public and provide accessors if needed.(¹ ô
+7	java:S131-""Add a default case to this switch.(°Ó÷
+T
+java:S1854Ÿ"8Remove this useless assignment to local variable "user".(Ìô…şÿÿÿÿ
+}
+java:S1845Ö"fRename field "subName" to prevent any misunderstanding/clash with field "SUBNAME" defined on line 339.(ØÇëš
+:
+java:S2129É"Remove this "Long" constructor(áƒŒışÿÿÿÿ
+7
+java:S2326Ğ"E is not used in the class.(Ã¾ÿ€ùÿÿÿÿ
+E
+java:S1481Ÿ")Remove this unused "user" local variable.(Ìô…şÿÿÿÿ
+B
+java:S1068Õ"&Remove this unused "id" private field.(Æí¶áşÿÿÿÿ
+B
+java:S1068Ö"+Remove this unused "subName" private field.(ØÇëš
+D
+java:S1068×"(Remove this unused "slow" private field.(åíÊ«øÿÿÿÿ
+?
+java:S1068Ø"(Remove this unused "date" private field.(ñ±€Ø
+E
+java:S1068Ù")Remove this unused "date2" private field.(÷Óûäøÿÿÿÿ
+B
+java:S1068ß"+Remove this unused "subName" private field.(ØÇëš
+D
+java:S1068á"(Remove this unused "slow" private field.(åíÊ«øÿÿÿÿ
+D
+java:S1068ê"(Remove this unused "slow" private field.(åíÊ«øÿÿÿÿ
+?
+java:S1068ğ"(Remove this unused "name" private field.(Ë¥¼
+C
+java:S1068ñ"'Remove this unused "age" private field.(Æ†´¦şÿÿÿÿ
+@
+java:S1068ò"*Remove this unused "openid" private field.(úì©w
+?
+java:S1068°"(Remove this unused "code" private field.(²âèú
+F
+java:S1068µ"*Remove this unused "bookId" private field.(Š¶Ì·ıÿÿÿÿ
+B
+java:S1068Ö"&Remove this unused "id" private field.(ƒƒÚªûÿÿÿÿ

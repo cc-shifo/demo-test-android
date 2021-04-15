@@ -1,0 +1,15 @@
+
+Q
+java:S1141‡"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+D
+java:S1121r".Extract the assignment out of this expression.(¥ö–ß
+J
+java:S1121–".Extract the assignment out of this expression.(¶Ÿèžüÿÿÿÿ
+—
+java:S1186a"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òæ‹•
+<
+java:S1659l"!Declare "end" on a separate line.(Ôè—üÿÿÿÿ
+F
+java:S2093À"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+Q	java:S125z"<This block of commented-out lines of code should be removed.(’îÁô
+R	java:S125‘"<This block of commented-out lines of code should be removed.(¼þøÅ

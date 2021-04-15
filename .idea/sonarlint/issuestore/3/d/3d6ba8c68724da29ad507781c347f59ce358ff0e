@@ -1,0 +1,43 @@
+
+h
+java:S11921"SDefine a constant instead of duplicating this literal "result.getRealm()" 15 times.(Ë‡
+}
+java:S1192…"aDefine a constant instead of duplicating this literal "Test completed without Exception" 9 times.(ÂôÌïûÿÿÿÿ
+i
+java:S1192#"NDefine a constant instead of duplicating this literal "testLogRealm" 15 times.(¬‹‹£ùÿÿÿÿ
+f
+java:S11920"KDefine a constant instead of duplicating this literal "testString" 5 times.(ƒõÙ’ûÿÿÿÿ
+j
+java:S1192T"ODefine a constant instead of duplicating this literal "testLogLogName" 4 times.(ğš¦¹ùÿÿÿÿ
+`	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+[	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(Ò»õ”
+`	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(›½ ƒûÿÿÿÿ
+`	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(º€ãÍûÿÿÿÿ
+[	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(àİšÂ
+`	java:S112G"FDefine and throw a dedicated exception instead of using a generic one.(äÄ–Üúÿÿÿÿ
+Z	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(ÀÈ€
+`	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(Ö•×ìûÿÿÿÿ
+`	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(¨½Û›ÿÿÿÿÿ
+`	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(œ¬ñÙşÿÿÿÿ
+`	java:S112e"FDefine and throw a dedicated exception instead of using a generic one.(š€øâùÿÿÿÿ
+`	java:S112k"FDefine and throw a dedicated exception instead of using a generic one.(’¤–·ıÿÿÿÿ
+`	java:S112q"FDefine and throw a dedicated exception instead of using a generic one.(µÁä°üÿÿÿÿ
+`	java:S112w"FDefine and throw a dedicated exception instead of using a generic one.(ÕÄ¶ˆıÿÿÿÿ
+[	java:S112}"FDefine and throw a dedicated exception instead of using a generic one.(ñ¢ãú
+\	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(×ô¯
+\	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(´ò¹Š
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ïüÆêüÿÿÿÿ
+a	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(äøÚüÿÿÿÿ
+\	java:S112›"FDefine and throw a dedicated exception instead of using a generic one.(Ìú“Š
+\	java:S112¢"FDefine and throw a dedicated exception instead of using a generic one.(âÇÑ–
+a	java:S112¨"FDefine and throw a dedicated exception instead of using a generic one.(ÉïĞ°üÿÿÿÿ
+\	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(•îÎù
+\	java:S112·"FDefine and throw a dedicated exception instead of using a generic one.(ÓòÙ•
+a	java:S112½"FDefine and throw a dedicated exception instead of using a generic one.(ĞÔŸÂÿÿÿÿÿ
+a	java:S112Ç"FDefine and throw a dedicated exception instead of using a generic one.(Š‹±øÿÿÿÿ
+a	java:S112Ï"FDefine and throw a dedicated exception instead of using a generic one.(‰ù°æùÿÿÿÿ
+\	java:S112×"FDefine and throw a dedicated exception instead of using a generic one.(Úµş§
+a	java:S112İ"FDefine and throw a dedicated exception instead of using a generic one.(˜œˆøıÿÿÿÿ
+a	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(ˆš¸¯ıÿÿÿÿ
+a	java:S112é"FDefine and throw a dedicated exception instead of using a generic one.(ïÛæµÿÿÿÿÿ

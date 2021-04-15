@@ -1,0 +1,9 @@
+
+F
+java:S3740”"/Provide the parametrized type for this generic.(¦à…£
+b
+java:S1192P"LDefine a constant instead of duplicating this literal "destination" 4 times.(”ƒ…Å
+Z
+java:S1854o"?Remove this useless assignment to local variable "destination".(âŒŸòùÿÿÿÿ
+K
+java:S1481o"0Remove this unused "destination" local variable.(âŒŸòùÿÿÿÿ

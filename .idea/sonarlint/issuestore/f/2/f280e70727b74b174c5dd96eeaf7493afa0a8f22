@@ -1,0 +1,19 @@
+
+I
+java:S11211".Extract the assignment out of this expression.(¥Ëî”ùÿÿÿÿ
+m
+java:S1450$"WRemove the "mAdapter" field and declare it as a local variable in the relevant methods.(îÏ±®
+s
+java:S1450%"]Remove the "mLoadingLayout" field and declare it as a local variable in the relevant methods.(²üÅ–
+r
+java:S1450&"]Remove the "mRefreshLayout" field and declare it as a local variable in the relevant methods.(à¶íK
+H
+java:S11359"2Complete the task associated to this TODO comment.(™“Ú
+—
+java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öƒãú
+q	java:S116;"\Rename this field "SCROLL_STATE_IDLE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Õ¸ª
+~	java:S116<"dRename this field "SCROLL_STATE_TOUCH_SCROLL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áÒÏşúÿÿÿÿ
+r	java:S116="]Rename this field "SCROLL_STATE_FLING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÂà
+N	java:S106A"9Replace this use of System.out or System.err by a logger.(£ŒÍ–
+S	java:S106C"9Replace this use of System.out or System.err by a logger.(©Ã’°üÿÿÿÿ
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(î¦è 

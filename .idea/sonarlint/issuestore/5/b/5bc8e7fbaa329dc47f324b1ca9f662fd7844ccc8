@@ -1,0 +1,29 @@
+
+I
+java:S1444"3Make this "public static DEFAULT_COLOR" field final(—
+I
+java:S1444"3Make this "public static DEFAULT_ALPHA" field final(Şú²Ï
+o
+java:S1104"YMake DEFAULT_COLOR a static final constant or non-public and provide accessors if needed.(—
+o
+java:S1104"YMake DEFAULT_ALPHA a static final constant or non-public and provide accessors if needed.(Şú²Ï
+n
+java:S3008"XRename this field "DEFAULT_COLOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—
+n
+java:S3008"XRename this field "DEFAULT_ALPHA" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şú²Ï
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ÑÔàšúÿÿÿÿ
+H
+java:S3011¶",This accessibility update should be removed.(Ş¦ñşÿÿÿÿ
+H
+java:S3011·",This accessibility update should be removed.(ğ“üÿÿÿÿ
+C
+java:S3011À",This accessibility bypass should be removed.(ß‘Ÿâ
+A
+java:S1181Ü"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181ò"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(Şú²Ï
+W	java:S125"<This block of commented-out lines of code should be removed.(ğøÿ“üÿÿÿÿ
+R	java:S125–"<This block of commented-out lines of code should be removed.(ÚìÉá
+W	java:S125"<This block of commented-out lines of code should be removed.(ó×è‰ûÿÿÿÿ

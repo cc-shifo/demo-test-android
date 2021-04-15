@@ -1,0 +1,11 @@
+
+s	java:S135w"YReduce the total number of break and continue statements in this loop to use at most one.(ñ¶¶çÿÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¤±Ïüÿÿÿÿ
+>
+java:S1659t"#Declare "index" on a separate line.(Ò˜ò…þÿÿÿÿ
+?
+java:S1659t"$Declare "lookup" on a separate line.(Ò˜ò…þÿÿÿÿ
+?
+java:S1659t"$Declare "offset" on a separate line.(Ò˜ò…þÿÿÿÿ
+>
+java:S1659t"#Declare "digit" on a separate line.(Ò˜ò…þÿÿÿÿ

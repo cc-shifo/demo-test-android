@@ -1,0 +1,43 @@
+
+K
+java:S1066Ù"/Merge this if statement with the enclosing one.(²†ñÎşÿÿÿÿ
+P
+java:S1118'":Add a private constructor to hide the implicit public one.(âòÆ±
+S
+java:S3878p"8Remove this array creation and simply pass the elements.(““Éóøÿÿÿÿ
+O
+java:S3878ü"8Remove this array creation and simply pass the elements.(ü…š¶
+T
+java:S3878‰"8Remove this array creation and simply pass the elements.(ÜÈ£ãÿÿÿÿÿ
+@
+java:S1125ı")Remove the literal "false" boolean value.(®”Æñ
+E
+java:S1125ª	")Remove the literal "false" boolean value.(ïÀÿ«üÿÿÿÿ
+5
+java:S2119Š
+"Save and re-use this "Random".(¸Í×
+5
+java:S2119ª
+"Save and re-use this "Random".(¸Í×
+E
+java:S1125")Remove the literal "false" boolean value.(°ïÒ€úÿÿÿÿ
+M
+java:S2692”"10 is a valid index, but is ignored by this check.(ñ×é€şÿÿÿÿ
+L
+java:S1133Ä"5Do not forget to remove this deprecated code someday.(Õëöß
+_
+java:S1123Ã"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+L
+java:S1133Ô"5Do not forget to remove this deprecated code someday.(€Áù¨
+_
+java:S1123Ó"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+†
+java:S1130‡"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(˜îÿ¤ÿÿÿÿÿ
+E
+java:S1125Â")Remove the literal "false" boolean value.(øåÍúÿÿÿÿ
+E
+java:S1125Â")Remove the literal "false" boolean value.(øåÍúÿÿÿÿ
+E
+java:S1125Ä")Remove the literal "false" boolean value.(»ÅÑôÿÿÿÿÿ
+E
+java:S1125Ä")Remove the literal "false" boolean value.(»ÅÑôÿÿÿÿÿ

@@ -1,0 +1,17 @@
+
+K
+java:S1066İ"/Merge this if statement with the enclosing one.(»”øÄıÿÿÿÿ
+c	java:S119%"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(«†„ùÿÿÿÿ
+c	java:S119%"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(«†„ùÿÿÿÿ
+W
+java:S3078e"AUse an "AtomicInteger" for this field; its operations are atomic.(ìœ“”
+V
+java:S3078f"AUse an "AtomicInteger" for this field; its operations are atomic.(­Ê×
+W
+java:S3078„"AUse an "AtomicInteger" for this field; its operations are atomic.(—¸“~
+]
+java:S3078«"AUse an "AtomicInteger" for this field; its operations are atomic.(ªÉ†şÿÿÿÿ
+W
+java:S3078¸"AUse an "AtomicInteger" for this field; its operations are atomic.(»ß¿"
+]
+java:S3078º"AUse an "AtomicInteger" for this field; its operations are atomic.(šóÚğşÿÿÿÿ

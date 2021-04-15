@@ -1,0 +1,52 @@
+
+R
+java:S1444"<Make this "public static REFRESH_FOOTER_PULLING" field final(‡‘•
+R
+java:S1444"<Make this "public static REFRESH_FOOTER_RELEASE" field final(¸Şæß
+W
+java:S1444"<Make this "public static REFRESH_FOOTER_LOADING" field final(¦óç¯ûÿÿÿÿ
+Z
+java:S1444"?Make this "public static REFRESH_FOOTER_REFRESHING" field final(ÄÛ¥©úÿÿÿÿ
+V
+java:S1444 ";Make this "public static REFRESH_FOOTER_FINISH" field final(óªñòÿÿÿÿÿ
+V
+java:S1444!";Make this "public static REFRESH_FOOTER_FAILED" field final(³Õ—¸øÿÿÿÿ
+R
+java:S1444""<Make this "public static REFRESH_FOOTER_NOTHING" field final(Ğö’†
+x
+java:S1104"bMake REFRESH_FOOTER_PULLING a static final constant or non-public and provide accessors if needed.(‡‘•
+x
+java:S1104"bMake REFRESH_FOOTER_RELEASE a static final constant or non-public and provide accessors if needed.(¸Şæß
+}
+java:S1104"bMake REFRESH_FOOTER_LOADING a static final constant or non-public and provide accessors if needed.(¦óç¯ûÿÿÿÿ
+€
+java:S1104"eMake REFRESH_FOOTER_REFRESHING a static final constant or non-public and provide accessors if needed.(ÄÛ¥©úÿÿÿÿ
+|
+java:S1104 "aMake REFRESH_FOOTER_FINISH a static final constant or non-public and provide accessors if needed.(óªñòÿÿÿÿÿ
+|
+java:S1104!"aMake REFRESH_FOOTER_FAILED a static final constant or non-public and provide accessors if needed.(³Õ—¸øÿÿÿÿ
+x
+java:S1104""bMake REFRESH_FOOTER_NOTHING a static final constant or non-public and provide accessors if needed.(Ğö’†
+w
+java:S3008"aRename this field "REFRESH_FOOTER_PULLING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡‘•
+w
+java:S3008"aRename this field "REFRESH_FOOTER_RELEASE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Şæß
+|
+java:S3008"aRename this field "REFRESH_FOOTER_LOADING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦óç¯ûÿÿÿÿ
+
+java:S3008"dRename this field "REFRESH_FOOTER_REFRESHING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÛ¥©úÿÿÿÿ
+{
+java:S3008 "`Rename this field "REFRESH_FOOTER_FINISH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óªñòÿÿÿÿÿ
+{
+java:S3008!"`Rename this field "REFRESH_FOOTER_FAILED" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³Õ—¸øÿÿÿÿ
+w
+java:S3008""aRename this field "REFRESH_FOOTER_NOTHING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğö’†
+Q
+java:S1133Ç"5Do not forget to remove this deprecated code someday.(§Òíûÿÿÿÿ
+D
+java:S1123Ç"(Add the missing @deprecated Javadoc tag.(§Òíûÿÿÿÿ
+a	java:S128å"LEnd this switch case with an unconditional break, return or throw statement.(Ò˜ú.
+=	java:S131ä""Add a default case to this switch.(³ÒÂŒÿÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(‡‘•
+Q	java:S125$"<This block of commented-out lines of code should be removed.(§ÎïÓ
+R	java:S125®"<This block of commented-out lines of code should be removed.(Æ±´€

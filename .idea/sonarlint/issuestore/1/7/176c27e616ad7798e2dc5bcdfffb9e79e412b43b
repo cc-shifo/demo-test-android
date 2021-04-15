@@ -1,0 +1,25 @@
+
+g
+java:S1301‚"KReplace this "switch" statement by "if" statements to increase readability.(Â½™ãıÿÿÿÿ
+b
+java:S1301’"KReplace this "switch" statement by "if" statements to increase readability.(º¦Ò—
+g
+java:S1301Ë"KReplace this "switch" statement by "if" statements to increase readability.(Â½™ãıÿÿÿÿ
+Z
+java:S3034¹">Prevent "int" promotion by adding "& 0xff" to this expression.(ºéóüÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡»ß¯
+Z
+java:S1854w"?Remove this useless assignment to local variable "valueBuffer".(ÜºŠÛüÿÿÿÿ
+[
+java:S1854¡"?Remove this useless assignment to local variable "valueBuffer".(ÜºŠÛüÿÿÿÿ
+=	java:S131‚""Add a default case to this switch.(Â½™ãıÿÿÿÿ
+8	java:S131’""Add a default case to this switch.(º¦Ò—
+X
+java:S3457˜"AFormat specifiers should be used instead of string concatenation.(Ò°óø
+X
+java:S3457›"AFormat specifiers should be used instead of string concatenation.(öñóô
+H
+java:S1172µ",Remove this unused method parameter "value".(¥ë©­úÿÿÿÿ
+p
+java:S3012·"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ÌÛıÖ
+V	java:S125."<This block of commented-out lines of code should be removed.(º¥¾€øÿÿÿÿ

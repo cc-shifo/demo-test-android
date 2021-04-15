@@ -1,0 +1,14 @@
+
+`	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+e
+java:S2674?"JCheck the return value of the "skip" call to see how many bytes were read.(°ıÚ•ÿÿÿÿÿ
+`
+java:S2674]"JCheck the return value of the "read" call to see how many bytes were read.(ß™Œ“
+c	java:S100m"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Àş
+c	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İø
+]
+java:S2142‰"FEither re-interrupt this method or rethrow the "InterruptedException".(ò¶È
+E
+java:S2140¥")Use "java.util.Random.nextInt()" instead.(ÏÅÚŸÿÿÿÿÿ
+R	java:S125˜"<This block of commented-out lines of code should be removed.(œèêá

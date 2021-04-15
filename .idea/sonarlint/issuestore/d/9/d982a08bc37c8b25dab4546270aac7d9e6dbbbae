@@ -1,0 +1,19 @@
+
+P
+java:S1118":Add a private constructor to hide the implicit public one.(àÛ÷Í
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ý¶ÍÐûÿÿÿÿ
+<	java:S131-""Add a default case to this switch.(ê¿×ÿûÿÿÿÿ
+c	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»µÿÕ
+=
+java:S1110"!Remove these useless parentheses.(¥‰†±ÿÿÿÿÿ
+8
+java:S1110Ž"!Remove these useless parentheses.(‚â
+Q	java:S125""<This block of commented-out lines of code should be removed.(öç»î
+V	java:S125&"<This block of commented-out lines of code should be removed.(àïþ­úÿÿÿÿ
+Q	java:S1257"<This block of commented-out lines of code should be removed.(öç»î
+Q	java:S125?"<This block of commented-out lines of code should be removed.(Îè¬
+R	java:S125‰"<This block of commented-out lines of code should be removed.(‰æ‰ð
+R	java:S125ž"<This block of commented-out lines of code should be removed.(öç»î
+W	java:S125¢"<This block of commented-out lines of code should be removed.(àïþ­úÿÿÿÿ
+R	java:S125µ"<This block of commented-out lines of code should be removed.(öç»î
+R	java:S125½"<This block of commented-out lines of code should be removed.(Îè¬

@@ -1,0 +1,7 @@
+
+n
+java:S1450+"SRemove the "qmux" field and declare it as a local variable in the relevant methods.(´ó–úûÿÿÿÿ
+n
+java:S1450)"XRemove the "qmuxproxy" field and declare it as a local variable in the relevant methods.(¯åÿœ
+a
+java:S2886C"FSynchronize this method to match the synchronization on "setQmuxName".(þ‡£ÿÿÿÿÿÿ

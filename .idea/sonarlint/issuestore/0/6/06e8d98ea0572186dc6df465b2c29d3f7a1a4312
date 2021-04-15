@@ -1,0 +1,19 @@
+
+]
+java:S1192F"GDefine a constant instead of duplicating this literal "result" 3 times.(©Üæü
+i
+java:S1192D"SDefine a constant instead of duplicating this literal "evt.payLoad.size()" 3 times.(ÄçŸÔ
+h
+java:S1192A"SDefine a constant instead of duplicating this literal "testDelayFilterTag" 3 times.(Î«ŒW
+m
+java:S11925"RDefine a constant instead of duplicating this literal "delayFilter.delay" 4 times.(ëÏıˆûÿÿÿÿ
+n
+java:S1192E"SDefine a constant instead of duplicating this literal "evt.payLoad.get(1)" 3 times.(×¦Š×øÿÿÿÿ
+`	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+`	java:S112?"FDefine and throw a dedicated exception instead of using a generic one.(ş±ƒØıÿÿÿÿ
+`	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(©¯ôÔùÿÿÿÿ
+[	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(ÓŠİø
+Z	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(­Üº
+`	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(ç¦Æ“ùÿÿÿÿ
+`	java:S112p"FDefine and throw a dedicated exception instead of using a generic one.(‡Ğ¹şÿÿÿÿ

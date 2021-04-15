@@ -1,0 +1,152 @@
+
+v
+java:S1192á"_Define a constant instead of duplicating this literal "Number array must not empty !" 24 times.(ÓÖ“
+Z
+java:S2259¶"CA "NullPointerException" could be thrown; "array" is nullable here.(Œö²¼
+_
+java:S2259—"CA "NullPointerException" could be thrown; "array" is nullable here.(Ö”Öğøÿÿÿÿ
+[
+java:S2259ç!"DA "NullPointerException" could be thrown; "array1" is nullable here.(‹Ñµ£
+Z
+java:S2259¿"CA "NullPointerException" could be thrown; "array" is nullable here.(Œö²¼
+[
+java:S2259ç!"DA "NullPointerException" could be thrown; "array2" is nullable here.(‹Ñµ£
+P
+java:S1118 ":Add a private constructor to hide the implicit public one.(Ñ–Â£
+E
+java:S1125»")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125Å")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125Ï")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125Ù")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125ã")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125í")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125÷")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+E
+java:S1125‹")Remove the literal "false" boolean value.(Õ òıÿÿÿÿ
+…
+java:S1130˜"iRemove the declaration of thrown exception 'java.lang.NullPointerException' which is a runtime exception.(•ô»£ıÿÿÿÿ
+‰
+java:S1130˜"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(•ô»£ıÿÿÿÿ
+@
+java:S1125œ")Remove the literal "false" boolean value.(£¡Œ•
+=
+java:S1168À"&Return an empty array instead of null.(¥¹ï
+o
+java:S1602Š	"SRemove useless curly braces around statement and then remove useless return keyword(Ü˜ìîşÿÿÿÿ
+E
+java:S1125™	")Remove the literal "false" boolean value.(×õÛıÿÿÿÿ
+E
+java:S1125¥	")Remove the literal "false" boolean value.(ˆÿËÎıÿÿÿÿ
+=
+java:S1168å"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012î"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168û"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012„"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168‘"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012š"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168§"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012°"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168½"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012Æ"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168Ó"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012Ü"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168é"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012ò"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168ÿ"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168•"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168«"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168Á"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012Ê"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168×"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168í"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012ö"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168ƒ"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168™"&Return an empty array instead of null.(¥¹ï
+u
+java:S3012¢"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(£µª÷ûÿÿÿÿ
+=
+java:S1168¯"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168Æ"&Return an empty array instead of null.(¥¹ï
+=
+java:S1168˜"&Return an empty array instead of null.(¥¹ï
+ƒ
+java:S1130Ò"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Ãå±#
+@
+java:S1125¢")Remove the literal "false" boolean value.(ŸÔä³
+„
+java:S1130ä"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ĞÑÜé
+‰
+java:S1130ò"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ììşÿÿÿÿ
+‰
+java:S1130€"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¶…¯êøÿÿÿÿ
+‰
+java:S1130"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(·ªáŸúÿÿÿÿ
+„
+java:S1130œ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÖşÂ†
+‰
+java:S1130ª"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Ñ˜ó¿üÿÿÿÿ
+‰
+java:S1130¸"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Õ›ı¦øÿÿÿÿ
+„
+java:S1130Æ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ªÁ×®
+„
+java:S1130Ô"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‰êÛã
+‰
+java:S1130ã"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ñ¿Íüÿÿÿÿ
+„
+java:S1130ƒ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ë¶„Â
+„
+java:S1130‘"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÎŞóÍ
+‰
+java:S1130Ÿ"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‚Şò™ûÿÿÿÿ
+‰
+java:S1130­"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(†ĞÖûÿÿÿÿ
+„
+java:S1130»"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÊÓ½¼
+„
+java:S1130É"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¨×Ÿè
+„
+java:S1130×"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(µËŠö
+ƒ
+java:S1130å"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(¹ğˆ
+„
+java:S1130ó"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ô¾û±
+@
+java:S1125!")Remove the literal "false" boolean value.(Íãü
+@
+java:S1125¾!")Remove the literal "false" boolean value.(ÇÂµ­
+R	java:S125î"<This block of commented-out lines of code should be removed.(ÎÅî

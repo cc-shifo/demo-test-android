@@ -1,0 +1,10 @@
+
+e
+java:S1192‹"NDefine a constant instead of duplicating this literal "Field length " 3 times.(ÑŒèñ
+h
+java:S1192‹"QDefine a constant instead of duplicating this literal " too long. Max: " 3 times.(ÑŒèñ
+C	java:S108{")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+f
+java:S2674Ï"JCheck the return value of the "skip" call to see how many bytes were read.(ÑÝõ…þÿÿÿÿ
+‰
+java:S1130ß"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Þ»¯ìúÿÿÿÿ

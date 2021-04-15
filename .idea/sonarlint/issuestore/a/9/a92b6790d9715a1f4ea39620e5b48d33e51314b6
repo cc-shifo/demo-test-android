@@ -1,0 +1,27 @@
+
+k	java:S117O"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÁã’úÿÿÿÿ
+f	java:S128c"LEnd this switch case with an unconditional break, return or throw statement.(úâúÿÿÿÿ
+f	java:S128a"LEnd this switch case with an unconditional break, return or throw statement.(‰ÆÄÎşÿÿÿÿ
+<	java:S131`""Add a default case to this switch.(‹Ÿˆûıÿÿÿÿ
+g	java:S128¿"LEnd this switch case with an unconditional break, return or throw statement.(úâúÿÿÿÿ
+g	java:S128½"LEnd this switch case with an unconditional break, return or throw statement.(‰ÆÄÎşÿÿÿÿ
+g	java:S128»"LEnd this switch case with an unconditional break, return or throw statement.(µ»ïşıÿÿÿÿ
+g	java:S128¹"LEnd this switch case with an unconditional break, return or throw statement.(ÌÊëÎüÿÿÿÿ
+a	java:S128·"LEnd this switch case with an unconditional break, return or throw statement.(û¿4
+a	java:S128µ"LEnd this switch case with an unconditional break, return or throw statement.(ÒñŠ{
+=	java:S131´""Add a default case to this switch.(˜Š×ãûÿÿÿÿ
+g	java:S128½"LEnd this switch case with an unconditional break, return or throw statement.(úâúÿÿÿÿ
+g	java:S128»"LEnd this switch case with an unconditional break, return or throw statement.(‰ÆÄÎşÿÿÿÿ
+g	java:S128¹"LEnd this switch case with an unconditional break, return or throw statement.(µ»ïşıÿÿÿÿ
+g	java:S128·"LEnd this switch case with an unconditional break, return or throw statement.(ÌÊëÎüÿÿÿÿ
+a	java:S128µ"LEnd this switch case with an unconditional break, return or throw statement.(û¿4
+a	java:S128³"LEnd this switch case with an unconditional break, return or throw statement.(ÒñŠ{
+g	java:S128±"LEnd this switch case with an unconditional break, return or throw statement.(˜Çúÿÿÿÿ
+g	java:S128ª"LEnd this switch case with an unconditional break, return or throw statement.(òï±êÿÿÿÿÿ
+g	java:S128¨"LEnd this switch case with an unconditional break, return or throw statement.(©Ğ‘şÿÿÿÿ
+g	java:S128¦"LEnd this switch case with an unconditional break, return or throw statement.(—Í×©øÿÿÿÿ
+b	java:S128¤"LEnd this switch case with an unconditional break, return or throw statement.(úâğ
+g	java:S128¢"LEnd this switch case with an unconditional break, return or throw statement.(Á«ôÚùÿÿÿÿ
+g	java:S128 "LEnd this switch case with an unconditional break, return or throw statement.(Ôª²çüÿÿÿÿ
+b	java:S128"LEnd this switch case with an unconditional break, return or throw statement.(‰ÿù€
+=	java:S131""Add a default case to this switch.(˜Š×ãûÿÿÿÿ

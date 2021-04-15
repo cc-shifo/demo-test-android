@@ -1,0 +1,88 @@
+
+J
+java:S3740S"/Provide the parametrized type for this generic.(Õ…î÷üÿÿÿÿ
+J
+java:S3740]"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+J
+java:S3740g"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+J
+java:S3740q"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+J
+java:S3740|"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+K
+java:S3740…"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+F
+java:S3740Ž"/Provide the parametrized type for this generic.(Ãëü
+E
+java:S3740˜"/Provide the parametrized type for this generic.(¦¤™w
+E
+java:S3740 "/Provide the parametrized type for this generic.(ÆÐØ?
+K
+java:S3740ª"/Provide the parametrized type for this generic.(»¾ÞÆýÿÿÿÿ
+F
+java:S3740³"/Provide the parametrized type for this generic.(¸Öáâ
+w
+java:S1192["\Define a constant instead of duplicating this literal "testVErrorParserDescription" 6 times.(þ’Ðëÿÿÿÿÿ
+b
+java:S1192>"GDefine a constant instead of duplicating this literal "result" 4 times.(²¥Ý¡ùÿÿÿÿ
+q
+java:S1192<"VDefine a constant instead of duplicating this literal "testVErrorParserRealm" 5 times.(ÚÄ”Ïüÿÿÿÿ
+d
+java:S1192_"NDefine a constant instead of duplicating this literal "result.get(0)" 3 times.(Ý¥¡‹
+‡
+java:S1192¾"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 4 times.(áÆ”Óÿÿÿÿÿ
+l
+java:S1192À"PDefine a constant instead of duplicating this literal "ex.getMessage()" 4 times.(«€×ˆùÿÿÿÿ
+j
+java:S1192T"ODefine a constant instead of duplicating this literal "result.size()" 11 times.(ù³þÚÿÿÿÿÿ
+o
+java:S1192S"TDefine a constant instead of duplicating this literal "testVErrorParserMti" 3 times.(Õ…î÷üÿÿÿÿ
+`	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(îüšÕ
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(ÉïÐ°üÿÿÿÿ
+[	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(•îÎù
+Z	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(Â¼›e
+`	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(Çÿé“ùÿÿÿÿ
+[	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(ô„ªé
+[	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(ïÌúÝ
+[	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(ËÊžŸ
+[	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(æâ´™
+\	java:S112‚"FDefine and throw a dedicated exception instead of using a generic one.(¶ê”°
+\	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(î½¶
+a	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(ã¸Õåøÿÿÿÿ
+a	java:S112ž"FDefine and throw a dedicated exception instead of using a generic one.(Ë¿š¶ûÿÿÿÿ
+\	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(ê°ý»
+\	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(åÇ¹Þ
+a	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(àÔ–ûÿÿÿÿ
+\	java:S112Å"FDefine and throw a dedicated exception instead of using a generic one.(£×²É
+\	java:S112Ð"FDefine and throw a dedicated exception instead of using a generic one.(¬”êƒ
+\	java:S112Ý"FDefine and throw a dedicated exception instead of using a generic one.(òêë¨
+a	java:S112ê"FDefine and throw a dedicated exception instead of using a generic one.(ûÈâÝýÿÿÿÿ
+\	java:S112ð"FDefine and throw a dedicated exception instead of using a generic one.(ûâ´Ÿ
+a	java:S112ö"FDefine and throw a dedicated exception instead of using a generic one.(ÐÔŸÂÿÿÿÿÿ
+k	java:S117["QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(þ’Ðëÿÿÿÿÿ
+k	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç¹ºêýÿÿÿÿ
+g	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªÑ™¥
+l	java:S117¨"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(þ’Ðëÿÿÿÿÿ
+€
+java:S1149S"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Õ…î÷üÿÿÿÿ
+€
+java:S1149]"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+€
+java:S1149g"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+€
+java:S1149q"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+€
+java:S1149|"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+
+java:S1149…"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+|
+java:S1149Ž"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Ãëü
+{
+java:S1149˜"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(¦¤™w
+{
+java:S1149 "eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(ÆÐØ?
+
+java:S1149ª"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(»¾ÞÆýÿÿÿÿ
+|
+java:S1149³"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(¸Öáâ

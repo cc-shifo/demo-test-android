@@ -1,0 +1,11 @@
+
+3
+java:S2386"Make this member "protected".(—ïýª
+w
+java:S1845!"aRename field "scale" to prevent any misunderstanding/clash with field "Scale" defined on line 18.(þäÌº
+P
+java:S1133"5Do not forget to remove this deprecated code someday.(÷ˆÈªùÿÿÿÿ
+^
+java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+C
+java:S1874"-Remove this use of "Scale"; it is deprecated.(Ô±¦é

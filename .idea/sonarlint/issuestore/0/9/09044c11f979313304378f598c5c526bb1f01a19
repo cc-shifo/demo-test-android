@@ -1,0 +1,11 @@
+
+Q
+java:S1133ò"5Do not forget to remove this deprecated code someday.(§Òíûÿÿÿÿ
+_
+java:S1123ñ"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(áçù
+W	java:S125œ"<This block of commented-out lines of code should be removed.(‰¹ˆŠøÿÿÿÿ
+W	java:S125¦"<This block of commented-out lines of code should be removed.(•¯Ù­øÿÿÿÿ
+Q	java:S125°"<This block of commented-out lines of code should be removed.(–éœ!
+R	java:S125ˆ"<This block of commented-out lines of code should be removed.(„ˆ
+W	java:S125 "<This block of commented-out lines of code should be removed.(±çÿÅøÿÿÿÿ
+R	java:S125²"<This block of commented-out lines of code should be removed.(¼ ¯

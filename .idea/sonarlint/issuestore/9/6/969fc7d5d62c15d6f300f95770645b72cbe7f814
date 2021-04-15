@@ -1,0 +1,18 @@
+
+a
+java:S1192Q"FDefine a constant instead of duplicating this literal "false" 3 times.(ÿ•©›ùÿÿÿÿ
+
+java:S1192V"kDefine a constant instead of duplicating this literal "Action should be PREPARED|NO_JOIN|READONLY" 5 times.(øŠéª
+g
+java:S1192X"LDefine a constant instead of duplicating this literal "No failures" 5 times.(óÊÊÏÿÿÿÿÿ
+j
+java:S1192Y"TDefine a constant instead of duplicating this literal "Invalid Destination" 5 times.(Öºİÿ
+g
+java:S1192Q"LDefine a constant instead of duplicating this literal "ignore-luhn" 6 times.(ÿ•©›ùÿÿÿÿ
+d
+java:S11923"IDefine a constant instead of duplicating this literal "endpoint" 3 times.(…ì¼éúÿÿÿÿ
+g
+java:S11924"LDefine a constant instead of duplicating this literal "destination" 4 times.(¢³‡®úÿÿÿÿ
+b	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»æº[
+c	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÀ”Ô
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™âÚˆ

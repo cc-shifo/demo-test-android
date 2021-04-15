@@ -1,0 +1,99 @@
+
+l
+java:S2095ä"PUse try-with-resources or close this "ObjectOutputStream" in a "finally" clause.(‚öúÿÿÿÿ
+E
+java:S3740!"/Provide the parametrized type for this generic.(»Ã´Ò
+J
+java:S3740'"/Provide the parametrized type for this generic.(«ñ•øÿÿÿÿ
+J
+java:S3740-"/Provide the parametrized type for this generic.(“ÖÃÏıÿÿÿÿ
+J
+java:S37407"/Provide the parametrized type for this generic.(ºš×Úÿÿÿÿÿ
+K
+java:S3740™"/Provide the parametrized type for this generic.(ì“’ëÿÿÿÿÿ
+K
+java:S3740š"/Provide the parametrized type for this generic.(óË–ûÿÿÿÿ
+K
+java:S3740›"/Provide the parametrized type for this generic.(ëÄûÿÿÿÿ
+F
+java:S3740 "/Provide the parametrized type for this generic.(ÂÌËô
+K
+java:S3740¡"/Provide the parametrized type for this generic.(ëÍî›øÿÿÿÿ
+K
+java:S3740°"/Provide the parametrized type for this generic.(ª­Œíùÿÿÿÿ
+K
+java:S3740º"/Provide the parametrized type for this generic.(ĞÎşÄşÿÿÿÿ
+F
+java:S3740Ğ"/Provide the parametrized type for this generic.(ü¯«®
+F
+java:S3740Ñ"/Provide the parametrized type for this generic.(™Şğ½
+K
+java:S3740Ù"/Provide the parametrized type for this generic.(¼¥˜‚øÿÿÿÿ
+r
+java:S1192€"VDefine a constant instead of duplicating this literal "Unsupported operation" 6 times.(Åğï›øÿÿÿÿ
+K
+java:S1066÷"/Merge this if statement with the enclosing one.(ªşÂÿøÿÿÿÿ
+o	java:S135ü"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+o	java:S135™"YReduce the total number of break and continue statements in this loop to use at most one.(¼ÕÚ
+U
+java:S1155Œ">Use isEmpty() to check whether the collection is empty or not.(™ÀÑœ
+U
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(öå‰¯
+U
+java:S1155›">Use isEmpty() to check whether the collection is empty or not.(ìªü¥
+/
+java:S1700™"Rename field "data"(ì“’ëÿÿÿÿÿ
+J
+java:S1143Í"4Remove this throw statement from this finally block.(¬–ğT
+J
+java:S1143ğ"4Remove this throw statement from this finally block.(¬–ğT
+S
+java:S1163Í"=Refactor this code to not throw exceptions in finally blocks.(¬–ğT
+S
+java:S1163ğ"=Refactor this code to not throw exceptions in finally blocks.(¬–ğT
+D
+java:S11211".Extract the assignment out of this expression.(‰Íß¨
+D
+java:S1121D".Extract the assignment out of this expression.(‰Íß¨
+D
+java:S1121J".Extract the assignment out of this expression.(‰Íß¨
+D
+java:S1121P".Extract the assignment out of this expression.(‰Íß¨
+E
+java:S1121‰".Extract the assignment out of this expression.(‰Íß¨
+v
+java:S1149Ø"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+a
+java:S2142X"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108X")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142e"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108e")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142n"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108n")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+a
+java:S2142{"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
+C	java:S108{")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ
+J
+java:S1172".Remove this unused method parameter "timeout".(ñÚÚıúÿÿÿÿ
+`
+java:S1134"DTake the required action to fix the issue indicated by this comment.(À®ÛŠúÿÿÿÿ
+T
+java:S1197¯"8Move the array designator from the variable to the type.(Š“ğıÿÿÿÿ
+e
+java:S4042µ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(øı½
+Q	java:S899µ";Do something with the "boolean" value returned by "delete".(øı½
+F
+java:S2093Á"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+F
+java:S2093á"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+C
+java:S1172ú",Remove this unused method parameter "value".(ï»¯ö
+j
+java:S4042ƒ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(é‘‚©úÿÿÿÿ
+V	java:S899ƒ";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
+j
+java:S4042"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(é‘‚©úÿÿÿÿ
+V	java:S899";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(¬Ğ©

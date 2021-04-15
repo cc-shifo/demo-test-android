@@ -1,0 +1,50 @@
+
+m
+java:S11923"WDefine a constant instead of duplicating this literal "xMLChannel.getLogger()" 7 times.(ëõ¨•
+p
+java:S1192s"UDefine a constant instead of duplicating this literal "xMLChannel.getHost()" 4 times.(´“ÅÍúÿÿÿÿ
+o
+java:S11929"YDefine a constant instead of duplicating this literal "xMLChannel.isConnected()" 4 times.(§Ô¥ç
+u
+java:S11924"`Define a constant instead of duplicating this literal "org.jpos.iso.channel.XMLChannel" 7 times.(ıô£Z
+j
+java:S1192:"TDefine a constant instead of duplicating this literal "socket.getChannel()" 3 times.(ËşäÊ
+k
+java:S1192m"UDefine a constant instead of duplicating this literal "xMLChannel.getPort()" 4 times.(¦ÙÚ¯
+h
+java:S11925"RDefine a constant instead of duplicating this literal "xMLChannel.reader" 8 times.(°ŞîÈ
+t
+java:S1192o"^Define a constant instead of duplicating this literal "xMLChannel.getSocketFactory()" 4 times.(ë©¸
+l
+java:S11926"WDefine a constant instead of duplicating this literal "xMLChannel.getSocket()" 4 times.(Ï€K
+o
+java:S1192€"YDefine a constant instead of duplicating this literal "xMLChannel.getPackager()" 3 times.(àİäL
+p
+java:S1192u"UDefine a constant instead of duplicating this literal "xMLChannel.getName()" 4 times.(®õ¿ ıÿÿÿÿ
+{
+java:S1192t"`Define a constant instead of duplicating this literal "xMLChannel.getMaxPacketLength()" 4 times.(úÈ¥úÿÿÿÿ
+‚
+java:S1192v"gDefine a constant instead of duplicating this literal "xMLChannel.getOutgoingFilters().size()" 4 times.(²Ìı¸øÿÿÿÿ
+{
+java:S11927"`Define a constant instead of duplicating this literal "xMLChannel.getCounters().length" 7 times.(§šíÑøÿÿÿÿ
+‚
+java:S1192l"gDefine a constant instead of duplicating this literal "xMLChannel.getIncomingFilters().size()" 4 times.(²ØÉùÿÿÿÿ
+x
+java:S1192p"]Define a constant instead of duplicating this literal "xMLChannel.getServerSocket()" 5 times.(·Öå’ûÿÿÿÿ
+s
+java:S11924"^Define a constant instead of duplicating this literal "xMLChannel.getOriginalRealm()" 7 times.(ıô£Z
+l
+java:S11928"VDefine a constant instead of duplicating this literal "xMLChannel.getRealm()" 7 times.(«˜µ
+r
+java:S1192n"WDefine a constant instead of duplicating this literal "xMLChannel.getHeader()" 4 times.(ÀøÊÂÿÿÿÿÿ
+`	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(òÒµ»üÿÿÿÿ
+`	java:S112?"FDefine and throw a dedicated exception instead of using a generic one.(Ğ°¯«ùÿÿÿÿ
+[	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(³Ì’«
+`	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112|"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+[	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+a	java:S112§"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+a	java:S112¼"FDefine and throw a dedicated exception instead of using a generic one.(‰˜¯Âùÿÿÿÿ
+\	java:S112Æ"FDefine and throw a dedicated exception instead of using a generic one.(Ñ®ä÷
+a	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(éğÍøùÿÿÿÿ
+a	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(Å›°”şÿÿÿÿ

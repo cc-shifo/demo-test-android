@@ -1,0 +1,29 @@
+
+O
+java:S2755¼"3Disable access to external entities in XML parsing.(öæî½úÿÿÿÿ
+F
+java:S3740‡	"/Provide the parametrized type for this generic.(æØ‚¬
+F
+java:S3740š	"/Provide the parametrized type for this generic.(İ‰õŸ
+Y
+java:S2259ä"BA "NullPointerException" could be thrown; "root" is nullable here.(Ø±õ¯
+P
+java:S1118;":Add a private constructor to hide the implicit public one.(½ê‘û
+`
+java:S1124S"EReorder the modifiers to comply with the Java Language Specification.(Ş•­íûÿÿÿÿ
+`
+java:S1124]"EReorder the modifiers to comply with the Java Language Specification.(šÜÇ‡ûÿÿÿÿ
+?
+java:S1125k")Remove the literal "false" boolean value.(¸ÜÀ
+?
+java:S1125n")Remove the literal "false" boolean value.(Ç‚¡–
+F
+java:S2093ì"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+F
+java:S2093©"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+E
+java:S1125ü")Remove the literal "false" boolean value.(§Á˜‘úÿÿÿÿ
+P
+java:S1172è"9Remove this unused method parameter "omitXmlDeclaration".(ñù¯™
+E
+java:S1125ÿ	")Remove the literal "false" boolean value.(´õ™ªÿÿÿÿÿ

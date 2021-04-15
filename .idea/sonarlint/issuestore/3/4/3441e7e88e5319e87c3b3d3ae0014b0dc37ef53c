@@ -1,0 +1,11 @@
+
+e
+java:S1192€"IDefine a constant instead of duplicating this literal "password" 4 times.(• ðûÿÿÿÿÿ
+`	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(‚ëô¡þÿÿÿÿ
+[	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(´ºªô
+R
+java:S1128)"<Remove this unused import 'org.junit.jupiter.api.BeforeAll'.(—¦¹î
+D
+java:S1172”"(Remove this unused method parameter "m".(ˆ¸š±ÿÿÿÿÿ
+R	java:S125‚"<This block of commented-out lines of code should be removed.(òÂÕ
+R	java:S125Œ"<This block of commented-out lines of code should be removed.(òÂÕ

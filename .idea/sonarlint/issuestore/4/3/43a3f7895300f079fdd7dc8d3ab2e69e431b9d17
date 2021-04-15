@@ -1,0 +1,190 @@
+
+|
+java:S1845†	"eRename method "decode" to prevent any misunderstanding/clash with field "DECODE" defined on line 165.(¸Şêæ
+?	java:S108¬")Either remove or fill this block of code.(”ı¾
+a
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ò¡‹’üÿÿÿÿ
+?	java:S108Ä")Either remove or fill this block of code.(”ı¾
+D	java:S108ƒ")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ
+F
+java:S2093‚
+"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+W	java:S125¾"<This block of commented-out lines of code should be removed.(Ô­®ùúÿÿÿÿ
+^
+java:S2259ı
+"BA "NullPointerException" could be thrown; "bais" is nullable here.(ûØõÏùÿÿÿÿ
+S
+java:S4719É"<Replace charset name argument with StandardCharsets.US_ASCII(–ßğ‹
+F
+java:S2093Ç"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+W	java:S125ş"<This block of commented-out lines of code should be removed.(¶£Àüÿÿÿÿ
+R	java:S125±"<This block of commented-out lines of code should be removed.(âŒÏš
+S
+java:S4719É"<Replace charset name argument with StandardCharsets.US_ASCII(ÔñÉ¾
+?	java:S108›")Either remove or fill this block of code.(”ı¾
+Y
+java:S2259•
+"BA "NullPointerException" could be thrown; "baos" is nullable here.(Ë¼‚Ê
+X
+java:S2259"AA "NullPointerException" could be thrown; "ois" is nullable here.(¨ÿÃš
+\
+java:S1124Î"EReorder the modifiers to comply with the Java Language Specification.(µ¾‘œ
+l	java:S117Û"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İç¡ÿÿÿÿÿ
+X
+java:S2259¬"AA "NullPointerException" could be thrown; "bos" is nullable here.(Éï‰­
+a
+java:S1124†"EReorder the modifiers to comply with the Java Language Specification.(‘®êşúÿÿÿÿ
+D	java:S108ä")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ
+8
+java:S1110Ñ"!Remove these useless parentheses.(–ÅÒ
+W	java:S125ê"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ
+a
+java:S1124 "EReorder the modifiers to comply with the Java Language Specification.(ÈîÁùıÿÿÿÿ
+a
+java:S1124ë"EReorder the modifiers to comply with the Java Language Specification.(¦·âÃşÿÿÿÿ
+?	java:S108–
+")Either remove or fill this block of code.(”ı¾
+W	java:S125Î"<This block of commented-out lines of code should be removed.(ˆ©ßşùÿÿÿÿ
+
+java:S1845è"eRename method "decode" to prevent any misunderstanding/clash with field "DECODE" defined on line 165.(¢âáûÿÿÿÿÿ
+?	java:S108­")Either remove or fill this block of code.(”ı¾
+?	java:S108")Either remove or fill this block of code.(”ı¾
+R	java:S125í"<This block of commented-out lines of code should be removed.(Ó±ÎÚ
+\
+java:S1124°"EReorder the modifiers to comply with the Java Language Specification.(‰êè¦
+a
+java:S1124Ö"EReorder the modifiers to comply with the Java Language Specification.(Ä·¦·ÿÿÿÿÿ
+a
+java:S1124Ò"EReorder the modifiers to comply with the Java Language Specification.(êâ‘ûøÿÿÿÿ
+?	java:S108£")Either remove or fill this block of code.(”ı¾
+?	java:S108Ÿ")Either remove or fill this block of code.(”ı¾
+{
+java:S1845ã	"eRename method "decode" to prevent any misunderstanding/clash with field "DECODE" defined on line 165.(òëû
+?	java:S108´")Either remove or fill this block of code.(”ı¾
+S
+java:S4719©"<Replace charset name argument with StandardCharsets.US_ASCII( Ÿ¸š
+
+java:S1845“"eRename method "encode" to prevent any misunderstanding/clash with field "ENCODE" defined on line 161.(üŸ¾áüÿÿÿÿ
+R	java:S125ö
+"<This block of commented-out lines of code should be removed.(Ôã“ª
+\
+java:S1124–"EReorder the modifiers to comply with the Java Language Specification.(×ºö¹
+a
+java:S1124Ê"EReorder the modifiers to comply with the Java Language Specification.(ñÌ›úùÿÿÿÿ
+W	java:S125¿"<This block of commented-out lines of code should be removed.(Š˜³†üÿÿÿÿ
+s
+java:S2737ş"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¶£Àüÿÿÿÿ
+K
+java:S3740é
+"/Provide the parametrized type for this generic.(âÓåéüÿÿÿÿ
+a
+java:S1124¥"EReorder the modifiers to comply with the Java Language Specification.(èê‰¼ıÿÿÿÿ
+g	java:S117«"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ²„¾
+R	java:S125ù
+"<This block of commented-out lines of code should be removed.(Ôã“ª
+]
+java:S2259Œ"AA "NullPointerException" could be thrown; "bis" is nullable here.(ö˜Øüÿÿÿÿ
+Y
+java:S2259™
+"BA "NullPointerException" could be thrown; "gzis" is nullable here.(§Ù…ù
+W	java:S125¿"<This block of commented-out lines of code should be removed.(¶£Àüÿÿÿÿ
+a
+java:S1124¿"EReorder the modifiers to comply with the Java Language Specification.(êÎì«ıÿÿÿÿ
+g	java:S117™	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ²„¾
+X
+java:S2259‚"AA "NullPointerException" could be thrown; "out" is nullable here.(„¸Ç§
+n
+java:S2737§"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+n
+java:S2737’"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+?	java:S108°")Either remove or fill this block of code.(”ı¾
+F
+java:S2093›"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+b
+java:S2147ø
+"FCombine this catch with the one at line 1397, which has the same body.(¯—Œ³ÿÿÿÿÿ
+F
+java:S2093Ú"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+\
+java:S1124Ø"EReorder the modifiers to comply with the Java Language Specification.(æÜ Ô
+R	java:S125ê"<This block of commented-out lines of code should be removed.(¢“ÉÖ
+s
+java:S2737Ì"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ÂïËÚùÿÿÿÿ
+F
+java:S2093Ú
+"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(¶£Àüÿÿÿÿ
+W	java:S125ß"<This block of commented-out lines of code should be removed.(¶£Àüÿÿÿÿ
+?	java:S108
+")Either remove or fill this block of code.(”ı¾
+F
+java:S2093ë"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+]
+java:S2259Ã"AA "NullPointerException" could be thrown; "bis" is nullable here.(ö˜Øüÿÿÿÿ
+a
+java:S1124”"EReorder the modifiers to comply with the Java Language Specification.(ãÁÙøÿÿÿÿ
+a
+java:S2259Ü"EA "NullPointerException" could be thrown; "encoded" is nullable here.(Ä°Óèıÿÿÿÿ
+\
+java:S1124¸"EReorder the modifiers to comply with the Java Language Specification.(ÉéÖ¼
+s
+java:S2737ˆ"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¶£Àüÿÿÿÿ
+?	java:S108‚")Either remove or fill this block of code.(”ı¾
+a
+java:S1124¬"EReorder the modifiers to comply with the Java Language Specification.(öè¥—üÿÿÿÿ
+X
+java:S4719Ü"<Replace charset name argument with StandardCharsets.US_ASCII(Ä°Óèıÿÿÿÿ
+\
+java:S1124Æ"EReorder the modifiers to comply with the Java Language Specification.(¦¦ÒÄ
+?	java:S108Ñ")Either remove or fill this block of code.(”ı¾
+F
+java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+|
+java:S1845Ğ	"eRename method "decode" to prevent any misunderstanding/clash with field "DECODE" defined on line 165.(ºœËÚ
+F
+java:S2093ù"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+a
+java:S1124©"EReorder the modifiers to comply with the Java Language Specification.(øèÓâÿÿÿÿÿ
+X
+java:S2259ã"AA "NullPointerException" could be thrown; "out" is nullable here.(„¸Ç§
+t
+java:S1192Ü"XUse already-defined constant 'PREFERRED_ENCODING' instead of duplicating its value here.(Ä°Óèıÿÿÿÿ
+a
+java:S1124¡"EReorder the modifiers to comply with the Java Language Specification.(±ÇÉ·ùÿÿÿÿ
+s
+java:S2737¿"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¶£Àüÿÿÿÿ
+a
+java:S1124İ"EReorder the modifiers to comply with the Java Language Specification.(Í˜ìÉøÿÿÿÿ
+W	java:S125ì"<This block of commented-out lines of code should be removed.(õ¸Ò‹úÿÿÿÿ
+W
+java:S2259–"AA "NullPointerException" could be thrown; "oos" is nullable here.(İÛĞK
+F
+java:S2093£"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+s
+java:S2737¨"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ÂïËÚùÿÿÿÿ
+?	java:S108š
+")Either remove or fill this block of code.(”ı¾
+^
+java:S2259«"BA "NullPointerException" could be thrown; "gzos" is nullable here.(ãîõ—ûÿÿÿÿ
+^
+java:S2259š"BA "NullPointerException" could be thrown; "gzos" is nullable here.(ãîõ—ûÿÿÿÿ
+{
+java:S1845«"eRename method "encode" to prevent any misunderstanding/clash with field "ENCODE" defined on line 161.(¥üÑ\
+\
+java:S1124Õ"EReorder the modifiers to comply with the Java Language Specification.(ë°¨À
+S
+java:S4719ë	"<Replace charset name argument with StandardCharsets.US_ASCII(İø¼
+X
+java:S4719»"<Replace charset name argument with StandardCharsets.US_ASCII(åÉùÿÿÿÿ
+F
+java:S2093¨"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+a
+java:S1124Ì"EReorder the modifiers to comply with the Java Language Specification.(¯èåıøÿÿÿÿ
+s
+java:S2737ß"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(¶£Àüÿÿÿÿ
+?	java:S108—")Either remove or fill this block of code.(”ı¾
+?	java:S108ş
+")Either remove or fill this block of code.(”ı¾
+X
+java:S2259Ğ"AA "NullPointerException" could be thrown; "bos" is nullable here.(Éï‰­
+W	java:S125à"<This block of commented-out lines of code should be removed.(«Ííîşÿÿÿÿ

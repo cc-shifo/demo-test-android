@@ -1,0 +1,41 @@
+
+]
+java:S11925"GDefine a constant instead of duplicating this literal "result" 3 times.(¢Õ¡ä
+„
+java:S1192-"iDefine a constant instead of duplicating this literal "Invalid character found. Expected digit." 3 times.(ÑŞ×¾şÿÿÿÿ
+d
+java:S1192k"IDefine a constant instead of duplicating this literal "b.length" 4 times.(î†»…ùÿÿÿÿ
+l
+java:S1192-"QDefine a constant instead of duplicating this literal "ex.getMessage()" 12 times.(ÑŞ×¾şÿÿÿÿ
+a
+java:S1192"JDefine a constant instead of duplicating this literal "ex.nested" 3 times.(ê°ì¥
+~
+java:S1192+"cDefine a constant instead of duplicating this literal "Expected ISOException to be thrown" 6 times.(ˆŞÃœÿÿÿÿÿ
+`	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(•ªÂ÷úÿÿÿÿ
+[	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(Åµ²ç
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(ñ„»ßıÿÿÿÿ
+`	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(õ¸”¤şÿÿÿÿ
+`	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(•ëâÿÿÿÿÿ
+[	java:S112^"FDefine and throw a dedicated exception instead of using a generic one.(”µöš
+`	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(·Ã‘îıÿÿÿÿ
+`	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(‘·³øÿÿÿÿ
+[	java:S112v"FDefine and throw a dedicated exception instead of using a generic one.( “–
+a	java:S112†"FDefine and throw a dedicated exception instead of using a generic one.(ï¤±µúÿÿÿÿ
+\	java:S112“"FDefine and throw a dedicated exception instead of using a generic one.(£ô·
+a	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(ˆÏèìûÿÿÿÿ
+a	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(Ä§÷ùÿÿÿÿ
+\	java:S112·"FDefine and throw a dedicated exception instead of using a generic one.(êø´Ç
+[	java:S112½"FDefine and throw a dedicated exception instead of using a generic one.(²ú’
+U
+java:S1854*":Remove this useless assignment to local variable "result".(†ÿ€Äÿÿÿÿÿ
+O
+java:S1854<":Remove this useless assignment to local variable "result".(Æôãl
+U
+java:S1854G":Remove this useless assignment to local variable "result".(ÿÃçÊşÿÿÿÿ
+F
+java:S1481*"+Remove this unused "result" local variable.(†ÿ€Äÿÿÿÿÿ
+@
+java:S1481<"+Remove this unused "result" local variable.(Æôãl
+F
+java:S1481G"+Remove this unused "result" local variable.(ÿÃçÊşÿÿÿÿ

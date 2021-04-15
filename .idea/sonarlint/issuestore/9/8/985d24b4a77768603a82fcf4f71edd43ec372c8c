@@ -1,0 +1,13 @@
+
+M	java:S106P"9Replace this use of System.out or System.err by a logger.(À×0
+A
+java:S1075T"&Remove this hard-coded path-delimiter.(¿Ì¦õüÿÿÿÿ
+c
+java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¿Ì¦õüÿÿÿÿ
+N	java:S106Y"9Replace this use of System.out or System.err by a logger.(ÜÆÉµ
+N	java:S106j"9Replace this use of System.out or System.err by a logger.(î¸®®
+N	java:S106x"9Replace this use of System.out or System.err by a logger.(Ç¡«…
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ç¡«…
+E
+java:S2093e"*Change this "try" to a try-with-resources.(ç£êúÿÿÿÿ
+Q	java:S125["<This block of commented-out lines of code should be removed.(¥İÑ

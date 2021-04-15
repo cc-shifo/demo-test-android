@@ -1,0 +1,81 @@
+
+g
+java:S1301ª
+"KReplace this "switch" statement by "if" statements to increase readability.(Åİ¶Ìøÿÿÿÿ
+g
+java:S1301î"KReplace this "switch" statement by "if" statements to increase readability.(îÇËúÿÿÿÿ
+g
+java:S1301ˆ"KReplace this "switch" statement by "if" statements to increase readability.(îÇËúÿÿÿÿ
+}
+java:S1192‚	"aDefine a constant instead of duplicating this literal "Number can have maximum 9 digits" 3 times.(èÉÑ‚üÿÿÿÿ
+U
+java:S3034š">Prevent "int" promotion by adding "& 0xff" to this expression.(Œàíš
+U
+java:S3034°">Prevent "int" promotion by adding "& 0xff" to this expression.(Œàíš
+U
+java:S3034Ä">Prevent "int" promotion by adding "& 0xff" to this expression.(¨Ùµ
+n	java:S127Ø"XRefactor the code in order to not assign to this loop counter from within the loop body.(É…ªÂ
+t	java:S135…"YReduce the total number of break and continue statements in this loop to use at most one.(Úšïüÿÿÿÿ
+€
+java:S1845ä"iRename method "hexDump" to prevent any misunderstanding/clash with method "hexdump" defined on line 1289.(ú»…†
+3
+java:S1118."Hide this public constructor.(ÕÜÊÃ
+@
+java:S23864"%Make member "hexStrings" "protected".(¤™Ú×øÿÿÿÿ
+P
+java:S1133D"5Do not forget to remove this deprecated code someday.(¿Ê§‰şÿÿÿÿ
+B
+java:S1123D"'Add the missing @Deprecated annotation.(¿Ê§‰şÿÿÿÿ
+D	java:S108¹")Either remove or fill this block of code.(ÏÀ×úÿÿÿÿ
+I
+java:S1135Õ"2Complete the task associated to this TODO comment.(ïÕû­
+N
+java:S1135Û"2Complete the task associated to this TODO comment.(äğú¢ÿÿÿÿÿ
+[
+java:S3358—"DExtract this nested ternary operation into an independent statement.(¬’–§
+`
+java:S3358«"DExtract this nested ternary operation into an independent statement.(×ÀÂĞøÿÿÿÿ
+`
+java:S3358¬"DExtract this nested ternary operation into an independent statement.(Ø–ş­úÿÿÿÿ
+`
+java:S3358Õ"DExtract this nested ternary operation into an independent statement.(´ïì€ûÿÿÿÿ
+`
+java:S3358ê"DExtract this nested ternary operation into an independent statement.(´ïì€ûÿÿÿÿ
+g	java:S128½"LEnd this switch case with an unconditional break, return or throw statement.(Èäîüÿÿÿÿ
+B
+java:S1905Ç"&Remove this unnecessary cast to "int".(•ÖÇ¡ÿÿÿÿÿ
+]
+java:S2142ƒ"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+?	java:S108ƒ")Either remove or fill this block of code.(´í­Œ
+=
+java:S1659¬"!Declare "end" on a separate line.(¥ªØ÷ùÿÿÿÿ
+=
+java:S1659·"!Declare "len" on a separate line.(Åƒ¥üÿÿÿÿ
+=
+java:S1659Ë"!Declare "len" on a separate line.(Åƒ¥üÿÿÿÿ
+=
+java:S1659Û"!Declare "len" on a separate line.(Åƒ¥üÿÿÿÿ
+
+java:S1130ÿ"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(š¬’å
+†
+java:S1130	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(¯€ŠÚşÿÿÿÿ
+
+java:S1130¬	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(ôÔË«
+
+java:S1130Ê	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(Ö†ûú
+†
+java:S1130Ù	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(ºïğ”üÿÿÿÿ
+†
+java:S1130÷	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(§ÇÅâÿÿÿÿÿ
+=	java:S131ª
+""Add a default case to this switch.(Åİ¶Ìøÿÿÿÿ
+8
+java:S2111Á"!Use "BigDecimal.valueOf" instead.(àŠ§‹
+=	java:S131î""Add a default case to this switch.(îÇËúÿÿÿÿ
+p
+java:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(€ÛÙæ
+=	java:S131ˆ""Add a default case to this switch.(îÇËúÿÿÿÿ
+7
+java:S1659¬"!Declare "crc" on a separate line.(Œù¬m
+B
+java:S1481Ó"+Remove this unused "escape" local variable.(ßæñœ

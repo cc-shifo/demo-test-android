@@ -1,0 +1,44 @@
+
+<
+java:S2129X"!Remove this "Integer" constructor(ÀÚÕóÿÿÿÿÿ
+n	java:S116r"TRename this field "ServiceOS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷¯Öšùÿÿÿÿ
+C
+java:S1068^"(Remove this unused "host" private field.(Ø¦øÝûÿÿÿÿ
+C
+java:S1068_"(Remove this unused "port" private field.(ß³†ÿÿÿÿÿ
+C
+java:S1068`"(Remove this unused "from" private field.(Á­ˆèùÿÿÿÿ
+J
+java:S1068a"/Remove this unused "credentials" private field.(þàìùþÿÿÿÿ
+K
+java:S1068b"5Remove this unused "defaultRecipients" private field.(Ïõ÷Â
+J
+java:S1068c"5Remove this unused "additionalHeaders" private field.(¤óúj
+D
+java:S1068h".Remove this unused "authMethod" private field.(‡Ô·ü
+B
+java:S1068i",Remove this unused "username" private field.(‘ó¹²
+G
+java:S1068j",Remove this unused "password" private field.(œãë­úÿÿÿÿ
+E
+java:S1068o"*Remove this unused "isInit" private field.(ª›çúùÿÿÿÿ
+I
+java:S1068p".Remove this unused "createTime" private field.(”‚¦Œùÿÿÿÿ
+A
+java:S1068q"+Remove this unused "version" private field.(ª®‚
+H
+java:S1068r"-Remove this unused "ServiceOS" private field.(÷¯Öšùÿÿÿÿ
+C
+java:S1068s"-Remove this unused "stairPlan" private field.(°•¯ä
+H
+java:S1068t"-Remove this unused "startDate" private field.(æµÌøÿÿÿÿ
+G
+java:S1068u"1Remove this unused "nextStartDate" private field.(¦Œæ×
+G
+java:S1068v",Remove this unused "stageNum" private field.(äçõ™üÿÿÿÿ
+F
+java:S1068w"0Remove this unused "stageContent" private field.(ÈéàÓ
+F
+java:S1068x"0Remove this unused "theStageTime" private field.(´Èæ
+G
+java:S1068y"1Remove this unused "nextStageTime" private field.(€ê¶‹

@@ -1,0 +1,20 @@
+
+K
+java:S3740ì"/Provide the parametrized type for this generic.(‹‘¡þøÿÿÿÿ
+n
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(§™Ú%
+C	java:S108C")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+C	java:S108T")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+C	java:S108_")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
+ƒ
+java:S1130o"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ŽèàÎ
+K
+java:S1133o"5Do not forget to remove this deprecated code someday.(ŽèàÎ
+=
+java:S1123o"'Add the missing @Deprecated annotation.(ŽèàÎ
+‰
+java:S1130’"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ÈƒÃŠüÿÿÿÿ
+ƒ
+java:S1130—"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(â§Â$
+ƒ
+java:S1130¡"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(îþâc

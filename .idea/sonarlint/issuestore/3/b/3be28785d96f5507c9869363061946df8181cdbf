@@ -1,0 +1,15 @@
+
+Q
+java:S1128"6Remove this unused import 'org.jpos.iso.ISOException'.(ù»¾ùÿÿÿÿ
+;
+java:S2157&"%Add a "clone()" method to this class.(Ø€•Ö
+K
+java:S1133à"5Do not forget to remove this deprecated code someday.(ğ¥ó
+=
+java:S1123à"'Add the missing @Deprecated annotation.(ğ¥ó
+Q
+java:S1133é"5Do not forget to remove this deprecated code someday.(õ¼ùÁûÿÿÿÿ
+C
+java:S1123é"'Add the missing @Deprecated annotation.(õ¼ùÁûÿÿÿÿ
+7
+java:S1659È"!Declare "crc" on a separate line.(Œù¬m

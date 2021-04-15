@@ -1,0 +1,29 @@
+
+J
+java:S2755Õ"3Disable access to external entities in XML parsing.(ªÂ™
+O
+java:S2755Ó"3Disable access to external entities in XML parsing.(‡¼Òüÿÿÿÿ
+E
+java:S37405"/Provide the parametrized type for this generic.(àÔñƒ
+E
+java:S3740O"/Provide the parametrized type for this generic.(¥¿¸
+Q
+java:S1141Î"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+f
+java:S11495"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(àÔñƒ
+\
+java:S2147š"ECombine this catch with the one at line 151, which has the same body.(Ã‡²ö
+E
+java:S2093}"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+Q
+java:S1161Æ":Add the "@Override" annotation above this method signature(Ö‹À
+V
+java:S1161†":Add the "@Override" annotation above this method signature(üÓ¿Åıÿÿÿÿ
+T
+java:S1197†"8Move the array designator from the variable to the type.(üÓ¿Åıÿÿÿÿ
+Q
+java:S1161Ÿ":Add the "@Override" annotation above this method signature(¬“ İ
+D
+java:S1172¼"(Remove this unused method parameter "m".(««ç·ıÿÿÿÿ
+Q
+java:S1117Ñ":Rename "reader" which hides the field declared at line 52.(Í‹ßº

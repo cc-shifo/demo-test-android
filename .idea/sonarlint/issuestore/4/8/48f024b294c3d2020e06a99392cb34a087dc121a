@@ -1,0 +1,17 @@
+
+7
+java:S1643c"Use a StringBuilder instead.(Ôõ‰¦ýÿÿÿÿ
+7
+java:S1643i"Use a StringBuilder instead.(Ôõ‰¦ýÿÿÿÿ
+n	java:S1156"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(» Ç-
+o	java:S1157"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ý´æÜ
+z
+java:S1149N"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(˜Ýâœÿÿÿÿÿ
+P
+java:S1118	":Add a private constructor to hide the implicit public one.(ížŒÆ
+z
+java:S1149N"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(˜Ýâœÿÿÿÿÿ
+@
+java:S1125Œ")Remove the literal "false" boolean value.(„«½¬
+Q	java:S125C"<This block of commented-out lines of code should be removed.(Øµô´
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(®à­®ýÿÿÿÿ

@@ -1,0 +1,19 @@
+
+p
+java:S1192"TDefine a constant instead of duplicating this literal "2020-05-08 00:00:00" 3 times.(öèüæÿÿÿÿÿ
+e
+java:S1192ù"IDefine a constant instead of duplicating this literal "GMT+8:00" 6 times.(Öèçúÿÿÿÿ
+b
+java:S1192¨"FDefine a constant instead of duplicating this literal "20184" 3 times.(«Æ¡—ûÿÿÿÿ
+_
+java:S1192H"IDefine a constant instead of duplicating this literal "00:00:00" 3 times.(ÓĞòİ
+b
+java:S1192„"KDefine a constant instead of duplicating this literal "2017-01-02" 3 times.(ÇãÄ
+b
+java:S1192ş"KDefine a constant instead of duplicating this literal "2017-01-01" 5 times.(ÿİ§ù
+g
+java:S1192ÿ"KDefine a constant instead of duplicating this literal "2017-01-03" 3 times.(†¼ñûÿÿÿÿ
+S
+java:S1128"8Remove this unused import 'cn.hutool.core.lang.Console'.(èÂ¸†üÿÿÿÿ
+?	java:S108‰")Either remove or fill this block of code.(×Ì±¼
+?	java:S108—")Either remove or fill this block of code.(×Ì±¼

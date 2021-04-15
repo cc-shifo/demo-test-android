@@ -1,0 +1,30 @@
+
+^
+java:S1192"HDefine a constant instead of duplicating this literal "Windows" 8 times.(”·Ø°
+j	java:S116"URename this field "OS_VERSION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Ì¢ğ
+l	java:S116"RRename this field "OS_ARCH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íÏÿúúÿÿÿÿ
+g	java:S116"RRename this field "OS_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷á€œ
+i	java:S116"TRename this field "IS_OS_AIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¦¦å
+p	java:S116"VRename this field "IS_OS_HP_UX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İŠ¸óúÿÿÿÿ
+i	java:S116"URename this field "IS_OS_IRIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç›ô\
+k	java:S116"VRename this field "IS_OS_LINUX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…‰Èü
+n	java:S116"TRename this field "IS_OS_MAC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½”‚ëøÿÿÿÿ
+m	java:S116"XRename this field "IS_OS_MAC_OSX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡áû
+i	java:S116"TRename this field "IS_OS_OS2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Ø¡–
+m	java:S116"XRename this field "IS_OS_SOLARIS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌØî¹
+l	java:S116"WRename this field "IS_OS_SUN_OS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã•Ë´
+m	java:S116"XRename this field "IS_OS_WINDOWS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”·Ø°
+r	java:S116"]Rename this field "IS_OS_WINDOWS_2000" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø”µ
+u	java:S116"[Rename this field "IS_OS_WINDOWS_95" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ·©‚üÿÿÿÿ
+p	java:S116"[Rename this field "IS_OS_WINDOWS_98" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍĞ–ğ
+u	java:S116"[Rename this field "IS_OS_WINDOWS_ME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÀÂèşÿÿÿÿ
+u	java:S116"[Rename this field "IS_OS_WINDOWS_NT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅÒ®ğûÿÿÿÿ
+p	java:S116"[Rename this field "IS_OS_WINDOWS_XP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨÷â•
+o	java:S116"ZRename this field "IS_OS_WINDOWS_7" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ´ë
+t	java:S116 "ZRename this field "IS_OS_WINDOWS_8" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¡À¯úÿÿÿÿ
+v	java:S116!"\Rename this field "IS_OS_WINDOWS_8_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«±±¹ûÿÿÿÿ
+u	java:S116""[Rename this field "IS_OS_WINDOWS_10" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰èïîùÿÿÿÿ
+s	java:S116%"YRename this field "FILE_SEPARATOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïø¬²úÿÿÿÿ
+m	java:S116&"YRename this field "LINE_SEPARATOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÕÊ
+m	java:S116'"YRename this field "PATH_SEPARATOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç¬[
+d	java:S100É"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿŸóª

@@ -1,0 +1,20 @@
+
+f
+java:S1104-"PMake name a static final constant or non-public and provide accessors if needed.( þÍ¾
+l
+java:S1104."QMake clazz a static final constant or non-public and provide accessors if needed.(„ª°¥þÿÿÿÿ
+D
+java:S1121S".Extract the assignment out of this expression.(•Öý
+9
+java:S3066-"#Lower the visibility of this field.( þÍ¾
+>
+java:S3066."#Lower the visibility of this field.(„ª°¥þÿÿÿÿ
+t	java:S115)"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(éÐ¤ãúÿÿÿÿ
+o	java:S115*"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(•Ôö¸
+t	java:S115+"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ú¿œÒûÿÿÿÿ
+Š
+java:S1845-"tRename field "name" to prevent any misunderstanding/clash with method "name" defined in superclass "java.lang.Enum".( þÍ¾
+Q
+java:S2696?"6Make the enclosing method "static" or remove this set.(ú—‹çøÿÿÿÿ
+R
+java:S2696˜"6Make the enclosing method "static" or remove this set.(ž¥à°ùÿÿÿÿ

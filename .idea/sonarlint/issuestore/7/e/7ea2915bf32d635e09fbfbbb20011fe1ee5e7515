@@ -1,0 +1,12 @@
+
+c
+java:S2095²"GUse try-with-resources or close this "Statement" in a "finally" clause.(ëîÌÿùÿÿÿÿ
+J
+java:S3740}"/Provide the parametrized type for this generic.( ÓÔšûÿÿÿÿ
+a
+java:S2142]"FEither re-interrupt this method or rethrow the "InterruptedException".(ÚíÐÝþÿÿÿÿ
+Y
+java:S2276\"CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(¯ú™ú
+C	java:S108]")Either remove or fill this block of code.(ÚíÐÝþÿÿÿÿ
+>
+java:S1481±"'Remove this unused "rs" local variable.(¶¨ÜŒ

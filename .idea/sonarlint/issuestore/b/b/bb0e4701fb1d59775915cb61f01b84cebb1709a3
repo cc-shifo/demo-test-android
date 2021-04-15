@@ -1,0 +1,12 @@
+
+{
+java:S1192$"`Define a constant instead of duplicating this literal "jCEHandlerException.getNested()" 4 times.(ä²‘Œúÿÿÿÿ
+|
+java:S1192#"aDefine a constant instead of duplicating this literal "jCEHandlerException.getMessage()" 3 times.(Ğİ×úúÿÿÿÿ
+t
+java:S1192 "YDefine a constant instead of duplicating this literal "testJCEHandlerExceptions" 5 times.(›Úÿ£úÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+[	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(ÅªÁ

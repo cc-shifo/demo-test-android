@@ -1,0 +1,85 @@
+
+„
+java:S1319ó"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(´‰Ëİ
+„
+java:S1319‚"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÿÜ‚
+‰
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(—œ±¢şÿÿÿÿ
+‰
+java:S1319"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(ºª¥Íıÿÿÿÿ
+
+java:S1319ª"sThe return type of this method should be an interface such as "Set" rather than the implementation "LinkedHashSet".(ı‚…Üùÿÿÿÿ
+„
+java:S1319·"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(š¿’©
+„
+java:S1319È"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(îòş¼
+„
+java:S1319Ô"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(®Øƒ
+‰
+java:S1319á"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(§ôôìÿÿÿÿÿ
+„
+java:S1319õ"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(²¹Ê°
+Œ
+java:S1319Ü"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¥ò¥ƒùÿÿÿÿ
+‡
+java:S1319é"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ñ‹ô‚
+Œ
+java:S1319ô"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ö¬Ü•üÿÿÿÿ
+†
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(›ÛË:
+Œ
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ô…ìÍşÿÿÿÿ
+Œ
+java:S1319›"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ºÄí‘ûÿÿÿÿ
+‡
+java:S1319ª"qThe return type of this method should be an interface such as "List" rather than the implementation "LinkedList".(ñçøb
+—
+java:S1319µ"{The return type of this method should be an interface such as "List" rather than the implementation "CopyOnWriteArrayList".(ÜüÑËùÿÿÿÿ
+Œ
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(©¬Ù”şÿÿÿÿ
+„
+java:S1319„"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(æí“
+‰
+java:S1319 "mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ä÷µÅıÿÿÿÿ
+Š
+java:S1319¬"sThe return type of this method should be an interface such as "SortedSet" rather than the implementation "TreeSet".(È„”ß
+‡
+java:S1319ñ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ñß¹İ
+‡
+java:S1319„"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¾š Ñ
+Œ
+java:S1319“"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÖÃİûÿÿÿÿ
+Š
+java:S1319˜"sThe return type of this method should be an interface such as "SortedMap" rather than the implementation "TreeMap".(¥ˆâå
+Š
+java:S1319¨"sThe return type of this method should be an interface such as "Map" rather than the implementation "LinkedHashMap".(ğŞ¾“
+Š
+java:S1319½"sThe return type of this method should be an interface such as "Map" rather than the implementation "LinkedHashMap".(…Æİ–
+K
+java:S3740æ"/Provide the parametrized type for this generic.(¨èÀıÿÿÿÿ
+K
+java:S3740ï"/Provide the parametrized type for this generic.(ÔË”œùÿÿÿÿ
+g	java:S117ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†øÂ
+l	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­À“æùÿÿÿÿ
+g
+java:S1149¸"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(¹´ÆÍ
+@
+java:S1125‹")Remove the literal "false" boolean value.(¢ıÕö
+E
+java:S1125å")Remove the literal "false" boolean value.(¬ÈÄıÿÿÿÿ
+Q
+java:S1133«"5Do not forget to remove this deprecated code someday.(Œä°Òÿÿÿÿÿ
+_
+java:S1123ª"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+I
+java:S1905æ"-Remove this unnecessary cast to "Collection".(¨èÀıÿÿÿÿ
+m
+java:S1905Í"VRemove this unnecessary cast to "org.sonar.java.resolve.Symbols$UnknownType@37f5c387".(ªÙœê
+E
+java:S1125ï")Remove the literal "false" boolean value.(¯ûËıÿÿÿÿ
+E
+java:S1125û")Remove the literal "false" boolean value.(ˆî×¡ıÿÿÿÿ
+@
+java:S1125Ñ")Remove the literal "false" boolean value.(²³¡«
+@
+java:S1125¿")Remove the literal "false" boolean value.(í¨Ö÷

@@ -1,0 +1,51 @@
+
+j
+java:S1192»"NDefine a constant instead of duplicating this literal "testQFactorym" 4 times.(éš±°üÿÿÿÿ
+e
+java:S11928"PDefine a constant instead of duplicating this literal "testQFactoryUri" 5 times.(éøè@
+†
+java:S1192;"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 9 times.(áÆ”Óÿÿÿÿÿ
+l
+java:S1192="QDefine a constant instead of duplicating this literal "ex.getMessage()" 10 times.(«€×ˆùÿÿÿÿ
+g
+java:S11928"RDefine a constant instead of duplicating this literal "testQFactoryName" 17 times.(éøè@
+g
+java:S1192>"LDefine a constant instead of duplicating this literal "e.getName()" 6 times.(ÜÄãöüÿÿÿÿ
+ˆ
+java:S11921"rDefine a constant instead of duplicating this literal "qFactory.classMapping.getKeys().hasMoreElements()" 3 times.(ÕüãÙ
+i
+java:S1192]"SDefine a constant instead of duplicating this literal "testQFactoryParam1" 3 times.(…—Ø
+h
+java:S11928"SDefine a constant instead of duplicating this literal "testQFactoryPrefix" 3 times.(éøè@
+}
+java:S1192¼"aDefine a constant instead of duplicating this literal "Test completed without Exception" 4 times.(ÂôÌïûÿÿÿÿ
+g
+java:S11923"LDefine a constant instead of duplicating this literal "qFactory.q2" 3 times.(³ƒŠşÿÿÿÿ
+f
+java:S1192Y"KDefine a constant instead of duplicating this literal "testString" 4 times.(’ƒªíùÿÿÿÿ
+`	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(Íì´
+`	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(™¯şÿÿÿÿ
+`	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(¯Åìöøÿÿÿÿ
+[	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(éí¥Î
+[	java:S112n"FDefine and throw a dedicated exception instead of using a generic one.(µŸ¤
+[	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(²º‘
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(‰õŠóúÿÿÿÿ
+\	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(©ãÍ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ì¸•¨
+a	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(Ä¡“ˆÿÿÿÿÿ
+\	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(ÏüÅë
+\	java:S112Æ"FDefine and throw a dedicated exception instead of using a generic one.(—ü–
+a	java:S112Ì"FDefine and throw a dedicated exception instead of using a generic one.(êÏÛ™ùÿÿÿÿ
+a	java:S112Ò"FDefine and throw a dedicated exception instead of using a generic one.(ç¦Æ“ùÿÿÿÿ
+a	java:S112Ü"FDefine and throw a dedicated exception instead of using a generic one.(ÁÈºûÿÿÿÿ
+a	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(¦ò©Éüÿÿÿÿ
+a	java:S112ğ"FDefine and throw a dedicated exception instead of using a generic one.(«êÕúÿÿÿÿ
+a	java:S112ÿ"FDefine and throw a dedicated exception instead of using a generic one.(‡Ğ¹şÿÿÿÿ
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ĞÔŸÂÿÿÿÿÿ
+\	java:S112˜"FDefine and throw a dedicated exception instead of using a generic one.(£öèê
+f	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬¯Á…
+S
+java:S1854-"8Remove this useless assignment to local variable "args".(•„Õüÿÿÿÿ
+D
+java:S1481-")Remove this unused "args" local variable.(•„Õüÿÿÿÿ

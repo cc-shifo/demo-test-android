@@ -1,0 +1,105 @@
+
+e
+java:S2095Ó"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Îâ ¨
+K
+java:S3740É"/Provide the parametrized type for this generic.(ˆÈÍµıÿÿÿÿ
+K
+java:S3740Ô"/Provide the parametrized type for this generic.(Ú‘°’üÿÿÿÿ
+F
+java:S3740®"/Provide the parametrized type for this generic.(˜ÎÉ£
+K
+java:S3740Î"/Provide the parametrized type for this generic.(¤‰—”ûÿÿÿÿ
+K
+java:S3740Ğ"/Provide the parametrized type for this generic.(ìÀºåùÿÿÿÿ
+K
+java:S3740¢"/Provide the parametrized type for this generic.(ªßÖ×úÿÿÿÿ
+e
+java:S1192ø"IDefine a constant instead of duplicating this literal "revision" 3 times.(¨”­øÿÿÿÿ
+d
+java:S1192Ñ"HDefine a constant instead of duplicating this literal "version" 4 times.(Ë¸Îúÿÿÿÿ
+o
+java:S1192¥"XUse already-defined constant 'DEFAULT_DEPLOY_DIR' instead of duplicating its value here.(‘—ó¶
+\	java:S112÷"FDefine and throw a dedicated exception instead of using a generic one.(ùÎëç
+o	java:S135ö"YReduce the total number of break and continue statements in this loop to use at most one.(øşé¶
+U
+java:S1155—	">Use isEmpty() to check whether the collection is empty or not.(†¸€‚
+Q
+java:S1141Ò"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141÷"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141˜"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+l
+java:S3077s"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(˜‹Ór
+o
+java:S3008Š"XRename this field "DEPLOY_PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óƒ¢
+l
+java:S3008‹"URename this field "CFG_PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¾„’
+?
+java:S1659i"$Declare "libDir" on a separate line.(ø¹»Ìıÿÿÿÿ
+A
+java:S1181Ş"%Catch Exception instead of Throwable.(•”ø¾øÿÿÿÿ
+A
+java:S1181’"%Catch Exception instead of Throwable.(•”ø¾øÿÿÿÿ
+]
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(Ö°à 
+k
+java:S1215"TDon't try to be smarter than the JVM, remove this call to run the garbage collector.(ëƒñ÷
+]
+java:S2142¹"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+U	java:S899¸":Do something with the "boolean" value returned by "await".(ß’ÚÒşÿÿÿÿ
+?	java:S108¹")Either remove or fill this block of code.(´í­Œ
+]
+java:S2142Æ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+O
+java:S1197ó"8Move the array designator from the variable to the type.(öÒš¼
+u
+java:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(¶Û›×ıÿÿÿÿ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆ£‰»øÿÿÿÿ
+Q
+java:S1161·":Add the "@Override" annotation above this method signature(“–ış
+b
+java:S2142¾"FEither re-interrupt this method or rethrow the "InterruptedException".(®ûºöÿÿÿÿÿ
+a
+java:S2147À"ECombine this catch with the one at line 446, which has the same body.(–ŠúÃşÿÿÿÿ
+P
+java:S1117Ô"9Rename "name" which hides the field declared at line 128.(Æ™€
+F
+java:S2093ı"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+j
+java:S4042‚"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(é‘‚©úÿÿÿÿ
+V	java:S899‚";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
+X	java:S899ƒ"=Do something with the "boolean" value returned by "renameTo".(“Æë¬ûÿÿÿÿ
+@
+java:S1905")Remove this unnecessary cast to "QEntry".(ÒøàÎ
+P
+java:S1117”"9Rename "name" which hides the field declared at line 128.(Æ™€
+T
+java:S1197¤"8Move the array designator from the variable to the type.(´‘ã‚ùÿÿÿÿ
+8
+java:S1181ê"!Catch Exception instead of Error.(ÿå‘«
+F
+java:S2093²"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+]
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(´í­Œ
+P	java:S899€":Do something with the "boolean" value returned by "await".(¨úÑ
+?	java:S108")Either remove or fill this block of code.(´í­Œ
+T	java:S106›"9Replace this use of System.out or System.err by a logger.(ñ”İ°ûÿÿÿÿ
+N	java:S106§"9Replace this use of System.out or System.err by a logger.(£Ä>
+N	java:S106’"9Replace this use of System.out or System.err by a logger.(²ØŒm
+T	java:S106•"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+:
+java:S5542È"#Use secure mode and padding scheme.(°‘€­
+5
+java:S5547È"Use a strong cipher algorithm.(°‘€­
+p
+java:S2293ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö›à
+j
+java:S4042®"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(é‘‚©úÿÿÿÿ
+V	java:S899®";Do something with the "boolean" value returned by "delete".(é‘‚©úÿÿÿÿ
+ˆ
+java:S1130ï"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤Şıÿÿÿÿ
+O	java:S106Ë"9Replace this use of System.out or System.err by a logger.(ê ½±
+T	java:S106Ï"9Replace this use of System.out or System.err by a logger.(şšşÄıÿÿÿÿ
+R	java:S125¾"<This block of commented-out lines of code should be removed.(šƒñÇ

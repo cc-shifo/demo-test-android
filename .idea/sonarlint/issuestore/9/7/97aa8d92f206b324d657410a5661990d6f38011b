@@ -1,0 +1,22 @@
+
+s	java:S127‰"XRefactor the code in order to not assign to this loop counter from within the loop body.(»‚ÿíûÿÿÿÿ
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÚØÌ¨
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ìü–—ûÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(é‚±»ûÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‹Ğé©şÿÿÿÿ
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(µÇ±û
+n	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(·Ìöo
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ˆóÌØùÿÿÿÿ
+5
+java:S1659,"Declare "g" on a separate line.(Úø¡«
+5
+java:S1659,"Declare "f" on a separate line.(Úø¡«
+_
+java:S3358'"DExtract this nested ternary operation into an independent statement.(çŞáûşÿÿÿÿ
+;
+java:S1659©"Declare "b" on a separate line.(Åô«‰úÿÿÿÿ
+;
+java:S1659©"Declare "c" on a separate line.(Åô«‰úÿÿÿÿ
+;
+java:S1659©"Declare "d" on a separate line.(Åô«‰úÿÿÿÿ

@@ -1,0 +1,12 @@
+
+F
+java:S1066…"/Merge this if statement with the enclosing one.(—ÆÕ®
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(½Óï¥
+o	java:S115""ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Âüû½
+t	java:S115&"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(éå¨õúÿÿÿÿ
+E
+java:S1125Ñ")Remove the literal "false" boolean value.(’’µ“øÿÿÿÿ
+U
+java:S1117"9Rename "value" which hides the field declared at line 61.(¸ù¸üşÿÿÿÿ
+@
+java:S1125µ")Remove the literal "false" boolean value.(ğÉ‡–

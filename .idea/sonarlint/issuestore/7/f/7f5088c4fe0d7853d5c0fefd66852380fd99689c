@@ -1,0 +1,11 @@
+
+n	java:S135`"YReduce the total number of break and continue statements in this loop to use at most one.(φΰ»ÿ
+t	java:S135©"YReduce the total number of break and continue statements in this loop to use at most one.(οÿÿÿÿÿ
+C
+java:S1948"(Make "reader" transient or serializable.(“½’ύÿÿÿÿ
+?
+java:S1125M")Remove the literal "false" boolean value.(ξΰΓι
+?
+java:S1125`")Remove the literal "false" boolean value.(φΰ»ÿ
+E
+java:S1125‘")Remove the literal "false" boolean value.(›ΫΌώÿÿÿÿ

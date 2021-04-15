@@ -1,0 +1,26 @@
+
+]
+java:S2184Ó"ACast one of the operands of this addition operation to a "float".(ØœÓ­ûÿÿÿÿ
+`
+java:S2184Ù"DCast one of the operands of this subtraction operation to a "float".(’¦ÆÆşÿÿÿÿ
+f	java:S117v"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Ô¥
+k	java:S117w"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹©é†üÿÿÿÿ
+f	java:S117y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôùı
+k	java:S117z"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑôÈ‚øÿÿÿÿ
+e	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆíñL
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦²Áøüÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µû˜¨şÿÿÿÿ
+f	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢¡ˆR
+l	java:S117Â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ†Å²üÿÿÿÿ
+l	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êº²¶úÿÿÿÿ
+I
+java:S1121,".Extract the assignment out of this expression.(Íœª–øÿÿÿÿ
+r
+java:S3008"WRename this field "STROKE_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÔøÿÿÿÿÿ
+`
+java:S1124 "EReorder the modifiers to comply with the Java Language Specification.(‡¥•èşÿÿÿÿ
+D
+java:S3010,")Remove this assignment of "STROKE_WIDTH".(Íœª–øÿÿÿÿ
+Q	java:S125h"<This block of commented-out lines of code should be removed.(ùáòû
+R	java:S125˜"<This block of commented-out lines of code should be removed.(£¡¹ì
+R	java:S125¹"<This block of commented-out lines of code should be removed.(Õ¢Ùâ

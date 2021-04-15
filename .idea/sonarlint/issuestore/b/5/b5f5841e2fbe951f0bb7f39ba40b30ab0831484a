@@ -1,0 +1,11 @@
+
+P
+java:S1141>"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+o
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(ëÐ†·
+S
+java:S1197/"8Move the array designator from the variable to the type.(çåŒ’ùÿÿÿÿ
+‡
+java:S1130^"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(­Ã¯ðþÿÿÿÿ
+t
+java:S2293c"YReplace the type specification in this constructor call with the diamond operator ("<>").(šš¼Èÿÿÿÿÿ

@@ -1,0 +1,29 @@
+
+\
+java:S1192+"GDefine a constant instead of duplicating this literal "result" 3 times.(”°æy
+†
+java:S1192T"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 3 times.(áÆ”Óÿÿÿÿÿ
+k
+java:S1192V"PDefine a constant instead of duplicating this literal "ex.getMessage()" 6 times.(«€×ˆùÿÿÿÿ
+`	java:S112#"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(êø´Ç
+Z	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(²ú’
+[	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(šìÊÂ
+`	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(©›Ûûÿÿÿÿ
+`	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(ğø¨Äÿÿÿÿÿ
+`	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(“–·§ıÿÿÿÿ
+[	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(Œ¥«¶
+[	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(ı½æÆ
+[	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(ö¾á
+[	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(ÏÆÇ™
+`	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(í¢—Òøÿÿÿÿ
+\	java:S112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(¦âÍá
+\	java:S112–"FDefine and throw a dedicated exception instead of using a generic one.(¨Âòú
+A
+java:S16026",Remove useless curly braces around statement(œ­£q
+A
+java:S1602D",Remove useless curly braces around statement(œ­£q
+A
+java:S1602K",Remove useless curly braces around statement(œ­£q
+q
+java:S1905r"VRemove this unnecessary cast to "org.sonar.java.resolve.Symbols$UnknownType@560739d1".(ØÏæÔùÿÿÿÿ

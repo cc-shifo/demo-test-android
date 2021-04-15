@@ -1,0 +1,12 @@
+
+|
+java:S1192!"aDefine a constant instead of duplicating this literal "testConfigurationExceptionDetail" 4 times.(´€·òûÿÿÿÿ
+~
+java:S1192#"cDefine a constant instead of duplicating this literal "configurationException.getNested()" 4 times.(†ªƒıùÿÿÿÿ
+z
+java:S1192""dDefine a constant instead of duplicating this literal "configurationException.getMessage()" 3 times.(Õ˜µì
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ
+[	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(ÅªÁ

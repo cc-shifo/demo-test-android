@@ -1,0 +1,9 @@
+
+b
+java:S1192—"FDefine a constant instead of duplicating this literal "class" 4 times.(µ«äªøÿÿÿÿ
+N	java:S106/"9Replace this use of System.out or System.err by a logger.(‰ø«ß
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(·Éîâ
+N	java:S1067"9Replace this use of System.out or System.err by a logger.(‰ø«ß
+S	java:S106u"9Replace this use of System.out or System.err by a logger.(ô¤«óúÿÿÿÿ
+T	java:S106‚"9Replace this use of System.out or System.err by a logger.(ô¤«óúÿÿÿÿ
+T	java:S106«"9Replace this use of System.out or System.err by a logger.(ô¤«óúÿÿÿÿ

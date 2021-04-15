@@ -1,0 +1,5 @@
+
+r
+java:S1450"WRemove the "provider" field and declare it as a local variable in the relevant methods.(ó¹ÈÒÿÿÿÿÿ
+G
+java:S1068",Remove this unused "provider" private field.(ó¹ÈÒÿÿÿÿÿ

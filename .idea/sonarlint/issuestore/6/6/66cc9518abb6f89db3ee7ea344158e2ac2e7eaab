@@ -1,0 +1,61 @@
+
+g
+java:S1301õ"KReplace this "switch" statement by "if" statements to increase readability.(Æóõµıÿÿÿÿ
+J
+java:S37405"/Provide the parametrized type for this generic.(ï·£Êüÿÿÿÿ
+K
+java:S3740Ç"/Provide the parametrized type for this generic.(šÔÀşÿÿÿÿ
+E
+java:S3740”"/Provide the parametrized type for this generic.(ìÈ¦V
+E
+java:S3740±"/Provide the parametrized type for this generic.(ìÈ¦V
+F
+java:S3740"/Provide the parametrized type for this generic.(İ¶Ğ±
+K
+java:S3740ò"/Provide the parametrized type for this generic.(ø¡ßÿÿÿÿÿ
+K
+java:S1066Œ"/Merge this if statement with the enclosing one.(å¬¹¤øÿÿÿÿ
+o	java:S135€"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+o	java:S135£"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+o	java:S135…"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+o	java:S135²"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+o	java:S135Ï"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+Q
+java:S1141—"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141³"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+E
+java:S1121".Extract the assignment out of this expression.(ÓığÎ
+E
+java:S1121²".Extract the assignment out of this expression.(ÓığÎ
+E
+java:S1121Ì".Extract the assignment out of this expression.(ÓığÎ
+A
+java:S1659-"+Declare "maxFieldDirty" on a separate line.(’œí…
+>
+java:S1948*"(Make "fields" transient or serializable.(÷•Á÷
+F
+java:S19485"+Make "sourceRef" transient or serializable.(ï·£Êüÿÿÿÿ
+R
+java:S4838¹"6Change "Object" to the type handled by the Collection.(‘É¾³ÿÿÿÿÿ
+?	java:S108ô")Either remove or fill this block of code.(¡üÀÂ
+3
+java:S1116ô"Remove this empty statement.(¡üÀÂ
+D	java:S108‘")Either remove or fill this block of code.(˜ÚÖøÿÿÿÿ
+D	java:S108Í")Either remove or fill this block of code.(˜ÚÖøÿÿÿÿ
+?	java:S108ã")Either remove or fill this block of code.(¡üÀÂ
+3
+java:S1116ã"Remove this empty statement.(¡üÀÂ
+=	java:S131õ""Add a default case to this switch.(Æóõµıÿÿÿÿ
+P
+java:S2864Š"4Iterate over the "entrySet" instead of the "keySet".(÷·ÔÓùÿÿÿÿ
+=
+java:S1168"&Return an empty array instead of null.(¥¹ï
+j
+java:S2975ø"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(²ÈŞ
+=	java:S131Ù""Add a default case to this switch.(¹¬£Ëúÿÿÿÿ
+•
+java:S1130ı"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(’¼½Ôùÿÿÿÿ
+•
+java:S1130œ"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(’¼½Ôùÿÿÿÿ
+R	java:S125­"<This block of commented-out lines of code should be removed.(šÄ‰á

@@ -1,0 +1,35 @@
+
+m
+java:S1192©"VDefine a constant instead of duplicating this literal "InputStream is null !" 3 times.(Ä‚ğÈ
+X
+java:S2259®	"AA "NullPointerException" could be thrown; "br1" is nullable here.(‘Œ
+]
+java:S2259î"AA "NullPointerException" could be thrown; "osw" is nullable here.(õ³Ò¼şÿÿÿÿ
+]
+java:S2259ë"AA "NullPointerException" could be thrown; "osw" is nullable here.(©âøşşÿÿÿÿ
+]
+java:S2259¯	"AA "NullPointerException" could be thrown; "br2" is nullable here.(Æ¤ÿæùÿÿÿÿ
+[
+java:S2259‘	"DA "NullPointerException" could be thrown; "input2" is nullable here.(ş¥¸ø
+a
+java:S2259®"EA "NullPointerException" could be thrown; "bReader" is nullable here.(·³­¨ıÿÿÿÿ
+[
+java:S2259˜	"DA "NullPointerException" could be thrown; "input2" is nullable here.(ş¥¸ø
+[
+java:S2259	"DA "NullPointerException" could be thrown; "input1" is nullable here.(ÒÂß 
+U
+java:S11183":Add a private constructor to hide the implicit public one.(¿êùóúÿÿÿÿ
+=
+java:S1168Î"&Return an empty array instead of null.(¥¹ï
+C
+java:S1172À",Remove this unused method parameter "clazz".(¥Â
+E
+java:S1125š")Remove the literal "false" boolean value.(¸¨ê´şÿÿÿÿ
+F
+java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+@
+java:S1125è")Remove the literal "false" boolean value.(‹Ø˜ñ
+E
+java:S1125ë")Remove the literal "false" boolean value.(ïêíüşÿÿÿÿ
+F
+java:S2093Ô	"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ

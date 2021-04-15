@@ -1,0 +1,20 @@
+
+g	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›éï¯
+P
+java:S1118":Add a private constructor to hide the implicit public one.(òà„¼
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(°üÃÍ
+`
+java:S1124#"EReorder the modifiers to comply with the Java Language Specification.(İÀ¤âøÿÿÿÿ
+[
+java:S1124("EReorder the modifiers to comply with the Java Language Specification.(†µá
+B
+java:S1168—"+Return an empty collection instead of null.(¥¹ï
+Q	java:S125O"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125Ö"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125‰"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125š"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125º"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125Ú"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125å"<This block of commented-out lines of code should be removed.(¹ª†©
+R	java:S125»"<This block of commented-out lines of code should be removed.(¹ª†©

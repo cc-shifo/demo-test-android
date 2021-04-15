@@ -1,0 +1,15 @@
+
+P
+java:S1118%":Add a private constructor to hide the implicit public one.(ÛÒßâ
+Q
+java:S1133ù"5Do not forget to remove this deprecated code someday.(„©éæıÿÿÿÿ
+_
+java:S1123ø"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+Q
+java:S1133…"5Do not forget to remove this deprecated code someday.(Ôİ¦ÿÿÿÿÿ
+_
+java:S1123„"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+=
+java:S1481ó"&Remove this unused "b" local variable.(º¥²³
+W	java:S125ú"<This block of commented-out lines of code should be removed.(óü§ÿÿÿÿÿ
+W	java:S125„"<This block of commented-out lines of code should be removed.(Ä£ùÇûÿÿÿÿ

@@ -1,0 +1,13 @@
+
+i
+java:S1192v"NDefine a constant instead of duplicating this literal "æˆ‘æ˜¯Hanley." 4 times.(¸›ÉÄøÿÿÿÿ
+r
+java:S11929"WDefine a constant instead of duplicating this literal "æˆ‘æ˜¯ä¸€æ®µæµ‹è¯•aaaa" 5 times.(µöÄÿÿÿÿÿ
+k	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÖ¸ÿÿÿÿÿ
+l	java:S117®"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØªÁ¿ûÿÿÿÿ
+l	java:S117¯"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë¯ùÿÿÿÿ
+h	java:S100'"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Ê±€üÿÿÿÿ
+R
+java:S1854Ë"6Remove this useless assignment to local variable "id".(ûëŞıÿÿÿÿ
+C
+java:S1481Ë"'Remove this unused "id" local variable.(ûëŞıÿÿÿÿ

@@ -1,0 +1,23 @@
+
+]
+java:S1192*"GDefine a constant instead of duplicating this literal "result" 4 times.(¢Õ¡ä
+d
+java:S1192h"IDefine a constant instead of duplicating this literal "b.length" 3 times.(ê›Ê¥ÿÿÿÿÿ
+g
+java:S1192="QDefine a constant instead of duplicating this literal "ex.getMessage()" 10 times.(Ù©—Ò
+
+java:S1192:"uDefine a constant instead of duplicating this literal "Expected ArrayIndexOutOfBoundsException to be thrown" 4 times.(›­±‡ûÿÿÿÿ
+`	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(•ªÂ÷úÿÿÿÿ
+[	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(Åµ²ç
+`	java:S1126"FDefine and throw a dedicated exception instead of using a generic one.(•ëâÿÿÿÿÿ
+`	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(ÉŞÚÙøÿÿÿÿ
+[	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(”µöš
+`	java:S112^"FDefine and throw a dedicated exception instead of using a generic one.(·Ã‘îıÿÿÿÿ
+`	java:S112e"FDefine and throw a dedicated exception instead of using a generic one.(‘·³øÿÿÿÿ
+`	java:S112l"FDefine and throw a dedicated exception instead of using a generic one.(Ô•§üÿÿÿÿ
+[	java:S112s"FDefine and throw a dedicated exception instead of using a generic one.( “–
+a	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(Ó«àÓşÿÿÿÿ
+a	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(Ä§÷ùÿÿÿÿ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(êø´Ç
+[	java:S112¤"FDefine and throw a dedicated exception instead of using a generic one.(²ú’

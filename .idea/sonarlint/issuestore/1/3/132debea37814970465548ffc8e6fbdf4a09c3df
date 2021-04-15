@@ -1,0 +1,17 @@
+
+K
+java:S1066Õ"/Merge this if statement with the enclosing one.(¸ññ³ıÿÿÿÿ
+g	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Û¢Â
+g	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Û¢Â
+g	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Û¢Â
+g	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¡Æ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ê¢Ãåûÿÿÿÿ
+D
+java:S1125G")Remove the literal "false" boolean value.(É¶ã®ÿÿÿÿÿ
+N
+java:S1117Â"7Rename "day" which hides the field declared at line 30.(ÚŒ‘ü
+N
+java:S1117Ğ"8Rename "leap" which hides the field declared at line 40.(–¶Ğ
+
+@
+java:S1125Ô")Remove the literal "false" boolean value.(†Â»‡

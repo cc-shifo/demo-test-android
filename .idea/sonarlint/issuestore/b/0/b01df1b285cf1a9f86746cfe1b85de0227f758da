@@ -1,0 +1,11 @@
+
+g
+java:S1450+"RRemove the "ref" field and declare it as a local variable in the relevant methods.(ΝªΖl
+i
+java:S1450,"SRemove the "stub" field and declare it as a local variable in the relevant methods.(—ªκ
+H
+java:S1874,"2Remove this use of "RemoteStub"; it is deprecated.(—ªκ
+J
+java:S18749"4Remove this use of "exportObject"; it is deprecated.(Πρ€Κ
+<
+java:S1068+"'Remove this unused "ref" private field.(ΝªΖl

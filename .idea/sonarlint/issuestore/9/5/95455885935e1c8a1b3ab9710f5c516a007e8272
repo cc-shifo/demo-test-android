@@ -1,0 +1,13 @@
+
+m
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(Íâò˜
+E
+java:S3010"*Remove this assignment of "testSingleton".(¶‹Ã»ÿÿÿÿÿ
+>
+java:S1068"(Remove this unused "name" private field.(Ë¥¼
+=
+java:S1068"'Remove this unused "age" private field.(–Œó¯
+@
+java:S1068,"%Remove this unused "a" private field.(ú©õÏşÿÿÿÿ
+:
+java:S10681"%Remove this unused "b" private field.(»»­|

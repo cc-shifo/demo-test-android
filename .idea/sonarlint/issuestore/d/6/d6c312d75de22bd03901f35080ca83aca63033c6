@@ -1,0 +1,142 @@
+
+E
+java:S37406"/Provide the parametrized type for this generic.(ï‚¨Ù
+J
+java:S3740:"/Provide the parametrized type for this generic.(§£Šûÿÿÿÿ
+J
+java:S3740S"/Provide the parametrized type for this generic.(ô«ÚÔùÿÿÿÿ
+J
+java:S3740S"/Provide the parametrized type for this generic.(ô«ÚÔùÿÿÿÿ
+E
+java:S3740Y"/Provide the parametrized type for this generic.(öŞ°¹
+D
+java:S3740["/Provide the parametrized type for this generic.(ôè§I
+D
+java:S3740["/Provide the parametrized type for this generic.(ôè§I
+J
+java:S3740b"/Provide the parametrized type for this generic.(—ªæÿùÿÿÿÿ
+J
+java:S3740b"/Provide the parametrized type for this generic.(—ªæÿùÿÿÿÿ
+E
+java:S3740j"/Provide the parametrized type for this generic.(¦Ôßµ
+E
+java:S3740j"/Provide the parametrized type for this generic.(¦Ôßµ
+J
+java:S3740{"/Provide the parametrized type for this generic.(Øìô½úÿÿÿÿ
+F
+java:S3740"/Provide the parametrized type for this generic.(“†ø·
+F
+java:S3740ƒ"/Provide the parametrized type for this generic.(öŞ°¹
+E
+java:S3740"/Provide the parametrized type for this generic.(½ûï6
+E
+java:S3740"/Provide the parametrized type for this generic.(½ûï6
+F
+java:S3740"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740¯"/Provide the parametrized type for this generic.(Û“£ì
+F
+java:S3740À"/Provide the parametrized type for this generic.(ºĞéæ
+K
+java:S3740Á"/Provide the parametrized type for this generic.(±Š”áúÿÿÿÿ
+F
+java:S3740Ù"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740Ù"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740ñ"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740ñ"/Provide the parametrized type for this generic.(¯œÈ°
+F
+java:S3740€"/Provide the parametrized type for this generic.(¿ôƒİ
+F
+java:S3740"/Provide the parametrized type for this generic.(ºĞéæ
+K
+java:S3740‚"/Provide the parametrized type for this generic.(±Š”áúÿÿÿÿ
+F
+java:S3740"/Provide the parametrized type for this generic.(¿ôƒİ
+K
+java:S3740›"/Provide the parametrized type for this generic.(Àêì¬úÿÿÿÿ
+F
+java:S3740ª"/Provide the parametrized type for this generic.(¿ôƒİ
+\
+java:S1192@"GDefine a constant instead of duplicating this literal "result" 7 times.(ñ¢‘e
+ˆ
+java:S1192Ä"lDefine a constant instead of duplicating this literal "Expected FileNotFoundException to be thrown" 4 times.(³ÙÒÿÿÿÿÿ
+h
+java:S1192E"RDefine a constant instead of duplicating this literal "testBSHMethodName" 4 times.(Òı°¶
+j
+java:S1192ˆ"NDefine a constant instead of duplicating this literal "ex.getClass()" 7 times.(¶“Øˆøÿÿÿÿ
+‡
+java:S1192Ü"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 5 times.(áÆ”Óÿÿÿÿÿ
+h
+java:S1192¤"QDefine a constant instead of duplicating this literal "ex.getMessage()" 11 times.(”–ñ¡
+w
+java:S1192 "`Define a constant instead of duplicating this literal "Expected EvalError to be thrown" 3 times.(‰¹Ê
+
+java:S1192…"eDefine a constant instead of duplicating this literal "Expected ParseException to be thrown" 3 times.(¯êÀèúÿÿÿÿ
+q
+java:S1192S"VDefine a constant instead of duplicating this literal "testBSHMethodBshData" 15 times.(ô«ÚÔùÿÿÿÿ
+€
+java:S1192†"iDefine a constant instead of duplicating this literal "Expected ClassCastException to be thrown" 3 times.(É·¦ª
+s
+java:S1192{"XDefine a constant instead of duplicating this literal "testBSHMethodResultName" 5 times.(Øìô½úÿÿÿÿ
+{
+java:S1192Š"_Define a constant instead of duplicating this literal "(ArrayList) returnNames.size()" 5 times.(ªÄ¿âøÿÿÿÿ
+ç
+java:S1192£"ÊDefine a constant instead of duplicating this literal "Sourced file: inline evaluation of: ``testBSHMethod BshData;'' : Typed variable declaration : Class: testBSHMethod not found in namespace" 4 times.(×£àÒÿÿÿÿÿ
+x
+java:S1192‰"\Define a constant instead of duplicating this literal "(HashMap) arguments.size()" 14 times.(ÆÃïöúÿÿÿÿ
+g
+java:S1192Z"LDefine a constant instead of duplicating this literal "testString" 11 times.(¿ûÙ»ıÿÿÿÿ
+`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(…½‹‚øÿÿÿÿ
+[	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(«é€
+[	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(”ËöÕ
+[	java:S112R"FDefine and throw a dedicated exception instead of using a generic one.(ç÷ïã
+`	java:S112X"FDefine and throw a dedicated exception instead of using a generic one.(¦¿„şÿÿÿÿ
+[	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(é Üã
+`	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(æ¥’âüÿÿÿÿ
+`	java:S112r"FDefine and throw a dedicated exception instead of using a generic one.(çíÜŸùÿÿÿÿ
+[	java:S112z"FDefine and throw a dedicated exception instead of using a generic one.(•ÉÀ
+\	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(½Ğ³œ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ß”¯ç
+a	java:S112œ"FDefine and throw a dedicated exception instead of using a generic one.(Çšêøÿÿÿÿ
+\	java:S112®"FDefine and throw a dedicated exception instead of using a generic one.(–£ôì
+a	java:S112¿"FDefine and throw a dedicated exception instead of using a generic one.(µ¶…úÿÿÿÿ
+\	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(¤Šòİ
+a	java:S112Ø"FDefine and throw a dedicated exception instead of using a generic one.(ºïó²ùÿÿÿÿ
+a	java:S112å"FDefine and throw a dedicated exception instead of using a generic one.(ƒƒîšÿÿÿÿÿ
+\	java:S112ğ"FDefine and throw a dedicated exception instead of using a generic one.(ÃğÁı
+a	java:S112ı"FDefine and throw a dedicated exception instead of using a generic one.(¤„®Ûùÿÿÿÿ
+\	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(œ™Í˜
+a	java:S112™"FDefine and throw a dedicated exception instead of using a generic one.(›ıÿÏùÿÿÿÿ
+a	java:S112§"FDefine and throw a dedicated exception instead of using a generic one.(”Äˆÿÿÿÿÿ
+a	java:S112»"FDefine and throw a dedicated exception instead of using a generic one.(û§ø¤üÿÿÿÿ
+\	java:S112È"FDefine and throw a dedicated exception instead of using a generic one.(¤ª®
+a	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(®Š›Æûÿÿÿÿ
+a	java:S112à"FDefine and throw a dedicated exception instead of using a generic one.(ª…¨öÿÿÿÿÿ
+a	java:S112ë"FDefine and throw a dedicated exception instead of using a generic one.(ó®Ò²şÿÿÿÿ
+X
+java:S1117b"=Rename "arguments" which hides the field declared at line 54.(—ªæÿùÿÿÿÿ
+S
+java:S1117j"=Rename "arguments" which hides the field declared at line 54.(¦Ôßµ
+T
+java:S1117"=Rename "arguments" which hides the field declared at line 54.(“†ø·
+S
+java:S1117"=Rename "arguments" which hides the field declared at line 54.(½ûï6
+T
+java:S1117¯"=Rename "arguments" which hides the field declared at line 54.(Û“£ì
+T
+java:S1117À"=Rename "arguments" which hides the field declared at line 54.(ºĞéæ
+Q
+java:S1117ş"5Rename "e" which hides the field declared at line 52.(ş‹ã„ÿÿÿÿÿ
+T
+java:S1117"=Rename "arguments" which hides the field declared at line 54.(ºĞéæ
+Q
+java:S1117"5Rename "e" which hides the field declared at line 52.(ş‹ã„ÿÿÿÿÿ
+Y
+java:S1117›"=Rename "arguments" which hides the field declared at line 54.(Àêì¬úÿÿÿÿ
+Q
+java:S1117¨"5Rename "e" which hides the field declared at line 52.(ş‹ã„ÿÿÿÿÿ

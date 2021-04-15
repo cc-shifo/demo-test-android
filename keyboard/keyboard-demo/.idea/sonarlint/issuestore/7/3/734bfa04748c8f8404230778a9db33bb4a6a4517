@@ -1,0 +1,108 @@
+
+t
+java:S1104±"XMake rowEdgeFlags a static final constant or non-public and provide accessors if needed.(Şñà±ÿÿÿÿÿ
+\
+java:S1124«"EReorder the modifiers to comply with the Java Language Specification.(Ú…
+a
+java:S1124´"EReorder the modifiers to comply with the Java Language Specification.(¬É ²ıÿÿÿÿ
+[
+java:S3252Ğ"DUse static access with "org.xmlpull.v1.XmlPullParser" for "END_TAG".(’ôÏÕ
+L
+java:S1481£"0Remove this unused "leftMostKey" local variable.(êôòÏÿÿÿÿÿ
+W
+java:S3518Š"@Make sure "totalWidth" can't be zero before doing this division.(¡ÏÒÈ
+p
+java:S2293”"YReplace the type specification in this constructor call with the diamond operator ("<>").(¶»ì‰
+p
+java:S1104¥"YMake defaultHeight a static final constant or non-public and provide accessors if needed.(›à¥»
+p
+java:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ú¶ÿä
+a
+java:S1124·"EReorder the modifiers to comply with the Java Language Specification.(ˆ”éìıÿÿÿÿ
+i
+java:S1104‚"MMake y a static final constant or non-public and provide accessors if needed.(ÔçÛşÿÿÿÿ
+s
+java:S1104©"WMake verticalGap a static final constant or non-public and provide accessors if needed.(Ê÷ÑÍúÿÿÿÿ
+E
+java:S1068S"*Remove this unused "mLabel" private field.(Ã¬Ó³øÿÿÿÿ
+l
+java:S1104´"PMake mode a static final constant or non-public and provide accessors if needed.(»Éº³ÿÿÿÿÿ
+|
+java:S1104§"`Make defaultHorizontalGap a static final constant or non-public and provide accessors if needed.(éğáËıÿÿÿÿ
+p
+java:S2293¾"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏšĞ‘
+e
+java:S3252ë"IUse static access with "org.xmlpull.v1.XmlPullParser" for "END_DOCUMENT".(­²¥«üÿÿÿÿ
+h
+java:S1104ì"QMake codes a static final constant or non-public and provide accessors if needed.(š«¤—
+D
+java:S1481¤"(Remove this unused "row" local variable.(¾§¶‹üÿÿÿÿ
+h
+java:S1104ø"QMake width a static final constant or non-public and provide accessors if needed.(øÂ½
+e
+java:S3252®"IUse static access with "org.xmlpull.v1.XmlPullParser" for "END_DOCUMENT".(­²¥«üÿÿÿÿ
+h
+java:S1104ï"QMake label a static final constant or non-public and provide accessors if needed.(ØŸ²›
+\
+java:S1124¯"EReorder the modifiers to comply with the Java Language Specification.(ÕœŸ¹
+l
+java:S1104’"UMake edgeFlags a static final constant or non-public and provide accessors if needed.(õ‹º‡
+a
+java:S1124¥"EReorder the modifiers to comply with the Java Language Specification.(å˜©ßûÿÿÿÿ
+o
+java:S1104£"XMake defaultWidth a static final constant or non-public and provide accessors if needed.(Ú¨«Ö
+N
+java:S1135”"2Complete the task associated to this TODO comment.(ú„´§øÿÿÿÿ
+r
+java:S1104"VMake repeatable a static final constant or non-public and provide accessors if needed.(œÄËûÿÿÿÿ
+I
+java:S1135İ"2Complete the task associated to this TODO comment.(î¤Âß
+l
+java:S1104ô"VMake background a static final constant or non-public and provide accessors if needed.(øñŞ
+]
+java:S1126×"AReplace this if-then-else statement by a single return statement.(âßäÎùÿÿÿÿ
+i
+java:S1104ş"RMake sticky a static final constant or non-public and provide accessors if needed.(¤È¨
+s
+java:S1104ö"WMake iconPreview a static final constant or non-public and provide accessors if needed.(øú½ øÿÿÿÿ
+D
+java:S1068n".Remove this unused "mKeyHeight" private field.(‰Äƒ
+f
+java:S1104ˆ"PMake text a static final constant or non-public and provide accessors if needed.(Ôô U
+R	java:S125¸"<This block of commented-out lines of code should be removed.(ŠÒ¹Î
+i
+java:S1104ú"RMake height a static final constant or non-public and provide accessors if needed.(ñ½
+q
+java:S1104Š"[Make popupCharacters a static final constant or non-public and provide accessors if needed.(ÖÑ
+p
+java:S2293§"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏšĞ‘
+C
+java:S1068k"-Remove this unused "mKeyWidth" private field.(—¾»
+[
+java:S3252ì"DUse static access with "org.xmlpull.v1.XmlPullParser" for "END_TAG".(€ûÃ¸
+q
+java:S3008’"ZRename this field "SEARCH_DISTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®“ 
+G
+java:S1172ú"0Remove this unused method parameter "newHeight".(á•Ó’
+l
+java:S1104ò"PMake icon a static final constant or non-public and provide accessors if needed.(Øí°üşÿÿÿÿ
+u
+java:S2293¿"YReplace the type specification in this constructor call with the diamond operator ("<>").(¹‡–¸ùÿÿÿÿ
+f
+java:S1104ü"OMake gap a static final constant or non-public and provide accessors if needed.(Ÿ†‹Ş
+i
+java:S1104€"MMake x a static final constant or non-public and provide accessors if needed.(±Šõ¶ûÿÿÿÿ
+e
+java:S1104†"NMake on a static final constant or non-public and provide accessors if needed.(£íô¼
+u
+java:S2293¨"YReplace the type specification in this constructor call with the diamond operator ("<>").(¹‡–¸ùÿÿÿÿ
+j
+java:S1104„"SMake pressed a static final constant or non-public and provide accessors if needed.(ŸŠğï
+b
+java:S3252¯"FUse static access with "org.xmlpull.v1.XmlPullParser" for "START_TAG".(Î¶†ûÿÿÿÿ
+j
+java:S1104”"TMake modifier a static final constant or non-public and provide accessors if needed.(¤¨š*
+r
+java:S1104›"VMake popupResId a static final constant or non-public and provide accessors if needed.(Õéôùÿÿÿÿ
+\
+java:S1124 "EReorder the modifiers to comply with the Java Language Specification.(Â¶¾™

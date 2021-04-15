@@ -1,0 +1,16 @@
+
+`
+java:S2184´"DCast one of the operands of this subtraction operation to a "float".(ŸÊã”ýÿÿÿÿ
+[
+java:S2184È"DCast one of the operands of this subtraction operation to a "float".(èÕ˜ž
+u	java:S116"[Rename this field "COLOR_BACKGROUND" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Žš•ªøÿÿÿÿ
+u	java:S116"[Rename this field "COLOR_MOUNTAIN_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇŸñÆþÿÿÿÿ
+p	java:S116"[Rename this field "COLOR_MOUNTAIN_2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€²È˜
+p	java:S116"[Rename this field "COLOR_MOUNTAIN_3" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øªŒÆ
+x	java:S116"^Rename this field "COLOR_TREE_1_BRANCH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Éœ¼–ýÿÿÿÿ
+w	java:S116 "]Rename this field "COLOR_TREE_1_BRINK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÍµãùÿÿÿÿ
+r	java:S116!"^Rename this field "COLOR_TREE_2_BRANCH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(þª¥O
+r	java:S116""]Rename this field "COLOR_TREE_2_BRINK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ªé½
+s	java:S116#"^Rename this field "COLOR_TREE_3_BRANCH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ñŠÀ
+r	java:S116$"]Rename this field "COLOR_TREE_3_BRINK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û©ˆÙ
+W	java:S125Œ"<This block of commented-out lines of code should be removed.(³àðÜþÿÿÿÿ

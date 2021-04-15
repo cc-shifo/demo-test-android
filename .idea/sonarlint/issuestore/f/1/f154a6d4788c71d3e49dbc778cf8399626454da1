@@ -1,0 +1,15 @@
+
+x
+java:S4144s"]Update this method so that its implementation is not identical to "getNumPerPage" on line 97.(æ»Ç™ûÿÿÿÿ
+y
+java:S4144|"^Update this method so that its implementation is not identical to "setNumPerPage" on line 108.(è•·Şøÿÿÿÿ
+F
+java:S2160"+Override the "equals" method in this class.(â÷Á‰şÿÿÿÿ
+P
+java:S1133a"5Do not forget to remove this deprecated code someday.(¥¸êÿÿÿÿÿ
+^
+java:S1123`"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+P
+java:S1133l"5Do not forget to remove this deprecated code someday.(ƒú„¼ıÿÿÿÿ
+^
+java:S1123k"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš

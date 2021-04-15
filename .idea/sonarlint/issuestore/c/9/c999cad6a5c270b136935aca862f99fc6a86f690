@@ -1,0 +1,18 @@
+
+]
+java:S1192+"GDefine a constant instead of duplicating this literal "result" 4 times.(¢Õ¡ä
+k
+java:S1192>"PDefine a constant instead of duplicating this literal "ex.getMessage()" 5 times.(Ï£Í°şÿÿÿÿ
+`	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(•ªÂ÷úÿÿÿÿ
+[	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(Åµ²ç
+`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(•ëâÿÿÿÿÿ
+[	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(”µöš
+`	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(·Ã‘îıÿÿÿÿ
+`	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(‘·³øÿÿÿÿ
+[	java:S112^"FDefine and throw a dedicated exception instead of using a generic one.( “–
+`	java:S112n"FDefine and throw a dedicated exception instead of using a generic one.(Ä§÷ùÿÿÿÿ
+[	java:S112u"FDefine and throw a dedicated exception instead of using a generic one.(êø´Ç
+Z	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(²ú’
+B
+java:S1602o",Remove useless curly braces around statement(íÉè¨

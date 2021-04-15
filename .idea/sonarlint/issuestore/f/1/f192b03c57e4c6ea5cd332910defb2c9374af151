@@ -1,0 +1,22 @@
+
+_
+java:S3014j"IRemove this use of "ThreadGroup". Prefer the use of "ThreadPoolExecutor".(™‹Ë’
+_
+java:S3014q"IRemove this use of "ThreadGroup". Prefer the use of "ThreadPoolExecutor".(£¬°Ÿ
+a
+java:S2184:"FCast one of the operands of this multiplication operation to a "long".(¿è´¸ùÿÿÿÿ
+E
+java:S1128."*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ
+b
+java:S2142ƒ"FEither re-interrupt this method or rethrow the "InterruptedException".(®ûºöÿÿÿÿÿ
+D	java:S108ƒ")Either remove or fill this block of code.(®ûºöÿÿÿÿÿ
+]
+java:S1854µ"ARemove this useless assignment to local variable "runtimeMXBean".(ÿÞ‹»ÿÿÿÿÿ
+D	java:S108Å")Either remove or fill this block of code.(·öÒÇüÿÿÿÿ
+<
+java:S1181Œ"%Catch Exception instead of Throwable.(òéâ–
+?	java:S108Œ")Either remove or fill this block of code.(òéâ–
+l
+java:S1905–"VRemove this unnecessary cast to "org.sonar.java.resolve.Symbols$UnknownType@560739d1".(óŒåf
+N
+java:S1481µ"2Remove this unused "runtimeMXBean" local variable.(ÿÞ‹»ÿÿÿÿÿ

@@ -1,0 +1,37 @@
+
+_
+java:S1192#"IDefine a constant instead of duplicating this literal "CAFEBABE" 3 times.(ñó§
+\
+java:S1192Œ"FDefine a constant instead of duplicating this literal "102.2" 4 times.(ÔÒ„l
+]
+java:S1192‹"FDefine a constant instead of duplicating this literal "102.1" 6 times.(şõ†è
+]
+java:S1192""GDefine a constant instead of duplicating this literal "000000" 3 times.(Çøîæ
+a
+java:S1192["FDefine a constant instead of duplicating this literal "99.99" 3 times.(ïî«‹øÿÿÿÿ
+c
+java:S1192‡"GDefine a constant instead of duplicating this literal "value2" 3 times.(‘­¢›úÿÿÿÿ
+^
+java:S1192†"GDefine a constant instead of duplicating this literal "value1" 4 times.(²àÂ§
+_
+java:S1192z"IDefine a constant instead of duplicating this literal "value101" 4 times.(Ú¶ˆ†
+`
+java:S1192€"IDefine a constant instead of duplicating this literal "value102" 4 times.(ïüÈ¬
+^
+java:S1192z"HDefine a constant instead of duplicating this literal "101.101" 8 times.(Ú¶ˆ†
+]
+java:S1192$"GDefine a constant instead of duplicating this literal "63.2.3" 8 times.(º÷—
+_
+java:S1192€"HDefine a constant instead of duplicating this literal "101.102" 9 times.(ïüÈ¬
+b
+java:S1192%"GDefine a constant instead of duplicating this literal "63.2.4" 6 times.(‹úàÛıÿÿÿÿ
+Z	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(ö¹¡i
+`	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(ÈÉ‰€øÿÿÿÿ
+`	java:S112l"FDefine and throw a dedicated exception instead of using a generic one.(¢µÏ­úÿÿÿÿ
+\	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(¨ìì®
+;
+java:S2129(" Remove this "String" constructor(òëº£ıÿÿÿÿ
+6
+java:S2129)" Remove this "String" constructor(«ä†
+6
+java:S2129+" Remove this "String" constructor(ÌÚÊç

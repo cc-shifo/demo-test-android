@@ -1,0 +1,58 @@
+
+z
+java:S1192W"_Define a constant instead of duplicating this literal "7f07e7f0e47f531b0723b0b6fb0722" 5 times.(–ø™Œşÿÿÿÿ
+z
+java:S1192@"_Define a constant instead of duplicating this literal "7f0e397bd097c36b0b6fc9210c8dc2" 4 times.(É®Îòúÿÿÿÿ
+z
+java:S1192d"_Define a constant instead of duplicating this literal "7ec967f0e37f14998082b0787b06bd" 7 times.(“ûµúÿÿÿÿ
+u
+java:S1192a"_Define a constant instead of duplicating this literal "7ec967f0e37f14998082b0787b0721" 3 times.(ÀÏı€
+u
+java:S1192M"_Define a constant instead of duplicating this literal "7f0e37f1487f595b0b0bb0b6fb0722" 3 times.(‘Î—
+z
+java:S1192N"_Define a constant instead of duplicating this literal "7f0e397bd097c35b0b6fc9210c8dc2" 3 times.(çÃÔùÿÿÿÿ
+u
+java:S11925"_Define a constant instead of duplicating this literal "97bd097bd097c36b0b6fc9210c8dc2" 3 times.(ÉÂ‰Ñ
+z
+java:S1192h"_Define a constant instead of duplicating this literal "7f0e37f0e366aa89801eb072297c35" 4 times.(ÙÍ°åøÿÿÿÿ
+z
+java:S11924"_Define a constant instead of duplicating this literal "97b6b97bd19801ec95f8c965cc920f" 3 times.(È•´Èÿÿÿÿÿ
+{
+java:S1192P"`Define a constant instead of duplicating this literal "7f0e27f1487f531b0b0bb0b6fb0722" 11 times.(×È”Ãùÿÿÿÿ
+z
+java:S11920"_Define a constant instead of duplicating this literal "97bcf97c3598082c95f8c965cc920f" 3 times.(ßŒ„Âûÿÿÿÿ
+u
+java:S11927"_Define a constant instead of duplicating this literal "9778397bd097c36c9210c9274c91aa" 3 times.(—œ—®
+{
+java:S11920"`Define a constant instead of duplicating this literal "97b6b97bd19801ec9210c965cc920e" 13 times.(ßŒ„Âûÿÿÿÿ
+u
+java:S11921"_Define a constant instead of duplicating this literal "97bd0b06bdb0722c965ce1cfcc920f" 3 times.(ô¬˜’
+u
+java:S1192I"_Define a constant instead of duplicating this literal "7f0e397bd07f595b0b0bc920fb0722" 9 times.(´ÁØö
+z
+java:S1192U"_Define a constant instead of duplicating this literal "7f0e27f0e47f531b0723b0b6fb0722" 4 times.(ƒ‚‹õşÿÿÿÿ
+u
+java:S1192M"_Define a constant instead of duplicating this literal "97b6b7f0e47f531b0723b0b6fb0721" 5 times.(‘Î—
+{
+java:S11920"`Define a constant instead of duplicating this literal "9778397bd097c36b0b6fc9274c91aa" 15 times.(ßŒ„Âûÿÿÿÿ
+u
+java:S1192D"_Define a constant instead of duplicating this literal "7f0e397bd097c35b0b6fc920fb0722" 8 times.(èŒ–Œ
+u
+java:S11921"_Define a constant instead of duplicating this literal "b027097bd097c36b0b6fc9274c91aa" 3 times.(ô¬˜’
+u
+java:S1192Y"_Define a constant instead of duplicating this literal "977837f0e37f14998082b0787b06bd" 5 times.(ç”âî
+z
+java:S11929"_Define a constant instead of duplicating this literal "97bd097bd097c35b0b6fc920fb0722" 4 times.(ªóÏ•ùÿÿÿÿ
+v
+java:S1192X"`Define a constant instead of duplicating this literal "7f07e7f0e47f531b0723b0b6fb0721" 11 times.(„ğ­˜
+z
+java:S11922"_Define a constant instead of duplicating this literal "97bcf97c359801ec95f8c965cc920f" 5 times.(¥õ÷İüÿÿÿÿ
+u
+java:S1192_"_Define a constant instead of duplicating this literal "7f07e7f0e47f149b0723b0787b0721" 3 times.(œ®Šà
+u
+java:S1192?"_Define a constant instead of duplicating this literal "9778397bd097c36b0b6fc9210c8dc2" 3 times.(´ºèÆ
+e	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò×â5
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¾ ¤
+k	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜áÇåúÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Û¸ƒŠ

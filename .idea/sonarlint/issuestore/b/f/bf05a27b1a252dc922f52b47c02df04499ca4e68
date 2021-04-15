@@ -1,0 +1,59 @@
+
+c
+java:S1192•"GDefine a constant instead of duplicating this literal "result" 3 times.(²¥İ¡ùÿÿÿÿ
+t
+java:S1192T"YDefine a constant instead of duplicating this literal "testBaseSMAdapterKeyType" 9 times.(×˜Ô­üÿÿÿÿ
+„
+java:S1192~"iDefine a constant instead of duplicating this literal "testBaseSMAdapterKeyCheckValueHexString1" 4 times.(ˆïßèøÿÿÿÿ
+l
+java:S1192>"QDefine a constant instead of duplicating this literal "ex.getMessage()" 12 times.(ˆÚ»Çıÿÿÿÿ
+a
+java:S1192?"KDefine a constant instead of duplicating this literal "ex.nested" 10 times.(ê°ì¥
+z
+java:S1192~"_Define a constant instead of duplicating this literal "testBaseSMAdapterKeyHexString1" 4 times.(ˆïßèøÿÿÿÿ
+f
+java:S1192@"PDefine a constant instead of duplicating this literal "ex.getNested()" 10 times.(ÎµúÅ
+o
+java:S1192,"TDefine a constant instead of duplicating this literal "baseSMAdapter.realm" 3 times.(¥¿•›üÿÿÿÿ
+l
+java:S1192’"VDefine a constant instead of duplicating this literal "testBaseSMAdapterName" 4 times.(ĞŞ
+~
+java:S1192<"cDefine a constant instead of duplicating this literal "Expected SMException to be thrown" 10 times.(¹å¹úÿÿÿÿ
+m
+java:S1192*"WDefine a constant instead of duplicating this literal "testBaseSMAdapterRealm" 9 times.(¯âÍ³
+f
+java:S1192T"KDefine a constant instead of duplicating this literal "testString" 4 times.(×˜Ô­üÿÿÿÿ
+p
+java:S1192-"UDefine a constant instead of duplicating this literal "baseSMAdapter.logger" 3 times.(ä§ışÿÿÿÿ
+˜
+java:S1192>"}Define a constant instead of duplicating this literal "Operation not supported in: org.jpos.security.BaseSMAdapter" 10 times.(ˆÚ»Çıÿÿÿÿ
+s
+java:S1192("XDefine a constant instead of duplicating this literal "testBaseSMAdapterPrefix" 3 times.(­ç¡Ôüÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+`	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(Ğªœüÿÿÿÿ
+`	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(ÛóëÃüÿÿÿÿ
+`	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(ÕñÃæüÿÿÿÿ
+`	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(É¤õ¦şÿÿÿÿ
+`	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(Ì±Ñúÿÿÿÿ
+`	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(ÎŸš¹úÿÿÿÿ
+\	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(‘¢¬©
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÉïĞ°üÿÿÿÿ
+\	java:S112™"FDefine and throw a dedicated exception instead of using a generic one.(•îÎù
+\	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(Å« 
+\	java:S112©"FDefine and throw a dedicated exception instead of using a generic one.(àÆ¤ò
+a	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(Ø«‚šıÿÿÿÿ
+\	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(íïÌå
+\	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(Á›ˆ÷
+a	java:S112Ö"FDefine and throw a dedicated exception instead of using a generic one.(œ–äÓÿÿÿÿÿ
+a	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(ç¦Æ“ùÿÿÿÿ
+a	java:S112î"FDefine and throw a dedicated exception instead of using a generic one.(ĞÔŸÂÿÿÿÿÿ
+a	java:S112÷"FDefine and throw a dedicated exception instead of using a generic one.(ÓÈàãüÿÿÿÿ
+a	java:S112ş"FDefine and throw a dedicated exception instead of using a generic one.(¶œ…èùÿÿÿÿ
+a	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(ÁŞí¸úÿÿÿÿ
+h	java:S100m"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì±Ñúÿÿÿÿ
+h	java:S100{"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎŸš¹úÿÿÿÿ
+B
+java:S1602|",Remove useless curly braces around statement(Û €
+C
+java:S1602Â",Remove useless curly braces around statement(Û €

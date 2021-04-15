@@ -1,0 +1,124 @@
+
+i
+java:S1192ª"RDefine a constant instead of duplicating this literal "local-master-keys" 3 times.(×ÿ…Ğ
+f
+java:S1192Ë	"JDefine a constant instead of duplicating this literal "parameter" 6 times.(ÌŞÃÍûÿÿÿÿ
+e
+java:S1192µ"IDefine a constant instead of duplicating this literal "00000000" 4 times.(ı’Ãîûÿÿÿÿ
+k
+java:S1192Å"ODefine a constant instead of duplicating this literal " not supported" 6 times.(›ƒ¥ºÿÿÿÿÿ
+t
+java:S1192Å"XDefine a constant instead of duplicating this literal "Session Key Derivation " 5 times.(›ƒ¥ºÿÿÿÿÿ
+I
+java:S1199Ç"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199ø"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199ƒ"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199‹"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199 "-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199¥"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199°"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199¼"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199ş"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199­"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199º"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199Ë"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199İ"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+R	java:S107°"<Method has 8 parameters, which is greater than 7 authorized.(î±×†
+Q
+java:S1141˜"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+l	java:S117È"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²ÔÅ¬ıÿÿÿÿ
+l	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªó¤›ûÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š–•ßÿÿÿÿÿ
+l	java:S117Õ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¶÷ùÿÿÿÿ
+l	java:S117õ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªó¤›ûÿÿÿÿ
+l	java:S117÷"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š–•ßÿÿÿÿÿ
+l	java:S117ù"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¶÷ùÿÿÿÿ
+l	java:S117­"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ŠĞ”üÿÿÿÿ
+g	java:S117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒûÎÇ
+€
+java:S1488ˆ"dImmediately return this expression instead of assigning it to the temporary variable "secureDESKey".(‹¡¢øÿÿÿÿ
+t
+java:S3008w"^Rename this field "SHA1_MESSAGE_DIGEST" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³Ù¯’
+u	java:S115Ö"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(©Öİúÿÿÿÿ
+[
+java:S1124R"EReorder the modifiers to comply with the Java Language Specification.(Ú‚È×
+[
+java:S1124W"EReorder the modifiers to comply with the Java Language Specification.(ë¡Å
+[
+java:S1124^"EReorder the modifiers to comply with the Java Language Specification.(Š…û›
+[
+java:S1124e"EReorder the modifiers to comply with the Java Language Specification.(­¢öÁ
+`
+java:S1124i"EReorder the modifiers to comply with the Java Language Specification.(ïÒÍ¾øÿÿÿÿ
+[
+java:S1124m"EReorder the modifiers to comply with the Java Language Specification.(òÅ™•
+Z
+java:S1124q"EReorder the modifiers to comply with the Java Language Specification.(èªó
+
+Z
+java:S1124u"EReorder the modifiers to comply with the Java Language Specification.(Ğ¾Îo
+D	java:S108‚")Either remove or fill this block of code.(¯ä™Çıÿÿÿÿ
+L
+java:S1172Ô"0Remove this unused method parameter "keyLength".(‘Çƒîùÿÿÿÿ
+=	java:S131÷""Add a default case to this switch.(‚ó»†ÿÿÿÿÿ
+i	java:S100ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÖ­Çÿÿÿÿÿ
+D	java:S108£")Either remove or fill this block of code.(üƒíÙøÿÿÿÿ
+i	java:S100Î"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•·„†ÿÿÿÿÿ
+d	java:S100ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—”…°
+i	java:S100‚"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å¢Ì¤ùÿÿÿÿ
+i	java:S100–"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸äÎÁşÿÿÿÿ
+e
+java:S1871å"IThis case's code block is the same as the block for the case on line 993.(ÉŠÉêüÿÿÿÿ
+=
+java:S1168’"&Return an empty array instead of null.(¥¹ï
+\
+java:S1193œ	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+\
+java:S1193°	"@Replace the usage of the "instanceof" operator by a catch block.(ì¸¼¿ûÿÿÿÿ
+8
+java:S1659á
+""Declare "left" on a separate line.(¡Öà
+
+:
+java:S1659á
+"$Declare "medium" on a separate line.(¡Öà
+
+9
+java:S1659á
+"#Declare "right" on a separate line.(¡Öà
+
+8	java:S131ê
+""Add a default case to this switch.(öÓÛÓ
+;
+java:S1659”"$Declare "medium" on a separate line.(õ„½ş
+:
+java:S1659”"#Declare "right" on a separate line.(õ„½ş
+8	java:S131""Add a default case to this switch.(öÈŸ
+V
+java:S1193Ì"@Replace the usage of the "instanceof" operator by a catch block.(¾¶Ã
+F
+java:S2093–"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+Q
+java:S1854¿"5Remove this useless assignment to local variable "d".(ç¼”Ìüÿÿÿÿ
+B
+java:S1481¿"&Remove this unused "d" local variable.(ç¼”Ìüÿÿÿÿ
+?
+java:S1481†"(Remove this unused "r8a" local variable.(·½´™
+R	java:S125‡"<This block of commented-out lines of code should be removed.(“ÚØÔ
+W	java:S125í"<This block of commented-out lines of code should be removed.(ÁÃ¨·øÿÿÿÿ

@@ -1,0 +1,85 @@
+
+I
+java:S1199°	"-Extract this nested code block into a method.(¥üÀáùÿÿÿÿ
+D
+java:S1199³	"-Extract this nested code block into a method.(»³½
+C
+java:S1199¶	"-Extract this nested code block into a method.(Ãéå=
+K
+java:S1066"/Merge this if statement with the enclosing one.(ÒÔÏ¶üÿÿÿÿ
+K
+java:S1066·"/Merge this if statement with the enclosing one.(–ì˜Ìıÿÿÿÿ
+F
+java:S1066˜"/Merge this if statement with the enclosing one.(ò¾Òã
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùˆÏÕ
+`
+java:S2259Ñ"IA "NullPointerException" could be thrown; "adjustCase()" can return null.(®ëÃù
+t
+java:S1450µ"]Remove the "mPopupPreviewX" field and declare it as a local variable in the relevant methods.(Ä–šˆ
+y
+java:S1450¶"]Remove the "mPopupPreviewY" field and declare it as a local variable in the relevant methods.(ïÀ«Îúÿÿÿÿ
+
+java:S1186ª"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÕÈ¯Òûÿÿÿÿ
+v
+java:S3008ä"ZRename this field "MAX_NEARBY_KEYS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØæÒûÿÿÿÿ
+8	java:S131""Add a default case to this switch.(ÍëÑô
+p
+java:S2293ã"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿ‚ìË
+=	java:S131ù""Add a default case to this switch.(ıŞ³‹ùÿÿÿÿ
+?
+java:S1172Î"(Remove this unused method parameter "v".(¡é††
+H
+java:S1135„"2Complete the task associated to this TODO comment.(•åJ
+H
+java:S1135"2Complete the task associated to this TODO comment.(•åJ
+I
+java:S1135Î"2Complete the task associated to this TODO comment.(²õüı
+@
+java:S1172Ä")Remove this unused method parameter "me".(¢Û‚Á
+=	java:S131¯	""Add a default case to this switch.(ë´åİşÿÿÿÿ
+=	java:S131Œ
+""Add a default case to this switch.(ë´åİşÿÿÿÿ
+T
+java:S1197Ø"8Move the array designator from the variable to the type.(´û¥—ùÿÿÿÿ
+O
+java:S1197Ù"8Move the array designator from the variable to the type.(£¯„Ì
+O
+java:S1197Ú"8Move the array designator from the variable to the type.(šá¯Ş
+Q
+java:S1068š":Remove this unused "mMiniKeyboardContainer" private field.(ÉÆ¹·
+H
+java:S1068›"1Remove this unused "mMiniKeyboard" private field.(åøÕí
+B
+java:S1068Í"+Remove this unused "mPopupX" private field.(á¼Ó²
+G
+java:S1068Î"+Remove this unused "mPopupY" private field.(—ÄšÌùÿÿÿÿ
+H
+java:S1068ü"1Remove this unused "mAudioManager" private field.(©ÌìÇ
+c
+java:S1068ş"LRemove this unused "mHeadsetRequiredToHearPasswordsAnnounced" private field.(«·
+V	java:S125"<This block of commented-out lines of code should be removed.(€¡›Ûşÿÿÿÿ
+W	java:S125‡"<This block of commented-out lines of code should be removed.(ôÆº”şÿÿÿÿ
+R	java:S125Å"<This block of commented-out lines of code should be removed.(ÖÉÒÁ
+R	java:S125×"<This block of commented-out lines of code should be removed.(ÄçÚ‰
+Q	java:S125Ú"<This block of commented-out lines of code should be removed.(±Š
+R	java:S125ê"<This block of commented-out lines of code should be removed.(ùåÍ
+R	java:S125Ş"<This block of commented-out lines of code should be removed.(®øÄ
+R	java:S125â"<This block of commented-out lines of code should be removed.(ƒõúü
+R	java:S125ç"<This block of commented-out lines of code should be removed.(Îúâ¯
+R	java:S125¬"<This block of commented-out lines of code should be removed.(Ÿ‰íÄ
+R	java:S125Ò"<This block of commented-out lines of code should be removed.(¾îÈ‘
+W	java:S125Ê"<This block of commented-out lines of code should be removed.(ÚúÒÛøÿÿÿÿ
+W	java:S125º"<This block of commented-out lines of code should be removed.(§×Ëùÿÿÿÿ
+W	java:S125¿"<This block of commented-out lines of code should be removed.(§×Ëùÿÿÿÿ
+W	java:S125à"<This block of commented-out lines of code should be removed.(áº¹¤øÿÿÿÿ
+R	java:S125â"<This block of commented-out lines of code should be removed.(ùé¢Ú
+W	java:S125æ"<This block of commented-out lines of code should be removed.(İ¹‡Óûÿÿÿÿ
+W	java:S125é"<This block of commented-out lines of code should be removed.(ÈÂ³Áøÿÿÿÿ
+R	java:S125ë"<This block of commented-out lines of code should be removed.(…üŸå
+Q	java:S125ó"<This block of commented-out lines of code should be removed.(ÄÍË
+W	java:S125ø"<This block of commented-out lines of code should be removed.(ÎæĞ×şÿÿÿÿ
+R	java:S125‡	"<This block of commented-out lines of code should be removed.(¤×Œ¶
+W	java:S125	"<This block of commented-out lines of code should be removed.(òˆúúÿÿÿÿ
+R	java:S125‘	"<This block of commented-out lines of code should be removed.(Ê¼Ø
+W	java:S125”	"<This block of commented-out lines of code should be removed.(ÈÂ³Áøÿÿÿÿ
+R	java:S125ê	"<This block of commented-out lines of code should be removed.(Äà’™

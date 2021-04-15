@@ -1,0 +1,54 @@
+
+t	java:S135•"YReduce the total number of break and continue statements in this loop to use at most one.(ÅöÖûÿÿÿÿ
+t	java:S135Ì"YReduce the total number of break and continue statements in this loop to use at most one.(ú²õ«üÿÿÿÿ
+g	java:S117ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Íÿ’ƒ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş¼Š‘ùÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÜúôÿÿÿÿÿ
+l	java:S117ë"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ³°€øÿÿÿÿ
+l	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ…ôñùÿÿÿÿ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âü™ò
+l	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ ±ºıÿÿÿÿ
+g	java:S116‚"LRename this field "P" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î’‰€ùÿÿÿÿ
+b	java:S116ƒ"LRename this field "S" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿà÷
+`
+java:S1124v"EReorder the modifiers to comply with the Java Language Specification.(²ò½“şÿÿÿÿ
+[
+java:S1124y"EReorder the modifiers to comply with the Java Language Specification.(çÑÌõ
+[
+java:S1124}"EReorder the modifiers to comply with the Java Language Specification.(Î§Œ¦
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö¤Ôà
+„
+java:S1130"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Ö¤Ôà
+<
+java:S1659" Declare "c2" on a separate line.(Şİ¸üÿÿÿÿ
+‰
+java:S1130Ã"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ƒçøüÿÿÿÿ
+9
+java:S1659Å""Declare "slen" on a separate line.(†Î¡Ã
+9
+java:S1659Å""Declare "olen" on a separate line.(†Î¡Ã
+<
+java:S1659Ç" Declare "c2" on a separate line.(ÀßçÖùÿÿÿÿ
+<
+java:S1659Ç" Declare "c3" on a separate line.(ÀßçÖùÿÿÿÿ
+<
+java:S1659Ç" Declare "c4" on a separate line.(ÀßçÖùÿÿÿÿ
+;
+java:S1659Ç"Declare "o" on a separate line.(ÀßçÖùÿÿÿÿ
+6
+java:S1659ò"Declare "n" on a separate line.(¹È’¡
+6
+java:S1659ò"Declare "l" on a separate line.(¹È’¡
+6
+java:S1659ò"Declare "r" on a separate line.(¹È’¡
+i	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²êıÖÿÿÿÿÿ
+>
+java:S1659®""Declare "slen" on a separate line.(‹ŒÎşÿÿÿÿ
+>
+java:S1659Ë""Declare "slen" on a separate line.(‹ŒÎşÿÿÿÿ
+6
+java:S1659ë"Declare "i" on a separate line.(šÖıÿ
+6
+java:S1659ë"Declare "j" on a separate line.(šÖıÿ
+=
+java:S1659¢"!Declare "off" on a separate line.(¢ÙÊûÿÿÿÿ

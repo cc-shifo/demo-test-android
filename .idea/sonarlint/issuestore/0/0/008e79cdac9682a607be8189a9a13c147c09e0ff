@@ -1,0 +1,33 @@
+
+z
+java:S1192:"_Define a constant instead of duplicating this literal "macroFilter.validFields.length" 4 times.(²ÀÜ¤üÿÿÿÿ
+]
+java:S1192D"GDefine a constant instead of duplicating this literal "result" 5 times.(©Üæü
+n
+java:S1192A"SDefine a constant instead of duplicating this literal "testMacroFilterTag" 5 times.(ñ§Î¡øÿÿÿÿ
+g
+java:S1192’"PDefine a constant instead of duplicating this literal "macroFilter.cfg" 4 times.(‹şö
+g
+java:S1192“"PDefine a constant instead of duplicating this literal "macroFilter.seq" 3 times.(·´Œô
+z
+java:S11929"_Define a constant instead of duplicating this literal "macroFilter.unsetFields.length" 4 times.(Ò–·Ÿøÿÿÿÿ
+`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(ş±ƒØıÿÿÿÿ
+`	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(©¯ôÔùÿÿÿÿ
+[	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(ÓŠİø
+`	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(Ì¸ß×ùÿÿÿÿ
+`	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(§Îı¿şÿÿÿÿ
+[	java:S112s"FDefine and throw a dedicated exception instead of using a generic one.(çÒÖ 
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(•ü‹ª
+[	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(­Üº
+a	java:S112˜"FDefine and throw a dedicated exception instead of using a generic one.(ç¦Æ“ùÿÿÿÿ
+a	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(ÁÈºûÿÿÿÿ
+a	java:S112®"FDefine and throw a dedicated exception instead of using a generic one.(‡Ğ¹şÿÿÿÿ
+P
+java:S1117J"5Rename "m" which hides the field declared at line 51.(Âö°èüÿÿÿÿ
+P
+java:S1117T"5Rename "m" which hides the field declared at line 51.(Ä®ÕÚúÿÿÿÿ
+P
+java:S1117h"5Rename "m" which hides the field declared at line 51.(Âö°èüÿÿÿÿ
+Q
+java:S1117‚"5Rename "m" which hides the field declared at line 51.(Âö°èüÿÿÿÿ

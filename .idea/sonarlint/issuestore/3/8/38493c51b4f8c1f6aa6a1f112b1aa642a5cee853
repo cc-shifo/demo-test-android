@@ -1,0 +1,31 @@
+
+K
+java:S3740‹"/Provide the parametrized type for this generic.(ÕœíÀùÿÿÿÿ
+K
+java:S3740›"/Provide the parametrized type for this generic.(ÕœíÀùÿÿÿÿ
+l
+java:S1104!"QMake value a static final constant or non-public and provide accessors if needed.(Ù­Áæüÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(…Ø¶Å
+W
+java:S3078i"AUse an "AtomicInteger" for this field; its operations are atomic.( ‡¤¬
+W
+java:S3078|"AUse an "AtomicInteger" for this field; its operations are atomic.(ÓµÓ¬
+?
+java:S1185Í"(Remove this method to simply inherit it.(ÎÂı˜
+?
+java:S1185Ò"(Remove this method to simply inherit it.(ˆ‡şÊ
+D
+java:S1185×"(Remove this method to simply inherit it.(Ğ¹Ã ûÿÿÿÿ
+?
+java:S1185Ü"(Remove this method to simply inherit it.(Æ€—é
+?
+java:S1185á"(Remove this method to simply inherit it.(š‰ğ
+?
+java:S1185æ"(Remove this method to simply inherit it.(¦»Î
+D
+java:S1185ë"(Remove this method to simply inherit it.(ôÃ°áùÿÿÿÿ
+D
+java:S1185ğ"(Remove this method to simply inherit it.(“Ğ¾ûÿÿÿÿ
+?
+java:S1185õ"(Remove this method to simply inherit it.(¾”·”

@@ -1,0 +1,15 @@
+
+K
+java:S3740‘"/Provide the parametrized type for this generic.(š¨éùÿÿÿÿ
+J
+java:S1133]"5Do not forget to remove this deprecated code someday.(œúÊ}
+^
+java:S1123\"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133t"5Do not forget to remove this deprecated code someday.(¬æÀ¹
+^
+java:S1123s"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+E
+java:S1125”")Remove the literal "false" boolean value.(‡äÔûùÿÿÿÿ
+E
+java:S1125ô")Remove the literal "false" boolean value.(‡äÔûùÿÿÿÿ

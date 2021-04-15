@@ -1,0 +1,8 @@
+
+_
+java:S2095%"DUse try-with-resources or close this "Socket" in a "finally" clause.(¶ü±Şúÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©Ô
+U
+java:S1117%":Rename "socket" which hides the field declared at line 23.(¶ü±Şúÿÿÿÿ
+D
+java:S1481[")Remove this unused "mLen" local variable.(¯ßâØûÿÿÿÿ

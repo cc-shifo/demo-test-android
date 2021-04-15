@@ -1,0 +1,34 @@
+
+E
+java:S37403"/Provide the parametrized type for this generic.(àÔñƒ
+E
+java:S3740B"/Provide the parametrized type for this generic.(¥¿¸
+Q
+java:S1141´"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+f
+java:S11493"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(àÔñƒ
+[
+java:S2147"ECombine this catch with the one at line 124, which has the same body.(ï­£Ä
+\
+java:S2147‚"ECombine this catch with the one at line 124, which has the same body.(Ã‡²ö
+E
+java:S2093l"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+\
+java:S2147¡"ECombine this catch with the one at line 158, which has the same body.(ï­£Ä
+\
+java:S2147¤"ECombine this catch with the one at line 158, which has the same body.(Ã‡²ö
+Q
+java:S1161¬":Add the "@Override" annotation above this method signature(Ö‹À
+D	java:S108¶")Either remove or fill this block of code.(­¡É”şÿÿÿÿ
+Q
+java:S1161Ü":Add the "@Override" annotation above this method signature(¬“ İ
+B
+java:S1172æ"&Remove these unused method parameters.(««ç·ıÿÿÿÿ
+U
+java:S3400ç"9Remove this method and declare a constant for this value.(«Ÿ“·şÿÿÿÿ
+Q	java:S125~"<This block of commented-out lines of code should be removed.(ø¿ëó
+W	java:S125"<This block of commented-out lines of code should be removed.(æç§øúÿÿÿÿ
+W	java:S125„"<This block of commented-out lines of code should be removed.(æç§øúÿÿÿÿ
+R	java:S125 "<This block of commented-out lines of code should be removed.(ø¿ëó
+W	java:S125£"<This block of commented-out lines of code should be removed.(æç§øúÿÿÿÿ
+W	java:S125¦"<This block of commented-out lines of code should be removed.(æç§øúÿÿÿÿ

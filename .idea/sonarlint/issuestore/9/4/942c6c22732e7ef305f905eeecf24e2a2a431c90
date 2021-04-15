@@ -1,0 +1,33 @@
+
+E
+java:S37400"/Provide the parametrized type for this generic.(±à„»
+E
+java:S37401"/Provide the parametrized type for this generic.(íÒ«
+E
+java:S37401"/Provide the parametrized type for this generic.(íÒ«
+E
+java:S3740k"/Provide the parametrized type for this generic.(àĞ€²
+J
+java:S3740m"/Provide the parametrized type for this generic.(ÀÅ× şÿÿÿÿ
+D
+java:S3740w"/Provide the parametrized type for this generic.(´à:
+E
+java:S3740"/Provide the parametrized type for this generic.(ŒÖÚ·
+K
+java:S3740‰"/Provide the parametrized type for this generic.(öàÜ¬úÿÿÿÿ
+m	java:S116‰"RRename this field "_errors" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öàÜ¬úÿÿÿÿ
+{
+java:S11490"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(±à„»
+{
+java:S11491"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(íÒ«
+{
+java:S1149k"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(àĞ€²
+
+java:S1149‰"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(öàÜ¬úÿÿÿÿ
+T
+java:S34009"9Remove this method and declare a constant for this value.(Ö§”Óşÿÿÿÿ
+H
+java:S11358"2Complete the task associated to this TODO comment.(½úÂˆ
+H
+java:S1135^"2Complete the task associated to this TODO comment.(í‹‹
+c	java:S100k"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àĞ€²

@@ -1,0 +1,35 @@
+
+b
+java:S1301¾"KReplace this "switch" statement by "if" statements to increase readability.(ÕŠèÉ
+^
+java:S2184ú"BCast one of the operands of this addition operation to a "double".(¦–„ÿÿÿÿÿ
+l	java:S117ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éåÜ¬øÿÿÿÿ
+g	java:S117ı"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¦ÜÚ
+f	java:S117ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†Âßd
+l	java:S117ÿ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÂşÿÿÿÿ
+l	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùğßùÿÿÿÿ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô¹¾ı
+l	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÁ•Ãúÿÿÿÿ
+E
+java:S19484"*Make "srcImage" transient or serializable.(í×·°øÿÿÿÿ
+B
+java:S19485"-Make "targetImage" transient or serializable.(õ½×k
+S
+java:S1117«"<Rename "srcImage" which hides the field declared at line 52.(¸«…“
+X
+java:S1117Ú"<Rename "srcImage" which hides the field declared at line 52.(ß¸¤®ùÿÿÿÿ
+X
+java:S1117ù"<Rename "srcImage" which hides the field declared at line 52.(ß¸¤®ùÿÿÿÿ
+V
+java:S1117ÿ"?Rename "targetImage" which hides the field declared at line 53.(êÌ¹
+X
+java:S1117•"<Rename "srcImage" which hides the field declared at line 52.(ß¸¤®ùÿÿÿÿ
+[
+java:S1117œ"?Rename "targetImage" which hides the field declared at line 53.(–ŸÍ øÿÿÿÿ
+V
+java:S1117Ë"?Rename "targetImage" which hides the field declared at line 53.(·ùàĞ
+V
+java:S1117ø"?Rename "targetImage" which hides the field declared at line 53.(¦Ù¯Ñ
+j
+java:S4042"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(…¦ªøÿÿÿÿ
+V	java:S899";Do something with the "boolean" value returned by "delete".(…¦ªøÿÿÿÿ

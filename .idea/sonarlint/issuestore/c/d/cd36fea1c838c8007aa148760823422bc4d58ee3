@@ -1,0 +1,5 @@
+
+^
+java:S2184""HCast one of the operands of this multiplication operation to a "double".(Ë¨¤õ
+;
+java:S2185""%Remove this silly call to "Math.ceil"(Ë¨¤õ

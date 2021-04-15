@@ -1,0 +1,21 @@
+
+‡
+java:S1319‡"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ñ‹ô‚
+
+java:S1319”"qThe return type of this method should be an interface such as "List" rather than the implementation "LinkedList".(¨“³½ıÿÿÿÿ
+—
+java:S1319°"{The return type of this method should be an interface such as "List" rather than the implementation "CopyOnWriteArrayList".(ùüè÷şÿÿÿÿ
+Œ
+java:S1319»"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¸ºÏ˜ûÿÿÿÿ
+Œ
+java:S1319È"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ø†¤şÿÿÿÿ
+‡
+java:S1319Õ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(×²Êµ
+‡
+java:S1319â"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(’òÁ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(°Éê¤üÿÿÿÿ
+B
+java:S1168ú"+Return an empty collection instead of null.(¥¹ï
+B
+java:S1168â"+Return an empty collection instead of null.(¥¹ï

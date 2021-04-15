@@ -1,0 +1,16 @@
+
+o
+java:S1192("TDefine a constant instead of duplicating this literal "spaceInterceptor.sp" 7 times.(ÌöÒÕÿÿÿÿÿ
+†
+java:S11920"kDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 4 times.(áÆ”Óÿÿÿÿÿ
+k
+java:S11922"PDefine a constant instead of duplicating this literal "ex.getMessage()" 4 times.(«€×ˆùÿÿÿÿ
+a
+java:S1192;"KDefine a constant instead of duplicating this literal "testString" 4 times.(ØÙ¢õ
+`	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+[	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(Š£ŞÄ
+[	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(©Øå²
+[	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(‚‰Ñ„
+`	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(—üİìøÿÿÿÿ
+`	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(õ°¹¯ıÿÿÿÿ
+`	java:S112c"FDefine and throw a dedicated exception instead of using a generic one.(•Şƒªøÿÿÿÿ

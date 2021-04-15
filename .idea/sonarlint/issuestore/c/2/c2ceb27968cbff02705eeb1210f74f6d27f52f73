@@ -1,0 +1,8 @@
+
+j
+java:S1192º"NDefine a constant instead of duplicating this literal "Field length " 3 times.(åï®âüÿÿÿÿ
+m
+java:S1192º"QDefine a constant instead of duplicating this literal " too long. Max: " 3 times.(åï®âüÿÿÿÿ
+D	java:S108®")Either remove or fill this block of code.(ÕÙ®ºüÿÿÿÿ
+t
+java:S3981¹"XThe length of "valueBytes" is always ">=0", so update this test to either "==0" or ">0".(×Æ¾ùÿÿÿÿÿ

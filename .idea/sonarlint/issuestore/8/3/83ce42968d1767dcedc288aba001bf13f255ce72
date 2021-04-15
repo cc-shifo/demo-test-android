@@ -1,0 +1,13 @@
+
+`	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(¡Þ®¢þÿÿÿÿ
+`	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(«¾¤êüÿÿÿÿ
+`	java:S112j"FDefine and throw a dedicated exception instead of using a generic one.(üøžäüÿÿÿÿ
+[	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(Ö¾Ø²
+a	java:S112‹"FDefine and throw a dedicated exception instead of using a generic one.(±Ì‘Ÿûÿÿÿÿ
+a	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(ÉÀÓšýÿÿÿÿ
+\	java:S112®"FDefine and throw a dedicated exception instead of using a generic one.(¨¹¥œ
+\	java:S112Ã"FDefine and throw a dedicated exception instead of using a generic one.(ÌÚÛÛ
+‡
+java:S1130Q"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(¡Þ®¢þÿÿÿÿ
+X
+java:S1117Ñ"<Rename "murmur3a" which hides the field declared at line 28.(“ÙºÕøÿÿÿÿ

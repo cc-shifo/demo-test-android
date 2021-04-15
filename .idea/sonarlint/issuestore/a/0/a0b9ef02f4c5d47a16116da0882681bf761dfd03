@@ -1,0 +1,7 @@
+
+O
+java:S1444"4Make this "public static DEFAULT_CONFIG" field final(ΐκύÿÿÿÿ
+u
+java:S1104"ZMake DEFAULT_CONFIG a static final constant or non-public and provide accessors if needed.(ΐκύÿÿÿÿ
+t
+java:S3008"YRename this field "DEFAULT_CONFIG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ΐκύÿÿÿÿ

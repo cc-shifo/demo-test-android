@@ -1,0 +1,16 @@
+
+i
+java:S2095Ë"RUse try-with-resources or close this "BufferedOutputStream" in a "finally" clause.(§œÄ
+i
+java:S40425"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¼·áüÿÿÿÿ
+U	java:S8995";Do something with the "boolean" value returned by "delete".(¼·áüÿÿÿÿ
+C
+java:S1125V"(Remove the literal "true" boolean value.(¸ù“Òøÿÿÿÿ
+<
+java:S1168q"&Return an empty array instead of null.(¥¹ï
+j
+java:S4042Û"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¼·áüÿÿÿÿ
+V	java:S899Û";Do something with the "boolean" value returned by "delete".(¼·áüÿÿÿÿ
+E
+java:S1125‡")Remove the literal "false" boolean value.(ï­°“üÿÿÿÿ
+W	java:S125ã"<This block of commented-out lines of code should be removed.(¼‰Œÿÿÿÿÿ

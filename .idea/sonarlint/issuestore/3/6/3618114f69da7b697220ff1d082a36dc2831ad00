@@ -1,0 +1,22 @@
+
+o	java:S135™"YReduce the total number of break and continue statements in this loop to use at most one.(œÇ®
+?
+java:S1948$")Make "charset" transient or serializable.(€ÌõÏ
+M
+java:S1948,"2Make "randomAccessFile" transient or serializable.(µøåàùÿÿÿÿ
+L
+java:S1948-"1Make "executorService" transient or serializable.(¤ÎºÏûÿÿÿÿ
+l
+java:S1149’"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ƒÿƒ—ùÿÿÿÿ
+?
+java:S1125}")Remove the literal "false" boolean value.(îÏ Ï
+]
+java:S2142‚"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+@
+java:S1125·")Remove the literal "false" boolean value.(‚ÔÖ°
+@
+java:S1125Ê")Remove the literal "false" boolean value.(¸ÜÀ
+@
+java:S1125Í")Remove the literal "false" boolean value.(Ç‚¡–
+W	java:S125¡"<This block of commented-out lines of code should be removed.(İŸëúÿÿÿÿ
+W	java:S125­"<This block of commented-out lines of code should be removed.(İŸëúÿÿÿÿ

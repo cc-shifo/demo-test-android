@@ -1,0 +1,9 @@
+
+l
+java:S1192 "VDefine a constant instead of duplicating this literal "testSpaceErrorMessage" 5 times.(şìúı
+s
+java:S1192!"XDefine a constant instead of duplicating this literal "spaceError.getMessage()" 3 times.(ú´¡©ıÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+Z	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(‰œL
+Z	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(ºñã9
+`	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(õÆ‘úÿÿÿÿ

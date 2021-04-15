@@ -1,0 +1,13 @@
+
+x
+java:S1192-"]Define a constant instead of duplicating this literal "keyStoreAdaptor.isModified()" 3 times.(Â™âŠüÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
+`	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(É—Ô¿úÿÿÿÿ
+[	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(êŞ£²
+[	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(µàÙ¯
+Z	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(½òÄ	
+[	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(ÕŸ­É
+S
+java:S18548"8Remove this useless assignment to local variable "args".(•„Õüÿÿÿÿ
+D
+java:S14818")Remove this unused "args" local variable.(•„Õüÿÿÿÿ

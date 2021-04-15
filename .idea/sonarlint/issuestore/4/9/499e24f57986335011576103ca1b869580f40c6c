@@ -1,0 +1,14 @@
+
+J
+java:S1066l"/Merge this if statement with the enclosing one.(€Íô¡ûÿÿÿÿ
+F
+java:S1066"/Merge this if statement with the enclosing one.(úó¥â
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(´Ğ¡ôúÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¶õŸ«üÿÿÿÿ
+|
+java:S1845"aRename field "ACHAR" to prevent any misunderstanding/clash with field "aCHAR" defined on line 12.(öŞºúÿÿÿÿ
+|
+java:S1845"aRename field "ZCHAR" to prevent any misunderstanding/clash with field "zCHAR" defined on line 13.(§úÂúÿÿÿÿ
+U
+java:S1118
+":Add a private constructor to hide the implicit public one.(Æóİ ÿÿÿÿÿ

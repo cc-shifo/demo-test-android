@@ -1,0 +1,5 @@
+
+6
+java:S1700"Rename field "defaultTimer"(È‘ÌÃùÿÿÿÿ
+r
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(È‘ÌÃùÿÿÿÿ

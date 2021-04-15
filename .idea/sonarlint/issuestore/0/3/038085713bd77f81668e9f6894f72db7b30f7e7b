@@ -1,0 +1,17 @@
+
+—
+java:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©¼÷¸
+—
+java:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ‚¼½
+œ
+java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(’‰Ğüÿÿÿÿ
+—
+java:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‰ÜƒŞ
+E
+java:S1068"0Remove this unused "privateField" private field.(øÔC
+G
+java:S1068)",Remove this unused "subField" private field.(­ÌìÊúÿÿÿÿ
+H
+java:S1144 "2Remove this unused private "privateMethod" method.(©¼÷¸
+P
+java:S1144+"5Remove this unused private "privateSubMethod" method.(’‰Ğüÿÿÿÿ

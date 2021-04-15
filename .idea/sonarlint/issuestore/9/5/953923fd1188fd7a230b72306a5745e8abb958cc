@@ -1,0 +1,23 @@
+
+E
+java:S3740*"/Provide the parametrized type for this generic.(† òÝ
+E
+java:S3740*"/Provide the parametrized type for this generic.(† òÝ
+P
+java:S1118!":Add a private constructor to hide the implicit public one.(é’ëÛ
+P
+java:S1133C"5Do not forget to remove this deprecated code someday.(½è—Þûÿÿÿÿ
+B
+java:S1123C"'Add the missing @Deprecated annotation.(½è—Þûÿÿÿÿ
+P
+java:S1133J"5Do not forget to remove this deprecated code someday.(ŠµÄñøÿÿÿÿ
+B
+java:S1123J"'Add the missing @Deprecated annotation.(ŠµÄñøÿÿÿÿ
+b
+java:S2445O"G"sp" is a method parameter, and should not be used for synchronization.(Ë‘ö¶úÿÿÿÿ
+b
+java:S2445Y"G"sp" is a method parameter, and should not be used for synchronization.(Ë‘ö¶úÿÿÿÿ
+b
+java:S2445b"G"sp" is a method parameter, and should not be used for synchronization.(Ë‘ö¶úÿÿÿÿ
+b
+java:S2445h"G"sp" is a method parameter, and should not be used for synchronization.(Ë‘ö¶úÿÿÿÿ

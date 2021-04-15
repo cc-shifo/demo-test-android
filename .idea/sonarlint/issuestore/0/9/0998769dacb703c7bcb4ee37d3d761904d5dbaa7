@@ -1,0 +1,13 @@
+
+h
+java:S1104Ä"QMake title a static final constant or non-public and provide accessors if needed.(Å¬õ
+K
+java:S1172k"0Remove this unused method parameter "animation".(ÿ™¢§ûÿÿÿÿ
+M
+java:S2696‹"6Make the enclosing method "static" or remove this set.(Ó’ÏÉ
+[
+java:S3252–"DUse static access with "java.text.DateFormat" for "getDateInstance".(†÷µõ
+
+java:S1186Û"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ûÆ‚Ãøÿÿÿÿ
+V	java:S125|"<This block of commented-out lines of code should be removed.(€ƒÕùÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(ÅÎ÷øÿÿÿÿ

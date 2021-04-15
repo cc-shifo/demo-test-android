@@ -1,0 +1,48 @@
+
+w
+java:S1192š"aDefine a constant instead of duplicating this literal "12345678123456781234567812345678" 5 times.(œÎ¾w
+c
+java:S1192n"HDefine a constant instead of duplicating this literal "length" 11 times.(Œ¸²úÿÿÿÿ
+p
+java:S1192{"ZDefine a constant instead of duplicating this literal "Dummy separator long data" 3 times.(Ó£ğ•
+^
+java:S11924"HDefine a constant instead of duplicating this literal "testafs" 4 times.(âÔ‘‚
+i
+java:S1192o"NDefine a constant instead of duplicating this literal "alphavardata" 19 times.(›üºâùÿÿÿÿ
+]
+java:S1192i"GDefine a constant instead of duplicating this literal "msgDS-" 5 times.(Ï­Ş‘
+t
+java:S1192„"XDefine a constant instead of duplicating this literal "Dummy separator no data" 3 times.(Æ‹™¢üÿÿÿÿ
+b
+java:S1192•"FDefine a constant instead of duplicating this literal "ABCDE" 4 times.(§ñ¼¶ûÿÿÿÿ
+c
+java:S1192–"GDefine a constant instead of duplicating this literal "DSmsg-" 3 times.(ÇÂ¤•øÿÿÿÿ
+d
+java:S1192 "HDefine a constant instead of duplicating this literal "content" 9 times.(Ò£óãıÿÿÿÿ
+\
+java:S1192—"FDefine a constant instead of duplicating this literal "12345" 4 times.(ú”–
+`	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(‚ëô¡şÿÿÿÿ
+`	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(…ÂÌÿÿÿÿÿ
+[	java:S112?"FDefine and throw a dedicated exception instead of using a generic one.(É¸ƒ
+[	java:S112L"FDefine and throw a dedicated exception instead of using a generic one.(Ôµ¯ı
+`	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(ı´§şÿÿÿÿ
+[	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(½¡ÌÏ
+\	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(©ÀÜ›
+a	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(»—‚´ÿÿÿÿÿ
+a	java:S112Ù"FDefine and throw a dedicated exception instead of using a generic one.(‚ÎÖèøÿÿÿÿ
+\	java:S112è"FDefine and throw a dedicated exception instead of using a generic one.(­˜µ®
+\	java:S112÷"FDefine and throw a dedicated exception instead of using a generic one.(™«ú®
+\	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(ÂäİÖ
+\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(À†Äå
+a	java:S112©"FDefine and throw a dedicated exception instead of using a generic one.(¶êå±øÿÿÿÿ
+\	java:S112Â"FDefine and throw a dedicated exception instead of using a generic one.(üÅ¥
+N
+java:S1117i"8Rename "imsg" which hides the field declared at line 39.(Ï­Ş‘
+N
+java:S1117j"8Rename "omsg" which hides the field declared at line 41.(öŒõ¤
+T
+java:S1117–"8Rename "imsg" which hides the field declared at line 39.(ÇÂ¤•øÿÿÿÿ
+O
+java:S1117—"8Rename "omsg" which hides the field declared at line 41.(Øë‡â
+D	java:S108ä")Either remove or fill this block of code.(­„×æùÿÿÿÿ
+D	java:S108ó")Either remove or fill this block of code.(­„×æùÿÿÿÿ

@@ -1,0 +1,31 @@
+
+†
+java:S1319m"qThe return type of this method should be an interface such as "List" rather than the implementation "LinkedList".(‘ÑÞ
+‡
+java:S1319p"qThe type of the "queue" object should be an interface such as "List" rather than the implementation "LinkedList".(Žï›ý
+E
+java:S3740"/Provide the parametrized type for this generic.(Ìþüœ
+E
+java:S3740"/Provide the parametrized type for this generic.(Ìþüœ
+D
+java:S3740m"/Provide the parametrized type for this generic.(‘ÑÞ
+E
+java:S3740p"/Provide the parametrized type for this generic.(Žï›ý
+Y
+java:S1155=">Use isEmpty() to check whether the collection is empty or not.(¡³Œ’ûÿÿÿÿ
+T
+java:S1155Q">Use isEmpty() to check whether the collection is empty or not.(¾Œ™
+T
+java:S1155Y">Use isEmpty() to check whether the collection is empty or not.(€ÉÈœ
+ˆ
+java:S1130+"mRemove the declaration of thrown exception 'org.jpos.util.BlockingQueue$Closed' which is a runtime exception.(õôž”ÿÿÿÿÿ
+K
+java:S2446/"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ
+ˆ
+java:S11301"mRemove the declaration of thrown exception 'org.jpos.util.BlockingQueue$Closed' which is a runtime exception.(ŸÆ—Øúÿÿÿÿ
+K
+java:S24465"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ
+ƒ
+java:S11309"mRemove the declaration of thrown exception 'org.jpos.util.BlockingQueue$Closed' which is a runtime exception.(÷ã¨ 
+ƒ
+java:S1130I"mRemove the declaration of thrown exception 'org.jpos.util.BlockingQueue$Closed' which is a runtime exception.(÷ã¨ 

@@ -1,0 +1,45 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(³Şí˜üÿÿÿÿ
+B
+java:S1068",Remove this unused "birthday" private field.(€ô»Ò
+H
+java:S1068"-Remove this unused "linkPhone" private field.(¶¼ıÿÿÿÿ
+?
+java:S1068	"*Remove this unused "nation" private field.(¿òÈ`
+J
+java:S1068
+"/Remove this unused "studentCode" private field.(„î °øÿÿÿÿ
+E
+java:S1068"/Remove this unused "unitiveCode" private field.(¿Ï‚Á
+=
+java:S1068"'Remove this unused "sex" private field.(ª†« 
+J
+java:S1068"/Remove this unused "linkAddress" private field.(÷Ôè§ùÿÿÿÿ
+K
+java:S1068"0Remove this unused "identityCard" private field.(¯å şüÿÿÿÿ
+C
+java:S1068"-Remove this unused "accountId" private field.(ßÒìÈ
+A
+java:S1068"+Remove this unused "classId" private field.(Ğ¥¦
+G
+java:S1068",Remove this unused "password" private field.(œãë­úÿÿÿÿ
+D
+java:S1068".Remove this unused "modifyTime" private field.(“ığö
+C
+java:S1068"-Remove this unused "isDeleted" private field.(ÈÀÕ¼
+D
+java:S1068".Remove this unused "postalcode" private field.(«ƒéî
+I
+java:S1068".Remove this unused "background" private field.(•îÕ†ıÿÿÿÿ
+B
+java:S1068",Remove this unused "schoolId" private field.(–ñ‘õ
+E
+java:S1068"/Remove this unused "studentName" private field.(‚ı³“
+L
+java:S1068"1Remove this unused "sequenceIntId" private field.(ÎŸ³´ÿÿÿÿÿ
+E
+java:S1068"/Remove this unused "nativePlace" private field.(Èª„®
+<
+java:S1068"&Remove this unused "id" private field.(æ¨ç†
+B
+java:S1068",Remove this unused "username" private field.(‘ó¹²

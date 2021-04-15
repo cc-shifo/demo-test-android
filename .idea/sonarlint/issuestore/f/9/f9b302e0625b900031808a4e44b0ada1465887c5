@@ -1,0 +1,23 @@
+
+f
+java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(©ÌÛÌÿÿÿÿÿ
+r
+java:S1192("WDefine a constant instead of duplicating this literal "tagType cannot be null" 3 times.(Ö’Ê¥ùÿÿÿÿ
+\
+java:S11926"FDefine a constant instead of duplicating this literal "Tag: " 3 times.(æÖéÿ
+q
+java:S11927"\Define a constant instead of duplicating this literal ". Value should be of type: " 3 times.(ÙşÒ
+p
+java:S1192+"UDefine a constant instead of duplicating this literal "value cannot be null" 3 times.(Éı·ıÿÿÿÿ
+a
+java:S11927"LDefine a constant instead of duplicating this literal ". Received " 3 times.(ÙşÒ
+=
+java:S1948#"'Make "value" transient or serializable.(ïüÁ 
+ƒ
+java:S1130&"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ú˜öÛ
+ˆ
+java:S1130F"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ó’Úıÿÿÿÿ
+ƒ
+java:S1130g"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ªÁÁâ
+ˆ
+java:S1130~"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(ó’Úıÿÿÿÿ

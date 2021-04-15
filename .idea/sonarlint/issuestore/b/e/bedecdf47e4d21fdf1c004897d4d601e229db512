@@ -1,0 +1,21 @@
+
+[	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(ö€ùş
+Z	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(¯±e
+[	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(Ë´©Ÿ
+C
+java:S1659'"(Declare "priorities" on a separate line.(‹éúºûÿÿÿÿ
+G
+java:S1659'",Declare "processorClass" on a separate line.(‹éúºûÿÿÿÿ
+\
+java:S2142`"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+>	java:S108`")Either remove or fill this block of code.(ä ¹€
+]
+java:S2886{"BSynchronize this method to match the synchronization on "setPath".(±½×¹ùÿÿÿÿ
+\
+java:S2886w"FSynchronize this method to match the synchronization on "setPoolSize".(°Ñ¼›
+f
+java:S2886„"JSynchronize this method to match the synchronization on "setPollInterval".(»¨´Ëûÿÿÿÿ
+_
+java:S2886"HSynchronize this method to match the synchronization on "setPriorities".(¸¡¦
+^
+java:S2886–"GSynchronize this method to match the synchronization on "setProcessor".(é¨ä

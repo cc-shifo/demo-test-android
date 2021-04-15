@@ -1,0 +1,23 @@
+
+a
+java:S1192ë"JDefine a constant instead of duplicating this literal "aaabbbccc" 6 times.(ûí¬
+`
+java:S1192†"IDefine a constant instead of duplicating this literal "balabala" 4 times.(†ÕÆ
+d
+java:S1192Y"IDefine a constant instead of duplicating this literal "abcd123" 13 times.(ƒßğ‚úÿÿÿÿ
+f
+java:S1192‰"JDefine a constant instead of duplicating this literal "aabaabaa" 14 times.(†£àÿÿÿÿÿ
+]
+java:S1192‹"FDefine a constant instead of duplicating this literal "abcde" 7 times.(‹÷ 
+c
+java:S1192Ô"LDefine a constant instead of duplicating this literal "abcderghigh" 3 times.(–øÉ§
+\
+java:S1192_"FDefine a constant instead of duplicating this literal "cd123" 3 times.(âÂõÅ
+U
+java:S2479":Remove the non-escaped \u0009 character from this literal.(Ğ¹ñıüÿÿÿÿ
+U
+java:S2479":Remove the non-escaped \u0009 character from this literal.(‡Çòšüÿÿÿÿ
+P
+java:S2479 ":Remove the non-escaped \u0009 character from this literal.(ßĞôÀ
+V
+java:S2479¿":Remove the non-escaped \u0009 character from this literal.(Æ£¥¤ıÿÿÿÿ

@@ -1,0 +1,74 @@
+
+X
+java:S2259Ç"AA "NullPointerException" could be thrown; "str" is nullable here.(ÈÚ˜ñ
+d
+java:S2259»"MA "NullPointerException" could be thrown; "repeatByLength()" can return null.(Ë•Ö´
+Y
+java:S2259„
+"BA "NullPointerException" could be thrown; "str2" is nullable here.(óÅ
+X
+java:S2259ì"AA "NullPointerException" could be thrown; "str" is nullable here.(ÈÚ˜ñ
+Y
+java:S2259ª
+"BA "NullPointerException" could be thrown; "str2" is nullable here.(îü£“
+a
+java:S2259è	"E"NullPointerException" will be thrown when invoking method "strip()".(Òşìîùÿÿÿÿ
+U
+java:S24795":Remove the non-escaped \u0009 character from this literal.(Üÿê›üÿÿÿÿ
+D
+java:S1125e")Remove the literal "false" boolean value.(áôíÆùÿÿÿÿ
+@
+java:S1125Š")Remove the literal "false" boolean value.(÷¨Ö¸
+E
+java:S1125Ü")Remove the literal "false" boolean value.(×çÃ¯ùÿÿÿÿ
+@
+java:S1125å")Remove the literal "false" boolean value.(Íãü
+E
+java:S1125ğ")Remove the literal "false" boolean value.(—ÊãÚÿÿÿÿÿ
+E
+java:S1125ï")Remove the literal "false" boolean value.(Ó—–Íûÿÿÿÿ
+@
+java:S1125ı")Remove the literal "false" boolean value.(ìÓ´
+@
+java:S1125ı")Remove the literal "false" boolean value.(ìÓ´
+E
+java:S1125µ")Remove the literal "false" boolean value.(ëÇªÇÿÿÿÿÿ
+E
+java:S1125É")Remove the literal "false" boolean value.(ëÇªÇÿÿÿÿÿ
+@
+java:S1125Ì")Remove the literal "false" boolean value.(ïÇáÛ
+E
+java:S1125”")Remove the literal "false" boolean value.(®íñ•úÿÿÿÿ
+E
+java:S1125»
+")Remove the literal "false" boolean value.(Š–ˆÿÿÿÿÿ
+@
+java:S1125Ï
+")Remove the literal "false" boolean value.(¯³ä²
+E
+java:S1125Ü
+")Remove the literal "false" boolean value.(Şª¡ıÿÿÿÿ
+P
+java:S1854ƒ"9Remove this useless assignment to local variable "split".(ÙõØ™
+E
+java:S1125ş")Remove the literal "false" boolean value.(ÀÜ÷äÿÿÿÿÿ
+=
+java:S1168’"&Return an empty array instead of null.(¥¹ï
+E
+java:S1125Š")Remove the literal "false" boolean value.(×‹˜éùÿÿÿÿ
+E
+java:S1125”")Remove the literal "false" boolean value.(şæ€¬ûÿÿÿÿ
+E
+java:S1125š")Remove the literal "false" boolean value.(–ì½ªıÿÿÿÿ
+=
+java:S1168†"&Return an empty array instead of null.(¥¹ï
+@
+java:S1125")Remove the literal "false" boolean value.(º ËÍ
+@
+java:S1125Î")Remove the literal "false" boolean value.(º ËÍ
+7
+java:S2129ş" Remove this "String" constructor(ÿ¯¡í
+u
+java:S3012  "YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(›âØ¹ûÿÿÿÿ
+A
+java:S1481ƒ"*Remove this unused "split" local variable.(ÙõØ™
