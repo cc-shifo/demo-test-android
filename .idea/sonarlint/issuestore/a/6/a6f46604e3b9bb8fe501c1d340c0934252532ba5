@@ -1,15 +1,0 @@
-
-[
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Êæï´
-E
-java:S1125ğ")Remove the literal "false" boolean value.(ä×²şıÿÿÿÿ
-A
-java:S1181‚"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
-\
-java:S1193„"@Replace the usage of the "instanceof" operator by a catch block.(ÜŞ…²üÿÿÿÿ
-Q
-java:S1133"5Do not forget to remove this deprecated code someday.(ãˆëŠúÿÿÿÿ
-_
-java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-E
-java:S1125µ")Remove the literal "false" boolean value.(´Øºüüÿÿÿÿ

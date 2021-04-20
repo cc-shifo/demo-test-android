@@ -1,11 +1,0 @@
-
-v	java:S116"\Rename this field "JAVA_RUNTIME_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Àö–ëşÿÿÿÿ
-t	java:S116"_Rename this field "JAVA_RUNTIME_VERSION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û ÁŒ
-n	java:S116"TRename this field "JAVA_HOME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ºûÿÿÿÿÿ
-m	java:S116"XRename this field "JAVA_EXT_DIRS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èƒéª
-r	java:S116"]Rename this field "JAVA_ENDORSED_DIRS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡´Äà
-t	java:S116"ZRename this field "JAVA_CLASS_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áñ¸îıÿÿÿÿ
-r	java:S116"]Rename this field "JAVA_CLASS_VERSION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë·Œ¥
-v	java:S116"\Rename this field "JAVA_LIBRARY_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷÷ÆÅúÿÿÿÿ
-s	java:S116"^Rename this field "SUN_BOOT_CLASS_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º®
-x	java:S116"^Rename this field "SUN_ARCH_DATA_MODEL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•íïûÿÿÿÿ

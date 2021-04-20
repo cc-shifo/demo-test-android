@@ -1,11 +1,0 @@
-
-[	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(±Ùý²
-`	java:S1126"FDefine and throw a dedicated exception instead of using a generic one.(Ûüµ„ùÿÿÿÿ
-[	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(Õ«±†
-`	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(¤©Œèþÿÿÿÿ
-Y
-java:S1214"CMove constants defined in this interfaces to another class or enum.(Ð·Þø
-Q
-java:S2386("6Move "stateString" to a class and lower its visibility(‡×·ùÿÿÿÿ
-S
-java:S1197("8Move the array designator from the variable to the type.(‡×·ùÿÿÿÿ

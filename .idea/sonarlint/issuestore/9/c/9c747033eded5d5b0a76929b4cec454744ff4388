@@ -1,8 +1,0 @@
-
-E
-java:S1125Χ")Remove the literal "false" boolean value.(ΎΗ²γωÿÿÿÿ
-E
-java:S1125•")Remove the literal "false" boolean value.(•Ϊψϋÿÿÿÿ
-\
-java:S1193•"@Replace the usage of the "instanceof" operator by a catch block.(•Ϊψϋÿÿÿÿ
-R	java:S125΅"<This block of commented-out lines of code should be removed.(η”§ω

@@ -1,13 +1,0 @@
-
-k
-java:S1192""UDefine a constant instead of duplicating this literal "Should be ABCDEFGHIJ" 3 times.(¦°Ú
-a
-java:S1192!"KDefine a constant instead of duplicating this literal "ABCDEFGHIJ" 3 times.(¤Õ€
-[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(çå®ş
-[	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(à”¢„
-`	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(ğ¤é¶üÿÿÿÿ
-[	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(ÜÄ¿Á
-[	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(ãÖß½
-b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(÷Ò¥å
-C	java:S1080")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
-C	java:S108>")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ

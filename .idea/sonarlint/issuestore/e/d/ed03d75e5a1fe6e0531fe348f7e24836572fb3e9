@@ -1,9 +1,0 @@
-
-P
-java:S1118":Add a private constructor to hide the implicit public one.(ó‰”Þ
-?
-java:S1125a")Remove the literal "false" boolean value.(¹û‹€
-E
-java:S1125·")Remove the literal "false" boolean value.(Íñ¦’úÿÿÿÿ
-W	java:S125©"<This block of commented-out lines of code should be removed.(ëÇ™Óøÿÿÿÿ
-R	java:S125¸"<This block of commented-out lines of code should be removed.(¸€é

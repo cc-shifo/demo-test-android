@@ -1,11 +1,0 @@
-
-o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(î½³
-t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¨Ùêáúÿÿÿÿ
-o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(˜’Àø
-[
-java:S2147i"ECombine this catch with the one at line 103, which has the same body.(Å¡ß
-B
-java:S3011e",This accessibility update should be removed.(˜ÂÓ˜
-B
-java:S3011f",This accessibility bypass should be removed.(ïè¢ó
-Q	java:S125{"<This block of commented-out lines of code should be removed.(Ú†Æá

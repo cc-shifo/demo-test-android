@@ -1,9 +1,0 @@
-
-b	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–ôí¶
-k	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù’Š¢ùÿÿÿÿ
-V	java:S125<"<This block of commented-out lines of code should be removed.(ç¸Ö–üÿÿÿÿ
-Q	java:S125I"<This block of commented-out lines of code should be removed.(Ø‡Ë÷
-Q	java:S125U"<This block of commented-out lines of code should be removed.(ÓÚÇì
-V	java:S125p"<This block of commented-out lines of code should be removed.(Ž¸œ¼ùÿÿÿÿ
-V	java:S125}"<This block of commented-out lines of code should be removed.(ÜµÏýÿÿÿÿ
-W	java:S125"<This block of commented-out lines of code should be removed.(ìÅ¼ëùÿÿÿÿ

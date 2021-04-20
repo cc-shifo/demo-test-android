@@ -1,7 +1,0 @@
-
-ƒ
-java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(í½½Ä
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(º¸¤Ä
-U
-java:S1118
-":Add a private constructor to hide the implicit public one.(¦Ùâ‘ÿÿÿÿÿ

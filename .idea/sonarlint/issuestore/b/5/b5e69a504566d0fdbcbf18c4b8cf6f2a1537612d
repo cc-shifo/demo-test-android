@@ -1,8 +1,0 @@
-
-d
-java:S3014I"IRemove this use of "ThreadGroup". Prefer the use of "ThreadPoolExecutor".(á½áùÿÿÿÿ
-d
-java:S3014P"IRemove this use of "ThreadGroup". Prefer the use of "ThreadPoolExecutor".(–ö–Ôşÿÿÿÿ
-a
-java:S2142^"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ
-C	java:S108^")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ

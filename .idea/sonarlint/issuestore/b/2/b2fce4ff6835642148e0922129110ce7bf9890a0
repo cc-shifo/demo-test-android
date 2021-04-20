@@ -1,11 +1,0 @@
-
-7
-java:S1170	"!Make this final field static too.(õö°¤
-g	java:S116"MRename this field "F2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àšŒ¹øÿÿÿÿ
-h	java:S116"NRename this field "FAC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”«ž½ýÿÿÿÿ
-A
-java:S1068"&Remove this unused "f1" private field.(¿ˆÀ¥øÿÿÿÿ
-A
-java:S1068"&Remove this unused "F2" private field.(àšŒ¹øÿÿÿÿ
-B
-java:S1068"'Remove this unused "FAC" private field.(”«ž½ýÿÿÿÿ

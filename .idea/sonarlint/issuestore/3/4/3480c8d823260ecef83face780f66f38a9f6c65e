@@ -1,6 +1,0 @@
-
-[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(çå®ş
-[	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(ÜÄ¿Á
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÙÒïÙşÿÿÿÿ
-C	java:S108'")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ
-C	java:S1086")Either remove or fill this block of code.(ÒÌâ–øÿÿÿÿ

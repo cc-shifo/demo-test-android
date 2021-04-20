@@ -1,16 +1,0 @@
-
-r
-java:S3077#"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ù¦®¸ùÿÿÿÿ
-T
-java:S4349">Provide an override of "write(byte[],int,int)" for this class.(‡ÄÛ£
-a
-java:S2142>"FEither re-interrupt this method or rethrow the "InterruptedException".(®ûºöÿÿÿÿÿ
-C	java:S108>")Either remove or fill this block of code.(®ûºöÿÿÿÿÿ
-E
-java:S20936"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
-a
-java:S2142_"FEither re-interrupt this method or rethrow the "InterruptedException".(­¤ß”øÿÿÿÿ
-C	java:S108_")Either remove or fill this block of code.(­¤ß”øÿÿÿÿ
-a
-java:S2142n"FEither re-interrupt this method or rethrow the "InterruptedException".(­¤ß”øÿÿÿÿ
-C	java:S108n")Either remove or fill this block of code.(­¤ß”øÿÿÿÿ

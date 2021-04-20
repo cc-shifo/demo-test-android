@@ -1,8 +1,0 @@
-
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(â œ—ÿÿÿÿÿ
-A
-java:S1905$"&Remove this unnecessary cast to "int".(ïõøÿÿÿÿ
-;
-java:S1905+"&Remove this unnecessary cast to "int".(ÄÜ
-6
-java:S1110+"!Remove these useless parentheses.(ÄÜ

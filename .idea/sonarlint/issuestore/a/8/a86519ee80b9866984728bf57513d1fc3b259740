@@ -1,13 +1,0 @@
-
-L
-java:S1444""1Make this "public static IMAGES_TYPE" field final(±èòŽûÿÿÿÿ
-r
-java:S1104""WMake IMAGES_TYPE a static final constant or non-public and provide accessors if needed.(±èòŽûÿÿÿÿ
-_
-java:S2583X"DChange this condition so that it does not always evaluate to "false"(ªð©òþÿÿÿÿ
-q
-java:S3008""VRename this field "IMAGES_TYPE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±èòŽûÿÿÿÿ
-8
-java:S2386""Make this member "protected".(±èòŽûÿÿÿÿ
-U
-java:S1118":Add a private constructor to hide the implicit public one.(ÄÛˆŸúÿÿÿÿ

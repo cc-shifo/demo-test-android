@@ -1,4 +1,0 @@
-
-[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÙÓü€
-j
-java:S1215"TDon't try to be smarter than the JVM, remove this call to run the garbage collector.(Ì°¬“

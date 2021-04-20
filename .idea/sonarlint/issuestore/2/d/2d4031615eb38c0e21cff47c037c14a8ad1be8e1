@@ -1,7 +1,0 @@
-
-U
-java:S1118	":Add a private constructor to hide the implicit public one.(Ì½»şÿÿÿÿ
-D
-java:S1125G")Remove the literal "false" boolean value.(…‘ß‹øÿÿÿÿ
-@
-java:S1181Z"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ

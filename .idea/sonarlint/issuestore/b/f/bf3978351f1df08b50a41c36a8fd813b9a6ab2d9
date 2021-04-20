@@ -1,15 +1,0 @@
-
-m
-java:S1104)"RMake nameId a static final constant or non-public and provide accessors if needed.(ºÐ ªÿÿÿÿÿ
->
-java:S3066)"#Lower the visibility of this field.(ºÐ ªÿÿÿÿÿ
-o	java:S115 "ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(­àé
-t	java:S115!"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŠßŠŽùÿÿÿÿ
-o	java:S115""ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÈÐÇÎ
-t	java:S115#"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(½ÖËùøÿÿÿÿ
-n	java:S115$"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ó×Ú
-o	java:S115%"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Œ…ƒ§
-o	java:S115&"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ü‘Â
-t	java:S115'"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‘Ñ“Ùüÿÿÿÿ
-L
-java:S2696>"6Make the enclosing method "static" or remove this set.(Ó’ÏÉ

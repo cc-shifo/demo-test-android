@@ -1,9 +1,0 @@
-
-F
-java:S1066¤"/Merge this if statement with the enclosing one.(æ±å
-Q
-java:S1133Ø"5Do not forget to remove this deprecated code someday.(§Òíûÿÿÿÿ
-_
-java:S1123×"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(áçù
-P	java:S125X"<This block of commented-out lines of code should be removed.(üş­t
-W	java:S125ä"<This block of commented-out lines of code should be removed.( ®½‡ÿÿÿÿÿ

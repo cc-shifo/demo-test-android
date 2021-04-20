@@ -1,8 +1,0 @@
-
-`	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(‚ëô¡þÿÿÿÿ
-[	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ÆŸ‡­
-Z	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(€Çí6
-`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(èü°·üÿÿÿÿ
-Z	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(ž¨´
-‡
-java:S1130%"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(‚ëô¡þÿÿÿÿ

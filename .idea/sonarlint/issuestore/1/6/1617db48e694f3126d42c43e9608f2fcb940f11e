@@ -1,16 +1,0 @@
-
-k
-java:S11920"UDefine a constant instead of duplicating this literal "Check test condition" 6 times.(¶ëĞ©
-[	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-[	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-[	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-[	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-[	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-\	java:S112‡"FDefine and throw a dedicated exception instead of using a generic one.(¶ëĞ©
-q
-java:S3008	"VRename this field "TINY_STRING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ‚×ıÿÿÿÿ
-r
-java:S3008
-"WRename this field "SHORT_STRING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èÃÌÏûÿÿÿÿ
-l
-java:S3008"VRename this field "LONG_STRING" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¢¶

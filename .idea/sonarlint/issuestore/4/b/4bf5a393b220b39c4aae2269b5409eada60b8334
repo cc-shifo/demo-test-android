@@ -1,38 +1,0 @@
-
-Š
-java:S1319Õ"sThe return type of this method should be an interface such as "Set" rather than the implementation "LinkedHashSet".(˜ìŸü
-`
-java:S1124,"EReorder the modifiers to comply with the Java Language Specification.(¹³‚úÿÿÿÿ
-L
-java:S1133Â"5Do not forget to remove this deprecated code someday.(µĞÊ¹
-_
-java:S1123Á"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-Q
-java:S1133·"5Do not forget to remove this deprecated code someday.(şšæËüÿÿÿÿ
-_
-java:S1123¶"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-E
-java:S1125û")Remove the literal "false" boolean value.(ÔÉ”Êıÿÿÿÿ
-R
-java:S1854 ";Remove this useless assignment to local variable "matcher".(ÑÇ¨Ê
-=	java:S131£""Add a default case to this switch.(§ãÁËúÿÿÿÿ
-Q
-java:S1133
-"5Do not forget to remove this deprecated code someday.(äÄ˜şşÿÿÿÿ
-_
-java:S1123
-"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-Q
-java:S1133‘"5Do not forget to remove this deprecated code someday.(€˜’ñşÿÿÿÿ
-_
-java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-K
-java:S1133¢"5Do not forget to remove this deprecated code someday.(ˆÅ¶/
-_
-java:S1123¡"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-Q
-java:S1133·"5Do not forget to remove this deprecated code someday.(Ÿ¨¢øÿÿÿÿ
-_
-java:S1123¶"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-C
-java:S1481 ",Remove this unused "matcher" local variable.(ÑÇ¨Ê

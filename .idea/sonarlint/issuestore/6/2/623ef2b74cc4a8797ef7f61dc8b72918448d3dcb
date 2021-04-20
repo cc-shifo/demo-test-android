@@ -1,26 +1,0 @@
-
-`	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-8
-java:S1643†"Use a StringBuilder instead.(–¼á˜ùÿÿÿÿ
-8
-java:S1643‰"Use a StringBuilder instead.(ÌªÓÏûÿÿÿÿ
-D
-java:S1121@".Extract the assignment out of this expression.(»ëÆÿ
-n
-java:S3008$"SRename this field "INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Éñ•©ıÿÿÿÿ
-j
-java:S3008'"TRename this field "SP_PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”û¾®
-v
-java:S3008("[Rename this field "SP_PREFIX_LENGTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ÀÏÎşÿÿÿÿ
-@
-java:S1181/"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
-C
-java:S1602®",Remove useless curly braces around statement(ªº¨
-n
-java:S2737Å"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
-M
-java:S4838Í"6Change "Object" to the type handled by the Collection.(ÎñÄŸ
-H
-java:S1602İ",Remove useless curly braces around statement(×ó¶úÿÿÿÿ
-C
-java:S1602é",Remove useless curly braces around statement(á¯§˜

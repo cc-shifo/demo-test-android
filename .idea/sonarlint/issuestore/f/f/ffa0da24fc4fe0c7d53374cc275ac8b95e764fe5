@@ -1,9 +1,0 @@
-
-\
-java:S2142Y"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-s
-java:S2273X"^Move this call to "wait()" into a synchronized block to be sure the monitor on "this" is held.(ç£ŠM
-O
-java:S2274X":Remove this call to "wait" or move it into a "while" loop.(ç£ŠM
-~
-java:S2273_"cMove this call to "notifyAll()" into a synchronized block to be sure the monitor on "this" is held.(µ˜©èùÿÿÿÿ

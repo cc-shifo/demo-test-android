@@ -1,7 +1,0 @@
-
-t
-java:S3012^"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(©ùÆàýÿÿÿÿ
-‰
-java:S1130˜"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(«æ½µÿÿÿÿÿ
-U
-java:S2130¨"9Use "Integer.parseInt" for this string-to-int conversion.(µ¶¯–ÿÿÿÿÿ

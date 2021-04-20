@@ -1,28 +1,0 @@
-
-s
-java:S1192ô"]Define a constant instead of duplicating this literal "Image type is not supported!" 4 times.(³þ«
-p
-java:S1192Ó"TDefine a constant instead of duplicating this literal "] is not supported!" 3 times.(ªÎ¶Ìúÿÿÿÿ
-W	java:S107Ü"<Method has 8 parameters, which is greater than 7 authorized.(˜‰µ™ùÿÿÿÿ
-Q	java:S107í"<Method has 8 parameters, which is greater than 7 authorized.(èæT
-W	java:S107þ"<Method has 8 parameters, which is greater than 7 authorized.(Õõäíÿÿÿÿÿ
-W	java:S107‘"<Method has 8 parameters, which is greater than 7 authorized.(È“ÛÐþÿÿÿÿ
-R	java:S107¤"<Method has 8 parameters, which is greater than 7 authorized.(ñ²Û†
-R	java:S107¶"<Method has 8 parameters, which is greater than 7 authorized.(¥Ò½Ý
-`
-java:S2583ä"DChange this condition so that it does not always evaluate to "false"(à›§Šüÿÿÿÿ
-`
-java:S2583¶"DChange this condition so that it does not always evaluate to "false"(à›§Šüÿÿÿÿ
-`
-java:S2583Í"DChange this condition so that it does not always evaluate to "false"(à›§Šüÿÿÿÿ
-O
-java:S11188":Add a private constructor to hide the implicit public one.(×Û´C
-E
-java:S1125Å")Remove the literal "false" boolean value.(ÇÝÊøùÿÿÿÿ
-E
-java:S1125Ç")Remove the literal "false" boolean value.(úŽØ†üÿÿÿÿ
-E
-java:S1125ˆ	")Remove the literal "false" boolean value.(ƒ±š³ùÿÿÿÿ
-E
-java:S1125„")Remove the literal "false" boolean value.(÷®­Ûýÿÿÿÿ
-W	java:S125–"<This block of commented-out lines of code should be removed.(‘Õ¬ëýÿÿÿÿ

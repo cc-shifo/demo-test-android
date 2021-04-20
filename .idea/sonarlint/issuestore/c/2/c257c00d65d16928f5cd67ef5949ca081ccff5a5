@@ -1,7 +1,0 @@
-
-[	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ù®é»
-o
-java:S2293>"YReplace the type specification in this constructor call with the diamond operator ("<>").(óÛşÄ
-i
-java:S4042m"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
-U	java:S899m";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ

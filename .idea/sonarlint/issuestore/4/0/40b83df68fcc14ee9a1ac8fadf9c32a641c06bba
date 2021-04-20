@@ -1,299 +1,0 @@
-
-h
-java:S1192©"QDefine a constant instead of duplicating this literal "55BE45DD2C9E0CBF" 5 times.(ë—ùÔ
-c
-java:S1192Í"GDefine a constant instead of duplicating this literal "40D522" 3 times.(Å²Šåıÿÿÿÿ
-m
-java:S1192õ"QDefine a constant instead of duplicating this literal "26C8A1042D1CAF3E" 5 times.(ìÛĞ«ıÿÿÿÿ
-m
-java:S1192é"QDefine a constant instead of duplicating this literal "36DBEE15F36B1E7F" 5 times.(õöÃ¨øÿÿÿÿ
-h
-java:S1192"QDefine a constant instead of duplicating this literal "AC8074C9E62EE6EF" 5 times.(Äöôÿ
-f
-java:S1192ƒ"JDefine a constant instead of duplicating this literal "00120000" 11 times.(¼ÄÒĞùÿÿÿÿ
-m
-java:S1192“"QDefine a constant instead of duplicating this literal "ABFA6F3C28A8CB0C" 5 times.(Îı©„ıÿÿÿÿ
-h
-java:S1192ç	"QDefine a constant instead of duplicating this literal "0E56BBA476EB5588" 3 times.(ş·Ê†
-x
-java:S1192Ê"aDefine a constant instead of duplicating this literal "E09B073B4007541FAB76B04370451031" 3 times.(úÑêì
-z
-java:S1192Ù"cDefine a constant instead of duplicating this literal "testJCESecurityModuleKeyHexString1" 3 times.(ö§ºµ
-ˆ
-java:S1192“"lDefine a constant instead of duplicating this literal "Expected NullPointerException to be thrown" 19 times.(áÆ”Óÿÿÿÿÿ
-m
-java:S1192•"QDefine a constant instead of duplicating this literal "ex.getMessage()" 28 times.(«€×ˆùÿÿÿÿ
-„
-java:S1192Ù"mDefine a constant instead of duplicating this literal "testJCESecurityModuleKeyCheckValueHexString1" 3 times.(ö§ºµ
-m
-java:S1192Ë"QDefine a constant instead of duplicating this literal "2263CD868F3E0234" 3 times.(ÉôÃŞÿÿÿÿÿ
-z
-java:S1192‹"cDefine a constant instead of duplicating this literal "testJCESecurityModuleAccountNumber" 5 times.(“‘ßº
-
-java:S1192Ì"eDefine a constant instead of duplicating this literal "123456789012345D12012061000110000000" 3 times.(ËŸıúÿÿÿÿ
-h
-java:S1192Õ"QDefine a constant instead of duplicating this literal "9FFD1D52AE0EC0F3" 3 times.(¡úÀ¿
-d
-java:S1192"MDefine a constant instead of duplicating this literal "12Characters" 5 times.(‡ùæâ
-g
-java:S1192Â"PUse already-defined constant 'accountNoA' instead of duplicating its value here.(ŞşÕ¬
-^
-java:S1192;"HDefine a constant instead of duplicating this literal "6FB1C8" 12 times.(™öÌÔ
-h
-java:S1192´"QDefine a constant instead of duplicating this literal "6F5DF407E1691DB1" 3 times.(§«ÆŒ
-}
-java:S1192Ë"aDefine a constant instead of duplicating this literal "4CBF5D51EA8525EF045EFED6E386D9D9" 3 times.(±íáúÿÿÿÿ
-r
-java:S1192£"[Define a constant instead of duplicating this literal "testJCESecurityModuleRealm" 4 times.(ï®õ
-f
-java:S1192™"ODefine a constant instead of duplicating this literal "ex.getNested()" 5 times.(ÎµúÅ
-e
-java:S1192›"IDefine a constant instead of duplicating this literal "00002710" 7 times.(›â¿üÿÿÿÿ
-h
-java:S1192ù"QDefine a constant instead of duplicating this literal "3C0CA40863092C3A" 4 times.(ÜÕ—Å
-m
-java:S1192Æ"QDefine a constant instead of duplicating this literal "6FA0EA8C194EDCFC" 3 times.(®‹ƒ“şÿÿÿÿ
-e
-java:S1192„"NDefine a constant instead of duplicating this literal "123456789012" 19 times.(Ãò½”
-y
-java:S1192Ø"]Define a constant instead of duplicating this literal "testJCESecurityModuleKeyType" 9 times.(¯¾”ÿÿÿÿÿ
-y
-java:S1192Ù"]Define a constant instead of duplicating this literal "testJCESecurityModuleLmkFile" 3 times.(”Å üÿÿÿÿ
-e
-java:S1192È"NDefine a constant instead of duplicating this literal "1234567890123" 3 times.(Ú²”–
-
-java:S1192Ú"cDefine a constant instead of duplicating this literal "Expected SMException to be thrown" 11 times.(¹å¹úÿÿÿÿ
-b
-java:S1192’"KDefine a constant instead of duplicating this literal "testString" 5 times.(ëåŸÁ
-e
-java:S1192Ï"NDefine a constant instead of duplicating this literal "1234567890120" 3 times.(Ò“¾Á
-‰
-java:S1192¤"mDefine a constant instead of duplicating this literal "Expected ConfigurationException to be thrown" 4 times.(ÜŠºèúÿÿÿÿ
-\	java:S112Æ"FDefine and throw a dedicated exception instead of using a generic one.(€“°Â
-[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ø¾æ
-a	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(“„µÿÿÿÿÿ
-\	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(š¥åÙ
-\	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(º±ãĞ
-\	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(ÅªÁ
-\	java:S112Â"FDefine and throw a dedicated exception instead of using a generic one.(êıöÖ
-\	java:S112Ì"FDefine and throw a dedicated exception instead of using a generic one.(¶—¸¸
-a	java:S112×"FDefine and throw a dedicated exception instead of using a generic one.(åä„üşÿÿÿÿ
-\	java:S112á"FDefine and throw a dedicated exception instead of using a generic one.(Ö”¶ÿ
-a	java:S112ë"FDefine and throw a dedicated exception instead of using a generic one.(Õ«ªüøÿÿÿÿ
-a	java:S112õ"FDefine and throw a dedicated exception instead of using a generic one.(‰Õ±Îùÿÿÿÿ
-a	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(ŞÍÁÿÿÿÿÿ
-\	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(•Š†‡
-\	java:S112“"FDefine and throw a dedicated exception instead of using a generic one.(‹ÓÓƒ
-a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(âß¤üÿÿÿÿ
-[	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(†³X
-a	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(êèÙéûÿÿÿÿ
-a	java:S112Ã"FDefine and throw a dedicated exception instead of using a generic one.( Ï”Éúÿÿÿÿ
-\	java:S112Î"FDefine and throw a dedicated exception instead of using a generic one.(ôª«‹
-a	java:S112Ö"FDefine and throw a dedicated exception instead of using a generic one.(Ëˆ†Êûÿÿÿÿ
-\	java:S112á"FDefine and throw a dedicated exception instead of using a generic one.(‹ª¾Ğ
-\	java:S112ì"FDefine and throw a dedicated exception instead of using a generic one.(¢¼°Á
-a	java:S112ö"FDefine and throw a dedicated exception instead of using a generic one.(†£Õ÷øÿÿÿÿ
-\	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(ÅÜĞÓ
-a	java:S112‹"FDefine and throw a dedicated exception instead of using a generic one.(Å¼üÖùÿÿÿÿ
-\	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(œ‰¡
-a	java:S112¢"FDefine and throw a dedicated exception instead of using a generic one.(í¶Şôøÿÿÿÿ
-a	java:S112¬"FDefine and throw a dedicated exception instead of using a generic one.(Ò’Œüÿÿÿÿ
-a	java:S112·"FDefine and throw a dedicated exception instead of using a generic one.(ıİÆÄùÿÿÿÿ
-\	java:S112Ä"FDefine and throw a dedicated exception instead of using a generic one.(Â»ÜÛ
-a	java:S112Î"FDefine and throw a dedicated exception instead of using a generic one.(»†ş¨ùÿÿÿÿ
-\	java:S112Ö"FDefine and throw a dedicated exception instead of using a generic one.(Á¹‰
-a	java:S112Ş"FDefine and throw a dedicated exception instead of using a generic one.(·Ê‘·øÿÿÿÿ
-a	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(«êÕúÿÿÿÿ
-\	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(ÌÅš
-a	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(‡Ğ¹şÿÿÿÿ
-a	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(£Í‚ûÿÿÿÿ
-\	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(êÆ ô
-a	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(¯¹¶±úÿÿÿÿ
-\	java:S112¯"FDefine and throw a dedicated exception instead of using a generic one.(Ï§»”
-\	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(ÀƒÑü
-\	java:S112Ä"FDefine and throw a dedicated exception instead of using a generic one.(¤Ô‹â
-a	java:S112Î"FDefine and throw a dedicated exception instead of using a generic one.(’İûÿÿÿÿ
-a	java:S112Ø"FDefine and throw a dedicated exception instead of using a generic one.(€®¢Ûûÿÿÿÿ
-\	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(ê½”
-\	java:S112î"FDefine and throw a dedicated exception instead of using a generic one.(¯ï÷¡
-a	java:S112ù"FDefine and throw a dedicated exception instead of using a generic one.(ËÇÚ—ıÿÿÿÿ
-\	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(Ô¾Ò™
-\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¢Üóì
-[	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(¸Šª.
-a	java:S112Ÿ"FDefine and throw a dedicated exception instead of using a generic one.(îĞïëøÿÿÿÿ
-[	java:S112¨"FDefine and throw a dedicated exception instead of using a generic one.(ö’É
-a	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(Â–Øôøÿÿÿÿ
-a	java:S112¹"FDefine and throw a dedicated exception instead of using a generic one.(ÌÚ¼Ôúÿÿÿÿ
-a	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(ú»æŒşÿÿÿÿ
-\	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(…Ôú
-a	java:S112Ù"FDefine and throw a dedicated exception instead of using a generic one.(–å·”şÿÿÿÿ
-a	java:S112å"FDefine and throw a dedicated exception instead of using a generic one.(§Ì Úúÿÿÿÿ
-\	java:S112ñ"FDefine and throw a dedicated exception instead of using a generic one.(Ûüü
-a	java:S112…"FDefine and throw a dedicated exception instead of using a generic one.(øŸƒ–üÿÿÿÿ
-a	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(Ó¸õ«üÿÿÿÿ
-a	java:S112¢"FDefine and throw a dedicated exception instead of using a generic one.(™ Œ…ÿÿÿÿÿ
-\	java:S112¯"FDefine and throw a dedicated exception instead of using a generic one.(Â°Ñ°
-a	java:S112¼"FDefine and throw a dedicated exception instead of using a generic one.(ÒŸ£ºÿÿÿÿÿ
-\	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(î¶ˆ¾
-a	java:S112Ö"FDefine and throw a dedicated exception instead of using a generic one.(’¦Êèÿÿÿÿÿ
-\	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(®¹®à
-\	java:S112ô"FDefine and throw a dedicated exception instead of using a generic one.(‰£¾ğ
-\	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(Œ†÷ó
-a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(‹Ì®‘şÿÿÿÿ
-\	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(€šôÌ
-\	java:S112¨"FDefine and throw a dedicated exception instead of using a generic one.(´ˆ‰Ø
-a	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(×ûúŸúÿÿÿÿ
-a	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(ØÛ´øÿÿÿÿ
-\	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(µ¾ó¨
-a	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(¿‹Ü¨şÿÿÿÿ
-\	java:S112Ş"FDefine and throw a dedicated exception instead of using a generic one.(ºÆï
-a	java:S112è"FDefine and throw a dedicated exception instead of using a generic one.(Œ®è¡øÿÿÿÿ
-[	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(»„„
-\	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(¢ÖÄ
-a	java:S112ˆ	"FDefine and throw a dedicated exception instead of using a generic one.(¸Ø×Àıÿÿÿÿ
-a	java:S112”	"FDefine and throw a dedicated exception instead of using a generic one.(£Åßûÿÿÿÿ
-a	java:S112¢	"FDefine and throw a dedicated exception instead of using a generic one.(šº†¹şÿÿÿÿ
-a	java:S112°	"FDefine and throw a dedicated exception instead of using a generic one.(¸¸÷Öúÿÿÿÿ
-a	java:S112¼	"FDefine and throw a dedicated exception instead of using a generic one.(á¥•Ãıÿÿÿÿ
-\	java:S112È	"FDefine and throw a dedicated exception instead of using a generic one.(ä†—„
-\	java:S112Ö	"FDefine and throw a dedicated exception instead of using a generic one.(µŠğ§
-\	java:S112ä	"FDefine and throw a dedicated exception instead of using a generic one.(Ğ‚İÑ
-\	java:S112ğ	"FDefine and throw a dedicated exception instead of using a generic one.(¥“™ä
-\	java:S112ü	"FDefine and throw a dedicated exception instead of using a generic one.(‹ôŞñ
-a	java:S112ˆ
-"FDefine and throw a dedicated exception instead of using a generic one.(½·˜çıÿÿÿÿ
-a	java:S112”
-"FDefine and throw a dedicated exception instead of using a generic one.(€©¹¨ıÿÿÿÿ
-a	java:S112 
-"FDefine and throw a dedicated exception instead of using a generic one.(Ğî¢ûşÿÿÿÿ
-a	java:S112¬
-"FDefine and throw a dedicated exception instead of using a generic one.(Ä ŞÕÿÿÿÿÿ
-\	java:S112¸
-"FDefine and throw a dedicated exception instead of using a generic one.(âî¥
-\	java:S112Ä
-"FDefine and throw a dedicated exception instead of using a generic one.(ıÅèş
-\	java:S112Ğ
-"FDefine and throw a dedicated exception instead of using a generic one.(Ò¬÷
-a	java:S112Ü
-"FDefine and throw a dedicated exception instead of using a generic one.(´“”ºûÿÿÿÿ
-\	java:S112ì
-"FDefine and throw a dedicated exception instead of using a generic one.(Âëª
-\	java:S112ü
-"FDefine and throw a dedicated exception instead of using a generic one.(“´„§
-\	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(‹Óêæ
-\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ûëıı
-a	java:S112°"FDefine and throw a dedicated exception instead of using a generic one.(à—ïşşÿÿÿÿ
-a	java:S112Ã"FDefine and throw a dedicated exception instead of using a generic one.(Áåáşÿÿÿÿ
-\	java:S112Ö"FDefine and throw a dedicated exception instead of using a generic one.(¢Ã˜ç
-a	java:S112é"FDefine and throw a dedicated exception instead of using a generic one.(òÅ›Œÿÿÿÿÿ
-\	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(™ãôñ
-\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(…€²¨
-a	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(îÜ€Ïûÿÿÿÿ
-a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ôÅ¹ìüÿÿÿÿ
-\	java:S112§"FDefine and throw a dedicated exception instead of using a generic one.(ø›º–
-a	java:S112°"FDefine and throw a dedicated exception instead of using a generic one.(‘¥É¤şÿÿÿÿ
-\	java:S112¹"FDefine and throw a dedicated exception instead of using a generic one.(Œáâ‡
-\	java:S112Â"FDefine and throw a dedicated exception instead of using a generic one.(ÍæÇÛ
-\	java:S112Ë"FDefine and throw a dedicated exception instead of using a generic one.(¯Şˆ
-\	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(™îş¹
-\	java:S112Û"FDefine and throw a dedicated exception instead of using a generic one.(–©
-\	java:S112â"FDefine and throw a dedicated exception instead of using a generic one.(÷üå’
-a	java:S112ë"FDefine and throw a dedicated exception instead of using a generic one.(Ô ó›şÿÿÿÿ
-a	java:S112ô"FDefine and throw a dedicated exception instead of using a generic one.(èÁ˜šûÿÿÿÿ
-a	java:S112ı"FDefine and throw a dedicated exception instead of using a generic one.(×«­ëûÿÿÿÿ
-[	java:S112†"FDefine and throw a dedicated exception instead of using a generic one.(‘ Ÿ&
-\	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ïİÿå
-\	java:S112˜"FDefine and throw a dedicated exception instead of using a generic one.(†¼Ÿ
-\	java:S112Ÿ"FDefine and throw a dedicated exception instead of using a generic one.(‡Ê´
-a	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(Ê±üˆùÿÿÿÿ
-a	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(×´ô×üÿÿÿÿ
-\	java:S112·"FDefine and throw a dedicated exception instead of using a generic one.(…ŸÀª
-\	java:S112Æ"FDefine and throw a dedicated exception instead of using a generic one.(ë«òÈ
-p	java:S115Ÿ"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÉÛ©Á
-u	java:S115¤"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(äÖÄ‰ùÿÿÿÿ
-u	java:S115©"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Äú‹úÿÿÿÿ
-u
-java:S2293Ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(”æĞ§ıÿÿÿÿ
-W
-java:S1117ø"@Rename "pinUnderZPK" which hides the field declared at line 154.(Í„«ç
-W
-java:S1117°"@Rename "pinUnderZPK" which hides the field declared at line 154.(Ñ£” 
-W
-java:S1117±"@Rename "pinUnderTPK" which hides the field declared at line 148.(Ç›Ø¸
-d	java:S100ô"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰£¾ğ
-d	java:S100€"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ†÷ó
-i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Ì®‘şÿÿÿÿ
-d	java:S100š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€šôÌ
-d	java:S100¨"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ˆ‰Ø
-i	java:S100´"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ûúŸúÿÿÿÿ
-i	java:S100À"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÛ´øÿÿÿÿ
-d	java:S100Ê"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ¾ó¨
-i	java:S100Ô"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿‹Ü¨şÿÿÿÿ
-d	java:S100Ş"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÆï
-i	java:S100è"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ®è¡øÿÿÿÿ
-c	java:S100ò"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»„„
-d	java:S100ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ÖÄ
-i	java:S100ˆ	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Ø×Àıÿÿÿÿ
-i	java:S100”	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Åßûÿÿÿÿ
-i	java:S100¢	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šº†¹şÿÿÿÿ
-i	java:S100°	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸¸÷Öúÿÿÿÿ
-i	java:S100¼	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á¥•Ãıÿÿÿÿ
-d	java:S100È	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä†—„
-d	java:S100Ö	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µŠğ§
-d	java:S100ä	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ‚İÑ
-d	java:S100ğ	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥“™ä
-d	java:S100ü	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ôŞñ
-i	java:S100ˆ
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½·˜çıÿÿÿÿ
-i	java:S100”
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€©¹¨ıÿÿÿÿ
-i	java:S100 
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğî¢ûşÿÿÿÿ
-i	java:S100¬
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä ŞÕÿÿÿÿÿ
-d	java:S100¸
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âî¥
-d	java:S100Ä
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÅèş
-d	java:S100Ğ
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¬÷
-i	java:S100Ü
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´“”ºûÿÿÿÿ
-d	java:S100ì
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âëª
-d	java:S100ü
-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“´„§
-d	java:S100Œ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹Óêæ
-d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûëıı
-i	java:S100°"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à—ïşşÿÿÿÿ
-i	java:S100Ã"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áåáşÿÿÿÿ
-d	java:S100Ö"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢Ã˜ç
-i	java:S100é"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òÅ›Œÿÿÿÿÿ
-d	java:S100ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™ãôñ
-d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…€²¨
-i	java:S100—"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÜ€Ïûÿÿÿÿ
-i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôÅ¹ìüÿÿÿÿ
-d	java:S100§"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø›º–
-i	java:S100°"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¥É¤şÿÿÿÿ
-d	java:S100¹"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œáâ‡
-d	java:S100Â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍæÇÛ
-d	java:S100Ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯Şˆ
-d	java:S100Ô"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™îş¹
-d	java:S100Û"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–©
-d	java:S100â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷üå’
-i	java:S100ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô ó›şÿÿÿÿ
-i	java:S100ô"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èÁ˜šûÿÿÿÿ
-i	java:S100ı"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×«­ëûÿÿÿÿ
-c	java:S100†"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ Ÿ&
-d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïİÿå
-d	java:S100˜"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†¼Ÿ
-C
-java:S1602™",Remove useless curly braces around statement(Û €
-d	java:S100Ÿ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡Ê´
-C
-java:S1602 ",Remove useless curly braces around statement(Û €
-i	java:S100¦"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê±üˆùÿÿÿÿ
-C
-java:S1602§",Remove useless curly braces around statement(Û €
-i	java:S100­"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×´ô×üÿÿÿÿ
-d	java:S100·"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…ŸÀª

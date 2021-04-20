@@ -1,33 +1,0 @@
-
-a
-java:S1192K"KDefine a constant instead of duplicating this literal "val =amt: " 3 times.(÷Ö‘Ö
-_
-java:S1192<"JDefine a constant instead of duplicating this literal "val =s1: " 3 times.(Ó’
-J
-java:S1128"4Remove this unused import 'java.text.FieldPosition'.(Œà½¨
-J
-java:S1128"4Remove this unused import 'java.text.ParsePosition'.(¸à«¤
-I
-java:S1128"3Remove this unused import 'java.text.NumberFormat'.(¿¸ž»
-N	java:S106)"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡
-N	java:S106-"9Replace this use of System.out or System.err by a logger.(—ñ¹Ö
-N	java:S1066"9Replace this use of System.out or System.err by a logger.(´ü»ˆ
-N	java:S1067"9Replace this use of System.out or System.err by a logger.(—ñ¹Ö
-S	java:S106:"9Replace this use of System.out or System.err by a logger.(ÍÛ¥Èþÿÿÿÿ
-M	java:S106<"9Replace this use of System.out or System.err by a logger.(Ó’
-M	java:S106?"9Replace this use of System.out or System.err by a logger.(Ó’
-M	java:S106C"9Replace this use of System.out or System.err by a logger.(Ó’
-N	java:S106K"9Replace this use of System.out or System.err by a logger.(÷Ö‘Ö
-N	java:S106S"9Replace this use of System.out or System.err by a logger.(÷Ö‘Ö
-N	java:S106["9Replace this use of System.out or System.err by a logger.(÷Ö‘Ö
-N	java:S106c"9Replace this use of System.out or System.err by a logger.(¢Îá
-N	java:S106i"9Replace this use of System.out or System.err by a logger.(¢Îá
-S	java:S106l"9Replace this use of System.out or System.err by a logger.(›þ½©ùÿÿÿÿ
-9
-java:S2153l"Remove the boxing to "Double".(›þ½©ùÿÿÿÿ
-7
-java:S2111q"!Use "BigDecimal.valueOf" instead.(ÒÏ—Ú
-N	java:S106s"9Replace this use of System.out or System.err by a logger.(òó¹Ž
-7
-java:S2111x"!Use "BigDecimal.valueOf" instead.(Þ²§Ð
-N	java:S106z"9Replace this use of System.out or System.err by a logger.(òó¹Ž

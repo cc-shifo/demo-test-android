@@ -1,9 +1,0 @@
-
-P
-java:S1118":Add a private constructor to hide the implicit public one.(ä‰‹³
-K
-java:S1133"5Do not forget to remove this deprecated code someday.(ä‰‹³
-^
-java:S1123"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
-=
-java:S1452ž"&Remove usage of generic wildcard type.(ƒªèÌ
