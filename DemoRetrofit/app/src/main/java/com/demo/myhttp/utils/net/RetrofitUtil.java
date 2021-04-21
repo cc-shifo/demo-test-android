@@ -118,7 +118,7 @@ public class RetrofitUtil {
 //        return okHttpClient;
     }
 
-    public OkHttpClient createOkHttp() {
+    public OkHttpClient createOkHttp(HttpLoggingInterceptor level) {
         SSLUtils.SSLParams sslParams = setSslConfig();
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         return builder.readTimeout(10, TimeUnit.SECONDS)
@@ -126,7 +126,12 @@ public class RetrofitUtil {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 //.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel
                 // (HttpLoggingInterceptor.Level.BODY))
-                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addNetworkInterceptor(level)
                 .build();
+    }
+
+    public OkHttpClient createOkHttp() {
+        return createOkHttp(new HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY));
     }
 }
