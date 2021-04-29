@@ -1,2 +1,3 @@
+include ':demopaymodule'
 include ':app'
 rootProject.name = "DemoRetrofit"

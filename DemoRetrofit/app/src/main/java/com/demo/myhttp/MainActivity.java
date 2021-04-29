@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> items = new ArrayList<>(2);
         items.add("HttpApi1");
         items.add("HttpApi2");
+        items.add("exoplayer wav");
         ApiRvAdapter apiRvAdapter = new ApiRvAdapter(mMainBinding.rvApi, R.layout.rv_api_item,
                 items);
         apiRvAdapter.setOnItemClick(new ApiRvAdapter.OnItemClick() {
@@ -31,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
             public void click(int item) {
                 if (item == 0) {
                     startActivity(new Intent(MainActivity.this, AppStoreHomeActivity.class));
-                } else {
+                } else if (item == 1) {
                     startActivity(new Intent(MainActivity.this, DownloadApkActivity.class));
+                } else if (item == 2) {
+                    startActivity(new Intent(MainActivity.this, PlayAudioActivity.class));
                 }
             }
         });

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">demopaymodule</string>
+
+    <string name="qrc_pay">扫码收款消费</string>
+
+
+    <string name="dialog_common_btn_OK">确定</string>
+    <string name="dialog_common_btn_cancel">取消</string>
+</resources>

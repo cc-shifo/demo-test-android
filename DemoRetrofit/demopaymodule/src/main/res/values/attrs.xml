@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProcessStateView">
+        <attr name="ringStrokeWidth" format="dimension" />
+        <attr name="ringColor" format="color" />
+        <attr name="ringRemainedColor" format="color" />
+        <attr name="message" format="string" />
+        <attr name="messageTextColor" format="color" />
+        <attr name="messageTextSize" format="dimension" />
+    </declare-styleable>
+</resources>

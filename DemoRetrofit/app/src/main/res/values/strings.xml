@@ -3,4 +3,5 @@
     <string name="tv_api_name">api</string>
     <string name="btn_start_request">start</string>
     <string name="btn_stop_request">stop</string>
+    <string name="btn_start_ext_module_activity">External Module Activity</string>
 </resources>

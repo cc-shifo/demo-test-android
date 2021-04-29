@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_custom_toolbar_height"
+        android:background="@color/color_activity_custom_status_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/nav_back_iv"
+            android:layout_width="@dimen/activity_custom_toolbar_navigation_back_zoom_width"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/navigation_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="contentDescription" />
+
+        <TextView
+            android:id="@+id/tittle_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/color_activity_custom_toolbar_tittle_tv"
+            android:textSize="@dimen/activity_custom_toolbar_title_txt_size"
+            tools:text="@string/app_name"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
