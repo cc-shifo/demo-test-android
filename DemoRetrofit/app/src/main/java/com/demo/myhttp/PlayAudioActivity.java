@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,10 +25,18 @@ public class PlayAudioActivity extends AppCompatActivity {
         mBinding.btnStartExtModuleActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // method 1
                 ARouter.getInstance().build(RouterPathRest.PAYMENT)
                         .withString("TXN_AMT", "0.02")
                         .withString("TXN_SN", "000024P43511970100008589")
                         .navigation();
+
+                // method 2
+                /*Intent intent = new Intent();
+                ComponentName name = new ComponentName("com.demo.myhttp", "com.demo.demopaymodule" +
+                        ".QRCPayActivity");
+                intent.setComponent(name);
+                startActivity(intent);*/
             }
         });
     }

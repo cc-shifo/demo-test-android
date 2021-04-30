@@ -13,3 +13,6 @@ application to module
 4.对于要跳转的目标activity，不一定非要(可要可不要)在模块AndroidManifest.xml中给该activity声明action。
 5.只要是用到了Arouter，不论是宿主Application类型的模块，还是其他任意的library类型的模块，这些模块都要添加
   Arouter的依赖。
+6.使用startActivity直接启动其他模块的activity所传递参数，包名使用目标activity所在app的applicationId(
+  在build.gradle文件里), 类名使用目标activity文件开头定义的package的路径加上.和目标activity.用法例子见
+  PlayAudioActivity和QRCPayActivity的initData()方法.
