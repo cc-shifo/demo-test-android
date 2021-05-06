@@ -16,3 +16,41 @@ application to module
 6.使用startActivity直接启动其他模块的activity所传递参数，包名使用目标activity所在app的applicationId(
   在build.gradle文件里), 类名使用目标activity文件开头定义的package的路径加上.和目标activity.用法例子见
   PlayAudioActivity和QRCPayActivity的initData()方法.
+
+
+二、插拔模块
+https://huangxiaoguo.blog.csdn.net/article/details/78753555?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=1619680678359_34742&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control
+1.项目根目录gradle.properties配置：
+# 是否需要单独编译 true表示不需要，false表示需要
+isNeedHomeModule=true
+#isNeedHomeModule=false
+isNeedChatModule=true
+#isNeedChatModule=false
+isNeedRecomModule=true
+#isNeedRecomModule=false
+isNeedMeModule=true
+#isNeedMeModule=false
+2.在各个子模块中配置（例如module_me）：
+if (!isNeedMeModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+defaultConfig {
+        if (!isNeedMeModule.toBoolean()) {
+            applicationId "tsou.cn.module_me"
+        }
+ }
+3.在app主模块中：
+if (isNeedHomeModule.toBoolean()) {
+        compile project(':module_home')
+    }
+    if (isNeedChatModule.toBoolean()) {
+        compile project(':module_chat')
+    }
+    if (isNeedRecomModule.toBoolean()) {
+        compile project(':module_recom')
+    }
+    if (isNeedMeModule.toBoolean()) {
+        compile project(':module_me')
+    }
