@@ -3,6 +3,7 @@ package com.demo.demopaymodule;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
@@ -91,6 +92,22 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
             // mSN = "000024P43511970100008589";
             // mUseBackCamera = true;
         }
+        LogUtils.d("getPackageCodePath: " + this.getPackageCodePath());
+        LogUtils.d("getPackageName: " + this.getPackageName());
+        LogUtils.d("getCallingPackage: " + this.getCallingPackage());
+        LogUtils.d("getLocalClassName: " + this.getLocalClassName());
+        LogUtils.d("getCallingActivity: " + this.getCallingActivity());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            LogUtils.d("getDataDir().getPath: " + this.getDataDir().getPath());
+            LogUtils.d("getDataDir().getAbsolutePath: " + this.getDataDir().getAbsolutePath());
+        }
+        LogUtils.d("getPackageResourcePath: " + this.getPackageResourcePath());
+        LogUtils.d("getCacheDir().getPath(): " + this.getCacheDir().getPath());
+        LogUtils.d("getCacheDir().getAbsolutePath(): " + this.getCacheDir().getAbsolutePath());
+        LogUtils.d("getComponentName().getShortClassName(): " + this.getComponentName().getShortClassName());
+        LogUtils.d("etExternalCacheDir().getPath(): " + this.getExternalCacheDir().getPath());
+        LogUtils.d("getExternalCacheDir().getAbsolutePath(): " + this.getExternalCacheDir().getAbsolutePath());
+
     }
 
     @Override
@@ -122,11 +139,12 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
                 @Override
                 public void onChanged(Integer integer) {
                     mCallbackExecuted = false;
-                   if (integer == ServerRespCode.SUCCESS) {
+                    if (integer == ServerRespCode.SUCCESS) {
                         mProcessStateDialog.dismiss();
                         if (mUpdateCallback != null) {
                             mProcessStateDialog.dismiss();
-                            mUpdateCallback.onPaymentFinish(ImplCnPayment.ErrorCode.SUCCESS, mModel.getChannel(),
+                            mUpdateCallback.onPaymentFinish(ImplCnPayment.ErrorCode.SUCCESS,
+                                    mModel.getChannel(),
                                     mModel.getOrderId());
                             mCallbackExecuted = true;
                             finish();
@@ -137,8 +155,8 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
                                 "等待用户输入密码", null);
                         mModel.startInquiry();
                     } else if (integer == ImplCnPayment.ErrorCode.SHOULD_INQUIRE_ERROR) {
-                       mProcessStateDialog.setState(ProcessStateView.State.STATE_PROCESSING,
-                               "等待用户输入密码", null);
+                        mProcessStateDialog.setState(ProcessStateView.State.STATE_PROCESSING,
+                                "等待用户输入密码", null);
                     } else {
                         mProcessStateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override

@@ -1,3 +1,6 @@
+include ':Bmodule'
+include ':Amodule'
+include ':businessSDKmodule'
 include ':demopaymodule'
 include ':app'
 rootProject.name = "DemoRetrofit"

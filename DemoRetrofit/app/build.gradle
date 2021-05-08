@@ -93,5 +93,19 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
 
+    if (needdemopayModule.toBoolean()) {
+        implementation project(path: ':demopaymodule')
+    }
+    
     implementation project(path: ':demopaymodule')
+    if (needAModule.toBoolean()) {
+        implementation project(path: ':Amodule')
+    }
+
+
+    if (needBModule.toBoolean()) {
+        implementation project(path: ':Bmodule')
+    }
+
+    implementation project(path: ':businessSDKmodule')
 }

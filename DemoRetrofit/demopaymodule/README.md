@@ -54,3 +54,22 @@ if (isNeedHomeModule.toBoolean()) {
     if (isNeedMeModule.toBoolean()) {
         compile project(':module_me')
     }
+4.子模块自动化引入manifest.xml
+1)子模块的src/main路径下新建目录（名称module）,在module目录下新建manifest.xml，
+新建的manifest.xml文件不含主activity，子定义application:name
+2)子模块的build.gradle文件修改源码的manifest文件路径。
+android {
+    ...
+    ....
+    sourceSets {
+        main {
+            if (!needAModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+        }
+    }
+    ...
+    ....
+}

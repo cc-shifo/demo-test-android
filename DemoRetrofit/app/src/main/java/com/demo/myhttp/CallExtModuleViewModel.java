@@ -2,5 +2,5 @@ package com.demo.myhttp;
 
 import androidx.lifecycle.ViewModel;
 
-public class PlayAudioViewModel extends ViewModel {
+public class CallExtModuleViewModel extends ViewModel {
 }

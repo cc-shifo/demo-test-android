@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,14 +11,14 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.demo.myhttp.common.RouterPathRest;
 import com.demo.myhttp.databinding.ActivityPlayAudioBinding;
 
-public class PlayAudioActivity extends AppCompatActivity {
+public class CallExtModuleActivity extends AppCompatActivity {
     private ActivityPlayAudioBinding mBinding;
-    private PlayAudioViewModel mModel;
+    private CallExtModuleViewModel mModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mModel = new ViewModelProvider(this).get(PlayAudioViewModel.class);
+        mModel = new ViewModelProvider(this).get(CallExtModuleViewModel.class);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_play_audio);
         mBinding.btnStartExtModuleActivity.setOnClickListener(new View.OnClickListener() {
             @Override
