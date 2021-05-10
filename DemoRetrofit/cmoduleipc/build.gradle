@@ -1,5 +1,7 @@
-plugins {
-    id 'com.android.application'
+if (!needCModule.toBoolean()) {
+    apply plugin:  'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
 }
 
 android {
@@ -7,7 +9,9 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.demo.myhttp"
+        if (!needCModule.toBoolean()) {
+            applicationId "com.demo.cmoduleipc"
+        }
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -20,9 +24,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    sourceSets {
+        main {
+            if (!needAModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,18 +48,19 @@ android {
     buildFeatures {
         dataBinding true
     }
-
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     def lifecycle_version = "2.3.0"
     def arch_version = "2.1.0"
-
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
@@ -86,30 +101,8 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
     implementation 'com.alibaba:arouter-api:1.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
-
-    if (needdemopayModule.toBoolean()) {
-        implementation project(path: ':demopaymodule')
-    }
-    
-    implementation project(path: ':demopaymodule')
-    if (needAModule.toBoolean()) {
-        implementation project(path: ':Amodule')
-    }
-
-
-    if (needBModule.toBoolean()) {
-        implementation project(path: ':Bmodule')
-    }
-
-    if (needCModule.toBoolean()) {
-        implementation project(path: ':Cmoduleipc')
-    }
 
     implementation project(path: ':businessSDKmodule')
 }

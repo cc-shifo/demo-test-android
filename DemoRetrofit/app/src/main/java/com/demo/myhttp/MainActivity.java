@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         items.add("external module");
         items.add("get AModule service");
         items.add("get BModule service");
+        items.add("IPC: CModule and AppModule");
         ApiRvAdapter apiRvAdapter = new ApiRvAdapter(mMainBinding.rvApi, R.layout.rv_api_item,
                 items);
         apiRvAdapter.setOnItemClick(new ApiRvAdapter.OnItemClick() {
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Snackbar.make(MainActivity.this, mMainBinding.rvApi, r,
                             BaseTransientBottomBar.LENGTH_SHORT).show();
+                }else if (item == 5) {
+                    ARouter.getInstance().build(RouterPathRest.C_MODULE_SERVICE).navigation();
                 }
             }
         });
