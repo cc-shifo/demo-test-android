@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -15,8 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.demo.myhttp.databinding.ActivityDownloadApkBinding;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.security.acl.Permission;
 
 public class DownloadApkActivity extends AppCompatActivity {
     private ActivityDownloadApkBinding mBinding;
