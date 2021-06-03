@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">slideRecyclerView</string>
+    <string name="btn_download">download</string>
+    <string name="btn_delete">delete</string>
+</resources>
