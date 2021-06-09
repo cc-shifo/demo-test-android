@@ -251,7 +251,10 @@ public class ProgressView extends View {
     }
 
     private void drawBackground(Canvas canvas) {
-        if (mState == IntDefDownloadStatus.DOWNLOADING) {
+        if (mState == IntDefDownloadStatus.DOWNLOADING
+            || mState == IntDefDownloadStatus.STOPPED
+            || mState == IntDefDownloadStatus.READY
+            || mState == IntDefDownloadStatus.FAILED) {
             mBackgroundPaint.setStyle(Paint.Style.FILL_AND_STROKE);
             mBackgroundPaint.setColor(mUnreachedColor);
         } else if (mState == IntDefDownloadStatus.SUCCESS) {
@@ -268,9 +271,6 @@ public class ProgressView extends View {
             mBackgroundPaint.setColor(mBorderColor);
         } */ else {
             // IntDefDownloadStatus.INIT
-            // IntDefDownloadStatus.STOPPED
-            // IntDefDownloadStatus.READY
-            // IntDefDownloadStatus.FAILED
             mBackgroundPaint.setStyle(Paint.Style.STROKE);
             mBackgroundPaint.setColor(mBorderColor);
         }
@@ -298,7 +298,6 @@ public class ProgressView extends View {
             Log.d(TAG, "drawForeground: w >= mCornerRadius, w, a, b=" + w + ", r=" + mCornerRadius
                     + ", " + a + ", " + b);
         } else {
-
             Log.d(TAG, "drawForeground: w, a, b=" + w + ", " + a + ", " + b);
             mProgressRect.set(0, (float) (b - y), w, (float) (b + y));
             canvas.drawRoundRect(mProgressRect, w / 2, (float) y, mReachedPaint);
@@ -308,36 +307,40 @@ public class ProgressView extends View {
     }
 
     private void drawProgressOrText(Canvas canvas) {
-        if (mText == null || mText.isEmpty()) {
+        String text = mText;
+        if (text == null || text.isEmpty()) {
             switch (mState) {
                 case IntDefDownloadStatus.DOWNLOADING:
-                    mText = mReached + getResources().getString(R.string
+                    text = mReached + getResources().getString(R.string
                             .activity_download_progress_view_state_downloading);
                     break;
                 case IntDefDownloadStatus.SUCCESS:
-                    mText = getResources().getString(R.string
+                    text = getResources().getString(R.string
                             .activity_download_progress_view_state_success);
                     break;
                 case IntDefDownloadStatus.FAILED:
-                    mText = getResources().getString(R.string
+                    text = getResources().getString(R.string
                             .activity_download_progress_view_state_failed);
                     break;
                 case IntDefDownloadStatus.STOPPED:
-                    mText = getResources().getString(R.string
+                    text = getResources().getString(R.string
                             .activity_download_progress_view_state_stopped);
                     break;
                 case IntDefDownloadStatus.READY:
-                    mText = getResources().getString(R.string
+                    text = getResources().getString(R.string
                             .activity_download_progress_view_state_ready);
                     break;
                 default:
-                    mText = getResources().getString(R.string
+                    text = getResources().getString(R.string
                             .activity_download_progress_view_state_init);
                     break;
             }
         }
 
-        if (mState == IntDefDownloadStatus.DOWNLOADING) {
+        if (mState == IntDefDownloadStatus.DOWNLOADING
+                || mState == IntDefDownloadStatus.STOPPED
+                || mState == IntDefDownloadStatus.READY
+                || mState == IntDefDownloadStatus.FAILED) {
             mTextPaint.setColor(mTextColor);
         } else if (mState == IntDefDownloadStatus.SUCCESS) {
             mTextPaint.setColor(mTextColor);
@@ -352,15 +355,12 @@ public class ProgressView extends View {
             mBackgroundPaint.setColor(mBorderColor);
         } */ else {
             // IntDefDownloadStatus.INIT
-            // IntDefDownloadStatus.STOPPED
-            // IntDefDownloadStatus.READY
-            // IntDefDownloadStatus.FAILED
             mTextPaint.setColor(mBorderColor);
         }
 
-        float tW = mTextPaint.measureText(mText);
+        float tW = mTextPaint.measureText(text);
         float tH = mTextPaint.ascent() + mTextPaint.descent();
-        canvas.drawText(mText, mCenterX - tW / 2, mCenterY - tH / 2, mTextPaint);
+        canvas.drawText(text, mCenterX - tW / 2, mCenterY - tH / 2, mTextPaint);
     }
 
     public void setState(int state) {

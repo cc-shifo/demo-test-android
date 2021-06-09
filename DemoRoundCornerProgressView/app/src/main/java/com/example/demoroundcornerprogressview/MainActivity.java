@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnStopped.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressView.setText("");
                 progressView.setState(IntDefDownloadStatus.STOPPED);
             }
         });
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         btnSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressView.setText("");
                 progressView.setState(IntDefDownloadStatus.SUCCESS);
             }
         });
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btnFailed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressView.setText("");
                 progressView.setState(IntDefDownloadStatus.FAILED);
             }
         });
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btnReady.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressView.setText("");
                 progressView.setState(IntDefDownloadStatus.READY);
             }
         });
