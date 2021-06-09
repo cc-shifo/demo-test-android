@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_download_rv_item_height">84dp</dimen>
+    <dimen name="activity_download_rv_item_padding">12dp</dimen>
+    <dimen name="activity_download_rv_item_divider_width">84dp</dimen>
+    <dimen name="activity_download_rv_item_ic_size">60dp</dimen>
+    <dimen name="activity_download_rv_item_ic_round_size">12dp</dimen>
+    <dimen name="activity_download_rv_item_tittle_top_margin">16dp</dimen>
+    <dimen name="activity_download_rv_item_tittle_txt_size">14sp</dimen>
+    <dimen name="activity_download_rv_item_size_info_v_margin">8dp</dimen>
+    <dimen name="activity_download_rv_item_size_info_txt_size">12sp</dimen>
+    <dimen name="activity_download_rv_item_btn_download_width">72dp</dimen>
+    <dimen name="activity_download_rv_item_btn_download_height">32dp</dimen>
+    <dimen name="activity_download_rv_item_btn_download_round">16dp</dimen>
+    <dimen name="activity_download_rv_item_btn_txt_size">14sp</dimen>
+    <dimen name="activity_download_rv_item_btn_border_width">1dp</dimen>
+    <dimen name="activity_download_rv_item_btn_delete_width">120dp</dimen>
+
+</resources>

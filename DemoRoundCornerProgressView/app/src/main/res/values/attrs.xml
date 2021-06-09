@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ = COPYRIGHT
+  ~          // description
+  ~     Copyright (C) 2021-06-08  XXXX rights reserved.
+  ~ Description: // Detail description about the function of this module,
+  ~             // interfaces with the other modules, and dependencies.
+  ~ Revision History:
+  ~ Date                    Author                    Action
+  ~ 2021-06-08             Liu Jian                   Create
+  -->
+
+<resources>
+    <declare-styleable name="ProgressView">
+        <attr name="textAttr" format="string" />
+        <attr name="textColorAttr" format="color" />
+        <attr name="textSizeAttr" format="dimension" />
+        <attr name="borderColorAttr" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="solidColorAttr" format="color" />
+        <attr name="reachedColor" format="color" />
+        <attr name="unreachedColor" format="color" />
+        <attr name="cornerRadius" format="dimension" />
+    </declare-styleable>
+</resources>

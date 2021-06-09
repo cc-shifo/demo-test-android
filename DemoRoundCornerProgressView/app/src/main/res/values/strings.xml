@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DemoRoundCornerProgressView</string>
+
+    <!--download activity -->
+    <string name="activity_download_tittle">Downloads</string>
+    <string name="activity_download_rv_item_btn_download_open">Open</string>
+    <string name="activity_download_rv_item_btn_download_download">Download</string>
+    <string name="activity_download_rv_item_btn_download_stop">Stop</string>
+    <string name="activity_download_rv_item_btn_delete">Delete</string>
+    <string name="activity_download_progress_view_state_init">Download</string>
+    <string name="activity_download_progress_view_state_success">Install</string>
+    <string name="activity_download_progress_view_state_failed">Failed</string>
+    <string name="activity_download_progress_view_state_stopped">Download</string>
+    <string name="activity_download_progress_view_state_ready">Waiting</string>
+    <string name="activity_download_progress_view_state_downloading">%</string>
+</resources>
