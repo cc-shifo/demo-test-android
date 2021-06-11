@@ -1,7 +1,5 @@
 package com.example.sliderecyclerview;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -28,6 +26,8 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
     private final int mMenuWidth;
     private boolean mDirtIntercept;
     private ObjectAnimator mFlingAnimation;
+    private ObjectAnimator mClosingAnimation;
+    private volatile boolean mMultiPoint;
 
     public ProcessMenuTouchHelper(@IntRange(from = 1) int menuWidth) {
         mMenuWidth = menuWidth;
@@ -38,18 +38,26 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
         // 判断是recyclerView本身的上下滑动呢，还是是Item的左右滑，根据判断结果决定拦截与否
         float x = e.getX();
         float y = e.getY();
-        switch (e.getAction()) {
+        switch (e.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_POINTER_DOWN:
+                mMultiPoint = true;
+                return true;
             case MotionEvent.ACTION_DOWN:
-                if (mFlingAnimation != null && mFlingAnimation.isRunning()) {
+                Log.d(TAG, "onInterceptTouchEvent: ACTION_DOWN" + x + ", " + y);
+                mMultiPoint = false;
+                mVelocityTracker = VelocityTracker.obtain();
+                mVelocityTracker.addMovement(e);
+                if ((mFlingAnimation != null && mFlingAnimation.isRunning())
+                    || (mClosingAnimation != null && mClosingAnimation.isRunning())) {
+                    // animation: scrolling or closing has not finished.
                     return false;
                 }
-                Log.d(TAG, "onInterceptTouchEvent: ACTION_DOWN" + x + ", " + y);
+
                 mInitialTouchX = (int) (x + 0.5f);
                 mInitialTouchY = (int) (y + 0.5f);
                 mLastTouchX = mInitialTouchX;
                 mLastTouchY = mInitialTouchY;
-                mVelocityTracker = VelocityTracker.obtain();
-                mVelocityTracker.addMovement(e);
+
                 ViewConfiguration vc = ViewConfiguration.get(rv.getContext());
                 mTouchSlop = vc.getScaledTouchSlop();
                 mDirtIntercept = false;
@@ -118,6 +126,10 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
      */
     @Override
     public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+        if (mMultiPoint) {
+            return;
+        }
+
         float x = e.getX();
         float y = e.getY();
         mVelocityTracker.addMovement(e);
@@ -128,7 +140,6 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
             case MotionEvent.ACTION_MOVE:
                 Log.d(TAG, "onTouchEvent: ACTION_MOVE" + x + ", " + y
                         + ", scrollX=" + mItem.getScrollX());
-                mVelocityTracker.computeCurrentVelocity(1000);
                 if (rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE && mItem != null) {
                     if (mLastTouchX == mInitialTouchX) {
                         mLastTouchX = (int) (x + 0.5f);
@@ -165,10 +176,14 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                     break;
                 }
 
+                int scrolled = mItem.getScrollX();
+                if (Math.abs(scrolled) >= mMenuWidth) {
+                    // scrolling action has finished during moving
+                    break;
+                }
+
                 mVelocityTracker.computeCurrentVelocity(1000);
                 int v = (int) (mVelocityTracker.getXVelocity() + 0.5f);
-
-                int scrolled = mItem.getScrollX();
 
                 Log.d(TAG, "onTouchEvent: ACTION_CANCEL lx="
                         + mLastTouchX + ", iX=" + mInitialTouchX
@@ -426,20 +441,18 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
     }
 
     private void closeItem() {
-        String vStr = "closeItem: ScrollX=";
-        if (mItem != null) {
-            vStr += mItem.getScrollX();
-        }
-        Log.d(TAG,  vStr);
+        String strLog = mItem != null ? mItem.getScrollX() + "" : "null";
+        Log.d(TAG, "closeItem: ScrollX=" + strLog);
         if (mItem != null) {
             int sX = mItem.getScrollX();
             if (sX != 0) {
-                mFlingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
+                mClosingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
                         0);
-                mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+                mClosingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                 // DynamicAnimation.SCROLL_X,
-                mFlingAnimation.setInterpolator(new AccelerateInterpolator());
-                mFlingAnimation.setDuration(mMenuWidth).start();
+                mClosingAnimation.setInterpolator(new AccelerateInterpolator());
+                mClosingAnimation.setDuration(mMenuWidth)
+                        .start();
             }
 
             /*if (sX > 0) {
