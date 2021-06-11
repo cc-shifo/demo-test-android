@@ -431,9 +431,6 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
             vStr += mItem.getScrollX();
         }
         Log.d(TAG,  vStr);
-        /*if (mItem != null && -mItem.getScrollX() != 0) {
-            mItem.scrollBy(-mItem.getScrollX(), 0);
-        }*/
         if (mItem != null) {
             int sX = mItem.getScrollX();
             if (sX != 0) {
@@ -442,15 +439,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                 mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                 // DynamicAnimation.SCROLL_X,
                 mFlingAnimation.setInterpolator(new AccelerateInterpolator());
-                mFlingAnimation.setDuration(mMenuWidth)
-                        .addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        mItem = null;
-                    }
-                });
-                mFlingAnimation.start();
+                mFlingAnimation.setDuration(mMenuWidth).start();
             }
 
             /*if (sX > 0) {

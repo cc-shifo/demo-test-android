@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 RecyclerView.VERTICAL, false);
         view.setLayoutManager(manager);
         int d = getResources().getDimensionPixelSize(R.dimen.item_child_width);
+        view.setMotionEventSplittingEnabled(false);
         view.addOnItemTouchListener(new ProcessMenuTouchHelper(d));
         view.setAdapter(adapter);
     }
