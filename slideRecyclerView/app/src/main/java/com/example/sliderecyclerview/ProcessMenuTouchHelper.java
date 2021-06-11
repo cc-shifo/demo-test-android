@@ -1,5 +1,7 @@
 package com.example.sliderecyclerview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -424,7 +426,11 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
     }
 
     private void closeItem() {
-        Log.d(TAG, "closeItem: ScrollX=" + mItem.getScrollX());
+        String vStr = "closeItem: ScrollX=";
+        if (mItem != null) {
+            vStr += mItem.getScrollX();
+        }
+        Log.d(TAG,  vStr);
         /*if (mItem != null && -mItem.getScrollX() != 0) {
             mItem.scrollBy(-mItem.getScrollX(), 0);
         }*/
@@ -437,7 +443,14 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                 // DynamicAnimation.SCROLL_X,
                 mFlingAnimation.setInterpolator(new AccelerateInterpolator());
                 mFlingAnimation.setDuration(mMenuWidth)
-                        .start();
+                        .addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        mItem = null;
+                    }
+                });
+                mFlingAnimation.start();
             }
 
             /*if (sX > 0) {
