@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener {
     private static final String TAG = "ProcessMenuTouchHelper";
+    private final int MIN_VELOCITY = 500;
+    private final int mMenuWidth;
     private VelocityTracker mVelocityTracker;
     private int mInitialTouchX;
     private int mInitialTouchY;
@@ -22,12 +24,10 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
     private int mLastTouchY;
     private int mTouchSlop;
     private ViewGroup mItem;
-    private final int MIN_VELOCITY = 500;
-    private final int mMenuWidth;
-    private boolean mDirtIntercept;
+    // private boolean mDirtIntercept;
     private ObjectAnimator mFlingAnimation;
     private ObjectAnimator mClosingAnimation;
-    private volatile boolean mMultiPoint;
+    private int mFirstPointerId;
 
     public ProcessMenuTouchHelper(@IntRange(from = 1) int menuWidth) {
         mMenuWidth = menuWidth;
@@ -38,17 +38,18 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
         // 判断是recyclerView本身的上下滑动呢，还是是Item的左右滑，根据判断结果决定拦截与否
         float x = e.getX();
         float y = e.getY();
-        switch (e.getAction() & MotionEvent.ACTION_MASK) {
+        // switch (e.getAction() & MotionEvent.ACTION_MASK) {
+        switch (e.getActionMasked()) {
             case MotionEvent.ACTION_POINTER_DOWN:
-                mMultiPoint = true;
                 return true;
             case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, "onInterceptTouchEvent: ACTION_DOWN" + x + ", " + y);
-                mMultiPoint = false;
+                mFirstPointerId = e.getPointerId(0);
+                Log.d(TAG, "onInterceptTouchEvent: ACTION_DOWN=" + x + ", " + y + "id="
+                        + mFirstPointerId);
                 mVelocityTracker = VelocityTracker.obtain();
                 mVelocityTracker.addMovement(e);
                 if ((mFlingAnimation != null && mFlingAnimation.isRunning())
-                    || (mClosingAnimation != null && mClosingAnimation.isRunning())) {
+                        || (mClosingAnimation != null && mClosingAnimation.isRunning())) {
                     // animation: scrolling or closing has not finished.
                     return false;
                 }
@@ -60,10 +61,15 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
 
                 ViewConfiguration vc = ViewConfiguration.get(rv.getContext());
                 mTouchSlop = vc.getScaledTouchSlop();
-                mDirtIntercept = false;
+                // mDirtIntercept = false;
 
                 break;
             case MotionEvent.ACTION_MOVE:
+                // 不采集非第一个按下的事件
+                if (e.getPointerId(e.getActionIndex()) != mFirstPointerId) {
+                    break;
+                }
+
                 mLastTouchX = (int) (x + 0.5f);
                 mLastTouchY = (int) (y + 0.5f);
                 mVelocityTracker.addMovement(e);
@@ -126,18 +132,19 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
      */
     @Override
     public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-        if (mMultiPoint) {
+        if (e.getPointerId(e.getActionIndex()) != mFirstPointerId ) {
             return;
         }
 
         float x = e.getX();
         float y = e.getY();
-        mVelocityTracker.addMovement(e);
-        switch (e.getAction()) {
+        // switch (e.getAction() & MotionEvent.ACTION_MASK) {
+        switch (e.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 Log.d(TAG, "onTouchEvent: ACTION_DOWN" + x + ", " + y);
                 break;
             case MotionEvent.ACTION_MOVE:
+                mVelocityTracker.addMovement(e);
                 Log.d(TAG, "onTouchEvent: ACTION_MOVE" + x + ", " + y
                         + ", scrollX=" + mItem.getScrollX());
                 if (rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE && mItem != null) {
@@ -148,8 +155,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                     int dx = mLastTouchX - (int) (x + 0.5f); // 大于0,内容左滚，正向滑动。
                     // 关闭状态，取消右滑动作。
                     if (mItem.getScrollX() == 0 && dx < 0) {
-                        mDirtIntercept = true;
-                        rv.requestDisallowInterceptTouchEvent(true);
+                        // mDirtIntercept = true;
                         break;
                     }
 
@@ -169,19 +175,20 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                 }
                 break;
 
+            case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (mDirtIntercept) {
+                /*if (mDirtIntercept) {
                     Log.d(TAG, "onTouchEvent: ACTION_CANCEL dirty intercept " + x + ", " + y);
                     break;
-                }
+                }*/
 
                 int scrolled = mItem.getScrollX();
                 if (Math.abs(scrolled) >= mMenuWidth) {
                     // scrolling action has finished during moving
                     break;
                 }
-
+                mVelocityTracker.addMovement(e);
                 mVelocityTracker.computeCurrentVelocity(1000);
                 int v = (int) (mVelocityTracker.getXVelocity() + 0.5f);
 
@@ -207,7 +214,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                             mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                             // DynamicAnimation.SCROLL_X,
                             mFlingAnimation.setInterpolator(new AccelerateInterpolator());
-                            mFlingAnimation.setDuration(mMenuWidth-scrolled)
+                            mFlingAnimation.setDuration(mMenuWidth - scrolled)
                                     .start();
                         }
                     }
@@ -216,7 +223,8 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                     //     if (dx > 0) { // 关闭动作
                     //         mFlingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
                     //                 0);
-                    //         mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+                    //         mFlingAnimation.setInterpolator(new
+                    //         AccelerateDecelerateInterpolator());
                     //         // DynamicAnimation.SCROLL_X,
                     //         mFlingAnimation.setInterpolator(new AccelerateInterpolator());
                     //         mFlingAnimation.setDuration(-scrolled)
@@ -224,7 +232,8 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                     //     } else if (dx < 0) { // 未完成的打开动作
                     //         mFlingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
                     //                 -mMenuWidth);
-                    //         mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+                    //         mFlingAnimation.setInterpolator(new
+                    //         AccelerateDecelerateInterpolator());
                     //         // DynamicAnimation.SCROLL_X,
                     //         mFlingAnimation.setInterpolator(new AccelerateInterpolator());
                     //         mFlingAnimation.setDuration(mMenuWidth+scrolled)
@@ -240,7 +249,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                     // }
                 } else if (scrolled > 0) {
                     if (dx < 0) { // 关闭动作
-                        if ((mMenuWidth-scrolled) < mMenuWidth / 2) {// 不到一半时,复位
+                        if ((mMenuWidth - scrolled) < mMenuWidth / 2) {// 不到一半时,复位
                             mFlingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
                                     scrolled, mMenuWidth);
                             mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -258,7 +267,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                                     .start();
                         }
                     } else if (dx > 0) { // 未完成的打开动作
-                        if (scrolled <  mMenuWidth / 2) {// 不到一半时,复位
+                        if (scrolled < mMenuWidth / 2) {// 不到一半时,复位
                             mFlingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
                                     scrolled, 0);
                             mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -272,7 +281,7 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                             mFlingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                             // DynamicAnimation.SCROLL_X,
                             mFlingAnimation.setInterpolator(new AccelerateInterpolator());
-                            mFlingAnimation.setDuration(mMenuWidth-scrolled)
+                            mFlingAnimation.setDuration(mMenuWidth - scrolled)
                                     .start();
                         }
 
@@ -305,10 +314,6 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
                 //     mFlingAnimation.setDuration(mMenuWidth)
                 //             .start();
                 // }
-
-
-
-
 
 
                 // mVelocityTracker.computeCurrentVelocity(1000);
@@ -444,9 +449,14 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
         String strLog = mItem != null ? mItem.getScrollX() + "" : "null";
         Log.d(TAG, "closeItem: ScrollX=" + strLog);
         if (mItem != null) {
+            if (mFlingAnimation.isRunning()) {
+                mFlingAnimation.cancel();
+            }
+
             int sX = mItem.getScrollX();
             if (sX != 0) {
-                mClosingAnimation = ObjectAnimator.ofInt(mItem, "scrollX",
+                ViewGroup view = mItem;
+                mClosingAnimation = ObjectAnimator.ofInt(view, "scrollX",
                         0);
                 mClosingAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                 // DynamicAnimation.SCROLL_X,
