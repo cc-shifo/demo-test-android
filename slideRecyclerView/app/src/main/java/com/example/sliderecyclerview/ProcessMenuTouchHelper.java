@@ -449,7 +449,8 @@ public class ProcessMenuTouchHelper implements RecyclerView.OnItemTouchListener 
         String strLog = mItem != null ? mItem.getScrollX() + "" : "null";
         Log.d(TAG, "closeItem: ScrollX=" + strLog);
         if (mItem != null) {
-            if (mFlingAnimation.isRunning()) {
+            // 未拦截到删除滑动事件时，mFlingAnimation未空
+            if (mFlingAnimation != null && mFlingAnimation.isRunning()) {
                 mFlingAnimation.cancel();
             }
 
