@@ -22,6 +22,15 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     List<String> mList = new ArrayList<>();
 
+    private ItemClickListener mClickListener;
+
+    public void setItemClickListener(ItemClickListener clickListener) {
+        mClickListener = clickListener;
+    }
+
+    public interface ItemClickListener {
+        void onClick(View view);
+    }
     public MyAdapter(List<String> list) {
         mList = list;
     }
@@ -47,7 +56,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.mBtnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "hello", BaseTransientBottomBar.LENGTH_LONG).show();
+                // Snackbar.make(v, "hello", BaseTransientBottomBar.LENGTH_LONG).show();
+                if (mClickListener != null) {
+                    mClickListener.onClick(v);
+                }
             }
         });
         holder.mBtnDelete.setOnClickListener(new View.OnClickListener() {

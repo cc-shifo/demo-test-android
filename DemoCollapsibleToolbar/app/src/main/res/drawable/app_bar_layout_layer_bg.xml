@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/app_bar_layout_bg_white"
+        android:top="0dp"
+        android:left="0dp"
+        android:bottom="0dp"
+        />
+    <item android:drawable="@drawable/app_bar_layout_bg_gradient"
+        android:top="0dp"
+        android:left="0dp"
+        android:bottom="96dp"/>
+</layer-list>

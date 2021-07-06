@@ -5,5 +5,8 @@
     <dimen name="item_child_width">100dp</dimen>
     <dimen name="activity_download_rv_item_ic_size">60dp</dimen>
     <dimen name="activity_download_rv_item_padding">12dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

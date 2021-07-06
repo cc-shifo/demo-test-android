@@ -1,9 +1,11 @@
 package com.example.sliderecyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +32,14 @@ public class MainActivity extends AppCompatActivity {
         view.setLayoutManager(manager);
         int d = getResources().getDimensionPixelSize(R.dimen.item_child_width);
         view.setMotionEventSplittingEnabled(false);
-        view.addOnItemTouchListener(new ProcessMenuTouchHelper(d));
+        // view.addOnItemTouchListener(new ProcessMenuTouchHelper(d));
+        adapter.setItemClickListener(new MyAdapter.ItemClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ScrollingActivity.class);
+                startActivity(intent);
+            }
+        });
         view.setAdapter(adapter);
     }
 
