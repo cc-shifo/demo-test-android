@@ -7,15 +7,39 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import com.example.testactivity.databinding.ActivityMainBinding;
+import com.example.testactivity.fourth.FourthActivity;
+import com.example.testactivity.second.SecondActivity;
+import com.example.testactivity.third.ThirdActivity;
+
+/**
+ * activity lifecycle state
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private ActivityMainBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         Log.d(TAG, "onCreate: " + getLifecycle().getCurrentState());
+        mBinding.btnSecond.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SecondActivity.class);
+            startActivity(intent);
+        });
+        mBinding.btnThird.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ThirdActivity.class);
+            startActivity(intent);
+        });
+
+        mBinding.btnFourth.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FourthActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
