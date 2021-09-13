@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_net_margin_top">60dp</dimen>
+    <dimen name="layout_margin_top">30dp</dimen>
+    <dimen name="ip_margin">12dp</dimen>
+    <dimen name="mini_margin">6dp</dimen>
+    <dimen name="input_txt_size">16sp</dimen>
+</resources>
