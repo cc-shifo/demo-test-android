@@ -64,12 +64,12 @@ public class ServerUtil {
         Socket socket;
         // mServerSocket.setSoTimeout();
         if (BuildConfig.DEBUG || CommService.isEnableDebug()) {
-            String addr = new String(mServerSocket.getInetAddress().getAddress());
+            // String addr = new String(mServerSocket.getInetAddress().getAddress());
             String host = mServerSocket.getInetAddress().getHostAddress();
             String port = String.valueOf(mServerSocket.getLocalPort());
-            Log.d(TAG, "accept: mServerSocket addr" + addr);
-            Log.d(TAG, "accept: mServerSocket host" + host);
-            Log.d(TAG, "accept: mServerSocket port" + port);
+            // Log.d(TAG, "accept: mServerSocket addr=" + addr);
+            Log.d(TAG, "accept: mServerSocket host=" + host);
+            Log.d(TAG, "accept: mServerSocket port=" + port);
         }
 
         try {
@@ -80,12 +80,12 @@ public class ServerUtil {
         }
 
         if (BuildConfig.DEBUG || CommService.isEnableDebug()) {
-            String addr = new String(socket.getInetAddress().getAddress());
+            // String addr = new String(socket.getInetAddress().getAddress());
             String host = socket.getInetAddress().getHostAddress();
             String port = String.valueOf(socket.getLocalPort());
-            Log.d(TAG, "accept: mClient client" + addr);
-            Log.d(TAG, "accept: mClient host" + host);
-            Log.d(TAG, "accept: mClient port" + port);
+            // Log.d(TAG, "accept: mClient client=" + addr);
+            Log.d(TAG, "accept: mClient host=" + host);
+            Log.d(TAG, "accept: mClient port=" + port);
         }
         return socket;
     }

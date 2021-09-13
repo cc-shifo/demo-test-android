@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -93,15 +94,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveTaskToBack(false);
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.d(TAG, "onKeyDown: CommService");
+            moveTaskToBack(false);
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy: CommService");
         if (mDisposableReset != null && !mDisposableReset.isDisposed()) {
             mDisposableReset.dispose();
         }
@@ -112,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         // test();
         mBinding.portInput.setText(String.valueOf(ServerUtil.PORT));
-        mViewModel.getLocalIP();
         mViewModel.getIPv4().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -139,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 mBinding.txtMessage.setText(s);
             }
         });
+        mViewModel.getLocalIP();
 
         mBinding.btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
             CommStateManager.getInstance().getMessage().setValue(message);
         }
     };
+
     private final IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
@@ -237,7 +245,9 @@ public class MainActivity extends AppCompatActivity {
     private void stopServer() {
         // Intent i = new Intent(MainActivity.this, CommService.class);
         // stopService(i);
-        unbindService(mConn);
+        if (mServerEndCaller != null) {
+            unbindService(mConn);
+        }
     }
 
     private void test() {

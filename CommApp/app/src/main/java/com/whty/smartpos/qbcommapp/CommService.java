@@ -1,7 +1,6 @@
 package com.whty.smartpos.qbcommapp;
 
 import android.content.Intent;
-import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -53,7 +52,46 @@ public class CommService extends LifecycleService {
         Log.e(TAG, "onCreate: ");
         mMessageBuilder = new StringBuilder();
         mIServerBinder = new IServerBinder();
-        mAlive = new AtomicBoolean(true);
+        mAlive = new AtomicBoolean(false);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            setEnableDebug(intent.getBooleanExtra(FLAG_QB_COMM_APP_DEBUG, false));
+        }
+        start();
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        super.onBind(intent);
+        Log.i(TAG, "onBind: ");
+        start();
+        return mIServerBinder;
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.i(TAG, "onUnbind: ");
+        stop();
+        return true;
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        Log.i(TAG, "onRebind: ");
+        start();
+        super.onRebind(intent);
+    }
+
+    private void start() {
+        if (mAlive.get()) {
+            return;
+        }
+
+        mAlive.set(true);
         mExecutor = Executors.newSingleThreadExecutor();
         mExecutor.execute(new Runnable() {
             @Override
@@ -66,23 +104,18 @@ public class CommService extends LifecycleService {
         });
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null) {
-            setEnableDebug(intent.getBooleanExtra(FLAG_QB_COMM_APP_DEBUG, false));
+    private void stop() {
+        mAlive.set(false);
+        ServerUtil.getInstance().cancelAccept();
+        if (mWorkingSocket == null) {
+            ServerUtil.getInstance().close(mWorkingSocket);
+            mWorkingSocket = null;
         }
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        super.onBind(intent);
-        return mIServerBinder;
+        TransUtils.getInstance().destroy();
+        mExecutor.shutdown();
     }
 
     private void init() {
-        mIsReady.block();
-        mIsReady.close();
         postMessage(this.getString(R.string.socket_init));
         if (!ServerUtil.getInstance().init()) {
             postMessage(this.getString(R.string.socket_init_failed));
@@ -95,10 +128,12 @@ public class CommService extends LifecycleService {
         }
 
         while (mAlive.get()) {
+            Log.i(TAG, "init: ");
             postMessage(this.getString(R.string.socket_waiting_for_connection));
             Socket newSocket = ServerUtil.getInstance().accept();
             if (newSocket == null) {
-                continue;
+                mAlive.set(false);
+                break;
             }
 
             mWorkingSocket = newSocket;
@@ -178,28 +213,6 @@ public class CommService extends LifecycleService {
         mWorkingSocket = null;
     }
 
-    private String read(@NonNull Socket socket) {
-        byte[] bytes = new byte[MAX_SIZE];
-        int n = ServerUtil.getInstance().read(socket, bytes);
-        if (n < 0) {
-            return null;
-        }
-
-        return new String(Arrays.copyOf(bytes, n), StandardCharsets.UTF_8);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    private boolean write(@NonNull Socket socket, @NonNull byte[] data) {
-        if (data.length > MAX_SIZE) {
-            ResponseParams responseParams = new ResponseParams();
-            responseParams.setTransId(mTranId);
-            responseParams.setRespCode(ResponseCode.ERR_CODE_EXCEPTION);
-            return false;
-        }
-
-        return ServerUtil.getInstance().write(socket, data) == data.length;
-    }
-
     private ResponseParams startTrans(String jsonRequest) {
         RequestParams requestParams = new Gson().fromJson(jsonRequest,
                 new TypeToken<RequestParams>() {
@@ -225,29 +238,19 @@ public class CommService extends LifecycleService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAlive.set(false);
-        ServerUtil.getInstance().cancelAccept();
-        if (mWorkingSocket == null) {
-            ServerUtil.getInstance().close(mWorkingSocket);
-            mWorkingSocket = null;
-        }
-        TransUtils.getInstance().destroy();
-        mExecutor.shutdown();
+        Log.d(TAG, "onDestroy: ");
+        stop();
     }
-
-    private static final ConditionVariable mIsReady = new ConditionVariable(false);
 
     private static class IServerBinder extends IServerEndCaller.Stub {
         @Override
         public void registerMessageListener(IMessageListener listener) throws RemoteException {
             mRemoteCallbackList.register(listener);
-            mIsReady.open();
         }
 
         @Override
         public void unregisterMessageListener(IMessageListener listener) throws RemoteException {
             mRemoteCallbackList.unregister(listener);
-            mIsReady.close();
         }
     }
 }

@@ -28,7 +28,7 @@
         <service
             android:name=".CommService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:process=":remote">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -37,10 +37,10 @@
         </service>
 
         <receiver
-            android:name=".StartupReceiver"
+            android:name="com.whty.smartpos.qbcommapp.QBStartupReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter android:priority="1000">
+            <intent-filter android:priority="2000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
