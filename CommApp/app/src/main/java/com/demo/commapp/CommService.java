@@ -1,4 +1,4 @@
-package com.whty.smartpos.qbcommapp;
+package com.demo.commapp;
 
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleService;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.whty.smartpos.qbcommapp.R;
 import com.whty.smartpos.typaysdk.BuildConfig;
 import com.whty.smartpos.typaysdk.model.RequestParams;
 import com.whty.smartpos.typaysdk.model.ResponseCode;

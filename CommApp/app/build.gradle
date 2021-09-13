@@ -2,16 +2,6 @@ plugins {
     id 'com.android.application'
 }
 
-import org.tmatesoft.svn.core.wc.*
-def getSvnRevision() {
-    ISVNOptions options = SVNWCUtil.createDefaultOptions(true)
-    SVNClientManager clientManager = SVNClientManager.newInstance(options)
-    SVNStatusClient statusClient = clientManager.getStatusClient()
-    SVNStatus status = statusClient.doStatus(projectDir, false)
-    SVNRevision revision = status.getCommittedRevision()
-    return revision.getNumber()
-}
-
 def static internalBuildDate() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
@@ -21,7 +11,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.whty.smartpos.qbcommapp"
+        applicationId "com.demo.commapp"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -57,7 +47,7 @@ android {
                 if (variant.buildType.name == 'release') {
                     type = "R"
                 }
-                def fileName = "QBLink_${defaultConfig.versionName}_${type}${getSvnRevision()}.apk"
+                def fileName = "QBLink_${defaultConfig.versionName}_${type}.apk"
                 outputFileName = fileName
             }
         }

@@ -1,4 +1,4 @@
-package com.whty.smartpos.qbcommapp;
+package com.demo.commapp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.whty.smartpos.qbcommapp;
+package com.demo.commapp;
 
 import android.Manifest;
 import android.content.ComponentName;
@@ -23,6 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
+import com.whty.smartpos.qbcommapp.R;
 import com.whty.smartpos.qbcommapp.databinding.ActivityMainBinding;
 import com.whty.smartpos.typaysdk.inter.ITYSmartPosSdkManager;
 import com.whty.smartpos.typaysdk.model.RequestParams;

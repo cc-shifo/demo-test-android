@@ -1,4 +1,4 @@
-package com.whty.smartpos.qbcommapp;
+package com.demo.commapp;
 
 import android.content.Context;
 import android.os.ConditionVariable;
@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.whty.smartpos.qbcommapp.R;
 import com.whty.smartpos.typaysdk.impl.TYSmartPosApiImpl;
 import com.whty.smartpos.typaysdk.inter.ITYPayManagerListener;
 import com.whty.smartpos.typaysdk.inter.ITYSmartPosSdkManager;

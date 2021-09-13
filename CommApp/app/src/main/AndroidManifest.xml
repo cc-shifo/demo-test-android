@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.whty.smartpos.qbcommapp"
+    package="com.demo.commapp"
     android:installLocation="internalOnly">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -37,7 +37,7 @@
         </service>
 
         <receiver
-            android:name="com.whty.smartpos.qbcommapp.QBStartupReceiver"
+            android:name="com.whty.smartpos.qbcommapp.com.demo.qbcommapp.QBStartupReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2000">
