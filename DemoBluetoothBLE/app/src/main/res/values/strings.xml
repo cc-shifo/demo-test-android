@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DemoBluetoothBLE</string>
+    <string name="label_result">Result:</string>
+    <string name="label_send">Send:</string>
+    <string name="label_resp">Response:</string>
+    <string name="btn_scan">Scan</string>
+    <string name="btn_connect">Connect</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_disconnect">Disconnect</string>
+</resources>

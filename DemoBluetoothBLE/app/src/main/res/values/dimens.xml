@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="send_resp_height">120dp</dimen>
+    <dimen name="rv_scanned_list_item_padding">12dp</dimen>
+    <dimen name="rv_scanned_list_item_btn_margin">6dp</dimen>
+</resources>
