@@ -11,7 +11,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "API_KEY",API_KEY)
+        buildConfigField("String", "API_KEY", HAPI_KEY.toString())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +29,10 @@ android {
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
+    }
+
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -54,7 +58,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
 
 
-    implementation 'com.squareup.okio:okio:3.0.0-alpha.10'
+    implementation 'com.squareup.okio:okio:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.12'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
