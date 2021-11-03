@@ -500,6 +500,8 @@ public class MainActivityViewModel extends AndroidViewModel {
                 while (doubleBuffer.position() < doubleBuffer.limit()) {
                     // collection.add(doubleBuffer.get(), doubleBuffer.get(), 0);
                     list.add(doubleBuffer.get());
+                    Log.e(TAG, "loadBinaryManuallyInputData: p=" + doubleBuffer.position() + ", " +
+                            "l=" + doubleBuffer.limit());
                     list.add(doubleBuffer.get());
                     y++;
                 }
@@ -520,6 +522,9 @@ public class MainActivityViewModel extends AndroidViewModel {
                 //     y++;
                 // }
                 // byteBuffer.clear();
+
+                Log.e(TAG, "\n\n\n\n<--p=  x= " + x + "\n\n\n\n");
+
             }
         } catch (Exception e) {
             Log.e(TAG, "readTrackRecord[" + index + "]: ", e);
