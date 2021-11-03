@@ -503,7 +503,8 @@ public class MainActivityViewModel extends AndroidViewModel {
                 }
 
                 x++;
-                byteBuffer.flip();
+                // byteBuffer.rewind();// 如果调用了，当遇到读取数据长度不是8的倍数时就会出现数据丢失情况。
+                // rewind:position ->0 mark discard
                 doubleBuffer.position(0);
                 doubleBuffer.limit(byteBuffer.limit() >>> 3);// limit = byte limit / 8，
                 // 读取数据不全，读取的不一定是8的倍数。
@@ -518,9 +519,13 @@ public class MainActivityViewModel extends AndroidViewModel {
                     y++;
                 }
                 doubleBuffer.clear();
-                byteBuffer.clear();
                 doubleBuffer.limit(doubleBuffer.capacity());
-                byteBuffer.limit(byteBuffer.capacity());
+                if (!byteBuffer.hasRemaining()) {
+                    byteBuffer.clear();
+                    byteBuffer.limit(byteBuffer.capacity());
+                } else if ((byteBuffer.limit() & 0x07) != 0) {
+                    byteBuffer.compact();
+                }
 
                 Log.e(TAG, "\n\n\n\n<--p=  x= " + x + "\n\n\n\n");
 
