@@ -6,4 +6,8 @@
     <string name="next_direction">Next direction: %s</string>
     <string name="navigate_route">Navigate Route</string>
     <string name="recenter">Recenter</string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
+    <string name="failed">failed</string>
+    <string name="successful">successful</string>
 </resources>

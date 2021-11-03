@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.esri.arcgisruntime.geometry.Point;
-import com.esri.arcgisruntime.geometry.Polyline;
+import com.esri.arcgisruntime.geometry.PointCollection;
 import com.esri.arcgisruntime.geometry.PolylineBuilder;
 import com.esri.arcgisruntime.geometry.SpatialReferences;
 import com.esri.arcgisruntime.mapping.Viewpoint;
@@ -18,7 +18,13 @@ import com.esri.arcgisruntime.mapping.Viewpoint;
 import org.jetbrains.annotations.NotNull;
 import org.reactivestreams.Subscription;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.DataFormatException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -27,9 +33,19 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableEmitter;
 import io.reactivex.rxjava3.core.FlowableOnSubscribe;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okio.BufferedSink;
 import okio.BufferedSource;
+import okio.GzipSink;
+import okio.GzipSource;
 import okio.Okio;
+import okio.Sink;
+import okio.Source;
 
 public class MainActivityViewModel extends AndroidViewModel {
     private static final String TAG = "MainViewModel";
@@ -46,10 +62,19 @@ public class MainActivityViewModel extends AndroidViewModel {
     private Viewpoint mViewpoint;
     private Subscription mDisposable;
 
+    private Disposable mReadDisposable;
+    private Disposable mWriteDisposable;
+    private String mPath;
+
+    private MutableLiveData<Boolean> mReadStatus;
+    private MutableLiveData<Boolean> mWriteStatus;
+
 
     public MainActivityViewModel(@NonNull @NotNull Application application) {
         super(application);
         mLiveData = new MutableLiveData<>();
+        mReadStatus = new MutableLiveData<>();
+        mWriteStatus = new MutableLiveData<>();
     }
 
 
@@ -205,56 +230,340 @@ public class MainActivityViewModel extends AndroidViewModel {
                 && Double.compare(mLastHeightLevel - heightLevel, 0.000001) == 0);
     }
 
-    public static class TrackData {
-        private Polyline mPolyline;
-        private double mLatitude;
-        private double mLongitude;
-        private double mHeight;
 
-        private Viewpoint mViewpoint;
+    public LiveData<Boolean> observeReadStatus() {
+        return mReadStatus;
+    }
 
-        public TrackData() {
-            // nothing
+    public LiveData<Boolean> observeWriteStatus() {
+        return mWriteStatus;
+    }
+
+    public void textToBinaryTest() {
+        mReadDisposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Boolean> emitter) throws Throwable {
+                // boolean r1 = loadTextData();
+                boolean r2 = loadTextManuallyInputData();
+                if (!emitter.isDisposed()) {
+                    emitter.onNext(r2);
+                    emitter.onComplete();
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Throwable {
+                        mReadStatus.setValue(aBoolean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.d(TAG, "accept: ", throwable);
+                    }
+                });
+    }
+
+    private boolean loadTextData() {
+        File file = new File("/sdcard/Android/data/com.example.demoarcgis/files/track/bin_raw");
+        if (file.exists()) {
+            file.delete();
         }
 
-        public Polyline getPolyline() {
-            return mPolyline;
+        boolean result = OkioBufferUtil.getInstance().createBuffedTrackRecord(getApplication(),
+                "/sdcard/Android/data/com.example.demoarcgis/files/track/bin_raw");
+        if (!result) {
+            return false;
         }
 
-        public void setPolyline(Polyline polyline) {
-            mPolyline = polyline;
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
+        try (InputStream inputStream = getApplication().getResources().openRawResource(R.raw.nav);
+             BufferedSource source = Okio.buffer(Okio.source(inputStream))) {
+            while (!source.exhausted()) {
+                String line = source.readUtf8Line();
+                if (line != null) {
+                    String[] data = line.split("\\s+");
+                    if (data.length == 3) {
+                        if (byteBuffer.position() <= byteBuffer.capacity() - 16) {
+                            byteBuffer.putDouble(Double.parseDouble(data[1]));
+                            byteBuffer.putDouble(Double.parseDouble(data[2]));
+                        }
+
+                        if (byteBuffer.position() == byteBuffer.capacity()) {
+                            OkioBufferUtil.getInstance().write2Buffer(byteBuffer);
+                            OkioBufferUtil.getInstance().flushTrackBuffer();
+                            byteBuffer.clear();
+                        }
+                    } else {
+                        Log.e(TAG, "readTest: data error" + data.toString());
+                        return false;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e("readTest", "readNavTestData: ", e);
+            return false;
         }
 
-        public double getLatitude() {
-            return mLatitude;
+        mPath = OkioBufferUtil.getInstance().getTrackRecordPath();
+
+        OkioBufferUtil.getInstance().closeTrackBuffer();
+        return true;
+    }
+
+    private boolean loadTextManuallyInputData() {
+        Sink sink;
+        try {
+            sink = Okio.sink(new File("/sdcard/Android/data/com.example" +
+                    ".demoarcgis/files/track/m_bin_raw"), true);
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "openTrackRecord: path isn't exists");
+            return false;
         }
 
-        public void setLatitude(double latitude) {
-            mLatitude = latitude;
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
+        DoubleBuffer doubleBuffer = byteBuffer.asDoubleBuffer();
+        int x = 0;
+        int y = 0;
+        long z = 0;
+        try (GzipSink gzipSink = new GzipSink(sink);
+             BufferedSink bufferedSink = Okio.buffer(gzipSink)) {
+            for (int i = 0; i < 4096 * 2; i++) {
+                if (doubleBuffer.position() < doubleBuffer.capacity()) {
+                    doubleBuffer.put(i + 1000000f);
+                    doubleBuffer.put(i + 2000000f);
+                }
+
+                if (doubleBuffer.position() == doubleBuffer.capacity()) {
+                    doubleBuffer.rewind();
+                    byteBuffer.rewind();
+                    int n = bufferedSink.write(byteBuffer);
+                    if (n == 0) {
+                        Log.e(TAG, "bufferedSink.write2 = 0");
+                        return false;
+                    }
+                    bufferedSink.flush();
+                    doubleBuffer.clear();
+                    byteBuffer.clear();
+                    z += n;
+                    y++;
+                }
+                x++;
+            }
+
+            if (doubleBuffer.position() != 0) {
+                doubleBuffer.rewind();
+                byteBuffer.rewind();
+                int n = bufferedSink.write(byteBuffer);
+                if (n == 0) {
+                    Log.e(TAG, "bufferedSink.write2 = 0");
+                    return false;
+                }
+                bufferedSink.flush();
+                doubleBuffer.clear();
+                byteBuffer.clear();
+                z += n;
+                y++;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "loadTextManuallyInputData: ", e);
+            return false;
         }
 
-        public double getLongitude() {
-            return mLongitude;
+        // x = 8192, y = 32, z = 131072
+        Log.e(TAG, "loadTextManuallyInputData: bufferedSink.flush times x=" + x + ", y = " + y
+                + ", z = " + z);
+        return true;
+    }
+
+    public void binaryToTextTest() {
+        mReadDisposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Boolean> emitter) throws Throwable {
+                // boolean r = loadBinary();
+                boolean r = loadBinaryManuallyInputData();
+                if (!emitter.isDisposed()) {
+                    emitter.onNext(r);
+                    emitter.onComplete();
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Throwable {
+                        mWriteStatus.setValue(aBoolean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.d(TAG, "accept: ", throwable);
+                    }
+                });
+    }
+
+
+    private boolean loadBinary() {
+        File file = new File("/sdcard/Android/data/com.example.demoarcgis/files/track/text_raw");
+        if (file.exists()) {
+            file.delete();
         }
 
-        public void setLongitude(double longitude) {
-            mLongitude = longitude;
+        boolean b = OkioBufferUtil.getInstance().openBuffedTrackRecord("/sdcard/Android/data/com" +
+                ".example" +
+                ".demoarcgis/files/track/bin_raw");
+        if (!b) {
+            return false;
         }
 
-        public double getHeight() {
-            return mHeight;
+        PointCollection collection = OkioBufferUtil.getInstance().readRecord();
+        OkioBufferUtil.getInstance().closeTrackBuffer();
+        if (collection.isEmpty()) {
+            Log.e(TAG, "binaryToTextTest: PointCollection empty");
+            return false;
         }
 
-        public void setHeight(double height) {
-            mHeight = height;
+
+        b = OkioBufferUtil.getInstance().createBuffedTrackRecord(getApplication(),
+                "/sdcard/Android/data/com.example.demoarcgis/files/track/text_raw");
+        if (!b) {
+            return false;
         }
 
-        public Viewpoint getViewpoint() {
-            return mViewpoint;
+        StringBuilder builder = new StringBuilder();
+        for (int n = 0; n < collection.size(); n++) {
+            builder.append(Double.toString(collection.get(n).getY()));
+            builder.append("\t");
+            builder.append(Double.toString(collection.get(n).getX()));
+            builder.append("\n");
+            if ((n + 1) % 4096 == 0) {
+                b = OkioBufferUtil.getInstance().writeTrack2Buffer(builder.toString());
+                if (!b) {
+                    OkioBufferUtil.getInstance().closeTrackBuffer();
+                    return false;
+                }
+                OkioBufferUtil.getInstance().flushTrackBuffer();
+                builder.setLength(0);
+            }
         }
 
-        public void setViewpoint(Viewpoint viewpoint) {
-            mViewpoint = viewpoint;
+        if (builder.length() > 0) {
+            b = OkioBufferUtil.getInstance().writeTrack2Buffer(builder.toString());
+            if (!b) {
+                OkioBufferUtil.getInstance().closeTrackBuffer();
+                return false;
+            }
+            OkioBufferUtil.getInstance().flushTrackBuffer();
+        }
+        OkioBufferUtil.getInstance().closeTrackBuffer();
+
+        return true;
+    }
+
+
+    private boolean loadBinaryManuallyInputData() {
+        // Source source;
+        // try {
+        //     source = Okio.source(new File("/sdcard/Android/data/com.example" +
+        //             ".demoarcgis/files/track/m_bin_raw"));
+        // } catch (FileNotFoundException e) {
+        //     Log.e(TAG, "openTrackRecord: path isn't exists");
+        //     return false;
+        // }
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
+        PointCollection collection = new PointCollection((Iterable<Point>) null,
+                SpatialReferences.getWebMercator());
+        long index = 0;
+        long x = 0;
+        long y = 0;
+        try  {
+            Source source = Okio.source(new File("/sdcard/Android/data/com.example" +
+                                ".demoarcgis/files/track/m_bin_raw"));
+            BufferedSource bufferedSource = Okio.buffer(source);
+            // BufferedSource bufferedSource = Okio.buffer(new GzipSource(source));
+            int n = 0;
+            while (!bufferedSource.exhausted()) {
+                n = bufferedSource.read(byteBuffer);
+                if (n == 0) {
+                    break;
+                }
+
+                x++;
+                byteBuffer.rewind();
+                int limit = n - (n % 16);
+                while (byteBuffer.position() < limit) {
+                    collection.add(byteBuffer.getDouble(), byteBuffer.getDouble(), 0);
+                    y++;
+                }
+                byteBuffer.clear();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "readTrackRecord[" + index + "]: ", e);
+            return false;
+        }
+
+        // x = 32, y = 256
+        Log.e(TAG, "loadBinaryManuallyInputData1 [x=" + x + "], [y=" + y + "]");
+
+        Sink sink;
+        try {
+            sink = Okio.sink(new File("/sdcard/Android/data/com.example" +
+                    ".demoarcgis/files/track/m_text_raw"));
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "openTrackRecord: path isn't exists");
+            return false;
+        }
+
+
+        long z = 0;
+        try (BufferedSink bufferedSink = Okio.buffer(sink)) {
+            StringBuilder builder = new StringBuilder();
+            for (int n = 0; n < collection.size(); n++) {
+                builder.append(Double.toString(collection.get(n).getY()));
+                builder.append("\t");
+                builder.append(Double.toString(collection.get(n).getX()));
+                builder.append("\n");
+                if ((n + 1) % 256 == 0) {
+                    bufferedSink.writeString(builder.toString(), StandardCharsets.UTF_8);
+                    bufferedSink.flush();
+                    builder.setLength(0);
+                    z++;
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "loadBinaryManuallyInputData: ", e);
+            return false;
+        }
+
+        // z = 4
+        Log.e(TAG, "loadBinaryManuallyInputData2 [z=" + z + "]");
+
+        return true;
+    }
+
+    public void readTest() {
+
+    }
+
+    public void writeTest() {
+
+    }
+
+
+    public void destroy() {
+        if (mDisposable != null) {
+            mDisposable.cancel();
+            mDisposable = null;
+        }
+        if (mReadDisposable != null && !mReadDisposable.isDisposed()) {
+            mReadDisposable.dispose();
+            mReadDisposable = null;
+        }
+        if (mWriteDisposable != null && !mWriteDisposable.isDisposed()) {
+            mWriteDisposable.dispose();
+            mWriteDisposable = null;
         }
     }
+
 }
