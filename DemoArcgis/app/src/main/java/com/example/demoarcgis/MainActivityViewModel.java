@@ -335,8 +335,8 @@ public class MainActivityViewModel extends AndroidViewModel {
              BufferedSink bufferedSink = Okio.buffer(gzipSink)) {
             for (int i = 0; i < 4096 * 2; i++) {
                 if (doubleBuffer.position() < doubleBuffer.capacity()) {
-                    doubleBuffer.put(i + 1000000f);
-                    doubleBuffer.put(i + 2000000f);
+                    doubleBuffer.put(i + 10000f);
+                    doubleBuffer.put(i + 20000f);
                 }
 
                 if (doubleBuffer.position() == doubleBuffer.capacity()) {
@@ -357,8 +357,8 @@ public class MainActivityViewModel extends AndroidViewModel {
             }
 
             if (doubleBuffer.position() != 0) {
-                doubleBuffer.rewind();
-                byteBuffer.rewind();
+                doubleBuffer.flip();
+                byteBuffer.flip();
                 int n = bufferedSink.write(byteBuffer);
                 if (n == 0) {
                     Log.e(TAG, "bufferedSink.write2 = 0");
@@ -485,6 +485,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         long index = 0;
         long x = 0;
         long y = 0;
+        long total = 0;
         try {
             Source source = Okio.source(new File("/storage/emulated/0/Android/data/com.example" +
                     ".demoarcgis/cache/m_bin_raw"));
@@ -492,36 +493,34 @@ public class MainActivityViewModel extends AndroidViewModel {
             while (!bufferedSource.exhausted()) {
                 int n = bufferedSource.read(byteBuffer);
 
+                if (n != -1) {
+                    total += n;
+                }
+
+                if (n % 8 != 0) {
+                    Log.e(TAG,
+                            "loadBinaryManuallyInputData1 n=" + n + ", x=" + x);
+                }
+
                 x++;
                 byteBuffer.flip();
                 doubleBuffer.position(0);
-                doubleBuffer.limit(byteBuffer.limit() >>> 3);// limit = byte limit / 8
+                doubleBuffer.limit(byteBuffer.limit() >>> 3);// limit = byte limit / 8，
+                // 读取数据不全，读取的不一定是8的倍数。
                 // int limit = n - (n % 16);
                 while (doubleBuffer.position() < doubleBuffer.limit()) {
-                    // collection.add(doubleBuffer.get(), doubleBuffer.get(), 0);
+                    // collection.add(doubleBuffer.get(), doubleBuffer.get(), 0);//
+                    // 读取不全，缓存里不一定有第二个数
                     list.add(doubleBuffer.get());
                     Log.e(TAG, "loadBinaryManuallyInputData: p=" + doubleBuffer.position() + ", " +
                             "l=" + doubleBuffer.limit());
-                    list.add(doubleBuffer.get());
+                    // list.add(doubleBuffer.get());
                     y++;
                 }
                 doubleBuffer.clear();
                 byteBuffer.clear();
                 doubleBuffer.limit(doubleBuffer.capacity());
                 byteBuffer.limit(byteBuffer.capacity());
-                // n = bufferedSource.read(byteBuffer);
-                // if (n == 0) {
-                //     break;
-                // }
-                //
-                // x++;
-                // byteBuffer.flip();
-                // int limit = n - (n % 16);
-                // while (byteBuffer.position() < limit) {
-                //     collection.add(byteBuffer.getDouble(), byteBuffer.getDouble(), 0);
-                //     y++;
-                // }
-                // byteBuffer.clear();
 
                 Log.e(TAG, "\n\n\n\n<--p=  x= " + x + "\n\n\n\n");
 
@@ -531,9 +530,10 @@ public class MainActivityViewModel extends AndroidViewModel {
             return false;
         }
 
-        // x = 32, y = 8192
+        // y = 8192
         Log.e(TAG,
-                "loadBinaryManuallyInputData1 [x=" + (x - 1) + "], [y=" + (y - 1) + "]" + "size=" + list.size());
+                "loadBinaryManuallyInputData1 [x=" + (x - 1) + "], [y=" + (y - 1) + "]"
+                        + "size=" + list.size() + ", total=" + total);
 
         Sink sink;
         try {
@@ -548,22 +548,32 @@ public class MainActivityViewModel extends AndroidViewModel {
         long z = 0;
         try (BufferedSink bufferedSink = Okio.buffer(sink)) {
             StringBuilder builder = new StringBuilder();
-            for (int n = 0; n < list.size(); n += 2) {
+            for (int n = 0; n < list.size(); n++) {
                 builder.append(list.get(n));
-                builder.append("\t");
-                builder.append(list.get(n + 1));
-                builder.append("\n");
+                if ((n & 0x01) == 1) {
+                    builder.append("\n");
+                } else {
+                    builder.append("\t");
+                }
+
 
                 // builder.append(Double.toString(collection.get(n).getY()));
                 // builder.append("\t");
                 // builder.append(Double.toString(collection.get(n).getX()));
                 // builder.append("\n");
-                if ((n + 1) % 256 == 0) {
+                if (builder.length() >= 4096) {
                     bufferedSink.writeString(builder.toString(), StandardCharsets.UTF_8);
                     bufferedSink.flush();
                     builder.setLength(0);
                     z++;
                 }
+            }
+
+            if (builder.length() > 0) {
+                bufferedSink.writeString(builder.toString(), StandardCharsets.UTF_8);
+                bufferedSink.flush();
+                builder.setLength(0);
+                z++;
             }
         } catch (Exception e) {
             Log.e(TAG, "loadBinaryManuallyInputData: ", e);
