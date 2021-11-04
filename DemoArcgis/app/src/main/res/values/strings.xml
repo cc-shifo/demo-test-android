@@ -8,6 +8,8 @@
     <string name="recenter">Recenter</string>
     <string name="read">Read</string>
     <string name="write">Write</string>
+    <string name="convert">Convert</string>
+    <string name="his_track">HisTrack</string>
     <string name="failed">failed</string>
     <string name="successful">successful</string>
 </resources>

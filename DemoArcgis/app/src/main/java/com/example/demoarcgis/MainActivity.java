@@ -25,6 +25,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -35,6 +36,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
 import com.esri.arcgisruntime.geometry.GeometryEngine;
 import com.esri.arcgisruntime.geometry.Point;
+import com.esri.arcgisruntime.geometry.Polyline;
 import com.esri.arcgisruntime.geometry.PolylineBuilder;
 import com.esri.arcgisruntime.geometry.SpatialReference;
 import com.esri.arcgisruntime.geometry.SpatialReferences;
@@ -48,6 +50,7 @@ import com.esri.arcgisruntime.mapping.view.Camera;
 import com.esri.arcgisruntime.mapping.view.Graphic;
 import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.mapping.view.LocationDisplay;
+import com.esri.arcgisruntime.mapping.view.SceneView;
 import com.esri.arcgisruntime.navigation.RouteTracker;
 import com.esri.arcgisruntime.symbology.SimpleLineSymbol;
 import com.esri.arcgisruntime.symbology.SimpleRenderer;
@@ -144,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             runTask();
         }
 
-        initBtn();
+        initScene();
     }
 
     private void runTask() {
@@ -161,10 +164,11 @@ public class MainActivity extends AppCompatActivity {
         // test3
         showSceneMap();
         // test4
-        initSceneTrackGraphicOverlay();
-        updateTrackOnScene();
+        // initSceneTrackGraphicOverlay();
+        // updateTrackOnScene();
 
 
+        initScene();
     }
 
     private void showBaseMap() {
@@ -435,6 +439,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mViewModel.getConvertStatus().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                String v = Boolean.TRUE.equals(aBoolean) ? getString(R.string.successful)
+                        : getString(R.string.failed);
+                mBinding.navigationControls.timeRemainingTextView.setText(v);
+                mBinding.navigationControls.convertBtn.setEnabled(true);
+            }
+        });
+
         mBinding.navigationControls.readBtn.setOnClickListener(v -> {
             mBinding.navigationControls.readBtn.setEnabled(false);
             mViewModel.textToBinaryTest();
@@ -444,6 +458,71 @@ public class MainActivity extends AppCompatActivity {
             mBinding.navigationControls.writeBtn.setEnabled(false);
             mViewModel.binaryToTextTest();
         });
+
+        mBinding.navigationControls.convertBtn.setOnClickListener(v -> {
+            mBinding.navigationControls.convertBtn.setEnabled(false);
+            mViewModel.rawNavFileTxtToBin();
+        });
+
+        mBinding.navigationControls.loadHisTrack.setOnClickListener(v -> {
+            mBinding.navigationControls.loadHisTrack.setEnabled(false);
+            mViewModel.loadHistTrack("");
+        });
+    }
+
+    private void initScene() {
+        // create a scene with a basemap and add it to the scene view
+        ArcGISScene scene = new ArcGISScene(Basemap.createImagery());
+        // scene.setBasemap(Basemap.createImagery());
+        // Surface surface = new Surface();
+        // surface.getElevationSources().add(new ArcGISTiledElevationSource("https://services" +
+        //         ".arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"));
+        // scene.setBaseSurface(surface);
+        mBinding.sceneView.setScene(scene);
+        // mSceneView.setViewpointAsync(new Viewpoint(latitude, longitude, 10000), 200);
+        mBinding.sceneView.setViewpointCameraAsync(new Camera(30.457091,
+                114.398683, 1000, 0, 0, 0));
+
+        // create mark
+        SimpleLineSymbol lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.Style.SOLID,
+                Color.BLUE, 10);
+        // create render
+        mSceneSimpleRenderer = new SimpleRenderer(lineSymbol);
+        // create a graphics overlay
+        mSceneTrackGraphicsOverlay = new GraphicsOverlay();
+        mSceneTrackGraphic = new Graphic();
+    }
+
+    /**
+     * Add track represented by {@link Polyline} to an graphics overlay, and add this graphics
+     * overlay to {@link SceneView}, then asynchronize Viewpoint.
+     *
+     * @param polyline  Containing track information.
+     * @param viewpoint the point represents current position in the map.
+     */
+    public void refreshTrack(@NonNull Polyline polyline, @Nullable Viewpoint viewpoint) {
+        mBinding.sceneView.getGraphicsOverlays().remove(mSceneTrackGraphicsOverlay);
+        // add line to graphics overlay
+        mSceneTrackGraphic.setGeometry(polyline);
+        // set render for graphics overlay
+        mSceneTrackGraphicsOverlay.setRenderer(mSceneSimpleRenderer);
+        mSceneTrackGraphicsOverlay.getGraphics().add(mSceneTrackGraphic);
+        // add graphics overlay to MapView
+        mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
+        if (viewpoint != null) {
+            mBinding.sceneView.setViewpointAsync(viewpoint);
+        }
+    }
+
+    private void initHistTrack() {
+        mViewModel.observeHisTrack().observe(this, new Observer<HistoricalTrack>() {
+            @Override
+            public void onChanged(HistoricalTrack historicalTrack) {
+                refreshTrack(historicalTrack.getPolyline(), historicalTrack.getViewpoint());
+            }
+        });
+
+        mViewModel.loadHistTrack("");
     }
 
     @Override
