@@ -211,46 +211,53 @@ public class TrackRecUtil {
     @NonNull
     public double[][] read() {
         double[][] cache = new double[0][2];
+
+        mOffset = 0;
         try {
             while (!mBufferedSource.exhausted()) {
                 int n = mBufferedSource.read(mPointCache, mOffset, mPointCache.length - mOffset);
                 mOffset += n;
-                if ((mOffset & 0x0f) != 0) {
-                    Log.e(TAG, "readTrackRecord mOffset=" + mOffset + ", n=" + n);
-                    continue;
+                if ((mOffset & 0x0f) == 0) {
+                    cache = new double[mOffset / 16][2];
+                    // 读取数据不全，读取的不一定是8的倍数。
+                    // 如果调用了，当遇到读取数据长度不是8的倍数时就会出现数据丢失情况。
+                    // rewind:position ->0 mark discard
+                    // 读取数据不全，读取的不一定是8的倍数。
+                    for (int pti = 0; pti < mOffset; pti += 16) {
+                        // 读取不全，缓存里不一定有第二个数
+                        long l = ((mPointCache[pti] & 0xffL) << 56)
+                                | ((mPointCache[pti + 1] & 0xffL) << 48)
+                                | ((mPointCache[pti + 2] & 0xffL) << 40)
+                                | ((mPointCache[pti + 3] & 0xffL) << 32)
+                                | ((mPointCache[pti + 4] & 0xffL) << 24)
+                                | ((mPointCache[pti + 5] & 0xffL) << 16)
+                                | ((mPointCache[pti + 6] & 0xffL) << 8)
+                                | (mPointCache[pti + 7] & 0xffL);
+                        cache[pti>>>4][0] = Double.longBitsToDouble(l);
+                        l = ((mPointCache[pti + 8] & 0xffL) << 56)
+                                | ((mPointCache[pti + 9] & 0xffL) << 48)
+                                | ((mPointCache[pti + 10] & 0xffL) << 40)
+                                | ((mPointCache[pti + 11] & 0xffL) << 32)
+                                | ((mPointCache[pti + 12] & 0xffL) << 24)
+                                | ((mPointCache[pti + 13] & 0xffL) << 16)
+                                | ((mPointCache[pti + 14] & 0xffL) << 8)
+                                | (mPointCache[pti + 15] & 0xffL);
+                        cache[pti>>>4][1] = Double.longBitsToDouble(l);
+                    }
+                    // mOffset = 0;
+                    break;
                 }
-
-                cache = new double[mOffset / 16][2];
-                // 读取数据不全，读取的不一定是8的倍数。
-                // 如果调用了，当遇到读取数据长度不是8的倍数时就会出现数据丢失情况。
-                // rewind:position ->0 mark discard
-                // 读取数据不全，读取的不一定是8的倍数。
-                for (int pti = 0, j = 0; pti < mOffset; pti += 16) {
-                    // 读取不全，缓存里不一定有第二个数
-                    long l = ((mPointCache[pti] & 0xffL) << 56)
-                            | ((mPointCache[pti + 1] & 0xffL) << 48)
-                            | ((mPointCache[pti + 2] & 0xffL) << 40)
-                            | ((mPointCache[pti + 3] & 0xffL) << 32)
-                            | ((mPointCache[pti + 4] & 0xffL) << 24)
-                            | ((mPointCache[pti + 5] & 0xffL) << 16)
-                            | ((mPointCache[pti + 6] & 0xffL) << 8)
-                            | (mPointCache[pti + 7] & 0xffL);
-                    cache[j][0] = Double.longBitsToDouble(l);
-                    l = ((mPointCache[pti + 8] & 0xffL) << 56)
-                            | ((mPointCache[pti + 9] & 0xffL) << 48)
-                            | ((mPointCache[pti + 10] & 0xffL) << 40)
-                            | ((mPointCache[pti + 11] & 0xffL) << 32)
-                            | ((mPointCache[pti + 12] & 0xffL) << 24)
-                            | ((mPointCache[pti + 13] & 0xffL) << 16)
-                            | ((mPointCache[pti + 14] & 0xffL) << 8)
-                            | (mPointCache[pti + 15] & 0xffL);
-                    cache[j][1] = Double.longBitsToDouble(l);
-                }
-                mOffset = 0;
+                Log.d(TAG, "readTrackRecord mOffset=" + mOffset + ", n=" + n);
             }
         } catch (IOException e) {
+            mOffset = 0;
             cache = new double[0][2];
             Log.e(TAG, "read: ", e);
+        }
+
+        if ((mOffset & 0x0f) != 0) {
+            Log.e(TAG, "!!!Error readTrackRecord mOffset=" + mOffset);
+            cache = new double[0][2];
         }
 
         return cache;

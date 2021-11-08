@@ -40,6 +40,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.DataFormatException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -176,7 +177,7 @@ public class MainActivityViewModel extends AndroidViewModel {
             public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Boolean> emitter) throws Throwable {
 
                 boolean status = TrackRecUtil.getInstance().create(getApplication(), "" +
-                                "/sdcard/Android/data/com.rgspace.cocapture/files/hisTrackTest",
+                                "/sdcard/Android/data/com.example.demoarcgis/files/hisTrackTest",
                         false,
                         true);
 
@@ -188,6 +189,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                     return;
                 }
 
+                long n = 0;
                 try (InputStream inputStream =
                              getApplication().getResources().openRawResource(R.raw.nav);
                      BufferedSource source = Okio.buffer(Okio.source(inputStream))) {
@@ -254,13 +256,14 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     private PointCollection collection;
+
     public void loadHistTrack(@NonNull String path) {
         mLoadDisposable = Observable.create(new ObservableOnSubscribe<HistoricalTrack>() {
             @Override
             public void subscribe(@io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<HistoricalTrack> emitter) throws Throwable {
-                collection = new PointCollection(SpatialReferences.getWgs84());
+                collection = new PointCollection(SpatialReferences.getWebMercator());
                 boolean r = TrackRecUtil.getInstance().open(
-                        "/sdcard/Android/data/com.rgspace.cocapture/files/hisTrackTest",
+                        "/sdcard/Android/data/com.example.demoarcgis/files/hisTrackTest",
                         true, false);
                 if (!r) {
                     if (!emitter.isDisposed()) {
@@ -273,22 +276,22 @@ public class MainActivityViewModel extends AndroidViewModel {
                     if (lines.length == 0) {
                         break;
                     }
+
                     for (double[] line : lines) {
                         Point wgs = new Point(line[1], line[0], 0, SpatialReferences.getWgs84());
                         Point point = (Point) GeometryEngine.project(wgs,
                                 SpatialReferences.getWebMercator());
                         collection.add(point);
                     }
+
+                    if (!emitter.isDisposed()) {
+                        Viewpoint viewpoint = new Viewpoint(lines[0][1], lines[0][0], 10000);
+                        emitter.onNext(new HistoricalTrack(new Polyline(collection),viewpoint));
+                        emitter.onComplete();
+                    }
                 }
 
                 TrackRecUtil.getInstance().close();
-
-                if (!emitter.isDisposed()) {
-                    emitter.onNext(new HistoricalTrack(new Polyline(collection),
-                            new Viewpoint(collection.get(0).getY(), collection.get(0).getX(),
-                                    10000)));
-                    emitter.onComplete();
-                }
             }
         })
                 .subscribeOn(Schedulers.io())
@@ -302,6 +305,8 @@ public class MainActivityViewModel extends AndroidViewModel {
                     @Override
                     public void accept(Throwable throwable) throws Throwable {
                         Log.e(TAG, "accept: ", throwable);
+                        mHistTrack.setValue(new HistoricalTrack());
+                        TrackRecUtil.getInstance().close();
                     }
                 }, new Action() {
                     @Override
@@ -485,7 +490,8 @@ public class MainActivityViewModel extends AndroidViewModel {
     private boolean loadTextManuallyInputData() {
         // return loadTextManuallyInputData1();
         // return loadTextManuallyInputData2();
-        return loadTextManuallyInputData3();
+        // return loadTextManuallyInputData3();
+        return loadTextManuallyInputData4();
     }
 
     // when using ByteBuffer together with Okio, it can't deal with double type rightly.
@@ -746,7 +752,7 @@ public class MainActivityViewModel extends AndroidViewModel {
             // .demoarcgis/cache/m_bin_raw"), true);
             // device
             sink = Okio.sink(new File("/sdcard/Android/data/com.example" +
-                    ".demoarcgis/files/track/m_bin_raw"), true);
+                    ".demoarcgis/files/m_bin_raw"), true);
         } catch (FileNotFoundException e) {
             Log.e(TAG, "openTrackRecord: path isn't exists");
             return false;
@@ -905,7 +911,8 @@ public class MainActivityViewModel extends AndroidViewModel {
     private boolean loadBinaryManuallyInputData() {
         // return loadBinaryManuallyInputData1();
         // return loadBinaryManuallyInputData2();
-        return loadBinaryManuallyInputData3();
+        // return loadBinaryManuallyInputData3();
+        return loadBinaryManuallyInputData4();
     }
 
     // when using ByteBuffer together with Okio, it can't deal with double type rightly.
@@ -1358,6 +1365,144 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     // use BigDecimal
     private boolean loadBinaryManuallyInputData4() {
+        // Source source;
+        // try {
+        //     source = Okio.source(new File("/sdcard/Android/data/com.example" +
+        //             ".demoarcgis/files/track/m_bin_raw"));
+        // } catch (FileNotFoundException e) {
+        //     Log.e(TAG, "openTrackRecord: path isn't exists");
+        //     return false;
+        // }
+        byte[] bytes = new byte[4096];
+        int offset = 0;
+        // PointCollection collection = new PointCollection((Iterable<Point>) null,
+        //         SpatialReferences.getWebMercator());
+
+
+        List<Double> list = new ArrayList<>();
+        long index = 0;
+        long x = 0;
+        long y = 0;
+        long total = 0;
+        try (// used for emulator
+             // Source source = Okio.source(new File("/storage/emulated/0/Android/data/com
+             // .example" +
+             //         ".demoarcgis/cache/m_bin_raw"));
+
+             // used for device.
+             Source source = Okio.source(new File("/sdcard/Android/data/com.example" +
+                     ".demoarcgis/files/hisTrackTest"));
+             BufferedSource bufferedSource = Okio.buffer(new GzipSource(source))) {
+
+            while (!bufferedSource.exhausted()) {
+                int n = bufferedSource.read(bytes, offset, bytes.length - offset);
+                if (n != -1) {
+                    total += n;
+                }
+
+                offset += n;
+                if (offset % 8 != 0) {
+                    Log.e(TAG, "loadBinaryManuallyInputData1 n=" + n + ", x=" + x);
+                    continue;
+                }
+
+                x++;
+
+                // 读取数据不全，读取的不一定是8的倍数。
+                // 如果调用了，当遇到读取数据长度不是8的倍数时就会出现数据丢失情况。
+                // rewind:position ->0 mark discard
+                // 读取数据不全，读取的不一定是8的倍数。
+                for (int pti = 0; pti < offset; pti += 8) {
+                    // 读取不全，缓存里不一定有第二个数
+                    // collection.add(doubleBuffer.get(), doubleBuffer.get(), 0);//
+                    long l = ((bytes[pti] & 0xffL) << 56)
+                            | ((bytes[pti + 1] & 0xffL) << 48)
+                            | ((bytes[pti + 2] & 0xffL) << 40)
+                            | ((bytes[pti + 3] & 0xffL) << 32)
+                            | ((bytes[pti + 4] & 0xffL) << 24)
+                            | ((bytes[pti + 5] & 0xffL) << 16)
+                            | ((bytes[pti + 6] & 0xffL) << 8)
+                            | (bytes[pti + 7] & 0xffL);
+                    list.add(Double.longBitsToDouble(l));
+                    Log.e(TAG, "loadBinaryManuallyInputData: pos=" + pti);
+                    // list.add(doubleBuffer.get());
+                    y++;
+                }
+
+                offset = 0;
+                Log.e(TAG, "\n\n\n\n<--p=  x= " + x + "\n\n\n\n");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "readTrackRecord[" + index + "]: ", e);
+            return false;
+        }
+
+        // y = 8192
+        Log.e(TAG,
+                "loadBinaryManuallyInputData1 [x=" + (x - 1) + "], [y=" + (y - 1) + "]"
+                        + "size=" + list.size() + ", total=" + total);
+
+        Sink sink;
+        try {
+            // emulator
+            // sink = Okio.sink(new File("/storage/emulated/0/Android/data/com.example
+            // .demoarcgis/cache/m_text_raw"));
+            // device
+            sink = Okio.sink(new File("/sdcard/Android/data/com.example" +
+                    ".demoarcgis/files/Text_hisTrackTest"));
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "openTrackRecord: path isn't exists");
+            return false;
+        }
+
+
+        NumberFormat format = NumberFormat.getInstance();
+        format.setGroupingUsed(false);
+        format.setMaximumFractionDigits(10);
+        long z = 0;
+        try (BufferedSink bufferedSink = Okio.buffer(sink)) {
+            StringBuilder builder = new StringBuilder();
+            for (int n = 0; n < list.size(); n++) {
+                builder.append(format.format(list.get(n)));
+                if ((n & 0x01) == 1) {
+                    builder.append("\n");
+                } else {
+                    builder.append("\t");
+                }
+                Log.e(TAG, "loadBinaryManuallyInputData3: " + builder.toString());
+
+
+                // builder.append(Double.toString(collection.get(n).getY()));
+                // builder.append("\t");
+                // builder.append(Double.toString(collection.get(n).getX()));
+                // builder.append("\n");
+                if (builder.length() >= 4096) {
+                    bufferedSink.writeString(builder.toString(), StandardCharsets.UTF_8);
+                    bufferedSink.flush();
+                    builder.setLength(0);
+                    z++;
+                }
+            }
+
+            if (builder.length() > 0) {
+                Log.e(TAG, "loadBinaryManuallyInputData3: " + builder.toString());
+                bufferedSink.writeString(builder.toString(), StandardCharsets.UTF_8);
+                bufferedSink.flush();
+                builder.setLength(0);
+                z++;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "loadBinaryManuallyInputData: ", e);
+            return false;
+        }
+
+        // z = 4
+        Log.e(TAG, "loadBinaryManuallyInputData2 [z=" + z + "]");
+
+        return true;
+    }
+
+    private boolean loadBinaryManuallyInputData5() {
         // Source source;
         // try {
         //     source = Okio.source(new File("/sdcard/Android/data/com.example" +

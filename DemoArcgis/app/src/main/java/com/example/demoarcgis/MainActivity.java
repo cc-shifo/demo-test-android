@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -146,14 +147,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             runTask();
         }
-
-        initScene();
     }
 
     private void runTask() {
         ArcGISRuntimeEnvironment.setApiKey(BuildConfig.API_KEY);
-
-        // test1
+        //
+        // // test1
         showBaseMap();
         initMapTrackGraphicOverlay();
         updateTrackOnViewMap();
@@ -164,11 +163,14 @@ public class MainActivity extends AppCompatActivity {
         // test3
         showSceneMap();
         // test4
-        // initSceneTrackGraphicOverlay();
+
+
+
+        // initScene();
+        initBtn();
+        initSceneTrackGraphicOverlay();
         // updateTrackOnScene();
-
-
-        initScene();
+        // initHistTrack();
     }
 
     private void showBaseMap() {
@@ -223,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         mSimpleRenderer = new SimpleRenderer(lineSymbol);
         // create graphic overlay for polyline
         mTrackGraphicsOverlay = new GraphicsOverlay();
-// create graphic for polyline
+        // create graphic for polyline
         mTrackGraphic = new Graphic();
 
         // mTrackGraphicsOverlay.getGraphics().add(mTrackGraphic);
@@ -326,8 +328,12 @@ public class MainActivity extends AppCompatActivity {
 
         // create graphic for polyline
         mSceneTrackGraphic = new Graphic();
+
+        mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
     }
 
+    private double mTestLat = 30.456622;
+    private double mTestLon = 114.397293;
     private void updateTrackOnScene() {
         // create Graphic
         PolylineBuilder lineGeometry = new PolylineBuilder(SpatialReferences.getWebMercator());
@@ -401,9 +407,15 @@ public class MainActivity extends AppCompatActivity {
         point = (Point) GeometryEngine.project(wgs84, SpatialReferences.getWebMercator());
         Log.e(TAG, "updateTrackOnViewMap2: " + point.toString());
         lineGeometry.addPoint(point);
+
+        wgs84 = new Point(mTestLon, mTestLat, SpatialReferences.getWgs84());
+        point = (Point) GeometryEngine.project(wgs84, SpatialReferences.getWebMercator());
+        Log.e(TAG, "updateTrackOnViewMap2: " + point.toString());
+        lineGeometry.addPoint(point);
         mSceneTrackGraphic.setGeometry(lineGeometry.toGeometry());
 
-        mBinding.sceneView.getGraphicsOverlays().remove(mSceneTrackGraphicsOverlay);
+        // 更新路线时在已添加图层加上Graphics，不用删除图层再加图层这样的操作。
+        // mBinding.sceneView.getGraphicsOverlays().remove(mSceneTrackGraphicsOverlay);
         // mTrackGraphicsOverlay.getGraphics().remove(mTrackGraphic);
         // add graphic to overlay
         // PolylineBuilder lineGeometry = new PolylineBuilder(SpatialReferences.getWebMercator());
@@ -412,14 +424,32 @@ public class MainActivity extends AppCompatActivity {
         // lineGeometry.addPoint(new Point(30.45709544000, 114.47904744700, SpatialReferences
         // .getWgs84()));
 
+        // 每次绘制时渲染必须加
         mSceneTrackGraphicsOverlay.setRenderer(mSceneSimpleRenderer);
         // add graphic to overlay
+        mSceneTrackGraphicsOverlay.getGraphics().remove(mSceneTrackGraphic);
+        // 一个图层里不可以重复添加同一个Graphics
         mSceneTrackGraphicsOverlay.getGraphics().add(mSceneTrackGraphic);
         // add graphics overlay to the sceneView
-        mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
+        // mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
     }
 
     private void initBtn() {
+        mBinding.navigationControls.drawPointBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTrackOnScene();
+            }
+        });
+        mBinding.navigationControls.drawLineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTestLat += 0.00004;
+                mTestLon += 0.00004;
+                updateTrackOnScene();
+
+            }
+        });
         mViewModel.observeReadStatus().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -500,15 +530,19 @@ public class MainActivity extends AppCompatActivity {
      * @param polyline  Containing track information.
      * @param viewpoint the point represents current position in the map.
      */
-    public void refreshTrack(@NonNull Polyline polyline, @Nullable Viewpoint viewpoint) {
-        mBinding.sceneView.getGraphicsOverlays().remove(mSceneTrackGraphicsOverlay);
+    public void refreshTrack(Polyline polyline, @Nullable Viewpoint viewpoint) {
+        if (polyline == null) {
+            return;
+        }
+        // mBinding.sceneView.getGraphicsOverlays().remove(mSceneTrackGraphicsOverlay);
         // add line to graphics overlay
         mSceneTrackGraphic.setGeometry(polyline);
         // set render for graphics overlay
         mSceneTrackGraphicsOverlay.setRenderer(mSceneSimpleRenderer);
+        mSceneTrackGraphicsOverlay.getGraphics().remove(mSceneTrackGraphic);
         mSceneTrackGraphicsOverlay.getGraphics().add(mSceneTrackGraphic);
         // add graphics overlay to MapView
-        mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
+        // mBinding.sceneView.getGraphicsOverlays().add(mSceneTrackGraphicsOverlay);
         if (viewpoint != null) {
             mBinding.sceneView.setViewpointAsync(viewpoint);
         }
@@ -518,11 +552,10 @@ public class MainActivity extends AppCompatActivity {
         mViewModel.observeHisTrack().observe(this, new Observer<HistoricalTrack>() {
             @Override
             public void onChanged(HistoricalTrack historicalTrack) {
+                mBinding.navigationControls.loadHisTrack.setEnabled(true);
                 refreshTrack(historicalTrack.getPolyline(), historicalTrack.getViewpoint());
             }
         });
-
-        mViewModel.loadHistTrack("");
     }
 
     @Override

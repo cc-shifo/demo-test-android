@@ -12,4 +12,8 @@
     <string name="his_track">HisTrack</string>
     <string name="failed">failed</string>
     <string name="successful">successful</string>
+
+    <string name="drawPoint">drawPoint</string>
+    <string name="drawLineBtn">drawLineBtn</string>
+
 </resources>

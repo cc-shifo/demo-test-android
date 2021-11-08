@@ -17,6 +17,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/drawPointBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/drawPoint"
+            app:layout_constraintStart_toEndOf="@id/readBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/writeBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,6 +35,16 @@
             app:layout_constraintBottom_toTopOf="@id/convert_btn"
             app:layout_constraintEnd_toEndOf="@id/readBtn"
             app:layout_constraintStart_toStartOf="@id/readBtn"
+            app:layout_constraintTop_toBottomOf="@id/readBtn" />
+
+        <Button
+            android:id="@+id/drawLineBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/drawPoint"
+            app:layout_constraintStart_toEndOf="@id/writeBtn"
             app:layout_constraintTop_toBottomOf="@id/readBtn" />
         <Button
             android:id="@+id/convert_btn"
