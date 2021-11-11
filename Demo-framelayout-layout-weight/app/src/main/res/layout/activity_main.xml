@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/lt_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <FrameLayout
+            android:id="@+id/lt_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/hello_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Hello World!" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/lt_fpv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|start"
+            android:background="@color/black"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextureView
+                android:id="@+id/t1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:alpha="0.5" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lt_pc"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:background="@color/teal_200"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextureView
+                android:id="@+id/t2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|end"
+                android:alpha="0.5" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lt_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/purple_500">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+    </FrameLayout>
+</layout>
