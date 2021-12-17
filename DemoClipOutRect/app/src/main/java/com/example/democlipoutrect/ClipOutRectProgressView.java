@@ -71,9 +71,9 @@ public class ClipOutRectProgressView extends View {
 
     private float mProgress = 0.0f;
 
-    public ClipOutRectProgressView(Context context) {
+    /*public ClipOutRectProgressView(Context context) {
         this(context, null);
-    }
+    }*/
 
     public ClipOutRectProgressView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs, 0);

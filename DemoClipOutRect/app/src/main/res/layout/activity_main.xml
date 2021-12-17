@@ -29,7 +29,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text"
             app:reachedColor="@color/progress_view_reached_color"
-            app:unreachedColor="@color/progress_view_unreached_color" />
+            app:unreachedColor="@color/progress_view_unreached_color"
+            app:textColor="@color/white"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
