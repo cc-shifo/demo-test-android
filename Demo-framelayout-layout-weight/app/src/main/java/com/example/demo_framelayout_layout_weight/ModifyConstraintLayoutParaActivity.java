@@ -1,6 +1,5 @@
 package com.example.demo_framelayout_layout_weight;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -10,10 +9,10 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.demo_framelayout_layout_weight.databinding.ActivityMainBinding;
+import com.example.demo_framelayout_layout_weight.databinding.ActivityModifyConstraintlayoutParaBinding;
 
-public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding mBinding;
+public class ModifyConstraintLayoutParaActivity extends AppCompatActivity {
+    ActivityModifyConstraintlayoutParaBinding mBinding;
     private DisplayMetrics mDisplayMetrics;
     private UIWindowState mDefaultWindowState;
     private UIWindowState mCameraVideoWindowState;
@@ -22,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_main);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        // setContentView(R.layout.activity_modify_constraintlayout_para);
+        mBinding = DataBindingUtil.setContentView(this,
+                R.layout.activity_modify_constraintlayout_para);
         // mBinding.t1.setAlpha(0.1f);
         mBinding.t1.setOpaque(true);
         mBinding.t2.setAlpha(0.5f);
@@ -44,24 +44,17 @@ public class MainActivity extends AppCompatActivity {
                 mapZoomInOut();
             }
         });
-        mBinding.ltFpv.setOnClickListener(new View.OnClickListener() {
+        mBinding.t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fpvZoomInOut();
             }
         });
 
-        mBinding.ltPc.setOnClickListener(new View.OnClickListener() {
+        mBinding.t2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pCloudZoomInOut();
-            }
-        });
-        mBinding.btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ViewInflateActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -87,31 +80,31 @@ public class MainActivity extends AppCompatActivity {
             // }
 
             // quarter screen
-            lp = new FrameLayout.LayoutParams(mBinding.ltFpv.getLayoutParams());
+            lp = new FrameLayout.LayoutParams(mBinding.t1.getLayoutParams());
             lp.width = mDisplayMetrics.widthPixels / 4;
             lp.height = mDisplayMetrics.heightPixels / 4;
             lp.gravity = Gravity.START | Gravity.BOTTOM;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t1.setLayoutParams(lp);
+            mBinding.t1.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
             // quarter screen
             lp = new FrameLayout.LayoutParams(
                     mDisplayMetrics.widthPixels / 4, mDisplayMetrics.heightPixels / 4);
             lp.gravity = Gravity.END | Gravity.BOTTOM;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
 
-            mBinding.ltOther.bringToFront();
+            mBinding.ltTxt.bringToFront();
         } else if (mCameraVideoWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
-                    .ltFpv.getLayoutParams();
+                    .t1.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.START | Gravity.TOP;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t1.setLayoutParams(lp);
+            mBinding.t1.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             // half screen
@@ -124,16 +117,16 @@ public class MainActivity extends AppCompatActivity {
             mBinding.ltTxt.bringToFront();
             mDefaultWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.bringToFront();
         } else if (mPCVideoWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
-                    .ltPc.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.START | Gravity.TOP;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             lp = (FrameLayout.LayoutParams) mBinding
@@ -156,12 +149,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (mCameraVideoWindowState.getWindowState() == UIWindowState.HALF_SCREEN) {
             // full screen
-            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding.ltFpv
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding.t1
                     .getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels;
             lp.height = mDisplayMetrics.heightPixels;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t1.setLayoutParams(lp);
+            mBinding.t1.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.FULL_SCREEN);
 
             // quarter screen
@@ -174,16 +167,16 @@ public class MainActivity extends AppCompatActivity {
             mBinding.ltTxt.bringToFront();
             mDefaultWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
             // quarter screen
-            lp = (FrameLayout.LayoutParams) mBinding.ltPc
+            lp = (FrameLayout.LayoutParams) mBinding.t2
                     .getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 4;
             lp.height = mDisplayMetrics.heightPixels / 4;
             lp.gravity = Gravity.END | Gravity.BOTTOM;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
 
-            mBinding.ltOther.bringToFront();
+            mBinding.ltTxt.bringToFront();
         } else if (mDefaultWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
@@ -197,33 +190,33 @@ public class MainActivity extends AppCompatActivity {
 
             // half screen
             lp = (FrameLayout.LayoutParams) mBinding
-                    .ltFpv.getLayoutParams();
+                    .t1.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.END | Gravity.TOP;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t1.setLayoutParams(lp);
+            mBinding.t1.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.bringToFront();
         } else if (mPCVideoWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
-                    .ltPc.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.START | Gravity.TOP;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             lp = (FrameLayout.LayoutParams) mBinding
-                    .ltFpv.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.END | Gravity.TOP;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             mBinding.ltTxt.bringToFront();
@@ -238,11 +231,11 @@ public class MainActivity extends AppCompatActivity {
         if (mPCVideoWindowState.getWindowState() == UIWindowState.HALF_SCREEN) {
             // full screen
             FrameLayout.LayoutParams lp1 = (FrameLayout.LayoutParams) mBinding
-                    .ltPc.getLayoutParams();
+                    .t2.getLayoutParams();
             lp1.width = mDisplayMetrics.widthPixels;
             lp1.height = mDisplayMetrics.heightPixels;
-            mBinding.ltPc.setLayoutParams(lp1);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp1);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.FULL_SCREEN);
 
             // quarter screen
@@ -255,16 +248,16 @@ public class MainActivity extends AppCompatActivity {
             mBinding.ltTxt.bringToFront();
             mDefaultWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
             // quarter screen
-            FrameLayout.LayoutParams lp3 = (FrameLayout.LayoutParams) mBinding.ltFpv
+            FrameLayout.LayoutParams lp3 = (FrameLayout.LayoutParams) mBinding.t1
                     .getLayoutParams();
             lp3.gravity = Gravity.END | Gravity.BOTTOM;
             lp3.width = mDisplayMetrics.widthPixels / 4;
             lp3.height = mDisplayMetrics.heightPixels / 4;
-            mBinding.ltFpv.setLayoutParams(lp3);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t1.setLayoutParams(lp3);
+            mBinding.t1.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.QUARTER_SCREEN);
 
-            mBinding.ltOther.bringToFront();
+            mBinding.ltTxt.bringToFront();
         } else if (mDefaultWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
@@ -278,33 +271,33 @@ public class MainActivity extends AppCompatActivity {
 
             // half screen
             lp = (FrameLayout.LayoutParams) mBinding
-                    .ltPc.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.END | Gravity.TOP;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
-            mBinding.ltFpv.bringToFront();
+            mBinding.t2.bringToFront();
         } else if (mCameraVideoWindowState.getWindowState() == UIWindowState.FULL_SCREEN) {
             // half screen
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mBinding
-                    .ltFpv.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.START | Gravity.TOP;
-            mBinding.ltFpv.setLayoutParams(lp);
-            mBinding.ltFpv.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mCameraVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             lp = (FrameLayout.LayoutParams) mBinding
-                    .ltPc.getLayoutParams();
+                    .t2.getLayoutParams();
             lp.width = mDisplayMetrics.widthPixels / 2;
             lp.height = mDisplayMetrics.heightPixels;
             lp.gravity = Gravity.END | Gravity.TOP;
-            mBinding.ltPc.setLayoutParams(lp);
-            mBinding.ltPc.bringToFront();
+            mBinding.t2.setLayoutParams(lp);
+            mBinding.t2.bringToFront();
             mPCVideoWindowState.setWindowState(UIWindowState.HALF_SCREEN);
 
             mBinding.ltTxt.bringToFront();
