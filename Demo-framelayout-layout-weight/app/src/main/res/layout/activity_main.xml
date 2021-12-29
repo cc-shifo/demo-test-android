@@ -73,7 +73,15 @@
                 android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
+
         </FrameLayout>
 
+        <ViewStub
+            android:id="@+id/demo_stub"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inflatedId="@+id/demo_layout"
+            android:layout="@layout/demo_view_stub_layout" />
     </FrameLayout>
 </layout>

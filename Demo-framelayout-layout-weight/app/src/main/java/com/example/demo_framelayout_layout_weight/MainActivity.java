@@ -1,11 +1,12 @@
 package com.example.demo_framelayout_layout_weight;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private UIWindowState mDefaultWindowState;
     private UIWindowState mCameraVideoWindowState;
     private UIWindowState mPCVideoWindowState;
+    private ViewStub mViewStub;
+    private View mInflatedView;
+    private TextView mDemoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding.t1.setOpaque(true);
         mBinding.t2.setAlpha(0.5f);
         // mBinding.t2.setOpaque(true);
+
 
         mDisplayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
@@ -57,11 +62,43 @@ public class MainActivity extends AppCompatActivity {
                 pCloudZoomInOut();
             }
         });
+
+        // 方式三
+        /*mBinding.demoStub.setOnInflateListener(new ViewStub.OnInflateListener() {
+            @Override
+            public void onInflate(ViewStub stub, View inflated) {
+                if (stub != null) {
+                    mInflatedView = stub.inflate();
+                    mInflatedView.setVisibility(View.VISIBLE);
+                    mDemoTextView = mInflatedView.findViewById(R.id.demo_hello_txt);
+                }
+            }
+        });*/
+        // 方式一
+        // mViewStub = findViewById(R.id.demo_stub);
+        // 方式二
+        mViewStub = mBinding.demoStub.getViewStub();
         mBinding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ViewInflateActivity.class);
-                startActivity(intent);
+                // 方式一
+                // if (mInflatedView == null && mViewStub != null) {
+                //     mInflatedView = mViewStub.inflate();
+                // }
+                // 方式二
+                if (!mBinding.demoStub.isInflated()) {
+                    mInflatedView = mBinding.demoStub.getViewStub().inflate();
+                }
+                if (mInflatedView != null) {
+                    if (mInflatedView.getVisibility() == View.GONE) {
+                        mInflatedView.setVisibility(View.VISIBLE);
+                    } else {
+                        mInflatedView.setVisibility(View.GONE);
+                    }
+                }
+
+                // Intent intent = new Intent(MainActivity.this, ViewInflateActivity.class);
+                // startActivity(intent);
             }
         });
     }
