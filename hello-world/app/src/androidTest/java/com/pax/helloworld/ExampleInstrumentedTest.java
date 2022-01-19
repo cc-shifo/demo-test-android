@@ -121,4 +121,19 @@ public class ExampleInstrumentedTest {
         bigDecimal = bigDecimal.movePointRight(digitNum);
         System.out.println("val =amtF: " + bigDecimal.longValue());
     }
+
+    @Test
+    public void testRegular() {
+        String text = "abc\t1\t\t2\n" +
+                "\n" +
+                "2n\n" +
+                "\n" +
+                "\n" +
+                "3n\n" +
+                "sp1 sp2  sp3    sp4    !  ";
+        text = text.replaceAll("[\\t|\\f|\\r|\\n]+", "");
+        text = text.trim();
+        text = text.replaceAll("\\s+", " ");
+        System.out.println("val =amtF: @" + text);
+    }
 }
