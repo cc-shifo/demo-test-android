@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" 
+	xmlns:atom="http://www.w3.org/2005/Atom" 
+	xmlns:gx="http://www.google.com/kml/ext/2.2" 
+	>
+	<Document>
+		<name>东平梯门镇范围线OvitalMap_20210916_232613</name>
+		<Placemark>
+			<name>916</name>
+			<Style>
+				<LineStyle><color>7fff0000</color><width>3</width></LineStyle>
+			</Style>
+				<LineString>
+					<coordinates>116.34843349,36.07685216,0 116.34811163,36.09067306,0 116.37491226,36.09110655,0 116.37452602,36.07702558,0 116.34843349,36.07664404,0 116.34839058,36.07712964,0 </coordinates>
+				</LineString>
+		</Placemark>
+	</Document>
+</kml>

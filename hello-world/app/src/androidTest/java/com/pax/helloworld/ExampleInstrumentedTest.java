@@ -136,4 +136,16 @@ public class ExampleInstrumentedTest {
         text = text.replaceAll("\\s+", " ");
         System.out.println("val =amtF: @" + text);
     }
+
+    @Test
+    public void convertIEE() {
+        double d1 = -2.003750722959434E7;
+        double d2 = -1.997186888040859E7;
+        double d3 = -2.003750722959434E7;
+        double d4 = -1.9971868880408563E7;
+        System.out.println("val =amtF: @" + String.valueOf(d1));
+        System.out.println("val =amtF: @" + String.valueOf(d2));
+        System.out.println("val =amtF: @" + String.valueOf(d3));
+        System.out.println("val =amtF: @" + String.valueOf(d4));
+    }
 }

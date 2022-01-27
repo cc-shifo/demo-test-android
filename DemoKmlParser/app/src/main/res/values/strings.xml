@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DemoKmlParser</string>
+    <string name="demo_polygon">polygon</string>
+    <string name="demo_line">line</string>
+    <string name="demo_point">point</string>
+    <string name="demo_2_polygon">2 polygon</string>
+    <string name="demo_2_line">2 line</string>
+    <string name="demo_polygon_line">polygon line</string>
+</resources>

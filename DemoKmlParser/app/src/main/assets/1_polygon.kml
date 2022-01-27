@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"> 
+ <Placemark>
+	<name>ROUTE1</name>
+	<Polygon>
+		<altitudeMole>relativeToGround</altitudeMole>
+		<outerBoundaryIs>
+			<LinearRing>
+				<coordinates>
+				96.7163504,29.2229228,5135
+				96.7132573,29.2228890,5173
+				96.7132194,29.2255475,5152
+				96.7163378,29.2256256,5113
+				</coordinates>
+			</LinearRing>
+		</outerBoundaryIs>
+		<innerBoundaryIs>
+			<LinearRing>
+				<coordinates>
+				96.7154811,29.2236823,5137
+				96.7141444,29.2235593,5152
+				96.7140821,29.2252092,5141
+				96.7155432,29.2252369,5123
+				</coordinates>
+			</LinearRing>
+		</innerBoundaryIs>
+	</Polygon>
+  </Placemark>
+</kml>
