@@ -35,24 +35,24 @@ public class SecondActivity extends AppCompatActivity {
     private void initWindowState() {
 
         mSplitScreenHelper = new ScreenSplitHelper();
-        final ScreenSplitHelper.OnChangeComplete mapComplete = () -> {
-            // other
-            mBinding.tvMapMsg.bringToFront();
-            mBinding.tvMapMsg.setVisibility(View.VISIBLE);
-            mBinding.tvFpvMsg.setVisibility(View.GONE);
-            mBinding.tvPcdMsg.setVisibility(View.GONE);
-        };
         final ScreenSplitHelper.OnChangeToFull mapFull = () -> {
             mBinding.tvMapMsg.setText("map full");
             mBinding.tvMap.setText("map full");
             mBinding.tvFpv.setText("fpv quarter");
             mBinding.tvPcd.setText("pcd quarter");
+            mBinding.tvMapMsg.bringToFront();
+            mBinding.tvMapMsg.setVisibility(View.VISIBLE);
+            mBinding.tvFpvMsg.setVisibility(View.GONE);
+            mBinding.tvPcdMsg.setVisibility(View.GONE);
         };
         final ScreenSplitHelper.OnChangeToHalf mapHalf = () -> {
+            mBinding.tvMapMsg.bringToFront();
+            mBinding.tvMapMsg.setVisibility(View.VISIBLE);
             mBinding.tvMapMsg.setText("map half");
             mBinding.tvMap.setText("map half");
         };
         final ScreenSplitHelper.OnChangeToQuarter mapQuarter = () -> {
+            mBinding.tvMapMsg.setVisibility(View.GONE);
             mBinding.tvMapMsg.setText("map quarter");
             mBinding.tvMap.setText("map quarter");
         };
@@ -62,25 +62,25 @@ public class SecondActivity extends AppCompatActivity {
         mSplitScreenHelper.setOnChangeToFull(mMapWindowState.getView().getId(), mapFull);
         mSplitScreenHelper.setOnChangeToHalf(mMapWindowState.getView().getId(), mapHalf);
         mSplitScreenHelper.setOnChangeToQuarter(mMapWindowState.getView().getId(), mapQuarter);
-        mSplitScreenHelper.setOnChangeComplete(mMapWindowState.getView().getId(), mapComplete);
 
-        final ScreenSplitHelper.OnChangeComplete fpvComplete = () -> {
-            mBinding.tvFpvMsg.bringToFront();
-            mBinding.tvFpvMsg.setVisibility(View.VISIBLE);
-            mBinding.tvMapMsg.setVisibility(View.GONE);
-            mBinding.tvPcdMsg.setVisibility(View.GONE);
-        };
         final ScreenSplitHelper.OnChangeToFull fpvFull = () -> {
             mBinding.tvFpvMsg.setText("fpv full");
             mBinding.tvFpv.setText("fpv full");
             mBinding.tvMap.setText("map quarter");
             mBinding.tvPcd.setText("pcd quarter");
+            mBinding.tvFpvMsg.bringToFront();
+            mBinding.tvFpvMsg.setVisibility(View.VISIBLE);
+            mBinding.tvMapMsg.setVisibility(View.GONE);
+            mBinding.tvPcdMsg.setVisibility(View.GONE);
         };
         final ScreenSplitHelper.OnChangeToHalf fpvHalf = () -> {
+            mBinding.tvFpvMsg.bringToFront();
+            mBinding.tvFpvMsg.setVisibility(View.VISIBLE);
             mBinding.tvFpvMsg.setText("fpv half");
             mBinding.tvFpv.setText("fpv half");
         };
         final ScreenSplitHelper.OnChangeToQuarter fpvQuarter = () -> {
+            mBinding.tvFpvMsg.setVisibility(View.GONE);
             mBinding.tvFpvMsg.setText("fpv quarter");
             mBinding.tvFpv.setText("fpv quarter");
         };
@@ -89,25 +89,25 @@ public class SecondActivity extends AppCompatActivity {
         mSplitScreenHelper.setOnChangeToFull(mFPVWindowState.getView().getId(), fpvFull);
         mSplitScreenHelper.setOnChangeToHalf(mFPVWindowState.getView().getId(), fpvHalf);
         mSplitScreenHelper.setOnChangeToQuarter(mFPVWindowState.getView().getId(), fpvQuarter);
-        mSplitScreenHelper.setOnChangeComplete(mFPVWindowState.getView().getId(), fpvComplete);
 
-        final ScreenSplitHelper.OnChangeComplete pcdComplete = () -> {
-            mBinding.tvPcdMsg.bringToFront();
-            mBinding.tvPcdMsg.setVisibility(View.VISIBLE);
-            mBinding.tvMapMsg.setVisibility(View.GONE);
-            mBinding.tvFpvMsg.setVisibility(View.GONE);
-        };
         final ScreenSplitHelper.OnChangeToFull pcdFull = () -> {
             mBinding.tvPcdMsg.setText("pcd full");
             mBinding.tvPcd.setText("pcd full");
             mBinding.tvMap.setText("map quarter");
             mBinding.tvFpv.setText("fpv quarter");
+            mBinding.tvPcdMsg.bringToFront();
+            mBinding.tvPcdMsg.setVisibility(View.VISIBLE);
+            mBinding.tvMapMsg.setVisibility(View.GONE);
+            mBinding.tvFpvMsg.setVisibility(View.GONE);
         };
         final ScreenSplitHelper.OnChangeToHalf pcdHalf = () -> {
+            mBinding.tvPcdMsg.bringToFront();
+            mBinding.tvPcdMsg.setVisibility(View.VISIBLE);
             mBinding.tvPcdMsg.setText("pcd half");
             mBinding.tvPcd.setText("pcd half");
         };
         final ScreenSplitHelper.OnChangeToQuarter pcdQuarter = () -> {
+            mBinding.tvPcdMsg.setVisibility(View.GONE);
             mBinding.tvPcdMsg.setText("pcd quarter");
             mBinding.tvPcd.setText("pcd quarter");
         };
@@ -117,7 +117,25 @@ public class SecondActivity extends AppCompatActivity {
         mSplitScreenHelper.setOnChangeToFull(mPtcWindowState.getView().getId(), pcdFull);
         mSplitScreenHelper.setOnChangeToHalf(mPtcWindowState.getView().getId(), pcdHalf);
         mSplitScreenHelper.setOnChangeToQuarter(mPtcWindowState.getView().getId(), pcdQuarter);
-        mSplitScreenHelper.setOnChangeComplete(mPtcWindowState.getView().getId(), pcdComplete);
+        final ScreenSplitHelper.OnChangedComplete onChangedComplete = () -> {
+            // other
+            if (mMapWindowState.getState() == WindowState.FULL_SCREEN) {
+                mBinding.tvTittle.setText("map center");
+                mBinding.tvTittle.setVisibility(View.VISIBLE);
+                mBinding.tvTittle.bringToFront();
+            } else if (mFPVWindowState.getState() == WindowState.FULL_SCREEN) {
+                mBinding.tvTittle.setText("fpv center");
+                mBinding.tvTittle.setVisibility(View.VISIBLE);
+                mBinding.tvTittle.bringToFront();
+            } else if (mPtcWindowState.getState() == WindowState.FULL_SCREEN) {
+                mBinding.tvTittle.setText("ptc center");
+                mBinding.tvTittle.setVisibility(View.VISIBLE);
+                mBinding.tvTittle.bringToFront();
+            } else {
+                mBinding.tvTittle.setVisibility(View.GONE);
+            }
+        };
+        mSplitScreenHelper.setOnChangeComplete(onChangedComplete);
         mSplitScreenHelper.addView(mMapWindowState);
         mSplitScreenHelper.addView(mFPVWindowState);
         mSplitScreenHelper.addView(mPtcWindowState);

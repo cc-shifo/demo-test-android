@@ -1,5 +1,6 @@
 package com.example.demo_framelayout_layout_weight;
 
+
 import android.view.View;
 
 /**
@@ -36,11 +37,7 @@ public class WindowState {
      * Only valid when {@code mWindowState} is in {@link #FULL_SCREEN}.
      */
     public static final int CENTER = 3;
-    /**
-     * the current position of the bound view. {@link WindowState#START},
-     * {@link WindowState#END} or {@link WindowState#CENTER}
-     */
-    private final int mGravity;
+
     /**
      * the view which the {@link WindowState} will be bound to
      */
@@ -49,6 +46,11 @@ public class WindowState {
      * the view which the {@link WindowState} will be bound to
      */
     private int mState;
+    /**
+     * the current position of the bound view. {@link WindowState#START},
+     * {@link WindowState#END} or {@link WindowState#CENTER}
+     */
+    private final int mGravity;
 
     public WindowState(int state, int gravity) {
         mState = state;
@@ -64,6 +66,7 @@ public class WindowState {
     }
 
     /**
+     *
      * @return the current position of the bound view. {@link WindowState#START},
      * {@link WindowState#END} or {@link WindowState#CENTER}
      */
@@ -80,7 +83,6 @@ public class WindowState {
 
     /**
      * bind this {@link WindowState} object to an view.
-     *
      * @param view the view which the {@link WindowState} is bound to.
      */
     public void setView(View view) {
