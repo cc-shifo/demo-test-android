@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--编译就生成固定id-->
+    <item name="id_generated_on_build_add_tv_5" type="id" />
+
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tx_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            app:layout_constraintBottom_toTopOf="@id/demo_polygon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <Button
+            android:id="@+id/demo_polygon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tx_demo"
+            app:layout_constraintBottom_toTopOf="@id/demo_line"
+            android:text="@string/demo_polygon"
+            />
+        <Button
+            android:id="@+id/demo_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/demo_polygon"
+            app:layout_constraintBottom_toTopOf="@id/demo_point"
+            android:text="@string/demo_line"
+            />
+        <Button
+            android:id="@+id/demo_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/demo_line"
+            app:layout_constraintBottom_toTopOf="@id/demo_2_polygon"
+            android:text="@string/demo_point"
+            />
+        <Button
+            android:id="@+id/demo_2_polygon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/demo_point"
+            app:layout_constraintBottom_toTopOf="@id/demo_2_line"
+            android:text="@string/demo_2_polygon"
+            />
+        <Button
+            android:id="@+id/demo_2_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/demo_2_polygon"
+            app:layout_constraintBottom_toTopOf="@id/demo_polygon_line"
+            android:text="@string/demo_2_line"
+            />
+
+        <Button
+            android:id="@+id/demo_polygon_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_polygon_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/demo_2_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

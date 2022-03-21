@@ -121,4 +121,31 @@ public class ExampleInstrumentedTest {
         bigDecimal = bigDecimal.movePointRight(digitNum);
         System.out.println("val =amtF: " + bigDecimal.longValue());
     }
+
+    @Test
+    public void testRegular() {
+        String text = "abc\t1\t\t2\n" +
+                "\n" +
+                "2n\n" +
+                "\n" +
+                "\n" +
+                "3n\n" +
+                "sp1 sp2  sp3    sp4    !  ";
+        text = text.replaceAll("[\\t|\\f|\\r|\\n]+", "");
+        text = text.trim();
+        text = text.replaceAll("\\s+", " ");
+        System.out.println("val =amtF: @" + text);
+    }
+
+    @Test
+    public void convertIEE() {
+        double d1 = -2.003750722959434E7;
+        double d2 = -1.997186888040859E7;
+        double d3 = -2.003750722959434E7;
+        double d4 = -1.9971868880408563E7;
+        System.out.println("val =amtF: @" + String.valueOf(d1));
+        System.out.println("val =amtF: @" + String.valueOf(d2));
+        System.out.println("val =amtF: @" + String.valueOf(d3));
+        System.out.println("val =amtF: @" + String.valueOf(d4));
+    }
 }

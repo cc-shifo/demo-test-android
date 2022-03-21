@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="clip_out_rect_progress_view_text_size">12sp</dimen>
+    <dimen name="clip_out_rect_progress_view_border_width">1dp</dimen>
+    <dimen name="clip_out_rect_progress_view_corner_radius">1dp</dimen>
+</resources>
