@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DemoH5JsNativeComm</string>
+    <string name="btn_text_location">location</string>
+    <string name="btn_text_file_path">file path</string>
+    <string name="request_location_rationale">Request Location requires GPS</string>
+</resources>
