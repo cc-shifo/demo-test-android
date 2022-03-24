@@ -9,11 +9,11 @@ import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPILocationResult;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPIResultCode;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -156,6 +156,12 @@ public class LocationUtils {
             getProviders();
             Location location = mLocationManager.getLastKnownLocation(mLocationProvider);
             if (location != null) {
+                mLonLat = new GsonBuilder().serializeSpecialFloatingPointValues()
+                        .create().toJson(new NativeAPILocationResult(
+                                NativeAPIResultCode.SUCCESS, new NativeAPILocationResult.Location(
+                                location.getLongitude(), location.getLatitude(),
+                                location.getAltitude())));
+
                 mLonLat = new Gson().toJson(new NativeAPILocationResult(
                         NativeAPIResultCode.SUCCESS, new NativeAPILocationResult.Location(
                         location.getLongitude(), location.getLatitude(),

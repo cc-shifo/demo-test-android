@@ -8,12 +8,12 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
-public class CustomWebViewClient extends WebViewClient {
+public class CustomWebClient extends WebViewClient {
 
     private ViewGroup mParent;
     private WebView mWebView;
 
-    public CustomWebViewClient(@NonNull ViewGroup parent, @NonNull WebView webView) {
+    public CustomWebClient(@NonNull ViewGroup parent, @NonNull WebView webView) {
         mParent = parent;
         mWebView = webView;
     }

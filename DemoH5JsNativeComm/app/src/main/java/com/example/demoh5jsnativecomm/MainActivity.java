@@ -1,10 +1,12 @@
 package com.example.demoh5jsnativecomm;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -44,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void initViewData() {
-        // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        mMainWebUrl = "file:///android_asset/test.html";
+        mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        // mMainWebUrl = "file:///android_asset/test.html";
         mNativeAPILocation = new NativeAPILocation(this);
         mNativeAPIFileSelector = new NativeAPIFileSelector(this);
         requestPermissions();
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void setInternalWebClient() {
-        mBinding.demoWeb.setWebViewClient(new CustomWebViewClient(
+        mBinding.demoWeb.setWebViewClient(new CustomWebClient(
                 mBinding.viewMainActivity, mBinding.demoWeb));
     }
 
@@ -102,8 +104,34 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // if (requestCode == OpenFileWebChromeClient.REQUEST_FILE_PICKER) {
+        //     if (mOpenFileWebChromeClient.mFilePathCallback != null) {
+        //         Uri result = intent == null || resultCode != Activity.RESULT_OK ? null
+        //                 : intent.getData();
+        //         if (result != null) {
+        //             String path = MediaUtility.getPath(getApplicationContext(),
+        //                     result);
+        //             Uri uri = Uri.fromFile(new File(path));
+        //             mOpenFileWebChromeClient.mFilePathCallback
+        //                     .onReceiveValue(uri);
+        //         } else {
+        //             mOpenFileWebChromeClient.mFilePathCallback
+        //                     .onReceiveValue(null);
+        //         }
+        //     }
+        //
+        //
+        //     mOpenFileWebChromeClient.mFilePathCallbacks = null;
+        // }
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+
         cancelLocationRequest();
         releaseDataResource();
     }
@@ -120,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * 取消定位请求，是否资源。
      */
     private void cancelLocationRequest() {
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            mDisposable.dispose();
+            mDisposable = null;
+        }
         LocationUtils.getInstance().destroy();
     }
 
