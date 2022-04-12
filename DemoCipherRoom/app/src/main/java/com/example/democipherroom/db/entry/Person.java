@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "TB_person")
 public class Person {
+    public static final String TABLE_NAME = "TB_person";
+
     @PrimaryKey
     @ColumnInfo(name = "id")
     private long mId;

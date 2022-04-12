@@ -3,11 +3,15 @@ package com.example.democipherroom.db;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.democipherroom.db.converter.DateConverter;
 import com.example.democipherroom.db.dao.PersonDao;
 import com.example.democipherroom.db.entry.Person;
 
@@ -17,10 +21,12 @@ import net.sqlcipher.database.SupportFactory;
 import timber.log.Timber;
 
 @Database(entities = {Person.class}, version = 1)
+@TypeConverters(value = {DateConverter.class})
 public abstract class DemoDB extends RoomDatabase {
     private static final String PASSPHRASE = "123456";
     private static final String DB_NAME = "myDemoDB";
     private static DemoDB mDemoDB;
+    private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
     public abstract PersonDao getPersonDao();
 
@@ -51,7 +57,9 @@ public abstract class DemoDB extends RoomDatabase {
                             Timber.d("onDestructiveMigration");
                         }
                     })
+                    // .addMigrations()
                     .build();
+
         }
     }
 
@@ -67,5 +75,36 @@ public abstract class DemoDB extends RoomDatabase {
         }
 
         return mDemoDB;
+    }
+
+    /**
+     * Inserts the dummy data into the database if it is currently empty.
+     */
+    private void populateInitialData() {
+        if (getPersonDao().count() == 0) {
+            runInTransaction(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO: insert initial data
+                }
+            });
+        }
+    }
+
+    /**
+     * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
+     */
+    private void updateDatabaseCreated(final Context context) {
+        if (context.getDatabasePath(DemoDB.DB_NAME).exists()) {
+            setDatabaseCreated();
+        }
+    }
+
+    public LiveData<Boolean> getDatabaseCreated() {
+        return mIsDatabaseCreated;
+    }
+
+    private void setDatabaseCreated() {
+        mIsDatabaseCreated.postValue(true);
     }
 }
