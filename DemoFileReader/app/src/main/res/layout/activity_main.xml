@@ -1,18 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.25"
+            android:text="Hello World!"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:id="@+id/scr_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_info"
+            android:padding="@dimen/tmp_padding"
+            >
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_layout_ext_pri"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_create_ext_pri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/btn_del_ext_pri"
+                        android:text="@string/btn_create_ext_pri"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_del_ext_pri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_create_ext_pri"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/btn_has_ext_pri"
+                        android:text="@string/btn_del_ext_pri"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_has_ext_pri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_del_ext_pri"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/btn_has_ext_pri"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_create_ext_pri_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_create_ext_pri"
+                        app:layout_constraintBottom_toTopOf="@id/btn_del_ext_pri"
+                        android:text="@string/btn_create_ext_pri_sub"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_del_ext_pri_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_create_ext_pri_sub"
+                        app:layout_constraintStart_toEndOf="@id/btn_create_ext_pri"
+                        app:layout_constraintBottom_toTopOf="@id/btn_has_ext_pri_sub"
+                        android:text="@string/btn_del_ext_pri_sub"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_has_ext_pri_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_del_ext_pri_sub"
+                        app:layout_constraintStart_toEndOf="@id/btn_create_ext_pri"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/btn_has_ext_pri_sub"
+                        android:textAllCaps="false"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_layout_pri_file_path"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tmp_padding">
+                    <Button
+                        android:id="@+id/btn_ext_pri_path"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/btn_context_file_list"
+                        android:text="@string/btn_ext_pri_path"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_internal_pri_path"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_ext_pri_path"
+                        android:text="@string/btn_internal_pri_path"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_context_file_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_ext_pri_path"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/btn_context_file_list"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/btn_check_free"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_ext_pri_path"
+                        app:layout_constraintStart_toEndOf="@id/btn_context_file_list"
+                        android:text="@string/btn_check_free"
+                        android:textAllCaps="false"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

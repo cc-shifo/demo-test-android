@@ -59,6 +59,7 @@ public abstract class DemoDB extends RoomDatabase {
                     })
                     // .addMigrations()
                     .build();
+            mDemoDB.updateDatabaseCreated(context);
 
         }
     }
@@ -94,7 +95,7 @@ public abstract class DemoDB extends RoomDatabase {
     /**
      * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
      */
-    private void updateDatabaseCreated(final Context context) {
+    private void updateDatabaseCreated(@NonNull final Context context) {
         if (context.getDatabasePath(DemoDB.DB_NAME).exists()) {
             setDatabaseCreated();
         }

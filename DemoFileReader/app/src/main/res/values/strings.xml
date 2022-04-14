@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">DemoFileReader</string>
+    <string name="btn_create_ext_pri">create_ext_pri</string>
+    <string name="btn_del_ext_pri">del_ext_pri</string>
+    <string name="btn_has_ext_pri">has_ext_pri</string>
+
+    <string name="btn_create_ext_pri_sub">create_ext_pri_sub</string>
+    <string name="btn_del_ext_pri_sub">del_ext_pri_sub</string>
+    <string name="btn_has_ext_pri_sub">has_ext_pri_sub</string>
+
+    <string name="btn_ext_pri_path">ext_pri_path</string>
+    <string name="btn_internal_pri_path">internal_pri_path</string>
+    <string name="btn_context_file_list">context_file_list</string>
+    <string name="btn_check_free">check_free</string>
 </resources>

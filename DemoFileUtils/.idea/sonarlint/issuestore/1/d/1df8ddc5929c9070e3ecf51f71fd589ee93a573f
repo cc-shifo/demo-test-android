@@ -1,0 +1,21 @@
+
+f
+java:S1192Z"PDefine a constant instead of duplicating this literal "DemoPicture.jpg" 3 times.(ñÎ±
+c
+java:S1192,"MDefine a constant instead of duplicating this literal "DemoFile.jpg" 3 times.(‡¼ö
+J
+java:S1604o"(Make this anonymous inner class a lambda(ªŸìÿÿÿÿÿ8”Êø±‚0
+i
+java:S2095d"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Ş›”Êùÿÿÿÿ
+i
+java:S20956"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Ş›”Êùÿÿÿÿ
+e
+java:S26748"JCheck the return value of the "read" call to see how many bytes were read.(”ê†úÿÿÿÿ
+U	java:S899G";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
+i
+java:S4042G"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
+e
+java:S2674f"JCheck the return value of the "read" call to see how many bytes were read.(”ê†úÿÿÿÿ
+V	java:S899ƒ";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
+j
+java:S4042ƒ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ

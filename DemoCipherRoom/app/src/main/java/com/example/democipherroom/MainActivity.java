@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.democipherroom.databinding.ActivityMainBinding;
 import com.example.democipherroom.db.DemoDB;
+import com.example.democipherroom.db.TestImportDB;
 import com.example.democipherroom.db.dao.PersonDao;
 import com.example.democipherroom.db.entry.Person;
 import com.example.democipherroom.db.entry.ProjectionPersonName;
@@ -160,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDB() {
         mDisposable = Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
-            DemoDB.init(MainActivity.this);
+            TestImportDB.importData(MainActivity.this);
+            // DemoDB.init(MainActivity.this);
             if (!emitter.isDisposed()) {
                 emitter.onNext(true);
                 emitter.onComplete();

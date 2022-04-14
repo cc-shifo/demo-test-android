@@ -1,0 +1,22 @@
+
+b
+java:S2259‰"DA "NullPointerException" could be thrown; "cursor" is nullable here.(®¶ëü8ü¹´‚0
+t
+java:S2095‚"QUse try-with-resources or close this "AssetFileDescriptor" in a "finally" clause.(ëÉËÚüÿÿÿÿ8•ºş´‚0
+k
+java:S2095¸"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Ò—×t8ü¹´‚0
+p
+java:S2095µ"RUse try-with-resources or close this "ParcelFileDescriptor" in a "finally" clause.(æğÂÑ8ı¹´‚0
+Y
+java:S1172 "7Remove this unused method parameter "pickerInitialUri".( ø÷‡ıÿÿÿÿ8‹¹´‚0
+X	java:S125("<This block of commented-out lines of code should be removed.(‰¦¢ö8˜¹´‚0
+c
+java:S2147À"ECombine this catch with the one at line 190, which has the same body.(ï­£Ä8—¼¹´‚0
+J
+java:S11447"-Remove this unused private "openFile" method.(¨—ôæ8¡‘¹´‚0
+R
+java:S1144¢"4Remove this unused private "readTextFromUri" method.(òé‡ˆ8¡‘¹´‚0
+P
+java:S1144³"2Remove this unused private "alterDocument" method.(¥€Œë8¢‘¹´‚0
+_
+java:S1144õ"ARemove this unused private "getInputStreamForVirtualFile" method.(¤ƒà™8¿¤ÿ´‚0
