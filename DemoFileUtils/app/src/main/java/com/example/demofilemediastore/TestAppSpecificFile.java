@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +17,7 @@ import java.io.OutputStream;
 import timber.log.Timber;
 
 /**
- * 应用专属文件：仅仅供应用本身访问的文件。
+ * 应用专属文件：仅仅供应用本身访问的文件。Android 11开始，文件所属的应用不需要声明权限就可以访问这些文件。
  * 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法
  * <p>
  * 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法
@@ -31,6 +30,9 @@ import timber.log.Timber;
  * on external storage.
  */
 public class TestAppSpecificFile {
+    /**
+     * 外部存储器私有位置创建文件。
+     */
     public void createExternalStoragePrivateFile(@NonNull Context context) {
         // 为null时，Create a path where we will place our private file on external
         // storage(/sdcard/Android/data/包名/file/).
@@ -64,6 +66,9 @@ public class TestAppSpecificFile {
         }
     }
 
+    /**
+     * 外部存储器应用私有位置删除文件。
+     */
     public void deleteExternalStoragePrivateFile(@NonNull Context context) {
         // Get path for the file on external storage.  If external
         // storage is not currently mounted this will fail.
@@ -71,6 +76,9 @@ public class TestAppSpecificFile {
         file.delete();
     }
 
+    /**
+     * 外部存储器应用私有位置判断是否有文件。
+     */
     public boolean hasExternalStoragePrivateFile(@NonNull Context context) {
         // Get path for the file on external storage.  If external
         // storage is not currently mounted this will fail.
@@ -78,8 +86,12 @@ public class TestAppSpecificFile {
         return file.exists();
     }
 
+
+    /**
+     * 外部存储器应用私有位置下创建目录，在创建的目录下创建文件。
+     */
     public void createExternalStoragePrivatePicture(@NonNull Context context) {
-        // 传入参数不为null时，在/Android/data/包名/子目录(pictures)/
+        // 传入参数不为null时，在/sdcard/Android/data/包名/子目录(pictures)/
         // Create a path where we will place our picture in our own private
         // pictures directory.  Note that we don't really need to place a
         // picture in DIRECTORY_PICTURES, since the media scanner will see
@@ -121,6 +133,9 @@ public class TestAppSpecificFile {
         }
     }
 
+    /**
+     * 外部存储器应用私有位置下删除目录。
+     */
     public void deleteExternalStoragePrivatePicture(@NonNull Context context) {
         // Create a path where we will place our picture in the user's
         // public pictures directory and delete the file.  If external
@@ -132,6 +147,9 @@ public class TestAppSpecificFile {
         }
     }
 
+    /**
+     * 外部存储器应用私有位置下的子目录，判断子目录下的文件是否存在。
+     */
     public boolean hasExternalStoragePrivatePicture(@NonNull Context context) {
         // Create a path where we will place our picture in the user's
         // public pictures directory and check if the file exists.  If
@@ -144,4 +162,37 @@ public class TestAppSpecificFile {
         }
         return false;
     }
+
+    /**
+     * 测试在非私有目录和共享的Download位置创建文件。
+     */
+    public void createFileInRoot(@NonNull Context context) {
+        String rootPath = Environment.getRootDirectory().getAbsolutePath();
+        String dataPath = Environment.getDataDirectory().getAbsolutePath();
+        String storagePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        Timber.d("path: rootPath=%s, dataPath=%s, storagePath=%s", rootPath, dataPath, storagePath);
+        File file = new File(Environment.getExternalStorageDirectory(), "DemoFile.jpg");
+
+        try {
+            // Very simple code to copy a picture from the application's
+            // resource into the external file.  Note that this code does
+            // no error checking, and assumes the picture is small (does not
+            // try to copy it in chunks).  Note that if external storage is
+            // not currently mounted this will silently fail.
+            @SuppressLint("ResourceType") InputStream is =
+                    context.getResources().openRawResource(R.raw.tmp_test);
+            OutputStream os = new FileOutputStream(file);
+            byte[] data = new byte[is.available()];
+            is.read(data);
+            os.write(data);
+            is.close();
+            os.close();
+        } catch (IOException e) {
+            // Unable to create file, likely because external storage is
+            // not currently mounted.
+            Timber.e("ExternalStorage Error writing %s", e);
+        }
+    }
+
+
 }

@@ -61,7 +61,6 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/btn_del_ext_pri"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/btn_has_ext_pri"
                         android:textAllCaps="false"/>
                     <Button
@@ -81,16 +80,26 @@
                         app:layout_constraintStart_toEndOf="@id/btn_create_ext_pri"
                         app:layout_constraintBottom_toTopOf="@id/btn_has_ext_pri_sub"
                         android:text="@string/btn_del_ext_pri_sub"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
+
                     <Button
                         android:id="@+id/btn_has_ext_pri_sub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/btn_del_ext_pri_sub"
                         app:layout_constraintStart_toEndOf="@id/btn_create_ext_pri"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/btn_has_ext_pri_sub"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btn_create_in_root"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/btn_has_ext_pri"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/btn_create_in_root"
+                        android:textAllCaps="false" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/btn_layout_saf"
