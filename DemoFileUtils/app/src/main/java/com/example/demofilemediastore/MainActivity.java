@@ -24,6 +24,8 @@ import com.example.demofilemediastore.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mMainBinding;
 
@@ -32,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         checkPermissionTest();
+        // TODO 带判断权限后初始化
         initExtPri();
+        // TODO 带判断权限后初始化
+        initSelector();
     }
 
     private void initExtPri() {
@@ -70,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 if (Environment.isExternalStorageManager()) {
                     // TODO 已获取全局权限，可使用File进行文件操作
                 }
+            }
+        } else if (requestCode == TestFileSelector.PICK_TREE) {
+            Uri uri = null;
+            if (data != null) {
+                uri = data.getData();
+                // Perform operations on the document using its URI.
+                Timber.d("uri: %s", uri.toString());
             }
         }
     }
@@ -126,5 +138,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    private void initSelector() {
+        mMainBinding.btnTreeSelector.setOnClickListener(view -> {
+            TestFileSelector selector = new TestFileSelector();
+            selector.openDirectory(this, null);
+        });
+
+    }
 
 }

@@ -133,9 +133,27 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/btn_saf_open_tree"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_layout_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:layout_marginTop="@dimen/tmp_padding">
+
+                    <Button
+                        android:id="@+id/btn_tree_selector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/btn_tree_selector"
+                        android:textAllCaps="false" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </ScrollView>

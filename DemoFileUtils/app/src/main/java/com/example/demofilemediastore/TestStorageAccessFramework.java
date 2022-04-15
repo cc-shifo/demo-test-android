@@ -65,10 +65,12 @@ public class TestStorageAccessFramework {
     }
 
     /**
-     * ACTION_OPEN_DOCUMENT_TREE
-     * 内部存储卷的根目录。 设备制造商认为可靠的各个 SD 卡卷的根目录(即/sdcard/目录)，无论该卡是模拟卡还是可移除的卡。可靠的卷是指应用在大多数情况下可以成功访问的卷。
-     * Download 目录。
-     * 此外，在 Android 11（API 级别 30）及更高版本中，您不能使用 ACTION_OPEN_DOCUMENT_TREE intent
+     * ACTION_OPEN_DOCUMENT_TREE不能访问以下目录：
+     * <p>
+     * 1.内部存储卷的根目录。
+     * 2.设备制造商认为可靠的各个 SD 卡卷的根目录(即/sdcard/目录)，无论该卡是模拟卡还是可移除的卡。可靠的卷是指应用在大多数情况下可以成功访问的卷。
+     * 3.Download 目录。
+     * 4.此外，在 Android 11（API 级别 30）及更高版本中，您不能使用 ACTION_OPEN_DOCUMENT_TREE intent
      * 操作来请求用户从以下目录中选择单独的文件：
      * Android/data/ 目录及其所有子目录。
      * Android/obb/ 目录及其所有子目录。
@@ -219,14 +221,14 @@ public class TestStorageAccessFramework {
     /**
      * 在用户做出选择后，请使用结果数据中的 URI 来确定文件是否为虚拟文件
      */
-    public boolean isVirtualFile(@NonNull Activity activity,Uri uri) {
+    public boolean isVirtualFile(@NonNull Activity activity, Uri uri) {
         if (!DocumentsContract.isDocumentUri(activity, uri)) {
             return false;
         }
 
         Cursor cursor = activity.getContentResolver().query(
                 uri,
-                new String[] { DocumentsContract.Document.COLUMN_FLAGS },
+                new String[]{DocumentsContract.Document.COLUMN_FLAGS},
                 null, null, null);
 
         int flags = 0;
@@ -239,7 +241,6 @@ public class TestStorageAccessFramework {
     }
 
     /**
-     *
      * uri类型转换mimeTypeFilter类型
      */
     private InputStream getInputStreamForVirtualFile(@NonNull Activity activity, Uri uri,
