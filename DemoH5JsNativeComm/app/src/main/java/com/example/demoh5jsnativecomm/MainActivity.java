@@ -1,6 +1,7 @@
 package com.example.demoh5jsnativecomm;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import com.example.demoh5jsnativecomm.databinding.ActivityMainBinding;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPIFileSelector;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPILocation;
+import com.example.demoh5jsnativecomm.jsinterface.NativeAPISpUtil;
 
 import java.util.List;
 
@@ -28,11 +30,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private ActivityMainBinding mBinding;
     private String mMainWebUrl;
 
-    private NativeAPILocation mNativeAPILocation;
-    private NativeAPIFileSelector mNativeAPIFileSelector;
     private Disposable mDisposable;
 
-    private final String[] LocPermissionString = new String[]{
+    private static final String[] PERMISSION_LIST = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
@@ -46,10 +46,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void initViewData() {
-        mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        // mMainWebUrl = "file:///android_asset/test.html";
-        mNativeAPILocation = new NativeAPILocation(this);
-        mNativeAPIFileSelector = new NativeAPIFileSelector(this);
+        mMainWebUrl = "http://125.67.201.153:8021/MobileOnemap";
+        // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
+        // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        mMainWebUrl = "file:///android_asset/test.html";
+        NativeAPIFileSelector.getInstance().init(this);
+        NativeAPILocation.getInstance().init(this);
+        NativeAPISpUtil.getInstance().init(this);
         requestPermissions();
     }
 
@@ -58,14 +61,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void initWeb() {
         setInternalWebClient();
         mBinding.demoWeb.getSettings().setJavaScriptEnabled(true);  //设置运行使用JS
         //这里添加JS的交互事件，这样H5就可以调用原生的代码
-        mBinding.demoWeb.addJavascriptInterface(mNativeAPILocation,
-                NativeAPILocation.API_NAME);
-        mBinding.demoWeb.addJavascriptInterface(mNativeAPIFileSelector,
-                NativeAPIFileSelector.API_NAME);
+        NativeAPILocation.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPIFileSelector.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPISpUtil.getInstance().registerAllJsAPI(mBinding.demoWeb);
         mBinding.demoWeb.loadUrl(mMainWebUrl);
     }
 
@@ -131,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         cancelLocationRequest();
         releaseDataResource();
     }
@@ -159,14 +161,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * 有定位权限就发起定位请求，没有定位权限就就会请求权限。
      */
     public void requestPermissions() {
-        if (EasyPermissions.hasPermissions(this, LocPermissionString)) {
+        if (EasyPermissions.hasPermissions(this, PERMISSION_LIST)) {
             requestLocation();
         } else {
             // Request one permission
             EasyPermissions.requestPermissions(this,
                     getString(R.string.request_location_rationale),
                     NativeAPILocation.LOC_PERMISSIONS,
-                    LocPermissionString);
+                    PERMISSION_LIST);
         }
     }
 
@@ -174,8 +176,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * release data resource.
      */
     private void releaseDataResource() {
-        mNativeAPILocation.destroy();
-        mNativeAPIFileSelector.destroy();
+        NativeAPIFileSelector.getInstance().destroy();
+        NativeAPILocation.getInstance().destroy();
+        NativeAPISpUtil.getInstance().destroy();
     }
 
     private void setLocationForJsCall() {
