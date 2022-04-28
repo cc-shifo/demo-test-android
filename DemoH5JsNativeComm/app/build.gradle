@@ -68,7 +68,7 @@ android {
                 if (variant.buildType.name == 'debug') {
                     type = "_debug"
                 }
-                def fileName = "HT_DemoJsCallApp${defaultConfig.versionName}${type}.apk"
+                def fileName = "DemoJsCallApp${defaultConfig.versionName}${type}.apk"
                 outputFileName = fileName
             }
         }
