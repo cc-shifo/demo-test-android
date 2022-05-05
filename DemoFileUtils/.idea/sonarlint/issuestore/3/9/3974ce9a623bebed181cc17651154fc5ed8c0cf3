@@ -1,0 +1,67 @@
+
+M
+java:S1066’"/Merge this if statement with the enclosing one.(ÖÄò8°Äœı…0
+M
+java:S1066õ"/Merge this if statement with the enclosing one.(ÖÄò8±Äœı…0
+R
+java:S1066é"/Merge this if statement with the enclosing one.(Ø†§ùÿÿÿÿ8±Äœı…0
+W
+java:S1141@"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8²Äœı…0
+K
+java:S1604´"(Make this anonymous inner class a lambda(óË©±ùÿÿÿÿ8³Äœı…0
+K
+java:S1604Í"(Make this anonymous inner class a lambda(óË©±ùÿÿÿÿ8³Äœı…0
+E
+java:S1604Ú"(Make this anonymous inner class a lambda(®ö¡+8³Äœı…0
+p
+java:S2095ü"MUse try-with-resources or close this "FileInputStream" in a "finally" clause.(¾¡½ßÿÿÿÿÿ8‚Çœı…0
+J	java:S108B")Either remove or fill this block of code.(¿ßÔ–ıÿÿÿÿ8Çœı…0
+^
+java:S1172M"<Remove these unused method parameters "context", "filePath".(³Ó›Æûÿÿÿÿ8Çœı…0
+]	java:S125j"<This block of commented-out lines of code should be removed.(´Î›Âşÿÿÿÿ8Çœı…0
+q
+java:S4042Ş"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(ı™ÊÕıÿÿÿÿ8”Çœı…0
+o
+java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(‘·çs8•Çœı…0
+q
+java:S4042"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(ëœŞûÿÿÿÿ8—Çœı…0
+q
+java:S4042–"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(áùˆ«ûÿÿÿÿ8—Çœı…0
+q
+java:S4042 "NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¦­÷›úÿÿÿÿ8—Çœı…0
+p
+java:S3776è"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ØØ›ÿ8›Çœı…0
+q
+java:S4042ó"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(ëœŞûÿÿÿÿ8œÇœı…0
+M
+java:S2093™"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8§Çœı…0
+M
+java:S2093Ä"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8ªÇœı…0
+o
+java:S3776å"RRefactor this method to reduce its Cognitive Complexity from 44 to the 15 allowed.(’Æ˜_8ªÇœı…0
+?
+java:S1659æ"!Declare "len" on a separate line.(º–ã»8­Çœı…0
+A
+java:S1659ç"#Declare "ascii" on a separate line.(„¦Àÿ8­Çœı…0
+u
+java:S3776²"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(¬Ä¨«úÿÿÿÿ8°Çœı…0
+M
+java:S2093µ"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8±Çœı…0
+M
+java:S5869·"*Remove duplicates in this character class.(å²›Šüÿÿÿÿ8äÇœı…0
+I
+java:S1168ù"&Return an empty array instead of null.(Ş½˜²úÿÿÿÿ8‚Èœı…0
+L
+java:S1940")Use the opposite operator ("<=") instead.(£êÕÿÿÿÿÿ8„Èœı…0
+M
+java:S2093û"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8…Èœı…0
+D
+java:S1168"&Return an empty array instead of null.(¥¹ï8…Èœı…0
+R
+java:S1874ƒ	"4Remove this use of "getBlockSize"; it is deprecated.(°Ì8Èœı…0
+X
+java:S1874„	"5Remove this use of "getBlockCount"; it is deprecated.(šÄ¨İúÿÿÿÿ8Èœı…0
+R
+java:S1874˜	"4Remove this use of "getBlockSize"; it is deprecated.(°Ì8Èœı…0
+]
+java:S1874™	":Remove this use of "getAvailableBlocks"; it is deprecated.(ù±İ§ÿÿÿÿÿ8Èœı…0
