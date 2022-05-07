@@ -1,23 +1,0 @@
-
-n	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(†óº
-s	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(ƒúƒŒıÿÿÿÿ
-2
-java:S1643F"Use a StringBuilder instead.(÷·ş¡
-;
-java:S1168["&Return an empty array instead of null.(œ•‹m
-<
-java:S1168]"&Return an empty array instead of null.(Êç¦°
-<
-java:S1168l"&Return an empty array instead of null.(Ù‚¥
-X
-java:S3457Ğ"AFormat specifiers should be used instead of string concatenation.(÷¥•†
-X
-java:S3457Ò"AFormat specifiers should be used instead of string concatenation.(İùúÙ
-]
-java:S3457Ô"AFormat specifiers should be used instead of string concatenation.(ÕØåĞüÿÿÿÿ
-X
-java:S3457Ö"AFormat specifiers should be used instead of string concatenation.(ˆ¨˜Ô
-C
-java:S1068"(Remove this unused "BYTE" private field.(Î¤Òìüÿÿÿÿ
-J
-java:S1068"/Remove this unused "BUFFER_SIZE" private field.(Û¦óŒøÿÿÿÿ

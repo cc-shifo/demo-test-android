@@ -108,7 +108,9 @@ public class MarkerClickActivity extends Activity implements OnClickListener,
     private void addMarkersToMap() {
 
         markerOption = new MarkerOptions().icon(BitmapDescriptorFactory
-                .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                // .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                .defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                .setFlat(true)
                 .position(latlng)
                 .draggable(true);
         aMap.addMarker(markerOption);

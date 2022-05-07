@@ -60,7 +60,7 @@ public class GroundOverlayActivity extends Activity {
                 .transparency(0.7f)
                 //				.zIndex(GlobalConstants.ZindexLine - 1)
                 .image(BitmapDescriptorFactory
-                        .fromResource(R.drawable.groundoverlay))
+                        .fromResource(R.drawable.groundoverlay_tmp))
 
                 .positionFromBounds(bounds));
     }

@@ -3,6 +3,7 @@ package com.amap.map3d.demo.overlay;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
@@ -16,6 +17,7 @@ import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.map3d.demo.R;
 import com.amap.map3d.demo.util.Constants;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -275,6 +277,8 @@ public class PolylineActivity extends Activity implements
         if (polyline == null) {
             return;
         }
+
+        Log.d("onProgressChanged", "onProgressChanged: " + progress);
         if (seekBar == mColorBar) {
             polyline.setColor(Color.argb(255, progress, 1, 1));
         } else if (seekBar == mAlphaBar) {
@@ -286,4 +290,137 @@ public class PolylineActivity extends Activity implements
         }
     }
 
+
+    public static class GEOBound {
+        @SerializedName("type")
+        private String mType;
+
+        @SerializedName("properties")
+        private BoundProperty mProperty;
+
+        @SerializedName("geometry")
+        private BoundGeometry mGeometry;
+
+        public GEOBound(String type, BoundProperty property, BoundGeometry geometry) {
+            mType = type;
+            mProperty = property;
+            mGeometry = geometry;
+        }
+
+        public String getType() {
+            return mType;
+        }
+
+        public void setType(String type) {
+            mType = type;
+        }
+
+        public BoundProperty getProperty() {
+            return mProperty;
+        }
+
+        public void setProperty(BoundProperty property) {
+            mProperty = property;
+        }
+
+        public BoundGeometry getGeometry() {
+            return mGeometry;
+        }
+
+        public void setGeometry(BoundGeometry geometry) {
+            mGeometry = geometry;
+        }
+    }
+
+    public static class BoundProperty {
+        private String mTittle;
+        private int mIndex;
+        private boolean mVisible;
+
+        public BoundProperty(String tittle, int index, boolean visible) {
+            mTittle = tittle;
+            mIndex = index;
+            mVisible = visible;
+        }
+
+        public String getTittle() {
+            return mTittle;
+        }
+
+        public void setTittle(String tittle) {
+            mTittle = tittle;
+        }
+
+        public int getIndex() {
+            return mIndex;
+        }
+
+        public void setIndex(int index) {
+            mIndex = index;
+        }
+
+        public boolean isVisible() {
+            return mVisible;
+        }
+
+        public void setVisible(boolean visible) {
+            mVisible = visible;
+        }
+    }
+
+    public static class BoundGeometry {
+        @SerializedName("type")
+        private String mType;
+        @SerializedName("coordinates")
+        private List<LonLat> mPoints;
+
+        public BoundGeometry(String type, List<LonLat> points) {
+            mType = type;
+            mPoints = points;
+        }
+
+        public String getType() {
+            return mType;
+        }
+
+        public void setType(String type) {
+            mType = type;
+        }
+
+        public List<LonLat> getPoints() {
+            return mPoints;
+        }
+
+        public void setPoints(List<LonLat> points) {
+            mPoints = points;
+        }
+    }
+
+    public static class LonLat {
+        @SerializedName("lon")
+        private double mLon;
+        @SerializedName("lat")
+        private double mLat;
+
+        public LonLat(double lon, double lat) {
+            mLon = lon;
+            mLat = lat;
+        }
+
+        public double getLon() {
+            return mLon;
+        }
+
+        public void setLon(double lon) {
+            mLon = lon;
+        }
+
+        public double getLat() {
+            return mLat;
+        }
+
+        public void setLat(double lat) {
+            mLat = lat;
+        }
+    }
 }

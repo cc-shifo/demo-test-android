@@ -3,6 +3,7 @@ package com.amap.map3d.demo.basic;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -48,6 +49,23 @@ public class LimitBoundsActivity extends Activity {
         if (aMap == null) {
             aMap = mapView.getMap();
         }
+
+        Button zoomIn = (Button) findViewById(R.id.zoom_in);
+        zoomIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // aMap.moveCamera(CameraUpdateFactory.zoomTo(8f));
+                aMap.moveCamera(CameraUpdateFactory.zoomIn());
+            }
+        });
+
+        Button zoomOut = (Button) findViewById(R.id.zoom_out);
+        zoomOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aMap.moveCamera(CameraUpdateFactory.zoomOut());
+            }
+        });
     }
 
     /**
@@ -95,7 +113,6 @@ public class LimitBoundsActivity extends Activity {
 
         LatLngBounds latLngBounds = new LatLngBounds(southwestLatLng, northeastLatLng);
         aMap.setMapStatusLimits(latLngBounds);
-
     }
 
 }
