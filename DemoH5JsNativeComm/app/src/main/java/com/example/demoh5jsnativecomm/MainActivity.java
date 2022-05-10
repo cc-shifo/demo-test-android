@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.demoh5jsnativecomm.databinding.ActivityMainBinding;
-import com.example.demoh5jsnativecomm.jsinterface.NativeAPIFileSelector;
+import com.example.demoh5jsnativecomm.fileexplorer.FileExplorerActivity;
+import com.example.demoh5jsnativecomm.jsinterface.NativeAPIFileExplorer;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPILocation;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPISpUtil;
 
@@ -46,11 +48,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void initViewData() {
-        mMainWebUrl = "http://125.67.201.153:8021/MobileOnemap";
+        // mMainWebUrl = "http://125.67.201.153:8021/MobileOnemap";
+        // mMainWebUrl = "http://192.168.201.82:8088/FeatureCompareCut/FeatureCompare.html";
         // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
-        // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        mMainWebUrl = "file:///android_asset/test.html";
-        NativeAPIFileSelector.getInstance().init(this);
+        mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        // mMainWebUrl = "file:///android_asset/test.html";
+        NativeAPIFileExplorer.getInstance().init(this);
         NativeAPILocation.getInstance().init(this);
         NativeAPISpUtil.getInstance().init(this);
         requestPermissions();
@@ -67,9 +70,17 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mBinding.demoWeb.getSettings().setJavaScriptEnabled(true);  //设置运行使用JS
         //这里添加JS的交互事件，这样H5就可以调用原生的代码
         NativeAPILocation.getInstance().registerAllJsAPI(mBinding.demoWeb);
-        NativeAPIFileSelector.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPIFileExplorer.getInstance().registerAllJsAPI(mBinding.demoWeb);
         NativeAPISpUtil.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPIFileExplorer.getInstance().registerAllJsAPI(mBinding.demoWeb);
         mBinding.demoWeb.loadUrl(mMainWebUrl);
+        mBinding.btnFilePath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FileExplorerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setInternalWebClient() {
@@ -77,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mBinding.viewMainActivity, mBinding.demoWeb));
     }
 
+    // 移除后期
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -176,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * release data resource.
      */
     private void releaseDataResource() {
-        NativeAPIFileSelector.getInstance().destroy();
+        NativeAPIFileExplorer.getInstance().destroy();
         NativeAPILocation.getInstance().destroy();
         NativeAPISpUtil.getInstance().destroy();
     }
