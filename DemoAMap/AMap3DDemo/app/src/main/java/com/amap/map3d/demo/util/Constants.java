@@ -30,4 +30,6 @@ public class Constants {
     public static final LatLng CHENGDU = new LatLng(30.679879, 104.064855);// 成都市经纬度
     public static final LatLng XIAN = new LatLng(34.341568, 108.940174);// 西安市经纬度
     public static final LatLng ZHENGZHOU = new LatLng(34.7466, 113.625367);// 郑州市经纬度
+    public static final LatLng LUSHANXIAN = new LatLng(30.145077, 102.933618);// 庐山县经纬度
+    public static final LatLng YANTING = new LatLng(31.247, 105.565);// 庐山县经纬度
 }
