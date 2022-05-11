@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.amap.api.maps.CoordinateConverter;
+import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.UrlTileProvider;
 
 import java.net.MalformedURLException;
@@ -24,8 +26,8 @@ public class HeritageScopeTileProvider extends UrlTileProvider {
     private final double HALF_PI = Math.PI / 2.0;
     private final double RAD_PER_DEGREE = Math.PI / 180.0;
     private final double HALF_RAD_PER_DEGREE = Math.PI / 360.0;
-    private final double METER_PER_DEGREE = originShift / 170.0;//一度多少米
-    private final double DEGREE_PER_METER = 170.0 / originShift;//一米多少度
+    private final double METER_PER_DEGREE = originShift / 180.0;//一度多少米
+    private final double DEGREE_PER_METER = 180.0 / originShift;//一米多少度
     private String mRootUrl;
     /**
      * 根据瓦片的x/y等级返回瓦片范围
@@ -51,6 +53,26 @@ public class HeritageScopeTileProvider extends UrlTileProvider {
         //         ".0&REQUEST=GetMap&STYLES=&SRS=EPSG:4326&BBOX=";
 
         mRootUrl = "http://192.168.43.249:8080/geoserver/yanting/wms?LAYERS=yanting:PLBDOM&FORMAT" +
+                "=image%2Fpng&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1" +
+                ".0&REQUEST=GetMap&STYLES=&SRS=EPSG:4490&BBOX=";
+    }
+
+    // geoserver/test/
+    public HeritageScopeTileProvider(@NonNull String path, @NonNull String layer) {
+        super(titleSize, titleSize);
+        //地址写你自己的wms地址
+        // mRootUrl = "http://xxxxxx自己的/wms?LAYERS=cwh:protect_region_38_20160830&
+        // FORMAT=image%2Fpng&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1.1&
+        // REQUEST=GetMap&STYLES=&SRS=EPSG%3A900913&BBOX=";
+        // mRootUrl = "http://192.168.43.249:8080/geoserver/gwc/demo/yanting%3APLBDOM?gridSet=EPSG%3A900913&format=image/png&BBOX=";
+        // mRootUrl = "http://192.168.43.249:8080/geoserver/yanting/wms?service=WMS&version=1.1.0&request=GetMap&layers=yanting%3APLBDOM&srs=EPSG%3A4490&styles=&format=image%2Fpng&TRANSPARENT=TRUE&bbox=";
+        // mRootUrl = "http://192.168.43.249:8080/geoserver/tmp/wms?service=WMS&version=1.1.0&request=GetMap&layers=tmp%3Alushanxian&srs=EPSG%3A4490&styles=&format=image%2Fpng&TRANSPARENT=TRUE&bbox=";
+        // mRootUrl = "http://192.168.43.249:8080/geoserver/tmp/wms?LAYERS=yanting:PLBDOM&FORMAT" +
+        //         "=image%2Fpng&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1" +
+        //         ".0&REQUEST=GetMap&STYLES=&SRS=EPSG:4326&BBOX=";
+
+        final String baseIP = "http://192.168.43.249:8080/";
+        mRootUrl = baseIP + path + "wms?LAYERS=" + layer + "&FORMAT" +
                 "=image%2Fpng&TRANSPARENT=TRUE&SERVICE=WMS&VERSION=1.1" +
                 ".0&REQUEST=GetMap&STYLES=&SRS=EPSG:4490&BBOX=";
     }
@@ -88,63 +110,19 @@ public class HeritageScopeTileProvider extends UrlTileProvider {
         mContext = context;
     }
 
-    private String TitleBounds(int tx, int ty, int zoom) {
-        // double minX = Pixels2Meters(tx * titleSize, zoom);
-        // double maxY = -Pixels2Meters(ty * titleSize, zoom);
-        // double maxX = Pixels2Meters((tx + 1) * titleSize, zoom);
-        // double minY = -Pixels2Meters((ty + 1) * titleSize, zoom);
-        //
-        // //转换成经纬度
-        // minX = Meters2Lon(minX);
-        // minY = Meters2Lat(minY);
-        // maxX = Meters2Lon(maxX);
-        // maxY = Meters2Lat(maxY);
-        // PositionModel position1 = PositionUtil.gcj_To_Gps84(minY, minX);
-        // minX = position1.getWgLon();
-        // minY = position1.getWgLat();
-        // PositionModel position2 = PositionUtil.gcj_To_Gps84(maxY, maxX);
-        // maxX = position2.getWgLon();
-        // maxY = position2.getWgLat();
-        //
-        // // minX = Lon2Meter(minX);
-        // // minY = Lat2Meter(minY);
-        // // maxX = Lon2Meter(maxX);
-        // // maxY = Lat2Meter(maxY);
-        //
-        // String sMinX = new BigDecimal(minX).toString();
-        // String sMinY = new BigDecimal(minY).toString();
-        // String sMaxX = new BigDecimal(maxX).toString();
-        // String sMaxY = new BigDecimal(maxY).toString();
-        //
-        // return sMinX + "%2C" + sMinY + "%2C" + sMaxX + "%2C" + sMaxY + "&WIDTH=256&HEIGHT=256";
-
-        double minX = Pixels2Meters(tx * titleSize, zoom);
-        double maxY = -Pixels2Meters(ty * titleSize, zoom);
-        double maxX = Pixels2Meters((tx + 1) * titleSize, zoom);
-        double minY = -Pixels2Meters((ty + 1) * titleSize, zoom);
-
-        //转换成经纬度
-        minX = Meters2Lon(minX);
-        minY = Meters2Lat(minY);
-        maxX = Meters2Lon(maxX);
-        maxY = Meters2Lat(maxY);
-        //坐标转换工具类构造方法 为高德地图需要的坐标 转 Gps( WGS-84)
-        PositionModel position1 = PositionUtil.gcj_To_Gps84(minY, minX);
-        minX = position1.getWgLon();
-        minY = position1.getWgLat();
-        PositionModel position2 = PositionUtil.gcj_To_Gps84(maxY, maxX);
-        maxX = position2.getWgLon();
-        maxY = position2.getWgLat();
-        return minX + "," + minY + "," + maxX + "," + maxY + "&WIDTH=256&HEIGHT=256";
-        /*CoordinateConverter coordinateConverter = new CoordinateConverter(mContext);
-        coordinateConverter.from(CoordinateConverter.CoordType.GPS);
-        coordinateConverter.coord(new LatLng(minY, minX));
-        LatLng min = coordinateConverter.convert();
-        coordinateConverter.coord(new LatLng(maxY, maxX));
-        LatLng max = coordinateConverter.convert();
-        return min.longitude + "," + min.latitude + "," + max.longitude + "," + max.latitude
-                + "&WIDTH=256&HEIGHT=256";*/
-
+    public static String getTileNumber(final double lat, final double lon, final int zoom) {
+        int xtile = (int) Math.floor((lon + 180) / 360 * (1 << zoom));
+        int ytile =
+                (int) Math.floor((1 - Math.log(Math.tan(Math.toRadians(lat)) + 1 / Math.cos(Math.toRadians(lat))) / Math.PI) / 2 * (1 << zoom));
+        if (xtile < 0)
+            xtile = 0;
+        if (xtile >= (1 << zoom))
+            xtile = ((1 << zoom) - 1);
+        if (ytile < 0)
+            ytile = 0;
+        if (ytile >= (1 << zoom))
+            ytile = ((1 << zoom) - 1);
+        return ("" + zoom + "/" + xtile + "/" + ytile);
     }
 
     /**
@@ -191,4 +169,87 @@ public class HeritageScopeTileProvider extends UrlTileProvider {
         return my;
     }
 
+    static double tile2lon(int x, int z) {
+        return x / Math.pow(2.0, z) * 360.0 - 180;
+    }
+
+    static double tile2lat(int y, int z) {
+        double n = Math.PI - (2.0 * Math.PI * y) / Math.pow(2.0, z);
+        return Math.toDegrees(Math.atan(Math.sinh(n)));
+    }
+
+    private String TitleBounds(int tx, int ty, int zoom) {
+        // double minX = Pixels2Meters(tx * titleSize, zoom);
+        // double maxY = -Pixels2Meters(ty * titleSize, zoom);
+        // double maxX = Pixels2Meters((tx + 1) * titleSize, zoom);
+        // double minY = -Pixels2Meters((ty + 1) * titleSize, zoom);
+        //
+        // //转换成经纬度
+        // minX = Meters2Lon(minX);
+        // minY = Meters2Lat(minY);
+        // maxX = Meters2Lon(maxX);
+        // maxY = Meters2Lat(maxY);
+        // PositionModel position1 = PositionUtil.gcj_To_Gps84(minY, minX);
+        // minX = position1.getWgLon();
+        // minY = position1.getWgLat();
+        // PositionModel position2 = PositionUtil.gcj_To_Gps84(maxY, maxX);
+        // maxX = position2.getWgLon();
+        // maxY = position2.getWgLat();
+        //
+        // // minX = Lon2Meter(minX);
+        // // minY = Lat2Meter(minY);
+        // // maxX = Lon2Meter(maxX);
+        // // maxY = Lat2Meter(maxY);
+        //
+        // String sMinX = new BigDecimal(minX).toString();
+        // String sMinY = new BigDecimal(minY).toString();
+        // String sMaxX = new BigDecimal(maxX).toString();
+        // String sMaxY = new BigDecimal(maxY).toString();
+        //
+        // return sMinX + "%2C" + sMinY + "%2C" + sMaxX + "%2C" + sMaxY + "&WIDTH=256&HEIGHT=256";
+
+        double minX = Pixels2Meters(tx * titleSize, zoom);
+        double maxY = -Pixels2Meters(ty * titleSize, zoom);
+        double maxX = Pixels2Meters((tx + 1) * titleSize, zoom);
+        double minY = -Pixels2Meters((ty + 1) * titleSize, zoom);
+
+        //转换成经纬度
+        minX = Meters2Lon(minX);
+        minY = Meters2Lat(minY);
+        maxX = Meters2Lon(maxX);
+        maxY = Meters2Lat(maxY);
+        //坐标转换工具类构造方法 为高德地图需要的坐标 转 Gps( WGS-84)
+        /*PositionModel position1 = PositionUtil.gcj_To_Gps84(minY, minX);
+        minX = position1.getWgLon();
+        minY = position1.getWgLat();
+        PositionModel position2 = PositionUtil.gcj_To_Gps84(maxY, maxX);
+        maxX = position2.getWgLon();
+        maxY = position2.getWgLat();
+        return minX + "," + minY + "," + maxX + "," + maxY + "&WIDTH=256&HEIGHT=256";*/
+        CoordinateConverter coordinateConverter = new CoordinateConverter(mContext);
+        coordinateConverter.from(CoordinateConverter.CoordType.GPS);
+        coordinateConverter.coord(new LatLng(minY, minX));
+        LatLng min = coordinateConverter.convert();
+        coordinateConverter.coord(new LatLng(maxY, maxX));
+        LatLng max = coordinateConverter.convert();
+        return min.longitude + "," + min.latitude + "," + max.longitude + "," + max.latitude
+                + "&WIDTH=256&HEIGHT=256";
+
+    }
+
+    BoundingBox tile2boundingBox(final int x, final int y, final int zoom) {
+        BoundingBox bb = new BoundingBox();
+        bb.north = tile2lat(y, zoom);
+        bb.south = tile2lat(y + 1, zoom);
+        bb.west = tile2lon(x, zoom);
+        bb.east = tile2lon(x + 1, zoom);
+        return bb;
+    }
+
+    class BoundingBox {
+        double north;
+        double south;
+        double east;
+        double west;
+    }
 }

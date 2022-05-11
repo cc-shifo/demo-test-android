@@ -81,10 +81,26 @@ public class ProvinceHoleActivity extends Activity implements DistrictSearch.OnD
                 Constants.YANTING, 10, 0/*30*/, 0/*30*/)));
         searchDistrict();
         //加载自定义wms
-        HeritageScopeTileProvider tileProvider = new HeritageScopeTileProvider();
-        tileProvider.setContext(this);
+        // HeritageScopeTileProvider tileProvider = new HeritageScopeTileProvider();
+        // tileProvider.setContext(this);
+        // aMap.addTileOverlay(new TileOverlayOptions()
+        //         .tileProvider(tileProvider));
+        HeritageScopeTileProvider tileProvider1 = new HeritageScopeTileProvider("geoserver/test/",
+                "test:PLBDOM");
+        tileProvider1.setContext(this);
         aMap.addTileOverlay(new TileOverlayOptions()
-                .tileProvider(tileProvider));
+                .tileProvider(tileProvider1));
+        HeritageScopeTileProvider tileProvider2 = new HeritageScopeTileProvider("geoserver/test/",
+                "test:GF1DOM");
+        tileProvider2.setContext(this);
+        aMap.addTileOverlay(new TileOverlayOptions()
+                .tileProvider(tileProvider2));
+        // HeritageScopeTileProvider tileProvider3 = new HeritageScopeTileProvider
+        // ("geoserver/test/",
+        //         "test:GF2DOM");
+        // tileProvider3.setContext(this);
+        // aMap.addTileOverlay(new TileOverlayOptions()
+        //         .tileProvider(tileProvider3));
     }
 
     private void searchDistrict() {

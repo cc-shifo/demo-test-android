@@ -47,7 +47,7 @@ public class BasicMapActivity extends Activity implements OnClickListener {
         //Demo中为了其他界面可以使用下载的离线地图，使用默认位置存储，屏蔽了自定义设置
         //  MapsInitializer.sdcardDir =OffLineMapUtils.getSdCacheDir(this);
 
-        mapView = (MapView) findViewById(R.id.map);
+        mapView = findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
 
         init();
@@ -62,16 +62,16 @@ public class BasicMapActivity extends Activity implements OnClickListener {
             aMap = mapView.getMap();
         }
         setMapCustomStyleFile(this);
-        basicmap = (Button) findViewById(R.id.basicmap);
+        basicmap = findViewById(R.id.basicmap);
         basicmap.setOnClickListener(this);
-        rsmap = (Button) findViewById(R.id.rsmap);
+        rsmap = findViewById(R.id.rsmap);
         rsmap.setOnClickListener(this);
-        nightmap = (Button) findViewById(R.id.nightmap);
+        nightmap = findViewById(R.id.nightmap);
         nightmap.setOnClickListener(this);
-        navimap = (Button) findViewById(R.id.navimap);
+        navimap = findViewById(R.id.navimap);
         navimap.setOnClickListener(this);
 
-        mStyleCheckbox = (CheckBox) findViewById(R.id.check_style);
+        mStyleCheckbox = findViewById(R.id.check_style);
 
         mStyleCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,16 +88,23 @@ public class BasicMapActivity extends Activity implements OnClickListener {
     }
 
     private void setMapCustomStyleFile(Context context) {
-        String styleName = "style.data";
+        // String styleName = "style.data";
+        String styleName = "style_1652233947_0100.data";
+        String styleExtName = "style_extra_1652233947_0100.data";
         InputStream inputStream = null;
+        InputStream inputStreamExt = null;
         try {
             inputStream = context.getAssets().open(styleName);
+            inputStreamExt = context.getAssets().open(styleExtName);
             byte[] b = new byte[inputStream.available()];
+            byte[] bExt = new byte[inputStream.available()];
             inputStream.read(b);
+            inputStreamExt.read(bExt);
 
             if (mapStyleOptions != null) {
                 // 设置自定义样式
                 mapStyleOptions.setStyleData(b);
+                mapStyleOptions.setStyleExtraData(bExt);
             }
 
         } catch (IOException e) {
@@ -107,7 +114,9 @@ public class BasicMapActivity extends Activity implements OnClickListener {
                 if (inputStream != null) {
                     inputStream.close();
                 }
-
+                if (inputStreamExt != null) {
+                    inputStreamExt.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
