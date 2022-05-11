@@ -80,27 +80,52 @@ public class ProvinceHoleActivity extends Activity implements DistrictSearch.OnD
         aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(
                 Constants.YANTING, 10, 0/*30*/, 0/*30*/)));
         searchDistrict();
-        //加载自定义wms
-        // HeritageScopeTileProvider tileProvider = new HeritageScopeTileProvider();
-        // tileProvider.setContext(this);
+        // //加载自定义wms
+        // // HeritageScopeTileProvider tileProvider = new HeritageScopeTileProvider();
+        // // tileProvider.setContext(this);
+        // // aMap.addTileOverlay(new TileOverlayOptions()
+        // //         .tileProvider(tileProvider));
+        // HeritageScopeTileProvider tileProvider0 = new HeritageScopeTileProvider
+        // ("geoserver/test/",
+        //         "test:PLBDOM", HeritageScopeTileProvider.CR_4490);
+        // tileProvider0.setContext(this);
         // aMap.addTileOverlay(new TileOverlayOptions()
-        //         .tileProvider(tileProvider));
-        HeritageScopeTileProvider tileProvider1 = new HeritageScopeTileProvider("geoserver/test/",
-                "test:PLBDOM");
-        tileProvider1.setContext(this);
-        aMap.addTileOverlay(new TileOverlayOptions()
-                .tileProvider(tileProvider1));
-        HeritageScopeTileProvider tileProvider2 = new HeritageScopeTileProvider("geoserver/test/",
-                "test:GF1DOM");
-        tileProvider2.setContext(this);
-        aMap.addTileOverlay(new TileOverlayOptions()
-                .tileProvider(tileProvider2));
+        //         .tileProvider(tileProvider0));
+
+        // 4490坐标
+        // HeritageScopeTileProvider tileProvider1 = new HeritageScopeTileProvider
+        // ("geoserver/test/",
+        //         "test:PLBDOM", HeritageScopeTileProvider.TYPE_CR_4490);
+        // tileProvider1.setContext(this);
+        // aMap.addTileOverlay(new TileOverlayOptions()
+        //         .tileProvider(tileProvider1));
+        // HeritageScopeTileProvider tileProvider2 = new HeritageScopeTileProvider
+        // ("geoserver/test/",
+        //         "test:GF1DOM", HeritageScopeTileProvider.TYPE_CR_4490);
+        // tileProvider2.setContext(this);
+        // aMap.addTileOverlay(new TileOverlayOptions()
+        //         .tileProvider(tileProvider2));
         // HeritageScopeTileProvider tileProvider3 = new HeritageScopeTileProvider
         // ("geoserver/test/",
         //         "test:GF2DOM");
         // tileProvider3.setContext(this);
         // aMap.addTileOverlay(new TileOverlayOptions()
         //         .tileProvider(tileProvider3));
+
+
+        // wgs84
+        HeritageScopeTileProvider tileProvider4 = new HeritageScopeTileProvider("geoserver" +
+                "/wgs84yanting/",
+                "wgs84yanting:wgs84yantingPLBDOM", HeritageScopeTileProvider.TYPE_CR_4326);
+        tileProvider4.setContext(this);
+        aMap.addTileOverlay(new TileOverlayOptions()
+                .tileProvider(tileProvider4));
+        HeritageScopeTileProvider tileProvider5 = new HeritageScopeTileProvider("geoserver" +
+                "/wgs84yanting/",
+                "wgs84yanting:wgs84yantingGF1DOM", HeritageScopeTileProvider.TYPE_CR_4326);
+        tileProvider5.setContext(this);
+        aMap.addTileOverlay(new TileOverlayOptions()
+                .tileProvider(tileProvider5));
     }
 
     private void searchDistrict() {

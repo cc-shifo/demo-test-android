@@ -30,7 +30,7 @@ public class GroundOverlayActivity extends Activity {
          * */
         //Demo中为了其他界面可以使用下载的离线地图，使用默认位置存储，屏蔽了自定义设置
         //        MapsInitializer.sdcardDir =OffLineMapUtils.getSdCacheDir(this);
-        mapview = (MapView) findViewById(R.id.map);
+        mapview = findViewById(R.id.map);
         mapview.onCreate(savedInstanceState);// 此方法必须重写
         init();
     }
@@ -63,6 +63,22 @@ public class GroundOverlayActivity extends Activity {
                         .fromResource(R.drawable.groundoverlay_tmp))
 
                 .positionFromBounds(bounds));
+
+        // MVTTileOverlay overlay = amap.addMVTTileOverlay(new MVTTileOverlayOptions.Builder()
+        //         .url("https://restapi.amap.com/rest/lbs/geohub/tiles/mvt")
+        //         .key("Web服务key")
+        //         .id("服务id")
+        //         .build());
+        // MVTTileOverlayOptions options = new MVTTileOverlayOptions(
+        //         "http://192.168.43.249:8080/geoserver/test/wms?service=WMS&version=1.1" +
+        //                 ".0&request=GetMap&layers=test%3APLBDOM&bbox=105.47671170173909%2C31
+        //                 .01648858866545%2C105.63069806538304%2C31
+        //                 .41771651738284&width=330&height=768&srs=EPSG%3A4490&styles=&format
+        //                 =application/openlayers"
+        // , "", "");
+        // options.setTileProvider(new MVTTileProvider());
+        // MVTTileOverlay overlay = amap.addMVTTileOverlay(options );
+
     }
 
     /**

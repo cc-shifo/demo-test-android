@@ -77,8 +77,8 @@
     <string name="polygon_description">介绍在地图绘制多边形</string>
     <string name="polyline_demo">Polylines功能</string>
     <string name="polyline_description">介绍在地图中绘制线条</string>
-    <string name="groundoverlay_demo">GroundOverlay功能</string>
-    <string name="groundoverlay_description">介绍在地图中绘制GroundOverlay功能</string>
+    <string name="groundoverlay_demo">GroundOverlay覆盖物功能</string>
+    <string name="groundoverlay_description">介绍在地图中绘制GroundOverlay覆盖物功能</string>
     <string name="circle_demo">Circles功能</string>
     <string name="circle_description">介绍在地图中绘制圆形</string>
     <string name="navigatearrow_demo">NavigateArrow功能</string>
