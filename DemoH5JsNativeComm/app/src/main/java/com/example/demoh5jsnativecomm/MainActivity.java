@@ -2,10 +2,13 @@ package com.example.demoh5jsnativecomm;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.ValueCallback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     private Disposable mDisposable;
 
+    private CustomWebChromeClient mWebChromeClient;
+
     private static final String[] PERMISSION_LIST = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
@@ -51,8 +56,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         // mMainWebUrl = "http://125.67.201.153:8021/MobileOnemap";
         // mMainWebUrl = "http://192.168.201.82:8088/FeatureCompareCut/FeatureCompare.html";
         // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
-        mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        // mMainWebUrl = "file:///android_asset/test.html";
+        // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        // mMainWebUrl = "http://192.168.201.233:8001/#/login";
+        mMainWebUrl = "file:///android_asset/test.html";
         NativeAPIFileExplorer.getInstance().init(this);
         NativeAPILocation.getInstance().init(this);
         NativeAPISpUtil.getInstance().init(this);
@@ -84,8 +90,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void setInternalWebClient() {
-        mBinding.demoWeb.setWebViewClient(new CustomWebClient(
-                mBinding.viewMainActivity, mBinding.demoWeb));
+        // mBinding.demoWeb.setWebViewClient(new CustomWebClient(
+        //         mBinding.viewMainActivity, mBinding.demoWeb));
+
+        mWebChromeClient = new CustomWebChromeClient(this, mBinding.demoWeb);
+        mBinding.demoWeb.setWebChromeClient(mWebChromeClient);
     }
 
     // 移除后期
@@ -140,6 +149,19 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         //
         //     mOpenFileWebChromeClient.mFilePathCallbacks = null;
         // }
+
+        if (requestCode == FileExplorerActivity.REQUEST_FILE_PICKER) {
+            Uri uri = data == null || resultCode != Activity.RESULT_OK ? null :
+                    data.getData();
+            if (mWebChromeClient != null) {
+                ValueCallback<Uri[]> callback = mWebChromeClient.getCallback();
+                if (callback != null) {
+                    Uri[] uris = uri != null ? new Uri[]{uri} : new Uri[0];
+                    callback.onReceiveValue(uris);
+                }
+                mWebChromeClient.destroy();
+            }
+        }
     }
 
 

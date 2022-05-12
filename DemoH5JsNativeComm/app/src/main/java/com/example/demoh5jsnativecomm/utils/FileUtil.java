@@ -26,7 +26,6 @@ import okio.Source;
 
 public class FileUtil {
     private static final String TAG = "FileUtil";
-
     private FileUtil() {
         // nothing
     }

@@ -24,7 +24,7 @@
 <!--</Button>-->
 
 <p id="ptext4">执行写key2, value为name2方法</p>
-<Button id="buttonId4" class="buttonClass" onclick="jsWriteString('key2', 'name2')">jsWriteString
+<Button class="buttonClass" id="buttonId4" onclick="jsWriteString('key2', 'name2')">jsWriteString
 </Button>
 <p id="ptext5">执行读key2, value为name2方法</p>
 <Button id="buttonId5" class="buttonClass" onclick="jsReadString('key2')">jsReadString
@@ -32,7 +32,7 @@
 <p id="ptext6">打开文件浏览器</p>
 <Button class="buttonClass" id="buttonId6" onclick="openFileExplorer()">openFileExplorer
 </Button>
-
+<input id="files" onchange="fileImport();" type="file">
 <script type="text/javascript">
 	function jsGetLocation(){
         var result = window.NativeAPILocation.getLocation();

@@ -1,8 +1,10 @@
 package com.example.demoh5jsnativecomm.fileexplorer;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,20 +31,22 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class FileExplorerActivity extends AppCompatActivity
         implements EasyPermissions.PermissionCallbacks {
+    public static final int REQUEST_FILE_PICKER = 1;
     private static final String TAG = "FileExplorerActivity";
-    private static final String JS_GET_FILE_ABSOLUTE_PATH = "javascript:getFileAbsolutePath";
-    @SuppressLint("StaticFieldLeak")
-    private static WebView mWebView;
     private ActivityFileExplorerBinding mBinding;
     private FileExplorerRvAdapter mRvAdapter;
     private FileIEViewModel mViewModel;
     private List<ItemData> mFileList;
+    private static final String JS_GET_FILE_ABSOLUTE_PATH = "javascript:getFileAbsolutePath";
 
     public static void openFileExplorer(@NonNull Context context, @NonNull WebView webView) {
         mWebView = webView;
         Intent intent = new Intent(context, FileExplorerActivity.class);
         context.startActivity(intent);
     }
+
+    @SuppressLint("StaticFieldLeak")
+    private static WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +124,13 @@ public class FileExplorerActivity extends AppCompatActivity
         }
     }
 
+    public static void openFileExplorerForResult(@NonNull Activity activity,
+                                                 @NonNull WebView webView) {
+        mWebView = webView;
+        Intent intent = new Intent(activity, FileExplorerActivity.class);
+        activity.startActivityForResult(intent, REQUEST_FILE_PICKER);
+    }
+
     private void initView() {
         mRvAdapter.setItemOnClick(position -> {
             File file = mFileList.get(position).getFile();
@@ -128,6 +139,9 @@ public class FileExplorerActivity extends AppCompatActivity
                         Toast.LENGTH_SHORT).show();
                 Log.e("onClick", "onClick: " + file.getAbsoluteFile());
                 mWebView.loadUrl(JS_GET_FILE_ABSOLUTE_PATH + "('" + file.getAbsoluteFile() + "')");
+                Intent intent = new Intent();
+                intent.setData(Uri.fromFile(file));
+                setResult(Activity.RESULT_OK, intent);
                 FileExplorerActivity.this.finish();
                 return;
             }

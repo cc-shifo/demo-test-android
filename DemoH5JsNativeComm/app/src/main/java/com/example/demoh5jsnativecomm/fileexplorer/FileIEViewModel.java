@@ -39,7 +39,6 @@ public class FileIEViewModel extends AndroidViewModel {
 
     /**
      * 加载{@code selectedItem}目录下的文件
-     *
      * @param selectedItem 选中的目录
      */
     public void loadFileList(@NonNull final File selectedItem) {

@@ -17,10 +17,6 @@ public class NativeAPIFileExplorer {
     private Context mContext;
     private WebView mWebView;
 
-    private NativeAPIFileExplorer() {
-        // nothing
-    }
-
     public static synchronized NativeAPIFileExplorer getInstance() {
         if (mNativeAPIFileExplorer == null) {
             mNativeAPIFileExplorer = new NativeAPIFileExplorer();
@@ -31,6 +27,11 @@ public class NativeAPIFileExplorer {
 
     public void init(@NonNull Context context) {
         mContext = context;
+    }
+
+
+    private NativeAPIFileExplorer() {
+        // nothing
     }
 
     public void registerAllJsAPI(@NonNull WebView webView) {

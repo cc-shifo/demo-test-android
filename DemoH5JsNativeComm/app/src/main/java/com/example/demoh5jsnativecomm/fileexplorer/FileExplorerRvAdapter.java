@@ -53,18 +53,6 @@ public class FileExplorerRvAdapter extends RecyclerView.Adapter<FileExplorerRvAd
         mItemOnClick = itemOnClick;
     }
 
-    private String renderParentLink(AppCompatActivity activity) {
-        return activity.getString(R.string.go_parent_label);
-    }
-
-    private String renderItem(AppCompatActivity activity, File file) {
-        if (file.isDirectory()) {
-            return activity.getString(R.string.folder_item, file.getName());
-        } else {
-            return activity.getString(R.string.file_item, file.getName());
-        }
-    }
-
     public interface ItemOnClick {
         void onClick(int position);
     }
@@ -75,6 +63,18 @@ public class FileExplorerRvAdapter extends RecyclerView.Adapter<FileExplorerRvAd
         public FileIEVH(@NonNull FileExplorerRvItemBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
+        }
+    }
+
+    private String renderParentLink(AppCompatActivity activity) {
+        return activity.getString(R.string.go_parent_label);
+    }
+
+    private String renderItem(AppCompatActivity activity, File file) {
+        if (file.isDirectory()) {
+            return activity.getString(R.string.folder_item, file.getName());
+        } else {
+            return activity.getString(R.string.file_item, file.getName());
         }
     }
 }
