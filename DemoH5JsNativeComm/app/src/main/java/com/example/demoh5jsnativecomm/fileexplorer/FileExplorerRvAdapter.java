@@ -53,10 +53,6 @@ public class FileExplorerRvAdapter extends RecyclerView.Adapter<FileExplorerRvAd
         mItemOnClick = itemOnClick;
     }
 
-    public interface ItemOnClick {
-        void onClick(int position);
-    }
-
     public static class FileIEVH extends RecyclerView.ViewHolder {
         private final FileExplorerRvItemBinding mBinding;
 
@@ -64,6 +60,10 @@ public class FileExplorerRvAdapter extends RecyclerView.Adapter<FileExplorerRvAd
             super(itemView.getRoot());
             mBinding = itemView;
         }
+    }
+
+    public interface ItemOnClick {
+        void onClick(int position);
     }
 
     private String renderParentLink(AppCompatActivity activity) {

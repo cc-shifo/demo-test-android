@@ -37,7 +37,8 @@ public class FileExplorerActivity extends AppCompatActivity
     private FileExplorerRvAdapter mRvAdapter;
     private FileIEViewModel mViewModel;
     private List<ItemData> mFileList;
-    private static final String JS_GET_FILE_ABSOLUTE_PATH = "javascript:getFileAbsolutePath";
+    @SuppressLint("StaticFieldLeak")
+    private static WebView mWebView;
 
     public static void openFileExplorer(@NonNull Context context, @NonNull WebView webView) {
         mWebView = webView;
@@ -45,8 +46,12 @@ public class FileExplorerActivity extends AppCompatActivity
         context.startActivity(intent);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private static WebView mWebView;
+    public static void openFileExplorerForResult(@NonNull Activity activity,
+                                                 @NonNull WebView webView) {
+        mWebView = webView;
+        Intent intent = new Intent(activity, FileExplorerActivity.class);
+        activity.startActivityForResult(intent, REQUEST_FILE_PICKER);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +129,7 @@ public class FileExplorerActivity extends AppCompatActivity
         }
     }
 
-    public static void openFileExplorerForResult(@NonNull Activity activity,
-                                                 @NonNull WebView webView) {
-        mWebView = webView;
-        Intent intent = new Intent(activity, FileExplorerActivity.class);
-        activity.startActivityForResult(intent, REQUEST_FILE_PICKER);
-    }
-
+    private static final String JS_GET_FILE_ABSOLUTE_PATH = "javascript:getFileAbsolutePath";
     private void initView() {
         mRvAdapter.setItemOnClick(position -> {
             File file = mFileList.get(position).getFile();

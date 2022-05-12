@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         // mMainWebUrl = "http://192.168.201.82:8088/FeatureCompareCut/FeatureCompare.html";
         // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
         // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        // mMainWebUrl = "http://192.168.201.233:8001/#/login";
-        mMainWebUrl = "file:///android_asset/test.html";
+        mMainWebUrl = "http://192.168.201.233:8001/#/login";
+        // mMainWebUrl = "file:///android_asset/test.html";
         NativeAPIFileExplorer.getInstance().init(this);
         NativeAPILocation.getInstance().init(this);
         NativeAPISpUtil.getInstance().init(this);
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Uri[] uris = uri != null ? new Uri[]{uri} : new Uri[0];
                     callback.onReceiveValue(uris);
                 }
-                mWebChromeClient.destroy();
+                mWebChromeClient.clearOnShowFileChooserCallBack();
             }
         }
     }
@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         NativeAPIFileExplorer.getInstance().destroy();
         NativeAPILocation.getInstance().destroy();
         NativeAPISpUtil.getInstance().destroy();
+        mWebChromeClient.destroy();
     }
 
     private void setLocationForJsCall() {
