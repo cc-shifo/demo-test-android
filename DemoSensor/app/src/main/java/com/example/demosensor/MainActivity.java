@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         initDats();
     }
 
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDats() {
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mLiveData = new MutableLiveData<>();
         mLiveData.observe(this, new Observer<String>() {
             @Override

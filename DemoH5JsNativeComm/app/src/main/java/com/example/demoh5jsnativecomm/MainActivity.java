@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         // mMainWebUrl = "http://192.168.201.82:8088/FeatureCompareCut/FeatureCompare.html";
         // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
         // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
-        mMainWebUrl = "http://192.168.201.233:8001/#/login";
+        // mMainWebUrl = "http://192.168.201.233:8001/#/login";
+        mMainWebUrl = "http://114.116.200.186:9066/bim1/cesiumSample/Sample/modellight3.html";
         // mMainWebUrl = "file:///android_asset/test.html";
         NativeAPIFileExplorer.getInstance().init(this);
         NativeAPILocation.getInstance().init(this);

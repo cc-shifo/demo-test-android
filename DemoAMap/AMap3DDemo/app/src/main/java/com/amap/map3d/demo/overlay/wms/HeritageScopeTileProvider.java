@@ -264,6 +264,7 @@ public class HeritageScopeTileProvider extends UrlTileProvider {
             LatLng max = coordinateConverter.convert();
             return min.longitude + "," + min.latitude + "," + max.longitude + "," + max.latitude
                     + "&WIDTH=" + TITLE_SIZE + "&HEIGHT=" + TITLE_SIZE;
+            // PositionUtil.gcj_To_Gps84这个算法貌似可以将EPSG:900913或者EPSG:3857图层叠加。
             /*PositionModel position1 = PositionUtil.gcj_To_Gps84(minY, minX);
             minX = position1.getWgLon();
             minY = position1.getWgLat();
