@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 
@@ -21,21 +22,37 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class NativeAPILocation {
     private static final String TAG = "NativeAPILocation";
-    public static final String API_NAME = "NativeAPILocation";
+    private static final String API_NAME = "NativeAPILocation";
     public static final int LOC_PERMISSIONS = 100;
     public static final int LOC_PERMISSIONS_FROM_JS = LOC_PERMISSIONS + 1;
-    private final String[] LocPermissionString = new String[]{
+    private static final String[] LocPermissionString = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
 
+    private static NativeAPILocation mNativeAPILocation;
     private Context mContext;
     private boolean mIsGetting;
     private String mLocationCache;
 
+    public static synchronized NativeAPILocation getInstance() {
+        if (mNativeAPILocation == null) {
+            mNativeAPILocation = new NativeAPILocation();
+        }
 
-    public NativeAPILocation(@NonNull Context context) {
+        return mNativeAPILocation;
+    }
+
+    private NativeAPILocation() {
+        // nothing
+    }
+
+    public void init(@NonNull Context context) {
         mContext = context;
+    }
+
+    public void registerAllJsAPI(@NonNull WebView webView) {
+        webView.addJavascriptInterface(this, NativeAPILocation.API_NAME);
     }
 
     /**

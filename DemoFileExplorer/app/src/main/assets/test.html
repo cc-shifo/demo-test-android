@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>这里是一个H5页面</title>
+</head>
+
+<body>
+<p id="ptext1">执行android中的getLocation()方法</p>
+<!--<Button id="buttonId0" class="buttonClass" onclick="javascript:NativeAPILocation.getLocation()">-->
+<!--    getLocation-->
+<!--</Button>-->
+<Button id="buttonId0" class="buttonClass" onclick="jsGetLocation()">getLocation</Button>
+<p id="ptext2">执行android中的getFileAbsolutePath()方法</p>
+<!--<Button id="buttonId1" class="buttonClass"-->
+<!--        onclick="javascript:NativeAPIFileSelector.getFileAbsolutePath()">getFile-->
+<!--</Button>-->
+<Button id="buttonId1" class="buttonClass" onclick="jsGetFilePath()">getFilePath</Button>
+
+<p id="ptext3">执行android中的getFileAbsolutePath()方法</p>
+<!--<Button id="buttonId1" class="buttonClass"-->
+<!--        onclick="javascript:NativeAPIFileSelector.getFileAbsolutePath()">getFile-->
+<!--</Button>-->
+
+<p id="ptext4">执行写key2, value为name2方法</p>
+<Button id="buttonId4" class="buttonClass" onclick="jsWriteString('key2', 'name2')">jsWriteString
+</Button>
+<p id="ptext5">执行读key2, value为name2方法</p>
+<Button id="buttonId5" class="buttonClass" onclick="jsReadString('key2')">jsReadString
+</Button>
+
+
+<script type="text/javascript">
+	function jsGetLocation(){
+        var result = window.NativeAPILocation.getLocation();
+		document.getElementById("ptext1").innerHTML=result;
+	}
+
+	function jsGetFilePath(){
+      var result = window.NativeAPIFileSelector.getFileAbsolutePath();
+      document.getElementById("ptext2").innerHTML=result;
+	}
+
+	function jsGetLocationCallback(result){
+      document.getElementById("ptext1").innerHTML=result;
+	}
+
+	function jsWriteString(key, value){
+	  var result = window.NativeAPISpUtil.putString(key, value);
+	        document.getElementById("ptext4").innerHTML=result;
+	}
+
+	function jsReadString(key){
+	  var result = window.NativeAPISpUtil.getString(key);
+	        document.getElementById("ptext5").innerHTML=result;
+	}
+
+
+
+
+
+</script>
+</body>
+</html>

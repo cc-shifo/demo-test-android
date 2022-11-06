@@ -16,9 +16,28 @@
 <!--<Button id="buttonId1" class="buttonClass"-->
 <!--        onclick="javascript:NativeAPIFileSelector.getFileAbsolutePath()">getFile-->
 <!--</Button>-->
-<Button id="buttonId1" class="buttonClass" onclick="jsGetFilePath()">gFilePath</Button>
+<Button id="buttonId1" class="buttonClass" onclick="jsGetFilePath()">getFilePath</Button>
 
-<script>
+<p id="ptext3">执行android中的getFileAbsolutePath()方法</p>
+<!--<Button id="buttonId1" class="buttonClass"-->
+<!--        onclick="javascript:NativeAPIFileSelector.getFileAbsolutePath()">getFile-->
+<!--</Button>-->
+
+<p id="ptext4">执行写key2, value为name2方法</p>
+<Button id="buttonId4" class="buttonClass" onclick="jsWriteString('key2', 'name2')">jsWriteString
+</Button>
+<p id="ptext5">执行读key2, value为name2方法</p>
+<Button id="buttonId5" class="buttonClass" onclick="jsReadString('key2')">jsReadString
+</Button>
+<p id="ptext6">打开文件浏览器</p>
+<Button id="buttonId6" class="buttonClass" onclick="openFileExplorer()">openFileExplorer
+</Button>
+
+<p id="ptext7">网页自带回调获取文件对象</p>
+<input type="file" id="files" onchange="getSelectedFile();">
+
+
+<script type="text/javascript">
 	function jsGetLocation(){
         var result = window.NativeAPILocation.getLocation();
 		document.getElementById("ptext1").innerHTML=result;
@@ -32,6 +51,49 @@
 	function jsGetLocationCallback(result){
       document.getElementById("ptext1").innerHTML=result;
 	}
+
+	function jsWriteString(key, value){
+	  var result = window.NativeAPISpUtil.putString(key, value);
+	        document.getElementById("ptext4").innerHTML=result;
+	}
+
+	function jsReadString(key){
+	  var result = window.NativeAPISpUtil.getString(key);
+	        document.getElementById("ptext5").innerHTML=result;
+	}
+
+    function openFileExplorer(){
+	  window.NativeAPIFileExplorer.openFileExplorer();
+	}
+
+    function getFileAbsolutePath(path){
+ 	  var selectedFile = new File(path);
+
+	  document.getElementById("ptext6").innerHTML=path;
+	  var reader = new FileReader(); //这是核心,读取操作就是由它完成.
+      reader.readAsText(selectedFile); //读取文件的内容,也可以读取文件的URL
+      reader.onload = function () {
+        //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+        document.getElementById("ptext6").innerHTML=this.result;
+      };
+	}
+
+	function getSelectedFile(){
+	  var selectedFile = document.getElementById('files').files[0];
+	  if (selectedFile != null){
+	  document.getElementById("ptext7").innerHTML=selectedFile.name;
+	        //读取并解析文本
+      var reader = new FileReader(); //这是核心,读取操作就是由它完成.
+      reader.readAsText(selectedFile); //读取文件的内容,也可以读取文件的URL
+      reader.onload = function () {
+        //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+        document.getElementById("ptext7").innerHTML=this.result;
+      };
+	  }
+	}
+
+
+
 </script>
 </body>
 </html>

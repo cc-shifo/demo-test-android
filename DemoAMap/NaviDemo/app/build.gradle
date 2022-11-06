@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        // B1:B2:20:9F:1D:39:42:B7:10:28:65:FF:75:9B:72:C5:65:1D:F4:46
+        // Android Studio获取SHA1
+        // keytool -v -list -keystore  keystore文件路径
+        applicationId "com.amap.navi.demo"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias "key0"
+            keyPassword "123456"
+            storeFile file("../mykeystore.jks")
+            storePassword "123456"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            //testCoverageEnabled true
+            signingConfig signingConfigs.config
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi', 'x86', 'x86_64'//只打包armeabi平台的，就算有其他文件夹也不管
+//            include 'armeabi'//, 'armeabi-v7a', 'arm64-v8a', 'mips', 'x86', 'x86_64'
+        }
+    }
+}
+
+dependencies {
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+//    testCompile 'junit:junit:4.12'
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // implementation files('libs/AMap3DMap_8.1.0_AMapNavi_8.1.0_20211029.jar')
+}

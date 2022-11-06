@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoCallerOfAMap</string>
+    <string name="baidu_map">call baidu map</string>
+    <string name="gaode_map">call gaode map</string>
+</resources>

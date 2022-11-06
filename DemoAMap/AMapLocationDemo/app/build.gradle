@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    compileSdkVersion 29
+    buildToolsVersion '29.0.0'
+
+    defaultConfig {
+        applicationId "com.amap.location.demo"
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias "key0"
+            keyPassword "123456"
+            storeFile file("../mykeystore.jks")
+            storePassword "123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+}
+//使用aar包时需要加上这段
+//repositories {
+//    flatDir { dirs 'libs' }
+//}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // implementation files('libs/AMap_Location_V6.1.0_20220402.jar')
+//     implementation project(':diagnose:locdiagnoselib')
+    //    使用aar包时使用此种方式
+    //    compile (name:'AMapLocation_4.5.0_20190122', ext:'aar')
+}

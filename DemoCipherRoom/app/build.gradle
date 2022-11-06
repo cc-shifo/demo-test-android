@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+}
+
+def def_config = rootProject.ext.android
+def dep = rootProject.ext.dep_list
+def ver = rootProject.ext.dep_version
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.democipherroom"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation dep.app_compat
+    implementation dep.app_material
+
+    // room
+    implementation dep.room_runtime
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    annotationProcessor dep.room_compiler
+    implementation dep.room_rxjava3
+    testImplementation dep.test_room_rxjava3
+    implementation dep.sqlcipher
+
+    implementation dep.rxjava
+    implementation dep.rxandroid
+
+    implementation dep.log_timber
+
+    testImplementation dep.test_junit
+    androidTestImplementation dep.android_test_junit
+    androidTestImplementation dep.android_test_espresso
+}

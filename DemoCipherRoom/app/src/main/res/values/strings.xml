@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DemoCipherRoom</string>
+    <string name="person_query_info">Query Person Info</string>
+    <string name="person_insert_info">Insert Person Info</string>
+    <string name="no_read_write_permission">No Storage Access Permissions</string>
+
+    <string name="btn_create_open">create or open</string>
+    <string name="btn_insert">insert</string>
+    <string name="btn_query">query</string>
+    <string name="btn_close">close</string>
+</resources>

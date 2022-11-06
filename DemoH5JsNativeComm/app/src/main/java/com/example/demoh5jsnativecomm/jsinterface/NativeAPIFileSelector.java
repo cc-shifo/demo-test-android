@@ -1,7 +1,9 @@
 package com.example.demoh5jsnativecomm.jsinterface;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 
@@ -10,11 +12,31 @@ import java.util.Date;
 import java.util.Locale;
 
 public class NativeAPIFileSelector {
-    public static final String API_NAME = "NativeAPIFileSelector";
+    private static final String API_NAME = "NativeAPIFileSelector";
 
+    @SuppressLint("StaticFieldLeak")
+    private static NativeAPIFileSelector mNativeAPIFileSelector;
     private Context mContext;
-    public NativeAPIFileSelector(@NonNull Context context) {
+
+    public static synchronized NativeAPIFileSelector getInstance() {
+        if (mNativeAPIFileSelector == null) {
+            mNativeAPIFileSelector = new NativeAPIFileSelector();
+        }
+
+        return mNativeAPIFileSelector;
+    }
+
+    public void init(@NonNull Context context) {
         mContext = context;
+    }
+
+
+    private NativeAPIFileSelector() {
+        // nothing
+    }
+
+    public void registerAllJsAPI(@NonNull WebView webView) {
+        webView.addJavascriptInterface(this, API_NAME);
     }
 
     /**

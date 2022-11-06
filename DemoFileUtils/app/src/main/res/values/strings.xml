@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DemoFileMediaStore</string>
+    <string name="btn_create_ext_pri">create_ext_pri</string>
+    <string name="btn_del_ext_pri">del_ext_pri</string>
+    <string name="btn_has_ext_pri">has_ext_pri</string>
+    <string name="btn_create_in_root">btn_create_in_root</string>
+
+    <string name="btn_create_ext_pri_sub">create_ext_pri_sub</string>
+    <string name="btn_del_ext_pri_sub">del_ext_pri_sub</string>
+    <string name="btn_has_ext_pri_sub">has_ext_pri_sub</string>
+
+
+    <string name="btn_saf_create">storage_access_framework_create</string>
+    <string name="btn_saf_open">storage_access_framework_open</string>
+    <string name="btn_saf_open_tree">storage_access_framework_open_tree</string>
+
+
+    <string name="btn_tree_selector">tree_selector</string>
+</resources>

@@ -1,9 +1,14 @@
 package com.example.demoh5jsnativecomm;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.webkit.ValueCallback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.demoh5jsnativecomm.databinding.ActivityMainBinding;
-import com.example.demoh5jsnativecomm.jsinterface.NativeAPIFileSelector;
+import com.example.demoh5jsnativecomm.fileexplorer.FileExplorerActivity;
+import com.example.demoh5jsnativecomm.jsinterface.NativeAPIFileExplorer;
 import com.example.demoh5jsnativecomm.jsinterface.NativeAPILocation;
+import com.example.demoh5jsnativecomm.jsinterface.NativeAPISpUtil;
 
 import java.util.List;
 
@@ -28,11 +35,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private ActivityMainBinding mBinding;
     private String mMainWebUrl;
 
-    private NativeAPILocation mNativeAPILocation;
-    private NativeAPIFileSelector mNativeAPIFileSelector;
     private Disposable mDisposable;
 
-    private final String[] LocPermissionString = new String[]{
+    private CustomWebChromeClient mWebChromeClient;
+
+    private static final String[] PERMISSION_LIST = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
@@ -46,10 +53,16 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void initViewData() {
-        mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        // mMainWebUrl = "http://125.67.201.153:8021/MobileOnemap";
+        // mMainWebUrl = "http://192.168.201.82:8088/FeatureCompareCut/FeatureCompare.html";
+        // mMainWebUrl = "http://192.168.201.233:8001/#/login.html";
+        // mMainWebUrl = "http://192.168.201.82/testAndroid/testAndroid.html";
+        // mMainWebUrl = "http://192.168.201.233:8001/#/login";
+        mMainWebUrl = "http://114.116.200.186:9066/bim1/cesiumSample/Sample/modellight3.html";
         // mMainWebUrl = "file:///android_asset/test.html";
-        mNativeAPILocation = new NativeAPILocation(this);
-        mNativeAPIFileSelector = new NativeAPIFileSelector(this);
+        NativeAPIFileExplorer.getInstance().init(this);
+        NativeAPILocation.getInstance().init(this);
+        NativeAPISpUtil.getInstance().init(this);
         requestPermissions();
     }
 
@@ -58,22 +71,34 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void initWeb() {
         setInternalWebClient();
         mBinding.demoWeb.getSettings().setJavaScriptEnabled(true);  //设置运行使用JS
         //这里添加JS的交互事件，这样H5就可以调用原生的代码
-        mBinding.demoWeb.addJavascriptInterface(mNativeAPILocation,
-                NativeAPILocation.API_NAME);
-        mBinding.demoWeb.addJavascriptInterface(mNativeAPIFileSelector,
-                NativeAPIFileSelector.API_NAME);
+        NativeAPILocation.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPIFileExplorer.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPISpUtil.getInstance().registerAllJsAPI(mBinding.demoWeb);
+        NativeAPIFileExplorer.getInstance().registerAllJsAPI(mBinding.demoWeb);
         mBinding.demoWeb.loadUrl(mMainWebUrl);
+        mBinding.btnFilePath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FileExplorerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setInternalWebClient() {
-        mBinding.demoWeb.setWebViewClient(new CustomWebClient(
-                mBinding.viewMainActivity, mBinding.demoWeb));
+        // mBinding.demoWeb.setWebViewClient(new CustomWebClient(
+        //         mBinding.viewMainActivity, mBinding.demoWeb));
+
+        mWebChromeClient = new CustomWebChromeClient(this, mBinding.demoWeb);
+        mBinding.demoWeb.setWebChromeClient(mWebChromeClient);
     }
 
+    // 移除后期
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -125,13 +150,25 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         //
         //     mOpenFileWebChromeClient.mFilePathCallbacks = null;
         // }
+
+        if (requestCode == FileExplorerActivity.REQUEST_FILE_PICKER) {
+            Uri uri = data == null || resultCode != Activity.RESULT_OK ? null :
+                    data.getData();
+            if (mWebChromeClient != null) {
+                ValueCallback<Uri[]> callback = mWebChromeClient.getCallback();
+                if (callback != null) {
+                    Uri[] uris = uri != null ? new Uri[]{uri} : new Uri[0];
+                    callback.onReceiveValue(uris);
+                }
+                mWebChromeClient.clearOnShowFileChooserCallBack();
+            }
+        }
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         cancelLocationRequest();
         releaseDataResource();
     }
@@ -159,14 +196,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * 有定位权限就发起定位请求，没有定位权限就就会请求权限。
      */
     public void requestPermissions() {
-        if (EasyPermissions.hasPermissions(this, LocPermissionString)) {
+        if (EasyPermissions.hasPermissions(this, PERMISSION_LIST)) {
             requestLocation();
         } else {
             // Request one permission
             EasyPermissions.requestPermissions(this,
                     getString(R.string.request_location_rationale),
                     NativeAPILocation.LOC_PERMISSIONS,
-                    LocPermissionString);
+                    PERMISSION_LIST);
         }
     }
 
@@ -174,8 +211,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * release data resource.
      */
     private void releaseDataResource() {
-        mNativeAPILocation.destroy();
-        mNativeAPIFileSelector.destroy();
+        NativeAPIFileExplorer.getInstance().destroy();
+        NativeAPILocation.getInstance().destroy();
+        NativeAPISpUtil.getInstance().destroy();
+        mWebChromeClient.destroy();
     }
 
     private void setLocationForJsCall() {
