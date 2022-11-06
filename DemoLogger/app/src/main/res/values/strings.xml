@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoLogger</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_destroy">destroy</string>
+</resources>
