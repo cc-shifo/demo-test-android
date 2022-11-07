@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DemoCustomSizeDialog</string>
+    <string name="btn_right_dialog">Dialog</string>
 </resources>

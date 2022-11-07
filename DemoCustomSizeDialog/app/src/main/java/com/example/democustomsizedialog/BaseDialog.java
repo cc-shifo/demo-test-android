@@ -35,6 +35,8 @@ public abstract class BaseDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        initViewData();
+        initView();
     }
 
     public abstract int getLayoutId();
