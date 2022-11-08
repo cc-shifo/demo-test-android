@@ -56,6 +56,15 @@ public abstract class BaseDialog extends AlertDialog {
 
     public abstract void initView();
 
+    /**
+     * 默认没有tittle，没有window background，decor没有frame padding.
+     * 居中，宽和高占据APP可设置区域(除系统状态栏，导航栏外的区域,及android.R.id.content区域）最大值。
+     *
+     * WindowManager.LayoutParams的宽或者高是ViewGroup.LayoutParams.WRAP_CONTENT，
+     * 自定义View对应的宽，高必须是测量出来的确切值（如，固定值）。
+     * WindowManager.LayoutParams的宽或者高是ViewGroup.LayoutParams.MATCH_PARENT，
+     * 自定义View对应的宽，高支可以测量出来的确切值（如，固定值），也可以是MATCH_PARENT。
+     */
     protected void customWindowSize() {
         Window window = getWindow();
         window.clearFlags(Window.FEATURE_NO_TITLE);
