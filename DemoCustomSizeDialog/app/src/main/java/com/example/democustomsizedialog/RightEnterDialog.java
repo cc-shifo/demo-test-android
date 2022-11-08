@@ -36,7 +36,6 @@ public class RightEnterDialog extends BaseDialog {
         window.clearFlags(Window.FEATURE_NO_TITLE);
         // window.setGravity(Gravity.END);
 
-        window.setBackgroundDrawable(null);
         WindowManager.LayoutParams params = window.getAttributes();
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
