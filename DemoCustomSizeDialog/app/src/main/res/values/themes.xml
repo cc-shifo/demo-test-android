@@ -23,6 +23,7 @@
         <item name="android:windowBackground">@null</item>
         <item name="android:windowFrame">@null</item>
 
+        <!--false后，状态栏和dialog会叠加。效果详见doc的截图-->
         <!--<item name="android:windowIsFloating">false</item>-->
     </style>
 

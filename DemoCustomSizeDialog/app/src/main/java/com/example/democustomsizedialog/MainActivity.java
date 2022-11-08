@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
          * 主题参考：https://developer.android.google.cn/guide/topics/ui/look-and-feel/themes
          */
         // 产生Window对象，并且设置默认WindowManager.LayoutParam来约束Window的默认大小。
-        // mRightEnterDialog = new RightEnterDialog(this, R.style.Theme_Right_Dialog);
-        mRightEnterDialog = new RightEnterDialog(this, androidx.appcompat.R.style
-                .Theme_AppCompat_Light_Dialog);// 可以用的默认主题。
+        mRightEnterDialog = new RightEnterDialog(this, R.style.Theme_Right_Dialog);
+        // mRightEnterDialog = new RightEnterDialog(this, androidx.appcompat.R.style
+        //         .Theme_AppCompat_Light_Dialog);// 可以用的默认主题。
         // mRightEnterDialog = new RightEnterDialog(this, androidx.appcompat.R.style
         //         .Theme_AppCompat_Light_Dialog_Alert); // 不对的主题。主题设置了window的最大最小值。
         // mRightEnterDialog.create(); // 改善show时的效果。提前生成view，将view添加进decor(此时的decor是
