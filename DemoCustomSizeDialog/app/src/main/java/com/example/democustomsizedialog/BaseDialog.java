@@ -1,7 +1,6 @@
 package com.example.democustomsizedialog;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -45,12 +44,12 @@ public abstract class BaseDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         customWindowSize();// 可以在setContentView()之前或之后。之前先设置好参数，然后执行。放之后要重绘制。
-        setContentView(setCustomContentView());
+        setContentView(getCustomContentView());
         initViewData();
         initView();
     }
 
-    public abstract int setCustomContentView();
+    public abstract int getCustomContentView();
 
     public abstract void initViewData();
 

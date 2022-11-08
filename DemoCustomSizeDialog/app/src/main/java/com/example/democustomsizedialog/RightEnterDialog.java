@@ -46,7 +46,7 @@ public class RightEnterDialog extends BaseDialog {
     }
 
     @Override
-    public int setCustomContentView() {
+    public int getCustomContentView() {
         return R.layout.layout_dialog_right;
     }
 
