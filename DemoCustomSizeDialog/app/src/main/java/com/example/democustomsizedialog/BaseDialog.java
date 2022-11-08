@@ -56,13 +56,18 @@ public abstract class BaseDialog extends AlertDialog {
 
     public abstract void initView();
 
-    /**
-     * WindowManager.LayoutParams的宽或者高是ViewGroup.LayoutParams.WRAP_CONTENT，
-     * 自定义View对应的宽，高必须是测量出来的确切值（如，固定值）。
-     * WindowManager.LayoutParams的宽或者高是ViewGroup.LayoutParams.MATCH_PARENT，
-     * 自定义View对应的宽，高支可以测量出来的确切值（如，固定值），也可以是MATCH_PARENT。
-     */
-    public abstract void customWindowSize();
+    protected void customWindowSize() {
+        Window window = getWindow();
+        window.clearFlags(Window.FEATURE_NO_TITLE);
+        window.setBackgroundDrawable(null);
+        window.setGravity(Gravity.CENTER);
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        // window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        View d = window.getDecorView();
+        d.setPadding(0, 0, 0, 0);
+    }
 
     private void test() {
         Window window = getWindow();
