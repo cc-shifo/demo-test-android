@@ -3,6 +3,7 @@ package com.example.democustomsizedialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -33,12 +34,18 @@ public class RightEnterDialog extends BaseDialog {
         Window window = getWindow();
         window.setBackgroundDrawable(null);
         window.clearFlags(Window.FEATURE_NO_TITLE);
-        window.setGravity(Gravity.END);
+        // window.setGravity(Gravity.END);
 
         window.setBackgroundDrawable(null);
         WindowManager.LayoutParams params = window.getAttributes();
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        params.width = (int) (dm.widthPixels * 0.5f);
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.gravity = Gravity.END;
         // window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         window.getDecorView().setBackgroundColor(Color.GREEN);
         View d = window.getDecorView();
