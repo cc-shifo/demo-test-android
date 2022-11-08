@@ -1,0 +1,134 @@
+总结：
+1. window的主题属性最好在Theme主题文件中设置，避免重复加载。因为默认在创建mDecor时，会读取默认或设置的主题属性。即便是再
+设置也是需要在Dialog的mDecor创建成功之后，才有效。可以通过获取window.getDecor()方式去设置。
+2. new完Dialog对象后。
+方式一，主动调用create，完成Dialog#onCreate()的执行。
+方式二，通过show去调用dialog的create，完成Dialog#onCreate()的执行。
+Window布局参数变化
+默认创建的Window是MATCH_PARENT
+默认创建的mDecor是MATCH_PARENT。因为new的时候使用的是Window的布局参数。
+mDecor布局的第一变化：在生成mContentParent视图过程中（mContentParent = generateLayout(mDecor); PhoneWindow.java line 2727）。
+	对于主题是Floating模式下，会调用setLayout(WRAP_CONTENT, WRAP_CONTENT)，将mDecor布局数据改成了WRAP_CONTENT。
+	此时，Window的布局参数也应该是WRAP_CONTENT。
+3. Dialog的AppComapatDelegateImpl.java#setContentView()-->AppComapatDelegateImpl.java#ensureSubDecor()判断mSubDecorInstalled是否已经安装。
+所以，当Window和mDecor布局参数被改后，mDecor实际已生成，mSubDecorInstalled值为true。
+4. 可能出现subDecor的contenFrameLayout的padding值会被设置成原先id为android.R.id.content的mContentParent的padding值。
+首次执行AppComapatDelegateImpl.java#setContentView()-->AppComapatDelegateImpl.java#ensureSubDecor()可能给mDecor设置padding。具体流程如下：
+AppComapatDelegateImpl.java#setContentView()-->AppComapatDelegateImpl.java#ensureSubDecor()-->applyFixedSizeWindow()-->cfl.setDecorPadding(xxxx)。
+setContentView()主要是为了设置mSubDecor用途的。
+5. mDecor是否有padding跟主题有关系，主题的Frame，背景drawable。
+1)new Dialog过程会传递主题属性，经过主题解析后，会产生mWindowAttr。
+2)同时可能因为主题带有Frame（主题的frame实际上是作用在mDecor上的），而Frame又有padding，结果导致mDecor有了padding。如：
+drawableChanged() DecorView.java line 1696 (sdk32) --> setPadding(framePadding.left + backgroundPadding.left, xxxx)
+3)背景drawable有关系
+DecorView.java#setWindowBackground(Drawable) 
+--> updateBackgroundDrawable() DecorView.java line 983 
+      --> return getPadding() DecorView.java line 1301 // 设置drawable的padding。
+4)主题是否设置了Dialog Window长宽的最大或者最小值。例如Alert主题或者Fix主题就可能设置。
+6. mDecor，mContentRoot(LinearLayout, mContentParent(FrameLayout, mSubDecor(FitWindowsFrameLayout)，contentView(最终的android.R.id.content，
+ContentFrameLayout类型）是在Dialog#onCreate过程之中产生的，并不是在new Dialog过程中产生的。
+7. 另外，日志里会输出tag为"DecorView"的信息，表示mDecor的布局参数。同时，log里会输出“From style:”表示主题属性。
+
+
+因为主题是floating风格
+installDecor(）PhoneWindow.java line 2680
+生成mDecor PhoneWindow.java line line 2683 俗称的根View。
+1.mContentParent就是android:id/content。我们setContentView的view都被添加进这里了。
+
+2.mDecor(FrameLayout) --> 第0号child LinearLayout（即R.layout.screen_simple），即mContentRoot，即我们称的APP可视区域
+			第0号child LinearLayout包含了两个view，第0号是toolbar，第1号是content。我们setContentView的view都被
+			添加进android:id/content了。
+			 --> 第0号
+			       0 = {ViewStub@18156} "android.view.ViewStub{73b65d3 G.E...... ......I. 0,0-0,0 #10201af android:id/action_mode_bar_stub}"
+			 --> 第1号
+			       1 = {FrameLayout@18033} "android.widget.FrameLayout{cda83c2 V.E...... ......I. 0,0-0,0 #1020002 android:id/content}"
+			       即mContentParent PhoneWindow.java line line 2693			
+			       
+3.生成过程
+生成mDecor对象-->生成mDecor下的mContentRoot-->将mContentRoot作为0号child添加进mDeco， 即APP可视区的root 添加进ViewGroup.java的View[]数组
+进行管理-->找到mContentRoot下id为android.R.id.content的child，作为mContentParent返回-->在AppCompatDelegateImpl.java的createSubDecor()下
+获取Inflate()了一个subDecor。用来替换之前的id为android.R.id.content的FrameLayout布局。subDecor是FitWindowsFrameLayout布局。替换规则如下：
+找到mWindow下id为android.R.id.content视图，获取到android.R.id.content的第0号视图（也就是我们自己的视图），然后将第0号视图
+从原来的id为android.R.id.content的FrameLayout布局之中删除，将获取到的第0号视图添加进contentView（类型为ContentFrameLayout）之中，这个新的contentView
+就是subDecor的child，是ContentFrameLayout类型。之后将原id为android.R.id.content的FrameLayout布局的id设置为NO_ID，
+把android.R.id.content让出来，最后将这个id设置给这个新的contentView。然后又将这个subDecor设置为了mContentParent的child。
+将subDecor设置为了mContentParent的child的流程如下：
+createSubDecor() AppCompatDelegateImpl.java line 851
+--> mWindow.setContentView(subDecor); AppCompatDelegateImpl.java line 1014
+      --> setContentView() PhoneWindow.java line 461 
+            --> mLayoutInflater.inflate(layoutResID, mContentParent); PhoneWindow.java line 461 // layoutResID就是subDecor
+
+
+
+4. 生成mDecor下的mContentParent
+前面流程：
+BaseDialog.java##onCreate(Bundle)-->super.onCreate(Bundle) 即AlertDialog.java#onCreate(Bundle)
+AlertDialog.java#onCreate(Bundle)-->mAlert.installContent() AlertDialog.java line 280
+AlertController.java#installContent()-->mDialog.setContentView(int) AlertCOntroller.java line 232
+	--> getDelegate().setContentView(layoutResID); AppCompatDialog.java line 95
+
+AppCompatDelegateImpl.java#setContentView(int)-->ensureSubDecor() AppCompatDelegateImpl.java line 707
+	--> createSubDecor() AppCompatDelegateImpl.java line 819
+	      --> ensureWindow(); AppCompatDelegateImpl.java line 876
+	            mWindow.getDecorView() AppCompatDelgateImpl.java line 877 // 返回mDecor。
+
+createSubDecor() AppCompatDelgateImpl.java line 851
+	--> mWindow.getDecorView() AppCompatDelgateImpl.java line 877 // 返回mDecor。
+	      --> installDecor(）PhoneWindow.java line 2680
+	           --> mDecor = generateDecor(-1); 生成mDecor PhoneWindow.java line line 2683 俗称的根View。
+	           --> mContentParent = generateLayout(mDecor); 生成mContentParent PhoneWindow.java line line 2693。
+	                       mContentParent就是android:id/content。我们setContentView的view都被添加进这里了。
+	                 --> generateLayout(DecorView decor) PhoneWindow.java line2359
+	                       --> if (mIsFloating) { PhoneWindow.java line line 2378
+            	                                 setLayout(WRAP_CONTENT, WRAP_CONTENT);
+	                                 setFlags(0, flagsToUpdate);
+	                             } 
+	                             ########################################################
+	                                 重新修改了PhoneWindow.java的mWindowAttribute属性，即Window.LayoutParam。
+	                                 将前期任何设置改成了WRAP_CONTENT(值-2, MATCH_PARENT是-1)。之前的mWindowAttribute
+	                                 还处于默认值，即generateDecor(-1)里面创建mDecor时使用的初始值，mWindowAttributes =
+        	                                 new WindowManager.LayoutParams();Window.java line 335。并且，跟踪
+	                                 setLayout(WRAP_CONTENT, WRAP_CONTENT)发现， 对于Dialog，此属性的修改会
+	                                 被分发到mDecor上，导致mDecor重新layout。
+	                             ########################################################
+	                       --> layoutResource = R.layout.screen_simple; PhoneWindow.java line 2625
+	                             mDecor.onResourcesLoaded(mLayoutInflater, layoutResource); PhoneWindow.java line 2630
+	                             --> addView(root, 0, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));  DecorView.java line 2114
+	                                   会生成mDecor第0号child LinearLayout（即R.layout.screen_simple）。第0号child包含toolbar和ID_ANDROID_CONTENT。
+	                                   ########################################################
+	                                   注意，这里将mDecor第0号的布局参数设置成了MATCH_PARENT，数值等于-1
+	                                   ########################################################
+	                             --> mContentRoot = (ViewGroup) root; DecorView.java line 2116。所以，mDecor的第0号也被称为mContentRoot。
+	                       --> 会设置创建mBackgroundDrawable PhoneWindow.java line2555
+	                       --> 会设置创建mBackgroundFallbackDrawable PhoneWindow.java line2559
+	                       --> ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT); PhoneWindow.java line line 2632。
+	                             会生成（找到）mContentParent
+	                       --> mDecor.setWindowBackground(mBackgroundDrawable);
+
+注意，mDecor的背景可能影响到mDecor的Inset，导致自定义View不能全屏。系统版本不同，默认的Inset也不一样。具体影响流程如下
+DecorView.java#setWindowBackground(Drawable drawable)
+	-->updateBackgroundDrawable() DecorView.java line 970
+	     --> mBackgroundInsets = Insets.NONE; DecorView.java line 1250
+	           getDrawable().getPadding(padding); DecorView.java line 1273
+
+5.生成mDecor的第0号View，即mContentRoot。
+generateLayout(DecorView decor) DecorView.java line 2631
+	--> mDecor.onResourcesLoaded(mLayoutInflater, layoutResource); PhoneWindow.java line 2630
+	      --> layoutResource = R.layout.screen_simple; DecorView.java.java line 2625
+	            // 生成mDecor的0号View。
+        	            final View root = inflater.inflate(layoutResource, null);  DecorView.java.java line 2103
+
+6.将mDecor的0号View添加进ViewGroup.java的View[]数组进行管理。也就是将mContentRoot添加进mDecor之中。
+generateLayout(DecorView decor) DecorView.java line 2631
+	--> mDecor.onResourcesLoaded(mLayoutInflater, layoutResource); PhoneWindow.java line 2630
+	      --> addView(root, 0, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)); DecorView.java line 2114
+	            ########################################################
+	            注意修改了root（即，mContentRoot）的参数为MATCH_PARENT, MATCH_PARENT
+	            ########################################################
+
+5.generateLayout(DecorView decor) 
+--> mDecor.setWindowBackground(mBackgroundDrawable); PhoneWindow.java line 2647 // 设置mDecor的WindowBackground
+      设置mDecor的WindowFrame
+      mDecor.setBackgroundFallback(mBackgroundFallbackDrawable);
+      // 设置ackgroundFallbackBackground：无WindowBackground，且有mBackgroundFallbackDrawable情况下设置ackgroundFallbackBackground
+ 	
