@@ -3,8 +3,10 @@ package com.example.democustomsizedialog;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.democustomsizedialog.databinding.ActivityMainBinding;
 
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         // mRightEnterDialog.create(); // 改善show时的效果。提前生成view，将view添加进decor(此时的decor是
         // 在setContentView中产生的，当然decor可以提前生成，确定了Window后就可以通过Window生成decor)。
         // 注意，有的在setContentView设置的Window属性会被之后的setContentView调用给覆盖掉。
+
+
+        final DemoDialogFragment dialog = new DemoDialogFragment();
         mBinding.btnRightDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
                     mRightEnterDialog.show();
                 } else {
                     mRightEnterDialog.cancel();
+                }
+            }
+        });
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        mBinding.btnRightFragDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog.getDialog() != null && dialog.getDialog().isShowing()) {
+                    dialog.getDialog().cancel();
+                } else {
+                    dialog.show(getSupportFragmentManager(), null);
                 }
             }
         });

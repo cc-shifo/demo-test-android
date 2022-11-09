@@ -22,9 +22,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_right_frag_dialog"
+            app:layout_constraintTop_toBottomOf="@id/tv_hello_word"
+            app:layout_constraintBottom_toTopOf="@id/container_id"
+            android:text="@string/btn_right_dialog"/>
+        <Button
+            android:id="@+id/btn_right_frag_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/btn_right_dialog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_hello_word"
+            app:layout_constraintBottom_toTopOf="@id/container_id"
+            android:text="@string/btn_right_frag_dialog"/>
+        <FrameLayout
+            android:id="@+id/container_id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_right_dialog"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/btn_right_dialog"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

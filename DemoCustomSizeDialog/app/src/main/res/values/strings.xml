@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DemoCustomSizeDialog</string>
     <string name="btn_right_dialog">RightDialog</string>
+    <string name="btn_right_frag_dialog">FragRightDialog</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
