@@ -15,5 +15,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
 
         <!-- Customize your theme here. -->
+        <!--android sdk 23 -->
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+
+        <!--刘海-->
+        <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
+
+        <!--If you prefer to disable automatic content protection on Android 10 (API level 29) or higher-->
+        <item name="android:enforceStatusBarContrast" tools:ignore="NewApi">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
 </resources>
