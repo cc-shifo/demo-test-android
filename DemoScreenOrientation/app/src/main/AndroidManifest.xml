@@ -16,7 +16,8 @@
 
         <activity
             android:name=".LandMainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation|screenLayout|screenSize|keyboardHidden|layoutDirection|locale|density|fontScale|locale">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
