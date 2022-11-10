@@ -18,7 +18,7 @@ import com.example.demoscreenorientation.databinding.ActivityMainBinding;
  * 观察主动设置的回调。
  *
  *
- * 结论：
+ * 结论（模拟器测试）：
  * 1.xml没有配置android:configChanges的情况下，进入APP时屏幕的方向与APP的设置方向不一样，设置后会重启Activity。
  * 进入APP时屏幕的方向与设置的方向一样（及不用设置），进入APP后，即便是旋转屏幕（模拟器测试），Activity也不会重启。
  *
@@ -26,6 +26,8 @@ import com.example.demoscreenorientation.databinding.ActivityMainBinding;
  * 进入APP时屏幕的方向与设置的方向一样（及不用设置），进入APP后，即便是旋转屏幕（模拟器测试），Activity同样不会重启。
  *
  * 3.横屏可以在super.onCreate()之前就设置。
+ *
+ * 4.xml配置的方向跟屏幕方向不一样（模拟器测试），进入Activity时用的是xml的方向，旋转屏幕并不会导致重启。
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

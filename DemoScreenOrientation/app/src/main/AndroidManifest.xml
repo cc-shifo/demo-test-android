@@ -25,6 +25,7 @@
         <activity
             android:name=".DefaultChangeMainActivity"
             android:exported="false"
+            android:screenOrientation="landscape"
             android:label="DefaultChangeMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
