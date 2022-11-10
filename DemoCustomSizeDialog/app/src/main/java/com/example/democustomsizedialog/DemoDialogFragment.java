@@ -2,15 +2,15 @@ package com.example.democustomsizedialog;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +18,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class DemoDialogFragment extends DialogFragment {
-
+    private static final String TAG = "DemoDialogFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,16 +59,47 @@ public class DemoDialogFragment extends DialogFragment {
         }
     }
 
-    // @Override
-    // public View onCreateView(LayoutInflater inflater, ViewGroup container,
-    //                          Bundle savedInstanceState) {
-    //     // Inflate the layout for this fragment
-    //     return inflater.inflate(R.layout.fragment_demo_dialog, container, false);
-    // }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        Log.d(TAG, "onCreateView");
+        return view;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return new RightEnterDialog(requireActivity(), R.style.Theme_Right_Dialog);
+        Log.d(TAG, "onCreateDialog1");
+
+        Dialog dialog = new RightEnterDialog(requireActivity(), R.style.Theme_Right_Dialog);
+        Log.d(TAG, "onCreateDialog2");
+        return dialog;
+    }
+
+    // dialog模式下onViewCreated不执行。
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView");
     }
 }

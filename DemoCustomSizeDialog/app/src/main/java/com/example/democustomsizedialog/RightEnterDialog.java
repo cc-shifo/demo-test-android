@@ -1,10 +1,9 @@
 package com.example.democustomsizedialog;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,10 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
 
 public class RightEnterDialog extends BaseDialog {
+    private static final String TAG = "RightEnterDialog";
+
     protected RightEnterDialog(@NonNull Context context) {
         super(context);
     }
@@ -25,7 +25,7 @@ public class RightEnterDialog extends BaseDialog {
     }
 
     protected RightEnterDialog(@NonNull Context context, boolean cancelable,
-                               @Nullable OnCancelListener cancelListener) {
+            @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
 
@@ -45,10 +45,12 @@ public class RightEnterDialog extends BaseDialog {
         params.width = (int) (dm.widthPixels * 0.5f);
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         params.gravity = Gravity.END;
-        // window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        // window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
+        // .MATCH_PARENT);
         window.getDecorView().setBackgroundColor(Color.GREEN);
         View d = window.getDecorView();
         d.setPadding(0, 0, 0, 0);
+        Log.d(TAG, "[DemoDialogFragment] customWindowSize");
     }
 
     @Override
@@ -64,5 +66,16 @@ public class RightEnterDialog extends BaseDialog {
     @Override
     public void initView() {
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "[DemoDialogFragment] AnchorEndDialog onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "[DemoDialogFragment] AnchorEndDialog onStop");
     }
 }
