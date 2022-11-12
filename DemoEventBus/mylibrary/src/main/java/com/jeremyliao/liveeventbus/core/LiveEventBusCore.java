@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 
 import androidx.annotation.MainThread;
@@ -219,6 +220,31 @@ public final class LiveEventBusCore {
         @Override
         public void postOrderly(T value) {
             mainHandler.post(new PostValueTask(value));
+        }
+
+        private HandlerThread mAsyncThread;
+        private Handler mAsyncHandler;
+        public void initAsyncIOBus() {
+            mAsyncThread = new HandlerThread("");
+            mAsyncThread.start();
+            mAsyncHandler = new Handler(mAsyncThread.getLooper());
+        }
+
+        public void quitAsyncIOBus() {
+            mAsyncHandler.getLooper().quit();
+        }
+
+        public void asyncPostOrderly(T value) {
+            mAsyncHandler.post(new PostValueTask(value));
+        }
+
+        public void asyncObserve(@NonNull final LifecycleOwner owner, @NonNull final Observer<T> observer) {
+            mAsyncHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    observeInternal(owner, observer);
+                }
+            });
         }
 
         /**
