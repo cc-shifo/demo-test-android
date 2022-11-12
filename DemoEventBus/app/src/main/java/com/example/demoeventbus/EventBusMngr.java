@@ -12,6 +12,9 @@ package com.example.demoeventbus;
 
 import com.jeremyliao.liveeventbus.LiveEventBus;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * live data bus管理。
  */
@@ -34,6 +37,13 @@ public class EventBusMngr {
                 .lifecycleObserverAlwaysActive(false)
                 .enableLogger(false)
                 .autoClear(false);
+    }
+
+    private final ExecutorService         mExecutorService = Executors.newCachedThreadPool();
+
+    public void observeOn() {
+        // mExecutorService
+        //         .execute(() -> observerWrapper.onChanged(tValueWrapper.value));
     }
 
     private static class Holder {
