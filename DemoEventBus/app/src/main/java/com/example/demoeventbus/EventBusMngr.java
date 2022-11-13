@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
  * live data bus管理。
  */
 public class EventBusMngr {
+    public static final String KEY_MAIN_MSG = "KEY_MAIN_MSG";
 
     private EventBusMngr() {
         // nothing
@@ -37,13 +38,6 @@ public class EventBusMngr {
                 .lifecycleObserverAlwaysActive(false)
                 .enableLogger(false)
                 .autoClear(false);
-    }
-
-    private final ExecutorService         mExecutorService = Executors.newCachedThreadPool();
-
-    public void observeOn() {
-        // mExecutorService
-        //         .execute(() -> observerWrapper.onChanged(tValueWrapper.value));
     }
 
     private static class Holder {

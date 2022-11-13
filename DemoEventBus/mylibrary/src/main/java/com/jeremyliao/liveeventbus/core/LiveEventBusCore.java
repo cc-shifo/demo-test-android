@@ -11,6 +11,7 @@ import android.os.Looper;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ComputableLiveData;
 import androidx.lifecycle.ExternalLiveData;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
@@ -235,14 +236,14 @@ public final class LiveEventBusCore {
         }
 
         public void asyncPostOrderly(T value) {
-            mAsyncHandler.post(new PostValueTask(value));
+            // mAsyncHandler.post(new PostValueTask(value));
         }
 
         public void asyncObserve(@NonNull final LifecycleOwner owner, @NonNull final Observer<T> observer) {
             mAsyncHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    observeInternal(owner, observer);
+                    // observeInternal(owner, observer);
                 }
             });
         }

@@ -2,4 +2,7 @@
     <string name="app_name">DemoEventBus</string>
     <string name="start">start</string>
     <string name="stop">stop</string>
+    <string name="otto_post">otto post</string>
+    <string name="otto_main">otto main</string>
+    <string name="otto_post_stop">otto post stop</string>
 </resources>
