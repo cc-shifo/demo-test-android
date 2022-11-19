@@ -22,6 +22,8 @@
         app:bsb_min="1.0"
         app:bsb_max="10.0"
         app:bsb_always_show_bubble="true"
+        app:bsb_bubble_style="rectangle"
+        app:bsb_bubble_text_color="@color/purple_500"
       />
 
     <!--app:bsb_track_size="2dp"-->
