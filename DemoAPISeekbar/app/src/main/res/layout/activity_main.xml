@@ -24,7 +24,15 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv"/>
-
+            app:layout_constraintTop_toBottomOf="@id/tv"
+            android:text="@string/api_seekbar"/>
+        <Button
+            android:id="@+id/btn_seek_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_test"
+            android:text="@string/seek_view"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

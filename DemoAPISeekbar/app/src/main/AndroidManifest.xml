@@ -29,6 +29,10 @@
         <activity
             android:name=".SeekBar1"
             android:exported="false" />
+
+        <activity
+            android:name=".seekview.SeekViewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

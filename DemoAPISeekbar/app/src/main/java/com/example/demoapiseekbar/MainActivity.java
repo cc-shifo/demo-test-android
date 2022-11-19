@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.demoapiseekbar.databinding.ActivityMainBinding;
+import com.example.demoapiseekbar.seekview.SeekViewActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
@@ -20,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SeekBar1.class);
+                startActivity(intent);
+
+            }
+        });
+        mBinding.btnSeekView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SeekViewActivity.class);
                 startActivity(intent);
 
             }

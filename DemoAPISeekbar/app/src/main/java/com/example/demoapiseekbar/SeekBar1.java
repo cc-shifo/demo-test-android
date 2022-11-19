@@ -19,11 +19,14 @@ package com.example.demoapiseekbar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.Random;
 
 // import com.example.android.apis.R;
 
@@ -32,35 +35,65 @@ import android.widget.TextView;
  * Demonstrates how to use a seek bar
  */
 public class SeekBar1 extends Activity implements SeekBar.OnSeekBarChangeListener {
-    
+    private static final String TAG = "SeekBar1";
     SeekBar mSeekBar;
+    SeekBar mSeekBarMin;
     TextView mProgressText;
     TextView mTrackingText;
-    
+
+    private int startP;
+    private int endP;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.seekbar_1);
-        
+
         mSeekBar = (SeekBar) findViewById(R.id.seek);
+        mSeekBarMin = (SeekBar) findViewById(R.id.seekMin);
         mSeekBar.setOnSeekBarChangeListener(this);
         mProgressText = (TextView) findViewById(R.id.progress);
         mTrackingText = (TextView) findViewById(R.id.tracking);
 
+
+        mSeekBarMin.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Log.d(TAG, "onProgressChanged: " + progress + ", fromUser: " + fromUser);
+                mProgressText.setText("onProgressChanged: " + progress + ", fromUser: " + fromUser);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                startP = seekBar.getProgress();
+                Log.d(TAG, "onStartTrackingTouch: " + startP);
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                endP = seekBar.getProgress();
+                Log.d(TAG, "onStopTrackingTouch: " + endP);
+                mProgressText.setText("onStopTrackingTouch: " + endP);
+
+            }
+        });
         ((CheckBox) findViewById(R.id.enabled)).setOnCheckedChangeListener(
                 new OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        findViewById(R.id.seekMin).setEnabled(isChecked);
-                        findViewById(R.id.seekMax).setEnabled(isChecked);
-                        mSeekBar.setEnabled(isChecked);
+                        // findViewById(R.id.seekMin).setEnabled(isChecked);
+                        // findViewById(R.id.seekMax).setEnabled(isChecked);
+                        // mSeekBar.setEnabled(isChecked);
+                        int val = new Random().nextInt(90);
+                        mSeekBarMin.setProgress(val);
+                        mTrackingText.setText(String.valueOf(val));
                     }
                 });
     }
 
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-        mProgressText.setText(progress + " " + 
+        mProgressText.setText(progress + " " +
                 getString(R.string.seekbar_from_touch) + "=" + fromTouch);
     }
 
