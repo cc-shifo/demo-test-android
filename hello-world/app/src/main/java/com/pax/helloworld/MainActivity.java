@@ -1,5 +1,6 @@
 package com.pax.helloworld;
 
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -7,16 +8,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.pax.helloworld.second.SecondActivity;
 import com.pax.helloworld.third.ThirdActivity;
@@ -91,11 +93,23 @@ public class MainActivity extends AppCompatActivity {
         Log.e("WangJ", "屏幕-正确方法real widthPixels：" + dmReal.widthPixels);
         Log.e("WangJ", "屏幕-正确方法density：" + dm.density);
         Log.e("WangJ", "屏幕-正确方法densityDpi：" + dm.densityDpi);
-        float dp = dm.widthPixels/1.5f;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法widthDp(dp * (dpi/160))：" + dp);
+        // float dp = dm.widthPixels/1.5f;// px = dp * (dpi/160)
         float x = dm.densityDpi/160f;// px = dp * (dpi/160)
-        dp = dm.widthPixels/x;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法widthDp(dp * (dm.densityDpi/160))：" + dp);
+        float dp = dm.widthPixels/x;// px = dp * (dpi/160)
+        Log.e("WangJ", "屏幕-正确方法widthDp(dp * (dpi/160))：" + dp);
+        dp = dm.heightPixels/x;// px = dp * (dpi/160)
+        Log.e("WangJ", "屏幕-正确方法heightDp(dp * (dm.densityDpi/160))：" + dp);
+
+        // 屏幕对角线
+        double dReal = Math.sqrt(dm.widthPixels * dm.widthPixels + dm.heightPixels
+                * dm.heightPixels) / 5.5f;
+        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-Math.pow(Math.sqrt(dm.widthPixels) " +
+                "+ Math.sqrt(dm.heightPixels), dpi：" + dReal);
+        double xReal = dReal/160f;// px = dp * (dpi/160)
+        double dpReal = dm.widthPixels/xReal;// px = dp * (dpi/160)
+        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-widthDp(dp * (dReal/160))：" + dpReal);
+        dpReal = dm.heightPixels/xReal;// px = dp * (dpi/160)
+        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-heightDp(dp * (dReal/160))：" + dpReal);
 
         //应用区域
         Rect outRect1 = new Rect();
