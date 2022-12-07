@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
@@ -33,11 +33,17 @@
 
         <SeekBar
             android:id="@+id/seekMin"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:max="90"
             android:progress="0"
-            android:enabled="false" />
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:maxHeight="4dp"
+            android:minHeight="4dp"
+            android:thumb="@drawable/seekbar_thumb"
+            android:splitTrack="false"
+            android:enabled="false"
+            tools:progress="20"/>
 
         <SeekBar
             android:id="@+id/seekMax"
@@ -45,7 +51,9 @@
             android:layout_height="wrap_content"
             android:max="100"
             android:progress="100"
-            android:enabled="false" />
+            android:progressTint="@color/color_blue"
+            android:progressBackgroundTint="@color/black"
+            android:enabled="false" /><!--progressBackgroundTint无效-->
 
         <SeekBar
             android:id="@+id/seek"

@@ -1,3 +1,12 @@
+/*
+ * = COPYRIGHT
+ *          xxxx
+ * Description: // Detail description about the function of this module,
+ *             // interfaces with the other modules, and dependencies.
+ * Revision History:
+ * Date                    Author                  Action
+ * 20221024                LiuJian                 Create
+ */
 
 package com.example.demoimmerse;
 
@@ -14,10 +23,6 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-/**
- * 结论：主题themes.xml下优先设置状态栏，导航栏颜色。否则界面加载慢的情况下，状态栏有一瞬间的原主题颜色。
- *
- */
 public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity {
     protected T mBinding;
 
@@ -41,6 +46,9 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (supportImmerse()) {
+            useSwipeImmerse();
+        }
         changeOrientation();
         initBinding();
         initViewData();
@@ -50,8 +58,8 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && supportImmerse()) {
-            useRegularImmerse();
+        if (supportImmerse()) {
+            useSwipeImmerse();
         }
     }
 
@@ -114,10 +122,11 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
      * @return true竖屏，false横屏。
      */
     private boolean isInPortrait() {
-        return getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        return getResources().getConfiguration().orientation ==
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
 
-    private void useRegularImmerse() {
+    private void useSwipeImmerse() {
         WindowInsetsControllerCompat windowInsetsController =
                 ViewCompat.getWindowInsetsController(getWindow().getDecorView());
         if (windowInsetsController != null) {
@@ -132,23 +141,23 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
             // <item name="android:windowLightStatusBar"> true </item>
             // 4.4及以前状态栏透明化。
             // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);// 状态栏透明化。
+            getWindow().setStatusBarColor(Color.TRANSPARENT);// 5.2>= 状态栏透明化。
             // 对有toolbar场景才有效。避免toolbar 伸展到状态栏里。
             // getWindow().getDecorView().setFitsSystemWindows(true);
-            // 修改成 黑色字体
+            // 修改成亮色背景和字体暗色
             // getWindow().getDecorView().setSystemUiVisibility(View
             // .SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().getDecorView().setSystemUiVisibility(
+                    // View.SYSTEM_UI_FLAG_LOW_PROFILE |
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                             // Set the content to appear under the system bars so that the
                             // content doesn't resize when the system bars hide and show.
-                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE /*UI延伸*/
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION/*UI延伸*/
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN/*UI延伸*/
+                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             // Hide the nav bar and status bar
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION/*隐藏导航栏*/
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN/*隐藏状态栏*/);
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN);
         }
     }
-
 }
