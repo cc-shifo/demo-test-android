@@ -1,13 +1,3 @@
-/*
- * = COPYRIGHT
- *          xxxx
- * Description: // Detail description about the function of this module,
- *             // interfaces with the other modules, and dependencies.
- * Revision History:
- * Date                    Author                  Action
- * 20221024                LiuJian                 Create
- */
-
 package com.example.demoimmerse;
 
 import android.annotation.SuppressLint;
