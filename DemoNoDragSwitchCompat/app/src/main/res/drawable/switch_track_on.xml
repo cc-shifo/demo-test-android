@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ = COPYRIGHT
+  ~          xxxx
+  ~ Description: // Detail description about the function of this module,
+  ~             // interfaces with the other modules, and dependencies.
+  ~ Revision History:
+  ~ Date                    Author                  Action
+  ~ 2022-11-14              LiuJian                 Create
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/purple_700" />
+    <corners android:radius="32dp" />
+
+</shape>
