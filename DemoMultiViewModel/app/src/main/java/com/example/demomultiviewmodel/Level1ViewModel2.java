@@ -27,7 +27,7 @@ public class Level1ViewModel2 extends ViewModel {
     public void getText() {
         initTextGenerator();
         mScheduledFuture = mExecutorService.scheduleAtFixedRate(mRepeatRunnable,
-                100, 1000, TimeUnit.MICROSECONDS);
+                100, 1000, TimeUnit.MILLISECONDS);
     }
 
 
@@ -55,7 +55,7 @@ public class Level1ViewModel2 extends ViewModel {
             mRepeatRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    String s = String.valueOf(mCount++);
+                    String s = "Level1ViewModel2: "+ String.valueOf(mCount++);
                     mText.postValue(s);
                 }
             };

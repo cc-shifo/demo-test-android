@@ -27,7 +27,7 @@ public class Level2ViewModel1Sub1 extends ViewModel {
     public void getText() {
         initTextGenerator();
         mScheduledFuture = mExecutorService.scheduleAtFixedRate(mRepeatRunnable,
-                100, 1000, TimeUnit.MICROSECONDS);
+                100, 1000, TimeUnit.MILLISECONDS);
     }
 
 

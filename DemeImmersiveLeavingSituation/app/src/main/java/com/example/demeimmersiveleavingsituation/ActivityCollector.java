@@ -1,4 +1,5 @@
-package com.example.demomultiviewmodel;
+
+package com.example.demeimmersiveleavingsituation;
 
 import android.app.Activity;
 

@@ -1,4 +1,4 @@
-package com.example.demomultiviewmodel;
+package com.example.demomultiviewmodel.base;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
@@ -50,6 +50,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
         ActivityCollector.addActivity(this);
         changeOrientation();
         initBinding();
+        initViewModel();
         initViewData();
         initView();
     }
@@ -66,6 +67,14 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
+    }
+
+    /**
+     * 是否是ViewModel嵌套模式。默认false。
+     * @return true是嵌套，false不是嵌套。
+     */
+    protected boolean initNestedViewModel() {
+        return false;
     }
 
     /**
@@ -100,15 +109,34 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
      */
     private void initBinding() {
         mBinding = DataBindingUtil.setContentView(this, initLayoutId());
+
+    }
+
+    /**
+     * 初始化ViewModel
+     */
+    private void initViewModel() {
+        boolean isNested = initNestedViewModel();
         Type superclass = getClass().getGenericSuperclass();
         if (superclass instanceof ParameterizedType) {
+            // Type vmType = ((ParameterizedType) superclass).getActualTypeArguments()[1];
+            // if (AndroidViewModel.class.isAssignableFrom((Class<?>) vmType)) {
+            //     // Class<?> testClass = vmType.getClass();
+            //     // mVM =  ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
+            //     //         .create((Class<M>)vmType);
+            //     mVM = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+            //                     .getInstance(getApplication())).get((Class<M>)vmType);
+            // } else if (ViewModel.class.isAssignableFrom((Class<?>) vmType)) {
+            //     mVM = new ViewModelProvider(this).get((Class<M>)vmType);
+            // }
+
             Type vmType = ((ParameterizedType) superclass).getActualTypeArguments()[1];
-            if (vmType instanceof AndroidViewModel) {
-                Class<?> testClass = vmType.getClass();
-                mVM =  ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())
-                        .create((Class<M>)vmType);
-            } else if (vmType instanceof ViewModel) {
-                mVM = new ViewModelProvider(this).get((Class<M>)vmType);
+            if (AndroidViewModel.class.isAssignableFrom((Class<?>) vmType)) {
+                // mVM = BaseAndroidViewModelFactory.getInstance(getApplication())
+                //                                  .create()
+            } else if (ViewModel.class.isAssignableFrom((Class<?>) vmType)) {
+                mVM = new BaseViewModelProvider(this.getViewModelStore(),
+                        BaseViewModelFactory.getInstance()).get((Class<M>)vmType);
             }
         }
     }

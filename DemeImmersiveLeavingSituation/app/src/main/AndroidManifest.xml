@@ -10,22 +10,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DemoMultiViewModel"
+        android:theme="@style/Theme.DemeImmersiveLeavingSituation"
         tools:targetApi="31">
         <activity
-            android:name=".sample.SampleActivity"
+            android:name=".SecondActivity"
             android:exported="false">
-           <!-- <meta-data
+            <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />-->
+                android:value="" />
         </activity>
         <activity
-            android:name=".testandriodviewmodel.TestAndroidViewModelActivity"
-            android:exported="false">
-            <!--<meta-data-->
-            <!--    android:name="android.app.lib_name"-->
-            <!--    android:value="" />-->
-        </activity>
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/Theme.DemeImmersiveLeavingSituation.Fullscreen" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

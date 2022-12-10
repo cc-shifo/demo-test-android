@@ -1,4 +1,4 @@
-package com.example.demomultiviewmodel;
+package com.example.demomultiviewmodel.testandriodviewmodel;
 
 import android.app.Application;
 
