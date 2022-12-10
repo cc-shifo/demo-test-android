@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -17,7 +18,7 @@ public class MainViewModel extends ViewModel {
 
     private Runnable mRepeatRunnable;
     private long mCount;
-    public MainViewModel() {
+    public MainViewModel(@NonNull ViewModelStoreOwner owner) {
         mText = new MutableLiveData<>();
     }
 
