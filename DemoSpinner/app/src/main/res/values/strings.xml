@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DemoSpinner</string>
+    <string name="ab">ab</string>
+    <string name="cd">cd</string>
+    <string name="ef">ef</string>
+</resources>

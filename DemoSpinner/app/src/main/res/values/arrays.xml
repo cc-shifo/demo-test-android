@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+
+    <string-array name="demo_str_array">
+        <item>@string/ab</item>
+        <item>@string/cd</item>
+        <item>@string/ef</item>
+    </string-array>
+</resources>
