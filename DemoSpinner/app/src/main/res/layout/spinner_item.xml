@@ -29,7 +29,10 @@
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?android:attr/spinnerItemStyle"
+
     android:gravity="center"
     android:ellipsize="marquee"
     android:textAlignment="inherit" />
+
+    <!--该属性可要可不要。具体内容要查看framework源码-->
+    <!--style="?android:attr/spinnerItemStyle"-->
