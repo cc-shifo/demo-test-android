@@ -7,7 +7,7 @@
     tools:context=".MainActivity3">
     <!-- TODO: Update blank fragment layout -->
     <EditText
-        android:id="@+id/test_ed"
+        android:id="@+id/activity3_test_ed1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,6 +17,27 @@
         android:hint="@string/hello_blank_fragment"
         android:autofillHints=""
         android:inputType="number"
+        android:imeOptions="actionDone"
         android:textSize="25sp"
         tools:ignore="LabelFor" />
+    <EditText
+        android:id="@+id/activity3_test_ed2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/activity3_test_ed1"
+        app:layout_constraintTop_toBottomOf="@id/activity3_test_ed1"
+        android:hint="@string/hello_blank_fragment"
+        android:autofillHints=""
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:textSize="25sp"
+        tools:ignore="LabelFor" />
+    <Button
+        android:id="@+id/activity3_test_set_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/activity3_test_ed2"
+        app:layout_constraintTop_toBottomOf="@id/activity3_test_ed2"
+        android:text="@string/btn_set_text"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
