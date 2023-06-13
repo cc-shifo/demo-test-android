@@ -15,5 +15,8 @@
     <dimen name="activity_download_rv_item_btn_txt_size">14sp</dimen>
     <dimen name="activity_download_rv_item_btn_border_width">1dp</dimen>
     <dimen name="activity_download_rv_item_btn_delete_width">120dp</dimen>
+    <dimen name="demo_progress_view_text_size">14sp</dimen>
+    <dimen name="demo_progress_view_border_width">1dp</dimen>
+    <dimen name="demo_progress_view_corner_radius">2dp</dimen>
 
 </resources>
