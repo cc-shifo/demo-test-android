@@ -75,13 +75,13 @@ public class DemoProgressView extends View {
         mTextColor = array.getColor(R.styleable.DemoProgressView_textColor,
                 0xFFFFFF);
         mBorderColor = array.getColor(R.styleable.DemoProgressView_bColor,
-                0xFF018786);
+                0x000000);
         mBorderWidth = array.getDimensionPixelSize(R.styleable.DemoProgressView_bWidth,
                 context.getResources().getDimensionPixelOffset(R.dimen
                         .demo_progress_view_border_width));
-        mReachedColor = array.getColor(R.styleable.DemoProgressView_rColor, 0xFFB3B3B3);
+        mReachedColor = array.getColor(R.styleable.DemoProgressView_rColor, 0x0000B3);
         mUnreachedColor = array.getColor(R.styleable.DemoProgressView_unColor,
-                0x8000FF00);
+                0x00FF00);
         mCornerRadius = array.getDimensionPixelSize(R.styleable.DemoProgressView_corner,
                 context.getResources().getDimensionPixelOffset(R.dimen
                         .demo_progress_view_corner_radius));

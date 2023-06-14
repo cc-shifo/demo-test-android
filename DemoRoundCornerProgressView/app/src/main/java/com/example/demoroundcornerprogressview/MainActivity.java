@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ProgressView progressView = findViewById(R.id.progress_view);
+        DemoProgressView demoProgressView = findViewById(R.id.demo_progress);
 
         Button btnInit = findViewById(R.id.btn_init);
         btnInit.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 mProgress += 2;
                 progressView.setText( mProgress +"MB");
                 progressView.setProgress(mProgress);
+                demoProgressView.setProgress(mProgress);
             }
         });
 

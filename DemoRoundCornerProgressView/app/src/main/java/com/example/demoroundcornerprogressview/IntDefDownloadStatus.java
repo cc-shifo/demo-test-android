@@ -15,7 +15,8 @@ import androidx.annotation.IntDef;
 
 // success, failed, suspend, waiting, in progress
 @IntDef({
-        IntDefDownloadStatus.SUCCESS, 
+        IntDefDownloadStatus.INIT,
+        IntDefDownloadStatus.SUCCESS,
         IntDefDownloadStatus.FAILED,
         IntDefDownloadStatus.STOPPED, IntDefDownloadStatus.READY,
         IntDefDownloadStatus.DOWNLOADING
