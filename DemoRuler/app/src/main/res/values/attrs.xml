@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DemoVRulerView">
+        <!--刻度尺大小，由几条线段组成-->
+        <attr name="rulerSize" format="integer" />
+        <!--刻度尺线段大小，由几条带有相同间隔的刻度线-->
+        <attr name="segmentSize" format="integer" />
+        <!--刻度的大小-->
+        <attr name="scaleSize" format="float" />
+        <!--最长刻度线长度-->
+        <attr name="scaleLineMax" format="dimension" />
+        <!--最短刻度线长度-->
+        <attr name="scaleLineMin" format="dimension" />
+
+        <!--绘制刻度线画笔的最大宽度-->
+        <attr name="scaleLineStrokeMax" format="dimension" />
+        <!--绘制刻度线画笔的最小宽度-->
+        <attr name="scaleLineStrokeMin" format="dimension" />
+        <!--刻度文字的大小-->
+        <attr name="scaleTextSize" format="dimension" />
+        <!--刻度文字颜色-->
+        <attr name="scaleTextColor" format="color" />
+
+
+        <!--提示标签的文字颜色-->
+        <attr name="hintLabelTextColor" format="color" />
+        <!--提示信息的文字颜色-->
+        <attr name="hintTextColor" format="color" />
+        <!--提示标签的文字粗体字大小-->
+        <attr name="hintTextBoldSize" format="dimension" />
+        <!--提示信息的文字中等字体大小-->
+        <attr name="hintTextMiddleSize" format="dimension" />
+        <!--提示信息的文字小体字体大小-->
+        <attr name="hintTextSmallSize" format="dimension" />
+
+
+    </declare-styleable>
+</resources>
