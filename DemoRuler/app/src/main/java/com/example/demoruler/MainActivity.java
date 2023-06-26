@@ -10,7 +10,7 @@ import com.example.demoruler.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
-    private float mVal = 0.0f;
+    private float mVal = 2.0f;
 
     private long mCnt;
     @Override

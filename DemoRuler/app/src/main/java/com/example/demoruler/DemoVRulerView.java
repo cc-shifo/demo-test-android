@@ -130,6 +130,10 @@ public class DemoVRulerView extends View {
      * 绘制属性：界面的高
      */
     private int mHeight;
+    /**
+     * 绘制属性：单一刻度占用的高度
+     */
+    private float mScaleHeight;
 
     /**
      * 绘制属性：刻度文字的高，像素。
@@ -191,7 +195,7 @@ public class DemoVRulerView extends View {
         mRulerSize = array.getDimensionPixelSize(R.styleable.DemoVRulerView_rulerSize, 4);
         mSegmentSize = array.getDimensionPixelSize(R.styleable.DemoVRulerView_segmentSize, 5);
         mScaleSize = array.getFloat(R.styleable.DemoVRulerView_scaleSize, 0.2f);
-        mSLLengthMax = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleLineMax, 16);
+        mSLLengthMax = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleLineMax, 24);
         mSLLengthMin = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleLineMin, 12);
         mSLStrokeMax = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleLineStrokeMax,
                 8);
@@ -242,16 +246,14 @@ public class DemoVRulerView extends View {
         mScaleValue = (int) (mScaleSize * SCALE_PRECISION);
         mSegmentValue = mSegmentSize * mScaleValue;
         mRuleHalfValue = mRulerSize * mSegmentValue / 2;
-
-
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mWidth = calculateWidth(widthMeasureSpec);
-        mHeight = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(mWidth, mHeight);
+        int width = calculateWidth(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        setMeasuredDimension(width, height);
     }
 
     @Override
@@ -259,6 +261,9 @@ public class DemoVRulerView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
+
+        // 尺子总刻度值，一条线段刻度值，单一刻度表示的刻度值
+        mScaleHeight = h * 1f / (mRulerSize * mSegmentSize);
     }
 
     @Override
@@ -351,7 +356,7 @@ public class DemoVRulerView extends View {
         canvas.drawColor(Color.RED);
         drawRuleLine(canvas);
         // drawCursor(canvas);
-        // drawScaleLine(canvas);
+        drawScaleLine(canvas);
     }
 
     /**
@@ -428,28 +433,29 @@ public class DemoVRulerView extends View {
      * 绘制垂直方向中心点的刻度线，刻度值
      */
     private void drawScaleLine(Canvas canvas) {
-        float deltaY;
-        int startNum;// 刻度开始时的数
+        int startNum;// 开始时的刻度
+        int endNum;// 结束时的刻度
+        float deltaH = 0;
         if (mCurrentValue >= mRuleHalfValue) {
-            deltaY = 0f;
-            startNum = (mCurrentValue - mRuleHalfValue) / mSegmentValue;
+            startNum = (mCurrentValue - mRuleHalfValue) / mScaleValue;
+            endNum = (mCurrentValue + mRuleHalfValue) / mScaleValue;
         } else {
-            float percent = (mRuleHalfValue - mCurrentValue * 1f) / mRuleHalfValue; // 百分比
-            deltaY = percent * mHeight / 2;
-            startNum = (mRuleHalfValue - mCurrentValue) / mSegmentValue;
+            startNum = (mRuleHalfValue - mCurrentValue) / mScaleValue;
+            endNum = 2 * mRuleHalfValue / mScaleValue;
+            deltaH = (mRuleHalfValue - mCurrentValue) * 1f / mRuleHalfValue * mHeight / 2f ;
         }
 
-        // 刻度结束时的数
-        int endNum = (mCurrentValue + mRuleHalfValue) / mSegmentValue;
+        deltaH = mHeight - deltaH;
         float xMax = mWidth - mSLLengthMax;
         float xMin = mWidth - mSLLengthMin;
         mScalePaint.setColor(mScaleTextColor);
         mScaleTextPaint.setColor(mScaleTextColor);
         for (int i = startNum; i <= endNum; i++) {
-            if (startNum % mSegmentSize == 0) {
-                float y = mHeight - i * mScaleValue - mSLStrokeMax / 2f - deltaY;
-                // 长刻度线
+            float y = deltaH - (i - startNum) * mScaleHeight;
+            if (i % mSegmentSize == 0) {
+                // // 长刻度线
                 mScalePaint.setStrokeWidth(mSLStrokeMax);
+                y -= mSLStrokeMax / 2f;
                 canvas.drawLine(xMax, y, mWidth, y, mScalePaint);
                 // 指针线位置的刻度值不画，跳过
                 if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
@@ -463,8 +469,9 @@ public class DemoVRulerView extends View {
                 }
             } else {
                 // 短刻度线
-                float y = mHeight - i * mScaleValue - mSLStrokeMin / 2f - deltaY;
+                // float y = mHeight - i * mScaleValue - mSLStrokeMin / 2f - deltaY;
                 mScalePaint.setStrokeWidth(mSLStrokeMin);
+                y -= mSLStrokeMin / 2f;
                 canvas.drawLine(xMin, y, mWidth, y, mScalePaint);
             }
         }
