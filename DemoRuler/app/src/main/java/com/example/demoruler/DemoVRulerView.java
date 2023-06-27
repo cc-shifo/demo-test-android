@@ -348,21 +348,24 @@ public class DemoVRulerView extends View {
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
         mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
 
-        float top = mHintTextY + metrics.top; // 顶部对齐用
-        float bottom = mHintTextY +  metrics.bottom; // 底部对齐用
+        Rect rect = new Rect();
+        mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
+        float top = mHeight / 2f - rect.height() / 2f; // 文字的顶部边界
+        float bottom = mHeight / 2f + rect.height() / 2f;// 文字的底部边界
+
         // SPD
         mHintLabelX = mHintLeft + HINT_PADDING;
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         metrics = mHintPaint.getFontMetrics();
-        mHintLabelY = top - metrics.top;
+        mHintLabelY = top - metrics.ascent;
 
         // m/s
         mHintUnitX = mHintLeft + HINT_PADDING;
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextSmallSize);
         metrics = mHintPaint.getFontMetrics();
-        mHintUnitY = bottom - metrics.bottom;
+        mHintUnitY = bottom - metrics.descent;
     }
 
     @Override
@@ -564,47 +567,39 @@ public class DemoVRulerView extends View {
         // mHintPaint.setTypeface(mHintBoldTypeface);
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextBoldSize);
-        // mHintPaint.setTextSize(64);
         mHintPaint.setColor(mHintTextColor);
         mHintPaint.setStyle(Paint.Style.FILL);
         String txt = String.valueOf(mCurrentValue / 10);
         float tW = mHintPaint.measureText(txt);
         mHintTextX = mHintRight - HINT_PADDING - tW;
-        Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
-        Rect rect = new Rect();
-        mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
-        mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
         canvas.drawText(txt, mHintTextX, mHintTextY, mHintPaint);
 
-        float bTop = mHeight / 2f - rect.height() / 2;
-        float bBot = mHeight / 2f + rect.height() / 2;
 
-        float ascent = mHintTextY + metrics.ascent; // 顶部对齐用
-        canvas.drawLine(0, ascent, mWidth, ascent, mScalePaint);
-
-        // bTop
-        canvas.drawLine(0, bTop, mWidth, bTop, mHintPaint);
-
-        float descent = mHintTextY +  metrics.descent; // 底部对齐用
-        canvas.drawLine(0, descent, mWidth, descent, mHintPaint);
-        // bBot
-        canvas.drawLine(0, bBot, mWidth, bBot, mScalePaint);
+        // Rect rect = new Rect();
+        // mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
+        // float top = mHeight / 2f - rect.height() / 2f; // 文字的顶部边界
+        // float bottom = mHeight / 2f + rect.height() / 2f;// 文字的底部边界
+        // Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
+        // mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
+        // float ascent = mHintTextY + metrics.ascent; // 顶部对齐用
+        // top
+        // canvas.drawLine(0, ascent, mWidth, ascent, mScalePaint);
+        // boundTop
+        // canvas.drawLine(0, bTop, mWidth, bTop, mHintPaint);
+        // float descent = mHintTextY +  metrics.descent; // 底部对齐用
+        // canvas.drawLine(0, descent, mWidth, descent, mHintPaint);
+        // boundBot
+        // canvas.drawLine(0, bBot, mWidth, bBot, mScalePaint);
 
         // 绘制SPD
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         mHintPaint.setStyle(Paint.Style.FILL);
         mHintPaint.setColor(mHintLabelTextColor);
-        metrics = mHintPaint.getFontMetrics();
-        mHintLabelY = bTop - metrics.ascent;
         canvas.drawText(HINT_LABEL, mHintLabelX, mHintLabelY, mHintPaint);
 
         // m/s
         mHintPaint.setTextSize(mHintTextSmallSize);
-        metrics = mHintPaint.getFontMetrics();
-        mHintUnitY = bBot - metrics.descent;
         canvas.drawText(HINT_UNIT, mHintUnitX, mHintUnitY, mHintPaint);
-
-
     }
 }
