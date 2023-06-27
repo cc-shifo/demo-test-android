@@ -453,11 +453,12 @@ public class DemoVRulerView extends View {
             n = mRulerSize * mSegmentSize;
             distance = mScaleValue * 1f - (mCurrentValue - halfValue) % mScaleValue;
             index = (mCurrentValue % mSegmentValue) / mScaleValue + 1;
-            bottomVal = mCurrentValue - halfValue + (mScaleValue - mCurrentValue % mScaleValue);
+            bottomVal = (mCurrentValue - halfValue + (mScaleValue - mCurrentValue % mScaleValue)
+                    / mScaleValue);
             if (mCurrentValue % mSegmentValue == 0) {
                 n++; // 再加上长刻度线点
                 index = 5; // 长刻度线点
-                bottomVal = mCurrentValue - halfValue;
+                bottomVal = (mCurrentValue - halfValue) / mScaleValue;
             }
         } else {
             // 0~mCurrentValue + mRuleHalfValue
@@ -480,7 +481,7 @@ public class DemoVRulerView extends View {
                 // 指针线位置的刻度值不画，跳过
                 if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
                     // 刻度值
-                    int fNum = (i * mScaleValue + bottomVal) / mSegmentValue;
+                    int fNum = (i + bottomVal) / mSegmentSize;
                     String text = Integer.toString(fNum);
                     final float textWidth = mScaleTextPaint.measureText(text);
                     float tH = mScaleTextPaint.ascent() + mScaleTextPaint.descent();
