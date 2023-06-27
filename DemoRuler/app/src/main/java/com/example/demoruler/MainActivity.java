@@ -17,13 +17,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mBinding.btnSetVal.setOnClickListener(v -> {
-            if (mCnt % 1 == 0) {
-                mVal += 0.1;
-            } else if (mCnt % 2 == 0) {
+        mBinding.btnPlus.setOnClickListener(v -> {
+            if (mCnt % 2 == 0) {
                 mVal += 0.2;
             } else if (mCnt % 5 == 0) {
                 mVal += 1;
+            } else {
+                mVal += 0.1;
+            }
+            mCnt++;
+            mBinding.demoRulerView.setCurrentValue(mVal);
+        });
+
+        mBinding.btnMinus.setOnClickListener(v -> {
+            if (mCnt % 2 == 0) {
+                mVal -= 0.2;
+            } else if (mCnt % 5 == 0) {
+                mVal -= 1;
+            }else {
+                mVal -= 0.1;
             }
             mCnt++;
             mBinding.demoRulerView.setCurrentValue(mVal);

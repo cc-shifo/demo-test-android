@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DemoRuler</string>
-    <string name="btn_set_value_txt">SetScale</string>
+    <string name="btn_plus_value_txt">Plus</string>
+    <string name="btn_minus_value_txt">Minus</string>
 </resources>

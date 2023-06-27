@@ -438,7 +438,7 @@ public class DemoVRulerView extends View {
     private void drawScaleLine(Canvas canvas) {
         float distance;// 底部第一条刻度距离底部边界的刻度间距
         int index;// 底部第一条刻度在单条线段中的索引
-        int bottomVal;// 底部第一条刻度的刻度值
+        int bottomVal;// 底部第一条刻度的所在线段长刻度线的刻度值
         int n;
         // 刻度间距（像素）, mScaleHeight
         // 总刻度个数, n
@@ -453,12 +453,10 @@ public class DemoVRulerView extends View {
             n = mRulerSize * mSegmentSize;
             distance = mScaleValue * 1f - (mCurrentValue - halfValue) % mScaleValue;
             index = (mCurrentValue % mSegmentValue) / mScaleValue + 1;
-            bottomVal = (mCurrentValue - halfValue + (mScaleValue - mCurrentValue % mScaleValue)
-                    / mScaleValue);
+            bottomVal = (mCurrentValue - halfValue) / mScaleValue;
             if (mCurrentValue % mSegmentValue == 0) {
                 n++; // 再加上长刻度线点
                 index = 5; // 长刻度线点
-                bottomVal = (mCurrentValue - halfValue) / mScaleValue;
             }
         } else {
             // 0~mCurrentValue + mRuleHalfValue

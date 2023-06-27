@@ -9,12 +9,20 @@
 
 
         <Button
-            android:id="@+id/btn_set_val"
+            android:id="@+id/btn_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/btn_set_value_txt"
+            android:text="@string/btn_plus_value_txt"
+            />
+        <Button
+            android:id="@+id/btn_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_plus"
+            android:text="@string/btn_minus_value_txt"
             />
 
         <com.example.demoruler.DemoVRulerView
