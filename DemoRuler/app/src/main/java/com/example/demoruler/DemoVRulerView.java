@@ -218,7 +218,7 @@ public class DemoVRulerView extends View {
         mScaleTextColor = array.getColor(R.styleable.DemoVRulerView_scaleTextColor, Color.GREEN);
 
         mHintTextBoldSize = array.getDimensionPixelSize(R.styleable
-                .DemoVRulerView_hintTextBoldSize, 72);
+                .DemoVRulerView_hintTextBoldSize, 64);
         mHintTextMiddleSize = array.getDimensionPixelSize(R.styleable
                 .DemoVRulerView_hintTextMiddleSize, 32);
         mHintTextSmallSize = array.getDimensionPixelSize(R.styleable
@@ -309,7 +309,8 @@ public class DemoVRulerView extends View {
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
-        float w1 = mHintPaint.measureText(HINT_TEXT) + HINT_PADDING;
+        float padding = mHintPaint.measureText("0");
+        float w1 = mHintPaint.measureText(HINT_TEXT);
         float h1 = metrics.bottom - metrics.top;
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
@@ -321,7 +322,7 @@ public class DemoVRulerView extends View {
         metrics = mHintPaint.getFontMetrics();
         float w3 = mHintPaint.measureText(HINT_UNIT);
         float h3 = metrics.bottom - metrics.top;
-        mHintWidth = w1 + HINT_PADDING + Math.max(w2, w3) + HINT_PADDING * 2 + border;
+        mHintWidth = w1 + padding * 3 + Math.max(w2, w3) + HINT_PADDING * 2 + border;
         mHintHeight = Math.max(h1, h2 + h3) + HINT_PADDING * 2 + border;
     }
 
@@ -569,7 +570,7 @@ public class DemoVRulerView extends View {
         mHintPaint.setTextSize(mHintTextBoldSize);
         mHintPaint.setColor(mHintTextColor);
         mHintPaint.setStyle(Paint.Style.FILL);
-        String txt = String.valueOf(mCurrentValue / 10);
+        String txt = Float.toString(mCurrentValue / 10f);
         float tW = mHintPaint.measureText(txt);
         mHintTextX = mHintRight - HINT_PADDING - tW;
         canvas.drawText(txt, mHintTextX, mHintTextY, mHintPaint);
