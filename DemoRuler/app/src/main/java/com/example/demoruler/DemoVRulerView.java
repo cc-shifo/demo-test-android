@@ -123,7 +123,7 @@ public class DemoVRulerView extends View {
     /**
      * 绘制属性：尺子文本加粗
      */
-    private Typeface mHintBoldTypeface;
+    // private Typeface mHintBoldTypeface;
 
     /**
      * 绘制属性：界面的宽
@@ -133,10 +133,20 @@ public class DemoVRulerView extends View {
      * 绘制属性：界面的高
      */
     private int mHeight;
+
     /**
-     * 绘制属性：单一刻度占用的高度
+     * 绘制属性：尺子的X，相对于view的坐标
      */
-    private float mScaleHeight;
+    private float mRulerX;
+    /**
+     * 绘制属性：尺子的y，相对于view的坐标
+     */
+    private float mRulerY;
+
+    /**
+     * 绘制属性：尺子的高
+     */
+    private float mRulerHeight;
 
     /**
      * 绘制属性：刻度文字的高，像素。
@@ -204,15 +214,15 @@ public class DemoVRulerView extends View {
                 8);
         mSLStrokeMin = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleLineStrokeMax,
                 4);
-        mScaleTextSize = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleTextSize, 28);
+        mScaleTextSize = array.getDimensionPixelSize(R.styleable.DemoVRulerView_scaleTextSize, 32);
         mScaleTextColor = array.getColor(R.styleable.DemoVRulerView_scaleTextColor, Color.GREEN);
 
         mHintTextBoldSize = array.getDimensionPixelSize(R.styleable
-                .DemoVRulerView_hintTextBoldSize, 28);
+                .DemoVRulerView_hintTextBoldSize, 72);
         mHintTextMiddleSize = array.getDimensionPixelSize(R.styleable
-                .DemoVRulerView_hintTextMiddleSize, 16);
+                .DemoVRulerView_hintTextMiddleSize, 32);
         mHintTextSmallSize = array.getDimensionPixelSize(R.styleable
-                .DemoVRulerView_hintTextSmallSize, 12);
+                .DemoVRulerView_hintTextSmallSize, 24);
         mHintLabelTextColor = array.getColor(R.styleable.DemoVRulerView_hintLabelTextColor,
                 Color.WHITE);
         mHintTextColor = array.getColor(R.styleable.DemoVRulerView_hintTextColor, Color.GREEN);
@@ -243,7 +253,7 @@ public class DemoVRulerView extends View {
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
 
         // 提示文字粗体字
-        mHintBoldTypeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD);
+        // mHintBoldTypeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD);
 
         // 尺子总刻度值，一条线段刻度值，单一刻度表示的刻度值
         mScaleValue = (int) (mScaleSize * SCALE_PRECISION);
@@ -253,7 +263,7 @@ public class DemoVRulerView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = calculateWidth(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(width, height);
@@ -265,8 +275,13 @@ public class DemoVRulerView extends View {
         mWidth = w;
         mHeight = h;
 
-        // 尺子总刻度值，一条线段刻度值，单一刻度表示的刻度值
-        mScaleHeight = h * 1f / (mRulerSize * mSegmentSize);
+        // mHintPaint.setTypeface(mHintBoldTypeface);
+        mScaleTextPaint.setTypeface(Typeface.SANS_SERIF);
+        mScaleTextPaint.setTextSize(mScaleTextSize);
+        Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
+        mRulerHeight = h - (metrics.bottom - metrics.top) * 2; // 预留两倍空间显示字体（刻度值）
+        mRulerX = mWidth;
+        mRulerY = (h - mRulerHeight) / 2;
     }
 
     @Override
@@ -289,9 +304,9 @@ public class DemoVRulerView extends View {
     private void calHintMeasure() {
         // 矩形边界线的宽度。
         float border = mSLStrokeMin;
-
         // SPD, m/s, 00.0宽度
-        mHintPaint.setTypeface(mHintBoldTypeface);
+        // mHintPaint.setTypeface(mHintBoldTypeface);
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
         float w1 = mHintPaint.measureText(HINT_TEXT) + HINT_PADDING;
@@ -318,39 +333,36 @@ public class DemoVRulerView extends View {
      */
     private void initLayout() {
         //画圆角矩形
-        float strokeCenter = mSLStrokeMin / 2;
-        mHintLeft = mWidth - mSLLengthMax - mHintWidth - strokeCenter;
-        mHintTop = mHeight / 2f - mHintHeight / 2 - strokeCenter;
-        mHintRight = mWidth - mSLLengthMax + strokeCenter;
-        mHintBottom = mHeight / 2f + mHintHeight / 2 + strokeCenter;
-
-        // SPD
-        mHintPaint.setTypeface(Typeface.SANS_SERIF);
-        mHintPaint.setTextSize(mHintTextMiddleSize);
-        mHintPaint.setStyle(Paint.Style.FILL);
-        mHintPaint.setColor(Color.WHITE);
-        Rect rect = new Rect();
-        mHintPaint.getTextBounds(HINT_LABEL, 0, HINT_LABEL.length(), rect);
-        mHintLabelX = mHintLeft + HINT_PADDING;
-        mHintLabelY = mHintTop + HINT_PADDING + rect.height() / 2f;
-
-        // m/s
-        mHintPaint.setTypeface(Typeface.SANS_SERIF);
-        mHintPaint.setTextSize(mHintTextSmallSize);
-        mHintPaint.setStyle(Paint.Style.FILL);
-        mHintPaint.setColor(Color.WHITE);
-        mHintPaint.getTextBounds(HINT_UNIT, 0, HINT_UNIT.length(), rect);
-        mHintUnitX = mHintLeft + HINT_PADDING;
-        mHintUnitY = mHintBottom - HINT_PADDING - rect.height() / 2f;
+        mHintLeft = mSLLengthMax;
+        mHintTop = mHeight / 2f - mHintHeight / 2;
+        mHintRight = mWidth - (MARGIN_CURSOR + mSLLengthMax);
+        mHintBottom = mHeight / 2f + mHintHeight / 2;
 
         // 00.0
-        mHintPaint.setTypeface(mHintBoldTypeface);
+        mHintTextX = mHintRight - HINT_PADDING;
+        // mHintPaint.setTypeface(mHintBoldTypeface);
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextBoldSize);
         mHintPaint.setColor(mHintTextColor);
-        String txt = String.valueOf(mCurrentValue / 10);
-        mHintPaint.getTextBounds(HINT_TEXT, 0, txt.length(), rect);
-        mHintTextX = mHintRight - HINT_PADDING - rect.width();
-        mHintTextY = (mHintBottom - mHintTop) / 2 + mHintTop;
+        mHintPaint.setStyle(Paint.Style.FILL);
+        Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
+        mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
+
+        float top = mHintTextY + metrics.top; // 顶部对齐用
+        float bottom = mHintTextY +  metrics.bottom; // 底部对齐用
+        // SPD
+        mHintLabelX = mHintLeft + HINT_PADDING;
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextMiddleSize);
+        metrics = mHintPaint.getFontMetrics();
+        mHintLabelY = top - metrics.top;
+
+        // m/s
+        mHintUnitX = mHintLeft + HINT_PADDING;
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextSmallSize);
+        metrics = mHintPaint.getFontMetrics();
+        mHintUnitY = bottom - metrics.bottom;
     }
 
     @Override
@@ -358,7 +370,7 @@ public class DemoVRulerView extends View {
         super.onDraw(canvas);
         canvas.drawColor(Color.RED);
         drawRuleLine(canvas);
-        // drawCursor(canvas);
+        drawCursor(canvas);
         drawScaleLine(canvas);
     }
 
@@ -406,7 +418,7 @@ public class DemoVRulerView extends View {
                 // (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mScaleTextSize *
                 // 10f, getResources().getDisplayMetrics())
                 calHintMeasure();
-                int defaultContentSize = (int) (mHintWidth + mSLLengthMax + 0.5);
+                int defaultContentSize = (int) (mHintWidth + mSLLengthMax * 2 + 0.5);
                 realSize = Math.min(realSize, defaultContentSize);
                 break;
         }
@@ -421,15 +433,15 @@ public class DemoVRulerView extends View {
         mScalePaint.setStrokeCap(Paint.Cap.BUTT);
         mScalePaint.setColor(mScaleTextColor);
         mScalePaint.setStrokeWidth(mSLStrokeMax);
-        canvas.drawLine(mWidth - mSLStrokeMax / 2, 0, mWidth - mSLStrokeMax / 2, mHeight,
-                mScalePaint);// stroke以中心线进行绘制
+        canvas.drawLine(mRulerX - mSLStrokeMax / 2, mRulerY, mRulerX - mSLStrokeMax / 2,
+                mRulerY + mRulerHeight, mScalePaint);
 
-        // 上下两端的边界线段
+        // 上下两端的边界线段，线包含在区域内
         float xMax = mWidth - mSLLengthMax;
-        // 线包含在区域内
-        canvas.drawLine(xMax, mSLStrokeMax / 2f, mWidth, mSLStrokeMax / 2f, mScalePaint);
-        float bottom = mHeight - mSLStrokeMax / 2f;
-        canvas.drawLine(xMax, bottom, mWidth, bottom, mScalePaint);// 线包含在区域内
+        canvas.drawLine(xMax, mRulerY + mSLStrokeMax / 2f, mWidth, mRulerY + mSLStrokeMax / 2f,
+                mScalePaint);
+        float bottom = mRulerY + mRulerHeight - mSLStrokeMax / 2f;
+        canvas.drawLine(xMax, bottom, mWidth, bottom, mScalePaint);
     }
 
     /**
@@ -438,7 +450,7 @@ public class DemoVRulerView extends View {
     private void drawScaleLine(Canvas canvas) {
         float distance;// 底部第一条刻度距离底部边界的刻度间距
         int index;// 底部第一条刻度在单条线段中的索引
-        int bottomVal;// 底部第一条刻度的所在线段长刻度线的刻度值
+        int bottomVal;// 底部第一条刻度的所在长刻度线的刻度值
         int n;
         // 刻度间距（像素）, mScaleHeight
         // 总刻度个数, n
@@ -468,30 +480,65 @@ public class DemoVRulerView extends View {
 
         float xMax = mWidth - mSLLengthMax;
         float xMin = mWidth - mSLLengthMin;
+        float bottom = mRulerY + mRulerHeight;
         mScalePaint.setColor(mScaleTextColor);
         mScaleTextPaint.setColor(mScaleTextColor);
         for (int i = 0; i < n; i++) {
-            float y = mHeight - (i * mScaleValue + distance) / mRuleValue * mHeight;
+            float y = bottom - (i * mScaleValue + distance) / mRuleValue * mRulerHeight;
             if (index % mSegmentSize == 0) {// 长刻度线
-                mScalePaint.setStrokeWidth(mSLStrokeMax);
                 y -= mSLStrokeMax / 2f;
-                canvas.drawLine(xMax, y, mWidth, y, mScalePaint);
-                // 指针线位置的刻度值不画，跳过
-                if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
-                    // 刻度值
-                    int fNum = (i + bottomVal) / mSegmentSize;
-                    String text = Integer.toString(fNum);
-                    final float textWidth = mScaleTextPaint.measureText(text);
-                    float tH = mScaleTextPaint.ascent() + mScaleTextPaint.descent();
-                    canvas.drawText(text, xMax - textWidth - MARGIN_CURSOR, y - tH / 2,
-                            mScaleTextPaint);
+                if (i == n - 1) {
+                    y += mSLStrokeMax / 2f;
                 }
+                drawMaxScaleLine(canvas, xMax, y);
+                drawMaxScaleText(canvas, xMax, y, (i + bottomVal) / mSegmentSize);
             } else {// 短刻度线
-                mScalePaint.setStrokeWidth(mSLStrokeMin);
-                y -= mSLStrokeMin / 2f;
-                canvas.drawLine(xMin, y, mWidth, y, mScalePaint);
+                drawMinScaleLine(canvas, xMin, y);
             }
             index++;
+        }
+    }
+
+    /**
+     * 绘制长刻度线
+     */
+    private void drawMaxScaleLine(Canvas canvas, float startX, float y) {
+        mScalePaint.setStrokeWidth(mSLStrokeMax);
+        // 超出线段不绘制
+        if (y >= mRulerY + mSLStrokeMax / 2f && y <= mRulerY + mRulerHeight - mSLStrokeMax / 2f) {
+            canvas.drawLine(startX, y, mWidth, y, mScalePaint);
+        }
+    }
+
+    /**
+     * 绘制长刻度线的值
+     *
+     * @param y     刻度线垂直方向中心线坐标。
+     * @param value 长刻度线的刻度值
+     */
+    private void drawMaxScaleText(Canvas canvas, float startX, float y, int value) {
+        // 指针线位置的刻度值不画，跳过
+        if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
+            // 刻度值
+            String text = Integer.toString(value);
+            final float textWidth = mScaleTextPaint.measureText(text);
+            float tH = mScaleTextPaint.ascent() + mScaleTextPaint.descent();
+            canvas.drawText(text, startX - textWidth - MARGIN_CURSOR, y - tH / 2, mScaleTextPaint);
+        }
+    }
+
+    /**
+     * 绘制短刻度线
+     *
+     * @param startX 起始x坐标
+     * @param y      刻度线垂直方向中心线坐标。
+     */
+    private void drawMinScaleLine(Canvas canvas, float startX, float y) {
+        mScalePaint.setStrokeWidth(mSLStrokeMin);
+        y -= mSLStrokeMin / 2f;
+        // 超出线段不绘制
+        if (y >= mRulerY + mSLStrokeMax / 2f && y <= mRulerY + mRulerHeight - mSLStrokeMax / 2f) {
+            canvas.drawLine(startX, y, mWidth, y, mScalePaint);
         }
     }
 
@@ -503,29 +550,61 @@ public class DemoVRulerView extends View {
         mScalePaint.setColor(mScaleTextColor);
         mScalePaint.setStrokeWidth(mSLStrokeMin);
         mScalePaint.setStrokeCap(Paint.Cap.ROUND);
-        float x = mWidth - mSLLengthMax;
-        float y = mHeight / 2f - mSLStrokeMin / 2;
+        mScalePaint.setStyle(Paint.Style.FILL);
+        float x = mWidth - mSLLengthMax - mSLStrokeMin;
+        float y = mHeight / 2f;
         canvas.drawLine(x, y, mWidth, y, mScalePaint);
 
         // 画圆角矩形
-        canvas.drawRoundRect(mHintLeft, mHintTop, mHintRight, mHintBottom, 10, 10, mScalePaint);
+        mScalePaint.setStyle(Paint.Style.STROKE);
+        canvas.drawRoundRect(mHintLeft, mHintTop, mHintRight, mHintBottom, 6, 6, mScalePaint);
         // 画小三角形指针
 
-        // 绘制SPD, m/s 00.0
+        // 00.0
+        // mHintPaint.setTypeface(mHintBoldTypeface);
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextBoldSize);
+        // mHintPaint.setTextSize(64);
+        mHintPaint.setColor(mHintTextColor);
+        mHintPaint.setStyle(Paint.Style.FILL);
+        String txt = String.valueOf(mCurrentValue / 10);
+        float tW = mHintPaint.measureText(txt);
+        mHintTextX = mHintRight - HINT_PADDING - tW;
+        Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
+        Rect rect = new Rect();
+        mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
+        mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
+        canvas.drawText(txt, mHintTextX, mHintTextY, mHintPaint);
+
+        float bTop = mHeight / 2f - rect.height() / 2;
+        float bBot = mHeight / 2f + rect.height() / 2;
+
+        float ascent = mHintTextY + metrics.ascent; // 顶部对齐用
+        canvas.drawLine(0, ascent, mWidth, ascent, mScalePaint);
+
+        // bTop
+        canvas.drawLine(0, bTop, mWidth, bTop, mHintPaint);
+
+        float descent = mHintTextY +  metrics.descent; // 底部对齐用
+        canvas.drawLine(0, descent, mWidth, descent, mHintPaint);
+        // bBot
+        canvas.drawLine(0, bBot, mWidth, bBot, mScalePaint);
+
+        // 绘制SPD
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         mHintPaint.setStyle(Paint.Style.FILL);
         mHintPaint.setColor(mHintLabelTextColor);
+        metrics = mHintPaint.getFontMetrics();
+        mHintLabelY = bTop - metrics.ascent;
         canvas.drawText(HINT_LABEL, mHintLabelX, mHintLabelY, mHintPaint);
+
+        // m/s
         mHintPaint.setTextSize(mHintTextSmallSize);
+        metrics = mHintPaint.getFontMetrics();
+        mHintUnitY = bBot - metrics.descent;
         canvas.drawText(HINT_UNIT, mHintUnitX, mHintUnitY, mHintPaint);
 
-        mHintPaint.setTypeface(mHintBoldTypeface);
-        mHintPaint.setTextSize(mHintTextBoldSize);
-        mHintPaint.setColor(mHintTextColor);
-        String txt = String.valueOf(mCurrentValue / 10);
-        float tW = mHintPaint.measureText(txt);
-        mHintTextX = mHintRight - HINT_PADDING - tW;
-        canvas.drawText(txt, mHintTextX, mHintTextY, mHintPaint);
+
     }
 }

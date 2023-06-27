@@ -29,7 +29,7 @@
             android:id="@+id/demo_ruler_view"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
