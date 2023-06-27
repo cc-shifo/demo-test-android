@@ -34,6 +34,9 @@ public class DemoVRulerView extends View {
      * 尺子属性：一条线段由几条刻度组成。
      */
     private final int mSegmentSize;
+    /**
+     * 尺子属性：单一刻度表示值。
+     */
     private final float mScaleSize;
 
     /**
@@ -46,9 +49,9 @@ public class DemoVRulerView extends View {
     private final float mSLLengthMin;
 
     /**
-     * 尺子属性：一半刻度尺的长度。刻度尺线段个数 x 单条线段刻度个数 x 刻度值 / 2。用于计算尺子的上下边界。
+     * 尺子属性：刻度尺的长度。刻度尺线段个数 x 单条线段刻度个数 x 刻度值。用于计算尺子的上下边界。
      */
-    private int mRuleHalfValue;
+    private int mRuleValue;
 
     /**
      * 尺子属性：单条线段的长度
@@ -245,7 +248,7 @@ public class DemoVRulerView extends View {
         // 尺子总刻度值，一条线段刻度值，单一刻度表示的刻度值
         mScaleValue = (int) (mScaleSize * SCALE_PRECISION);
         mSegmentValue = mSegmentSize * mScaleValue;
-        mRuleHalfValue = mRulerSize * mSegmentValue / 2;
+        mRuleValue = (mRulerSize * mSegmentValue);
     }
 
     @Override
@@ -365,18 +368,18 @@ public class DemoVRulerView extends View {
      * @return 当前刻度值
      */
     public float getCurrentValue() {
-        return mCurrentValue * 1.0f / SCALE_PRECISION;
+        return mCurrentValue;
     }
 
     /**
      * 设置当前刻度值。数值变化大于0.1时有效。
      *
-     * @param currentValue 前刻度值
+     * @param currentValue 前刻度值，有效精度到十分位
      */
     public void setCurrentValue(float currentValue) {
-        int d = (int) (currentValue * SCALE_PRECISION) - mCurrentValue;
-        if (Math.abs(d) >= SCALE_PRECISION) {
-            mCurrentValue = (int) (currentValue * SCALE_PRECISION);
+        int d = (int) (currentValue * SCALE_PRECISION);
+        if (Math.abs(d - mCurrentValue) >= 1) {
+            mCurrentValue = d;
             postInvalidate();
         }
     }
@@ -433,47 +436,56 @@ public class DemoVRulerView extends View {
      * 绘制垂直方向中心点的刻度线，刻度值
      */
     private void drawScaleLine(Canvas canvas) {
-        int startNum;// 开始时的刻度
-        int endNum;// 结束时的刻度
-        float deltaH = 0;
-        if (mCurrentValue >= mRuleHalfValue) {
-            startNum = (mCurrentValue - mRuleHalfValue) / mScaleValue;
-            endNum = (mCurrentValue + mRuleHalfValue) / mScaleValue;
+        float distance;// 底部第一条刻度距离底部边界的刻度间距
+        int start;// 底部第一条刻度在单条线段中的索引
+        int n;
+        // 刻度间距（像素）, mScaleHeight
+        // 总刻度个数, n
+        // 底部第一条刻度距离底部边界的刻度间距, distance
+        // 底部第一条刻度在单条线段中的索引, start
+        // 根据刻度个数循环，叠加单一刻度值
+        // 识别大刻度和小刻度：start / mSegmentValue == 0表示大
+        // 计算当前刻度的y: 当前刻度占尺子刻度的百分比 * 尺子高度
+        int halfValue = mRuleValue >> 1;
+        if (mCurrentValue >= halfValue) {
+            n = mRulerSize * mSegmentSize;
+            distance = mScaleValue - (mCurrentValue - halfValue) % mScaleValue;
+            start = (mCurrentValue % mSegmentValue) / mScaleValue + 1;
         } else {
-            startNum = (mRuleHalfValue - mCurrentValue) / mScaleValue;
-            endNum = 2 * mRuleHalfValue / mScaleValue;
-            deltaH = (mRuleHalfValue - mCurrentValue) * 1f / mRuleHalfValue * mHeight / 2f ;
+            // 0~mCurrentValue + mRuleHalfValue
+            n = (mCurrentValue + halfValue) / mScaleValue;
+            distance = halfValue - mCurrentValue;
+            start = 0;
         }
 
-        deltaH = mHeight - deltaH;
         float xMax = mWidth - mSLLengthMax;
         float xMin = mWidth - mSLLengthMin;
         mScalePaint.setColor(mScaleTextColor);
         mScaleTextPaint.setColor(mScaleTextColor);
-        for (int i = startNum; i <= endNum; i++) {
-            float y = deltaH - (i - startNum) * mScaleHeight;
-            if (i % mSegmentSize == 0) {
-                // // 长刻度线
+        for (int i = 0; i < n; i++) {
+            float y = mHeight - (i * mScaleValue + distance) / mRuleValue * mHeight;
+            if (start % mSegmentSize == 0) {
+                // 长刻度线
                 mScalePaint.setStrokeWidth(mSLStrokeMax);
                 y -= mSLStrokeMax / 2f;
                 canvas.drawLine(xMax, y, mWidth, y, mScalePaint);
                 // 指针线位置的刻度值不画，跳过
-                if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
-                    // 刻度值
-                    int fNum = i / mSegmentSize;
-                    String text = Float.toString(fNum);
-                    final float textWidth = mScaleTextPaint.measureText(text);
-                    float tH = mScaleTextPaint.ascent() + mScaleTextPaint.descent();
-                    canvas.drawText(text, xMax - textWidth - MARGIN_CURSOR, y - tH / 2,
-                            mScaleTextPaint);
-                }
+                // if (y < mHintTop - mScaleTextHeight || y > mHintBottom + mScaleTextHeight) {
+                //     // 刻度值
+                //     int fNum = i / mSegmentSize;
+                //     String text = Float.toString(fNum);
+                //     final float textWidth = mScaleTextPaint.measureText(text);
+                //     float tH = mScaleTextPaint.ascent() + mScaleTextPaint.descent();
+                //     canvas.drawText(text, xMax - textWidth - MARGIN_CURSOR, y - tH / 2,
+                //             mScaleTextPaint);
+                // }
             } else {
                 // 短刻度线
-                // float y = mHeight - i * mScaleValue - mSLStrokeMin / 2f - deltaY;
                 mScalePaint.setStrokeWidth(mSLStrokeMin);
                 y -= mSLStrokeMin / 2f;
                 canvas.drawLine(xMin, y, mWidth, y, mScalePaint);
             }
+            start++;
         }
     }
 
