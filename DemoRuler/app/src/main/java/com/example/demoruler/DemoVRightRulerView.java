@@ -467,20 +467,10 @@ public class DemoVRightRulerView extends View {
      * 绘制垂直方向中心点的刻度线，刻度值
      */
     private void drawScaleLine(Canvas canvas) {
-        // 刻度间距（像素）, mScaleHeight
-        // 总刻度个数, n
-        // 底部第一条刻度距离底部边界的刻度间距, distance
-        // 底部第一条刻度在单条线段中的索引, start, 1~5
-        // 根据刻度个数循环，叠加单一刻度值
-        // 识别大刻度和小刻度：start / mSegmentValue == 0表示大
-        // 计算当前刻度的y: 当前刻度占尺子刻度的百分比 * 尺子高度
-        // 计算长刻度线的刻度值：bottomNum +
-        int halfValue = mRuleValue >> 1;
-
-        // 总刻度个数, n
         // 底部边界的数值，顶部边界的数值startVal, endVal
         // 底部第一条刻度距离底部边界的刻度间距, distance
-        // 底部第一条刻度在单条线段中的索引, start, 1~5
+        // 底部第一条刻度距离底部边界的y值, dY
+        int halfValue = mRuleValue >> 1;
         mScalePaint.setColor(mScaleTextColor);
         mScaleTextPaint.setColor(mScaleTextColor);
 

@@ -454,54 +454,37 @@ public class DemoVRulerView extends View {
      * 绘制垂直方向中心点的刻度线，刻度值
      */
     private void drawScaleLine(Canvas canvas) {
-        float distance;// 底部第一条刻度距离底部边界的刻度间距
-        int index;// 底部第一条刻度在单条线段中的索引
-        int bottomVal;// 底部第一条刻度的所在长刻度线的刻度值
-        int n;
-        // 刻度间距（像素）, mScaleHeight
-        // 总刻度个数, n
+        // 底部边界的数值，顶部边界的数值startVal, endVal
         // 底部第一条刻度距离底部边界的刻度间距, distance
-        // 底部第一条刻度在单条线段中的索引, start, 1~5
-        // 根据刻度个数循环，叠加单一刻度值
-        // 识别大刻度和小刻度：start / mSegmentValue == 0表示大
-        // 计算当前刻度的y: 当前刻度占尺子刻度的百分比 * 尺子高度
-        // 计算长刻度线的刻度值：bottomNum +
+        // 底部第一条刻度距离底部边界的y值, dY
         int halfValue = mRuleValue >> 1;
-        if (mCurrentValue >= halfValue) {
-            n = mRulerSize * mSegmentSize;
-            distance = mScaleValue * 1f - (mCurrentValue - halfValue) % mScaleValue;
-            index = (mCurrentValue % mSegmentValue) / mScaleValue + 1;
-            bottomVal = (mCurrentValue - halfValue) / mScaleValue;
-            if (mCurrentValue % mSegmentValue == 0) {
-                n++; // 再加上长刻度线点
-                index = 5; // 长刻度线点
-            }
-        } else {
-            // 0~mCurrentValue + mRuleHalfValue
-            n = (mCurrentValue + halfValue) / mScaleValue + 1; // 再加上起始点0
-            distance = halfValue * 1f - mCurrentValue;
-            index = 0;
-            bottomVal = 0;
-        }
+        mScalePaint.setColor(mScaleTextColor);
+        mScaleTextPaint.setColor(mScaleTextColor);
+
+        int distance;// 底部第一条刻度距离底部边界的刻度间距
+        float bottom = mRulerY + mRulerHeight;
+        int modular = Math.abs(mCurrentValue) % mScaleValue;
+        distance = modular != 0 ? mScaleValue - modular : 0;
+        float unitY = mRulerHeight / (mRulerSize * mSegmentSize);
+        float dY = distance * 1f / mScaleValue * unitY;
+        int startVal = mCurrentValue - halfValue / mScaleValue;
+        int endVal = mCurrentValue + halfValue / mScaleValue;
+        distance += (mCurrentValue - halfValue);
 
         float xMax = mWidth - mSLLengthMax;
         float xMin = mWidth - mSLLengthMin;
-        float bottom = mRulerY + mRulerHeight;
-        mScalePaint.setColor(mScaleTextColor);
-        mScaleTextPaint.setColor(mScaleTextColor);
-        for (int i = 0; i < n; i++) {
-            float y = bottom - (i * mScaleValue + distance) / mRuleValue * mRulerHeight;
-            if (index % mSegmentSize == 0) {// 长刻度线
-                y -= mSLStrokeMax / 2f;
-                if (i == n - 1) {
-                    y += mSLStrokeMax / 2f;
+        for (int i = startVal, j = 0; i <= endVal; i++, j++) {
+            float y = bottom - (j * unitY + dY);
+            if (distance >= 0) {
+                if (distance % mSegmentValue == 0) {
+                    // 大刻度，刻度值
+                    drawMaxScaleLine(canvas, xMax, y);
+                    drawMaxScaleText(canvas, xMax, y, distance / SCALE_PRECISION);
+                } else {// 小刻度
+                    drawMinScaleLine(canvas, xMin, y);
                 }
-                drawMaxScaleLine(canvas, xMax, y);
-                drawMaxScaleText(canvas, xMax, y, (i + bottomVal) / mSegmentSize);
-            } else {// 短刻度线
-                drawMinScaleLine(canvas, xMin, y);
             }
-            index++;
+            distance += mScaleValue;
         }
     }
 
