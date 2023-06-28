@@ -299,7 +299,7 @@ public class DemoVRulerView extends View {
     /**
      * 提示信息内部填充边距，单位像素。
      */
-    private static final int HINT_PADDING = 8;
+    private float HINT_PADDING = 8f;
 
     private void calHintMeasure() {
         // 矩形边界线的宽度。
@@ -307,11 +307,13 @@ public class DemoVRulerView extends View {
         // SPD, m/s, 00.0宽度
         // mHintPaint.setTypeface(mHintBoldTypeface);
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
-        mHintPaint.setTextSize(mHintTextMiddleSize);
+        mHintPaint.setTextSize(mHintTextBoldSize);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
-        float padding = mHintPaint.measureText("0");
+        HINT_PADDING = mHintPaint.measureText("0");
         float w1 = mHintPaint.measureText(HINT_TEXT);
         float h1 = metrics.bottom - metrics.top;
+        Rect rect = new Rect();
+        mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
         mHintPaint.setTextSize(mHintTextMiddleSize);
         metrics = mHintPaint.getFontMetrics();
@@ -322,8 +324,8 @@ public class DemoVRulerView extends View {
         metrics = mHintPaint.getFontMetrics();
         float w3 = mHintPaint.measureText(HINT_UNIT);
         float h3 = metrics.bottom - metrics.top;
-        mHintWidth = w1 + padding * 3 + Math.max(w2, w3) + HINT_PADDING * 2 + border;
-        mHintHeight = Math.max(h1, h2 + h3) + HINT_PADDING * 2 + border;
+        mHintWidth = w1 + HINT_PADDING * 3 + Math.max(w2, w3) + border;
+        mHintHeight = Math.max(h1, h2 + h3) + rect.height() / 2f + border;
     }
 
     /**
