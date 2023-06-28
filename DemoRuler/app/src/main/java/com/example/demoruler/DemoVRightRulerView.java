@@ -336,6 +336,8 @@ public class DemoVRightRulerView extends View {
         mHintHeight = Math.max(h1, h2 + h3) + rect.height() / 2f + border;
     }
 
+    private float mVSpeedX;
+    private float mVSpeedY;
     /**
      * 初始位置信息。
      * 尺子的位置；
@@ -375,6 +377,9 @@ public class DemoVRightRulerView extends View {
         float tW = mHintPaint.measureText(HINT_LABEL);
         mHintLabelX = mHintRight - HINT_PADDING - tW;
         mHintLabelY = top - metrics.ascent;
+        tW = mHintPaint.measureText("0.0 VS");
+        mVSpeedX = mHintRight - tW;
+        mVSpeedY = mHintTop - metrics.bottom;
 
         // m/s
         mHintPaint.setTypeface(Typeface.SANS_SERIF);
@@ -569,6 +574,11 @@ public class DemoVRightRulerView extends View {
         // 画圆角矩形
         mScalePaint.setStyle(Paint.Style.STROKE);
         canvas.drawRoundRect(mHintLeft, mHintTop, mHintRight, mHintBottom, 6, 6, mScalePaint);
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextMiddleSize);
+        mHintPaint.setFakeBoldText(true);
+        String txt = String.format(Locale.ENGLISH, "%03.1f VS", 86 / 10f);
+        canvas.drawText(txt, mVSpeedX, mVSpeedY, mHintPaint);
         // 画小三角形指针
 
         // 00.0
@@ -578,7 +588,7 @@ public class DemoVRightRulerView extends View {
         mHintPaint.setColor(mHintTextColor);
         mHintPaint.setStyle(Paint.Style.FILL);
         // String txt = Float.toString(mCurrentValue / 10f);
-        String txt = String.format(Locale.ENGLISH, "%05.1f", mCurrentValue / 10f);
+        txt = String.format(Locale.ENGLISH, "%05.1f", mCurrentValue / 10f);
         // float tW = mHintPaint.measureText(txt);
         // mHintTextX = mHintRight - HINT_PADDING - tW;
         canvas.drawText(txt, mHintTextX, mHintTextY, mHintPaint);
