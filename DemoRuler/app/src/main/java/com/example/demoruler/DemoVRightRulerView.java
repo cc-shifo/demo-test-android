@@ -488,19 +488,17 @@ public class DemoVRightRulerView extends View {
         float bottom = mRulerY + mRulerHeight;
         int modular = Math.abs(mCurrentValue) % mScaleValue;
         distance = modular != 0 ? mScaleValue - modular : 0;
-        float sY = mRulerHeight / (mRulerSize * mSegmentSize);
-        float dY = distance * 1f / mScaleValue * sY;
+        float unitY = mRulerHeight / (mRulerSize * mSegmentSize);
+        float dY = distance * 1f / mScaleValue * unitY;
         int startVal = mCurrentValue - halfValue / mScaleValue;
         int endVal = mCurrentValue + halfValue / mScaleValue;
         distance += (mCurrentValue - halfValue);
         for (int i = startVal, j = 0; i <= endVal; i++, j++) {
-            float y = bottom - (j * sY + dY);
-            if (i % mSegmentSize == 0) {
+            float y = bottom - (j * unitY + dY);
+            if (distance % mSegmentValue == 0) {
                 // 大刻度，刻度值
                 drawMaxScaleLine(canvas, y);
-
-                // drawMaxScaleText(canvas, y, (int) ((i * sY + distance + startVal) / mScaleValue));
-                drawMaxScaleText(canvas, y, (int) (distance / SCALE_PRECISION));
+                drawMaxScaleText(canvas, y, distance / SCALE_PRECISION);
             } else {// 小刻度
                 drawMinScaleLine(canvas, y);
             }
