@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">DemoRuler</string>
-    <string name="btn_plus_value_txt">Plus</string>
-    <string name="btn_minus_value_txt">Minus</string>
+    <string name="btn_plus_value_txt">LPlus</string>
+    <string name="btn_minus_value_txt">LMinus</string>
+
+    <string name="btn_r_plus_value_txt">RPlus</string>
+    <string name="btn_r_minus_value_txt">RMinus</string>
 </resources>

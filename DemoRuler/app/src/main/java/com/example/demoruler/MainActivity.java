@@ -10,35 +10,28 @@ import com.example.demoruler.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
-    private float mVal = 1.0f;
-
-    private long mCnt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.btnPlus.setOnClickListener(v -> {
-            if (mCnt % 2 == 0) {
-                mVal += 0.2;
-            } else if (mCnt % 5 == 0) {
-                mVal += 1;
-            } else {
-                mVal += 0.1;
-            }
-            mCnt++;
-            mBinding.demoRulerView.setCurrentValue(mVal);
+            String s = mBinding.etRulerCurrentVal.getText().toString();
+            mBinding.demoRulerView.setCurrentValue(Float.parseFloat(s));
         });
 
         mBinding.btnMinus.setOnClickListener(v -> {
-            if (mCnt % 2 == 0) {
-                mVal -= 0.2;
-            } else if (mCnt % 5 == 0) {
-                mVal -= 1;
-            }else {
-                mVal -= 0.1;
-            }
-            mCnt++;
-            mBinding.demoRulerView.setCurrentValue(mVal);
+            String s = mBinding.etRulerCurrentVal.getText().toString();
+            mBinding.demoRulerView.setCurrentValue(Float.parseFloat(s));
+        });
+
+        mBinding.btnRPlus.setOnClickListener(v -> {
+            String s = mBinding.etRulerCurrentVal.getText().toString();
+            mBinding.demoRulerRightView.setCurrentValue(Float.parseFloat(s));
+        });
+
+        mBinding.btnRMinus.setOnClickListener(v -> {
+            String s = mBinding.etRulerCurrentVal.getText().toString();
+            mBinding.demoRulerRightView.setCurrentValue(Float.parseFloat(s));
         });
     }
 }

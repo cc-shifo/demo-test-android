@@ -21,7 +21,6 @@
         <!--刻度文字颜色-->
         <attr name="scaleTextColor" format="color" />
 
-
         <!--提示标签的文字颜色-->
         <attr name="hintLabelTextColor" format="color" />
         <!--提示信息的文字颜色-->
@@ -33,6 +32,39 @@
         <!--提示信息的文字小体字体大小-->
         <attr name="hintTextSmallSize" format="dimension" />
 
-
     </declare-styleable>
+
+    <declare-styleable name="DemoVRightRulerView">
+        <!--刻度尺大小，由几条线段组成-->
+        <attr name="vr_rulerSize" format="integer" />
+        <!--刻度尺线段大小，由几条带有相同间隔的刻度线-->
+        <attr name="vr_segmentSize" format="integer" />
+        <!--刻度的大小-->
+        <attr name="vr_scaleSize" format="float" />
+        <!--最长刻度线长度-->
+        <attr name="vr_scaleLineMax" format="dimension" />
+        <!--最短刻度线长度-->
+        <attr name="vr_scaleLineMin" format="dimension" />
+
+        <!--绘制刻度线画笔的最大宽度-->
+        <attr name="vr_scaleLineStrokeMax" format="dimension" />
+        <!--绘制刻度线画笔的最小宽度-->
+        <attr name="vr_scaleLineStrokeMin" format="dimension" />
+        <!--刻度文字的大小-->
+        <attr name="vr_scaleTextSize" format="dimension" />
+        <!--刻度文字颜色-->
+        <attr name="vr_scaleTextColor" format="color" />
+
+        <!--提示标签的文字颜色-->
+        <attr name="vr_hintLabelTextColor" format="color" />
+        <!--提示信息的文字颜色-->
+        <attr name="vr_hintTextColor" format="color" />
+        <!--提示标签的文字粗体字大小-->
+        <attr name="vr_hintTextBoldSize" format="dimension" />
+        <!--提示信息的文字中等字体大小-->
+        <attr name="vr_hintTextMiddleSize" format="dimension" />
+        <!--提示信息的文字小体字体大小-->
+        <attr name="vr_hintTextSmallSize" format="dimension" />
+    </declare-styleable>
+
 </resources>
