@@ -96,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="0.5"
-            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintHeight_percent="1.0"
             app:layout_constraintStart_toEndOf="@id/demo_ruler_view"
             app:layout_constraintEnd_toStartOf="@id/demo_ruler_right_view"
             app:layout_constraintTop_toTopOf="parent"

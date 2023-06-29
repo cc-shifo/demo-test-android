@@ -208,10 +208,10 @@ public class DemoCenterView extends View {
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setColor(mColor);
         mPaint.setStrokeWidth(mStrokeWidth);
-        canvas.drawLine(mCircleX - mRadius, mCircleY, mCircleX - mArrowLineLength - mArrowLength,
-                mCircleY, mPaint);
-        canvas.drawLine(mCircleX + mArrowLineLength + mArrowLength, mCircleY, mCircleX + mRadius,
-                mCircleY, mPaint);
+        canvas.drawLine(mArrowLineLength + mArrowLength, mCircleY,
+                mCircleX - mArrowLineLength - mArrowLength, mCircleY, mPaint);
+        canvas.drawLine(mCircleX + mArrowLineLength + mArrowLength, mCircleY,
+                mWidth - mArrowLineLength - mArrowLength, mCircleY, mPaint);
         // 绘制垂直线
         double d = Math.sin(mCurrentV2 / 180 * Math.PI) * mRadius;
         canvas.drawLine(mCircleX, mCircleY, mCircleX, (float) (mCircleY - d), mPaint);
