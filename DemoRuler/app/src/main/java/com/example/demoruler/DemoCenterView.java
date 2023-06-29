@@ -229,6 +229,7 @@ public class DemoCenterView extends View {
         // mDashPath.close();
         canvas.drawPath(mDashPath, mPaint);
         // canvas.drawLine(mCircleX, mCircleY, mCircleX, (float) (mCircleY - d), mPaint);
+        mDashPath.close();
         canvas.restore();
     }
 
