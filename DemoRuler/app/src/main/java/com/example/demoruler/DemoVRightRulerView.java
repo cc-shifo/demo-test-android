@@ -290,6 +290,14 @@ public class DemoVRightRulerView extends View {
         mScaleTextPaint.setTextSize(mScaleTextSize);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
         mRulerHeight = h - (metrics.bottom - metrics.top) * 2; // 预留两倍空间显示字体（刻度值）
+        mRulerX = mSLStrokeMax / 2;
+        mRulerY = (mHeight - mRulerHeight) / 2;
+
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextMiddleSize);
+        metrics = mHintPaint.getFontMetrics(); // ASL 海拔高度
+        float aslH = (metrics.bottom - metrics.top) * 2; // 预留两倍空间显示字体（刻度值）
+        mRulerHeight = h - aslH;
     }
 
     @Override
@@ -345,14 +353,13 @@ public class DemoVRightRulerView extends View {
      * 提示信息在矩形框内的位置；
      */
     private void initLayout() {
-        mRulerX = mSLStrokeMax / 2;
-        mRulerY = (mHeight - mRulerHeight) / 2;
+
 
         //画圆角矩形
         mHintLeft = MARGIN_CURSOR + mSLLengthMax;
-        mHintTop = mHeight / 2f - mHintHeight / 2;
+        mHintTop = mRulerY + mRulerHeight / 2f - mHintHeight / 2;
         mHintRight = mWidth - mSLLengthMax;
-        mHintBottom = mHeight / 2f + mHintHeight / 2;
+        mHintBottom = mRulerY + mRulerHeight / 2f + mHintHeight / 2;
 
         // 00.0
         mHintTextX = mHintLeft + HINT_PADDING;
@@ -362,12 +369,12 @@ public class DemoVRightRulerView extends View {
         mHintPaint.setColor(mHintTextColor);
         mHintPaint.setStyle(Paint.Style.FILL);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
-        mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
+        mHintTextY = mRulerY + mRulerHeight / 2f - (metrics.ascent + metrics.descent) / 2;
 
         Rect rect = new Rect();
         mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
-        float top = mHeight / 2f - rect.height() / 2f; // 文字的顶部边界
-        float bottom = mHeight / 2f + rect.height() / 2f;// 文字的底部边界
+        float top = mRulerY + mRulerHeight / 2f - rect.height() / 2f; // 文字的顶部边界
+        float bottom = mRulerY + mRulerHeight / 2f + rect.height() / 2f;// 文字的底部边界
 
         // SPD
 
@@ -569,7 +576,8 @@ public class DemoVRightRulerView extends View {
         mScalePaint.setStrokeWidth(mSLStrokeMin);
         mScalePaint.setStrokeCap(Paint.Cap.ROUND);
         mScalePaint.setStyle(Paint.Style.FILL);
-        canvas.drawLine(0, mHeight / 2f, mSLLengthMax + mSLStrokeMin, mHeight / 2f, mScalePaint);
+        float y = mRulerY + mRulerHeight / 2f;
+        canvas.drawLine(0, y, mSLLengthMax + mSLStrokeMin, y, mScalePaint);
 
         // 画圆角矩形
         mScalePaint.setStyle(Paint.Style.STROKE);

@@ -282,6 +282,12 @@ public class DemoVRulerView extends View {
         mRulerHeight = h - (metrics.bottom - metrics.top) * 2; // 预留两倍空间显示字体（刻度值）
         mRulerX = mWidth;
         mRulerY = (h - mRulerHeight) / 2;
+
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextMiddleSize);
+        metrics = mHintPaint.getFontMetrics(); // ASL 海拔高度
+        float aslH = (metrics.bottom - metrics.top) * 2; // 预留两倍空间显示字体（刻度值）
+        mRulerHeight = h - aslH;
     }
 
     @Override
@@ -337,9 +343,9 @@ public class DemoVRulerView extends View {
     private void initLayout() {
         //画圆角矩形
         mHintLeft = mSLLengthMax;
-        mHintTop = mHeight / 2f - mHintHeight / 2;
+        mHintTop = mRulerY + mRulerHeight / 2f - mHintHeight / 2;
         mHintRight = mWidth - (MARGIN_CURSOR + mSLLengthMax);
-        mHintBottom = mHeight / 2f + mHintHeight / 2;
+        mHintBottom = mRulerY + mRulerHeight / 2f + mHintHeight / 2;
 
         // 00.0
         mHintTextX = mHintRight - HINT_PADDING;
@@ -349,12 +355,12 @@ public class DemoVRulerView extends View {
         mHintPaint.setColor(mHintTextColor);
         mHintPaint.setStyle(Paint.Style.FILL);
         Paint.FontMetrics metrics = mHintPaint.getFontMetrics();
-        mHintTextY = mHeight / 2f - (metrics.ascent + metrics.descent) / 2;
+        mHintTextY = mRulerY + mRulerHeight / 2f - (metrics.ascent + metrics.descent) / 2;
 
         Rect rect = new Rect();
         mHintPaint.getTextBounds(HINT_TEXT, 0, HINT_TEXT.length(), rect);
-        float top = mHeight / 2f - rect.height() / 2f; // 文字的顶部边界
-        float bottom = mHeight / 2f + rect.height() / 2f;// 文字的底部边界
+        float top = mRulerY + mRulerHeight / 2f - rect.height() / 2f; // 文字的顶部边界
+        float bottom = mRulerY + mRulerHeight / 2f + rect.height() / 2f;// 文字的底部边界
 
         // SPD
         mHintLabelX = mHintLeft + HINT_PADDING;
@@ -541,7 +547,7 @@ public class DemoVRulerView extends View {
         mScalePaint.setStrokeCap(Paint.Cap.ROUND);
         mScalePaint.setStyle(Paint.Style.FILL);
         float x = mWidth - mSLLengthMax - mSLStrokeMin;
-        float y = mHeight / 2f;
+        float y = mRulerY + mRulerHeight / 2f;
         canvas.drawLine(x, y, mWidth, y, mScalePaint);
 
         // 画圆角矩形
