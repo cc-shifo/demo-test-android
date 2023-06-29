@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -62,6 +61,16 @@ public class DemoCenterView extends View {
      * 绘制属性：绘制界面线条，圆圈的整个宽度
      */
     private final int mStrokeWidth;
+
+    /**
+     * 虚线路径
+     */
+    private Path mDashPath;
+
+    /**
+     * 虚线路径效果
+     */
+    private DashPathEffect mPathEffect;
 
     /**
      * 绘制属性：带箭头的线条
@@ -135,6 +144,8 @@ public class DemoCenterView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mStrokeWidth);
         mPathArrow = new Path();
+        mDashPath = new Path();
+        mPathEffect = new DashPathEffect(new float[]{mStrokeWidth / 4f, mStrokeWidth * 1.5f}, 2);
     }
 
     @Override
@@ -202,28 +213,30 @@ public class DemoCenterView extends View {
      */
     private void drawHVLine(Canvas canvas) {
         canvas.save();
+        resetPaint();
         canvas.rotate(mCurrentV1, mCircleX, mCircleY);
         // 绘制水平线
-        mPaint.setStrokeCap(Paint.Cap.BUTT);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setColor(mColor);
-        mPaint.setStrokeWidth(mStrokeWidth);
         canvas.drawLine(mArrowLineLength + mArrowLength, mCircleY,
                 mCircleX - mArrowLineLength - mArrowLength, mCircleY, mPaint);
         canvas.drawLine(mCircleX + mArrowLineLength + mArrowLength, mCircleY,
                 mWidth - mArrowLineLength - mArrowLength, mCircleY, mPaint);
         // 绘制垂直线
         double d = Math.sin(mCurrentV2 / 180 * Math.PI) * mRadius;
-        canvas.drawLine(mCircleX, mCircleY, mCircleX, (float) (mCircleY - d), mPaint);
+        mPaint.setPathEffect(mPathEffect);
+        mDashPath.reset();
+        mDashPath.moveTo(mCircleX, mCircleY);
+        mDashPath.lineTo(mCircleX, (float) (mCircleY - d));
+        // mDashPath.close();
+        canvas.drawPath(mDashPath, mPaint);
+        // canvas.drawLine(mCircleX, mCircleY, mCircleX, (float) (mCircleY - d), mPaint);
         canvas.restore();
     }
 
+    /**
+     * 绘制方向
+     */
     private void drawNavDirection(Canvas canvas) {
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(mColor);
-        mPaint.setStrokeWidth(mStrokeWidth);
+        resetPaint();
         canvas.save();
         mPathArrow.reset();
         mPathArrow.moveTo(mCircleX, mCircleY);
@@ -247,5 +260,20 @@ public class DemoCenterView extends View {
         // }
 
         canvas.restore();
+    }
+
+    /**
+     * 清除画笔到配置参数
+     */
+    private void resetPaint() {
+        mPaint.reset();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mStrokeWidth);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setColor(mColor);
+        mPaint.setStrokeWidth(mStrokeWidth);
     }
 }
