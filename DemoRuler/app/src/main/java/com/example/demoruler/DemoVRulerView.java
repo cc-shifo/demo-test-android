@@ -454,6 +454,13 @@ public class DemoVRulerView extends View {
                 mScalePaint);
         float bottom = mRulerY + mRulerHeight - mSLStrokeMax / 2f;
         canvas.drawLine(xMax, bottom, mWidth, bottom, mScalePaint);
+
+        mHintPaint.setTypeface(Typeface.SANS_SERIF);
+        mHintPaint.setTextSize(mHintTextMiddleSize);
+        float w = mHintPaint.measureText("m/s");
+        Paint.FontMetrics metrics = mHintPaint.getFontMetrics(); // m/s 海拔高度
+        canvas.drawText("m/s", mWidth - w - mSLLengthMax - MARGIN_CURSOR, mHeight - metrics.bottom,
+                mHintPaint);
     }
 
     /**
