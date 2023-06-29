@@ -5,4 +5,7 @@
 
     <string name="btn_r_plus_value_txt">RPlus</string>
     <string name="btn_r_minus_value_txt">RMinus</string>
+    <string name="btn_center_h_value_txt">Hor</string>
+    <string name="btn_center_v_value_txt">Vert</string>
+    <string name="btn_center_direct_value_txt">Nav Dir</string>
 </resources>

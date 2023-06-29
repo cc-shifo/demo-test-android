@@ -51,12 +51,53 @@
             android:text="@string/btn_r_minus_value_txt"
             />
 
+        <Button
+            android:id="@+id/btn_center_h_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_center_v_value"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:text="@string/btn_center_h_value_txt"
+            />
+        <Button
+            android:id="@+id/btn_center_v_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/btn_center_h_value"
+            app:layout_constraintEnd_toStartOf="@id/btn_center_direct_value"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/btn_center_v_value_txt"
+            />
+        <Button
+            android:id="@+id/btn_center_direct_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/btn_center_v_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/btn_center_direct_value_txt"
+            />
+
         <com.example.demoruler.DemoVRulerView
             android:id="@+id/demo_ruler_view"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.8"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/demo_center_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
+
+        <com.example.demoruler.DemoCenterView
+            android:id="@+id/demo_center_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toEndOf="@id/demo_ruler_view"
             app:layout_constraintEnd_toStartOf="@id/demo_ruler_right_view"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -66,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.8"
-            app:layout_constraintStart_toEndOf="@id/demo_ruler_view"
+            app:layout_constraintStart_toEndOf="@id/demo_center_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
