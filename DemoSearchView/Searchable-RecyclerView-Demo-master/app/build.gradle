@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
+
+final travisVersionCode = (System.getenv('TRAVIS_BUILD_NUMBER') ?: 1) as int
+final travisVersionName = "0.1.0.${travisVersionCode}"
+final travisKeystorePassword = System.getenv('KEYSTORE_PASSWORD') ?: ''
+final travisKeyAlias = System.getenv('KEY_ALIAS') ?: ''
+final travisKeyPassword = System.getenv('KEY_PASSWORD') ?: ''
+
+android {
+    compileSdkVersion 27
+
+    dataBinding {
+        enabled true
+    }
+
+    defaultConfig {
+        applicationId 'com.github.wrdlbrnft.searchablerecyclerviewdemo'
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode travisVersionCode
+        versionName travisVersionName
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    lintOptions {
+        disable 'NewApi'
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file('release.jks')
+            storePassword travisKeystorePassword
+            keyAlias travisKeyAlias
+            keyPassword travisKeyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27'
+}
+
+play {
+    track = 'beta'
+    jsonFile = rootProject.file('keys.json')
+}
