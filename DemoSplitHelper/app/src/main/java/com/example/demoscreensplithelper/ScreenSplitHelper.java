@@ -10,9 +10,12 @@
 
 package com.example.demoscreensplithelper;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
@@ -28,6 +31,11 @@ import java.util.HashMap;
  * 初始状态中央区域为可交换区。
  */
 public class ScreenSplitHelper {
+    private static final String TAG = "ScreenSplitHelper";
+    /**
+     * 动画时间
+     */
+    private static final  int TIME = 200;
     private static final int NO_ID = -1;
     /**
      * the representation of a view.
@@ -37,6 +45,10 @@ public class ScreenSplitHelper {
     private final HashMap<String, OnChangeToHalf> mHalfStateCallBacks;
     private final HashMap<String, OnChangeToQuarter> mQuarterStateCallBacks;
     private OnWindowSizeChanged mOnWindowSizeChanged;
+    /**
+     * 由于窗口大小的变化添加了动画，动画播放需要时间，所以用此变量表示变化是否完成。
+     */
+    private boolean mIsSizeChanging;
     /**
      * 用于为屏幕中间view的过度动画
      */
@@ -55,6 +67,8 @@ public class ScreenSplitHelper {
     private Transition.TransitionListener mTransitionListener;
     private int mSwapId;
 
+    private final Handler mMainHandler = new Handler(Looper.getMainLooper());
+
     public ScreenSplitHelper() {
         mWindowStates = new HashMap<>(4, 1);
         mFullStateCallBacks = new HashMap<>(4, 1);
@@ -62,7 +76,7 @@ public class ScreenSplitHelper {
         mHalfStateCallBacks = new HashMap<>(4, 1);
         mSwapId = NO_ID;
 
-        final int TIME = 200;
+
         mTransitionFull = new ChangeBounds();
         mTransitionLayoutStart = new ChangeBounds();
         mTransitionLayoutEnd = new ChangeBounds();
@@ -183,12 +197,17 @@ public class ScreenSplitHelper {
      * @param id the touched view.
      */
     public void changeWindowSize(@IdRes int id) {
+        if (mIsSizeChanging) {
+            return;
+        }
+
         String key = String.valueOf(id);
         WindowState windowState = mWindowStates.get(key);
         if (windowState == null || windowState.getState() == WindowState.FULL_SCREEN) {
             return;
         }
 
+        mIsSizeChanging = true;
         if (windowState.getState() == WindowState.HALF_SCREEN) {
             halfToFullHalfToQuarter(key, windowState);
             // 1.find the half screen, convert it to quarter, set align to start or end, and
@@ -201,10 +220,6 @@ public class ScreenSplitHelper {
             //  to half, set these two half screens' alignment, and bring to front
             // 3.bring other views to front
             quarterToHalf(windowState);
-        }
-
-        if (mOnWindowSizeChanged != null) {
-            mOnWindowSizeChanged.onSizeChanged();
         }
     }
 
@@ -225,7 +240,17 @@ public class ScreenSplitHelper {
      * @param state current clicked view
      */
     private void halfToFull(@NonNull String key, @NonNull WindowState state) {
-        onHalfToFullListening(state);
+        // onHalfToFullListening(state);
+        TransitionHelper helper = new TransitionHelper(state, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "halfToFull onFinish: ");
+                halfToFullOnChanged(state);
+                halfToQuarter(true);
+            }
+        });
+        helper.beginDelayedTransition();
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
                 ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
@@ -238,50 +263,60 @@ public class ScreenSplitHelper {
         state.getView().setLayoutParams(layoutParams);
         state.setState(WindowState.FULL_SCREEN);
         mWindowStates.put(key, state);
-        OnChangeToFull changeToFull = mFullStateCallBacks.get(key);
+    }
+
+    /**
+     * 被点击的半屏转全屏完成后会回调此接口。
+     * @param view 被点击的半屏
+     */
+    private void halfToFullOnChanged(@NonNull WindowState view) {
+        OnChangeToFull changeToFull = mFullStateCallBacks.get(String.valueOf(view.getView()
+                .getId()));
         if (changeToFull != null) {
             changeToFull.onFull();
         }
     }
 
-    /**
-     * 半屏转全屏场景，位全屏添加动画监听，然后在动画监听里处理四分屏事件。
-     *
-     * @param state current clicked view
-     */
-    private void onHalfToFullListening(@NonNull WindowState state) {
-        mTransitionListener = new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mTransitionFull.removeListener(mTransitionListener);
-                halfToQuarter(true);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-                mTransitionFull.removeListener(mTransitionListener);
-                halfToQuarter(false);
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-                // nothing
-            }
-        };
-        mTransitionFull.addListener(mTransitionListener);
-        TransitionManager.beginDelayedTransition((ViewGroup) state.getView().getParent(),
-                mTransitionFull);
-    }
+    // /**
+    //  * 半屏转全屏场景，位全屏添加动画监听，然后在动画监听里处理四分屏事件。
+    //  *
+    //  * @param state current clicked view
+    //  */
+    // private void onHalfToFullListening(@NonNull WindowState state) {
+    //     mTransitionListener = new Transition.TransitionListener() {
+    //         @Override
+    //         public void onTransitionStart(Transition transition) {
+    //             // nothing
+    //         }
+    //
+    //         @Override
+    //         public void onTransitionEnd(Transition transition) {
+    //             mTransitionFull.removeListener(mTransitionListener);
+    //             halfToFullOnChanged(state);
+    //             halfToQuarter(true);
+    //         }
+    //
+    //         @Override
+    //         public void onTransitionCancel(Transition transition) {
+    //             mTransitionFull.removeListener(mTransitionListener);
+    //             halfToFullOnChanged(state);
+    //             halfToQuarter(false);
+    //         }
+    //
+    //         @Override
+    //         public void onTransitionPause(Transition transition) {
+    //             // nothing
+    //         }
+    //
+    //         @Override
+    //         public void onTransitionResume(Transition transition) {
+    //             // nothing
+    //         }
+    //     };
+    //     mTransitionFull.addListener(mTransitionListener);
+    //     TransitionManager.beginDelayedTransition((ViewGroup) state.getView().getParent(),
+    //             mTransitionFull);
+    // }
 
     /**
      * 半屏转四分屏幕。
@@ -311,6 +346,8 @@ public class ScreenSplitHelper {
         }
 
         if (halfScreen == null || fullScreen == null) {
+            Log.d(TAG, "halfToQuarter: halfScreen == null || fullScreen == null");
+            mIsSizeChanging = false;
             return;
         }
 
@@ -338,8 +375,14 @@ public class ScreenSplitHelper {
         } else {// this half screen is swappable.当前半屏view是gravity等于center的view
             halfToQuarterFromCenter(activeAnimation, halfScreen, lpEnd, quarterScreen, fullScreen);
         }
+    }
 
-        OnChangeToQuarter changeToQuarter = mQuarterStateCallBacks.get(String.valueOf(halfScreen
+    /**
+     * 被点击的半屏的另外一个半屏转换四分屏完成后调用。
+     * @param view 被点击的半屏的另外一个半屏
+     */
+    private void halfToQuarterOnChanged(@NonNull WindowState view) {
+        OnChangeToQuarter changeToQuarter = mQuarterStateCallBacks.get(String.valueOf(view
                 .getView().getId()));
         if (changeToQuarter != null) {
             changeToQuarter.onQuarter();
@@ -376,33 +419,48 @@ public class ScreenSplitHelper {
     private void halfToQuarterFromStart(boolean activeAnimation, @NonNull WindowState halfScreen,
             @NonNull ConstraintLayout.LayoutParams lpStart,
             @NonNull ConstraintLayout.LayoutParams lpEnd,
-            @Nullable WindowState quarterScreen) {
+            @Nullable final WindowState quarterScreen) {
+        TransitionHelper helper = new TransitionHelper(halfScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: halfToQuarterFromStart");
+                halfToQuarterOnChanged(halfScreen);
+                if (quarterScreen != null) {
+                    // TODO 缺动画，缩放，fade in
+                    // if (activeAnimation) {
+                    //     TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
+                    //             .getParent(), mTransitionLayoutEnd);
+                    // }
+                    // it's already been in quarter state, align it to end.
+                    if (quarterScreen.getView().getId() == mSwapId) {//固定位置，右对齐
+                        lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                        lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                        quarterScreen.getView().setLayoutParams(lpEnd);
+                    }
+
+                    quarterScreen.getView().bringToFront();
+                }
+
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
         // convert it to quarter start screen.
         lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
         lpStart.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        if (activeAnimation) {
-            TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
-                    mTransitionLayoutStart);
-        }
+        // TODO 缺动画，缩放，fade in
+        // if (activeAnimation) {
+        //     TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
+        //             mTransitionLayoutStart);
+        // }
         halfScreen.getView().setLayoutParams(lpStart);
         halfScreen.getView().bringToFront();
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
-
-        if (quarterScreen != null) {
-            if (activeAnimation) {
-                TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
-                        .getParent(), mTransitionLayoutEnd);
-            }
-            // it's already been in quarter state, align it to end.
-            if (quarterScreen.getView().getId() == mSwapId) {//固定位置，右对齐
-                lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                quarterScreen.getView().setLayoutParams(lpEnd);
-            }
-
-            quarterScreen.getView().bringToFront();
-        }
     }
 
     /**
@@ -417,31 +475,46 @@ public class ScreenSplitHelper {
             @NonNull ConstraintLayout.LayoutParams lpStart,
             @NonNull ConstraintLayout.LayoutParams lpEnd,
             @Nullable WindowState quarterScreen) {
+        TransitionHelper helper = new TransitionHelper(halfScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: halfToQuarterFromEnd");
+                halfToQuarterOnChanged(halfScreen);
+                if (quarterScreen != null) {// quarter start screen.
+                    // TODO 缺动画，缩放，fade in
+                    // if (activeAnimation) {
+                    //     TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
+                    //             .getParent(), mTransitionLayoutStart);
+                    // }
+                    if (quarterScreen.getView().getId() == mSwapId) {
+                        lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                        //两个右下角半屏，地图位于右下角，其中一个半屏变全屏，另外一个半屏移动到右下角，地图被覆盖
+                        lpStart.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                        quarterScreen.getView().setLayoutParams(lpStart);
+                    }
+                    quarterScreen.getView().bringToFront();
+                }
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+         }
+        });
+        helper.beginDelayedTransition();
+
         // convert it to quarter end screen.
         lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        if (activeAnimation) {
-            TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
-                    mTransitionLayoutEnd);
-        }
+        // TODO 缺动画，缩放，fade in
+        // if (activeAnimation) {
+        //     TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
+        //             mTransitionLayoutEnd);
+        // }
         halfScreen.getView().setLayoutParams(lpEnd);
         halfScreen.getView().bringToFront();
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
-
-        if (quarterScreen != null) {// quarter start screen.
-            if (activeAnimation) {
-                TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
-                        .getParent(), mTransitionLayoutStart);
-            }
-            if (quarterScreen.getView().getId() == mSwapId) {
-                lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                //两个右下角半屏，地图位于右下角，其中一个半屏变全屏，另外一个半屏移动到右下角，地图被覆盖
-                lpStart.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                quarterScreen.getView().setLayoutParams(lpStart);
-            }
-            quarterScreen.getView().bringToFront();
-        }
     }
 
     /**
@@ -455,6 +528,30 @@ public class ScreenSplitHelper {
             @NonNull ConstraintLayout.LayoutParams lpEnd,
             @Nullable WindowState quarterScreen,
             @NonNull WindowState fullScreen) {
+        TransitionHelper helper = new TransitionHelper(halfScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: halfToQuarterFromCenter");
+                halfToQuarterOnChanged(halfScreen);
+
+                if (quarterScreen != null) {
+                    // TODO 缺动画，缩放，fade in
+                    // if (activeAnimation) {
+                    //     TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
+                    //             .getParent(), mTransitionLayoutEnd);
+                    // }
+                    quarterScreen.getView().bringToFront();
+                }
+
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
+
         int qG = quarterScreen != null ? quarterScreen.getGravity() : fullScreen.getGravity();
         if (qG == WindowState.END) {
             lpEnd.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
@@ -463,22 +560,15 @@ public class ScreenSplitHelper {
         }
 
         lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        if (activeAnimation) {
-            TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
-                    mTransitionLayoutStart);
-        }
+        // TODO 缺动画，缩放，fade in
+        // if (activeAnimation) {
+        //     TransitionManager.beginDelayedTransition((ViewGroup) halfScreen.getView().getParent(),
+        //             mTransitionLayoutStart);
+        // }
         halfScreen.getView().setLayoutParams(lpEnd);
         halfScreen.getView().bringToFront();
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
-
-        if (quarterScreen != null) {
-            if (activeAnimation) {
-                TransitionManager.beginDelayedTransition((ViewGroup) quarterScreen.getView()
-                        .getParent(), mTransitionLayoutEnd);
-            }
-            quarterScreen.getView().bringToFront();
-        }
     }
 
     /**
@@ -502,6 +592,8 @@ public class ScreenSplitHelper {
         }
 
         if (fullScreen == null) {
+            Log.d(TAG, "quarterToHalf: fullScreen == null");
+            mIsSizeChanging = false;
             return; // 在半屏状态下点击小屏的场景
         }
 
@@ -530,12 +622,25 @@ public class ScreenSplitHelper {
         } else {
             quarterToHalfFromCenter(view, lpStart, lpEnd, fullScreen, quarter);
         }
+    }
 
-        OnChangeToHalf qState = mHalfStateCallBacks.get(String.valueOf(view.getView()
+    /**
+     * 被点击的四分屏转半屏完成后会回调此接口。
+     * @param quarter 被点击的四分屏幕
+     */
+    private void quarterToHalfOnChanged(@NonNull WindowState quarter) {
+        OnChangeToHalf qState = mHalfStateCallBacks.get(String.valueOf(quarter.getView()
                 .getId()));
         if (qState != null) {
             qState.onHalf();
         }
+    }
+
+    /**
+     * 四分屏被点击，转半屏完成后，全屏将转半屏，全屏转半屏完成后会回调此接口。
+     * @param fullScreen 要转换的全屏
+     */
+    private void fullToHalfOnChanged(@NonNull WindowState fullScreen) {
         OnChangeToHalf fState = mHalfStateCallBacks.get(String.valueOf(fullScreen.getView()
                 .getId()));
         if (fState != null) {
@@ -552,45 +657,59 @@ public class ScreenSplitHelper {
      * @param fullScreen 此时的全屏view
      * @param theOtherQuarter 另外一个四分屏
      */
-    private void quarterToHalfFromStart(@NonNull WindowState view,
+    private void quarterToHalfFromStart(@NonNull final WindowState view,
             @NonNull final ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
-            @NonNull final WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
-        mTransitionListener = new Transition.TransitionListener() {
+            @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(view, fullScreen, theOtherQuarter);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
             @Override
-            public void onTransitionStart(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mTransitionLayoutStart.removeListener(mTransitionListener);
-                TransitionManager
-                        .beginDelayedTransition((ViewGroup) fullScreen.getView().getParent(),
-                                mTransitionLayoutEnd);
-                onEndQuarterToHalfFromStart(view, lpEnd, fullScreen, theOtherQuarter);
-
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-                mTransitionLayoutStart.removeListener(mTransitionListener);
+            public void onFinish() {
+                Log.d(TAG, "onFinish: quarterToHalfFromStart");
+                quarterToHalfOnChanged(view);
                 onEndQuarterToHalfFromStart(view, lpEnd, fullScreen, theOtherQuarter);
             }
+        });
+        helper.beginDelayedTransition();
+        // mTransitionListener = new Transition.TransitionListener() {
+        //     @Override
+        //     public void onTransitionStart(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionEnd(Transition transition) {
+        //         mTransitionLayoutStart.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         // TransitionManager
+        //         //         .beginDelayedTransition((ViewGroup) fullScreen.getView().getParent(),
+        //         //                 mTransitionLayoutEnd);
+        //         onEndQuarterToHalfFromStart(view, lpEnd, fullScreen, theOtherQuarter);
+        //
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionCancel(Transition transition) {
+        //         mTransitionLayoutStart.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         onEndQuarterToHalfFromStart(view, lpEnd, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionPause(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionResume(Transition transition) {
+        //         // nothing
+        //     }
+        // };
+        //
+        // mTransitionLayoutStart.addListener(mTransitionListener);
+        // TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
+        //         mTransitionLayoutStart);
 
-            @Override
-            public void onTransitionPause(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-                // nothing
-            }
-        };
-        mTransitionLayoutStart.addListener(mTransitionListener);
-        TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
-                mTransitionLayoutStart);
         lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
         view.getView().setLayoutParams(lpStart);
         view.setState(WindowState.HALF_SCREEN);
@@ -606,15 +725,30 @@ public class ScreenSplitHelper {
      */
     private void onEndQuarterToHalfFromStart(@NonNull WindowState view,
             @NonNull ConstraintLayout.LayoutParams lpEnd,
-            @NonNull WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
+            @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: onEndQuarterToHalfFromStart");
+                fullToHalfOnChanged(fullScreen);
+                // TODO 缺少动画，fade in
+                if (theOtherQuarter != null) {
+                    theOtherQuarter.getView().bringToFront();
+                }
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
+        // TODO 缺少动画，大小缩放，fade in
         lpEnd.startToEnd = view.getView().getId();
         lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         fullScreen.getView().setLayoutParams(lpEnd);
         fullScreen.setState(WindowState.HALF_SCREEN);
         mWindowStates.put(String.valueOf(fullScreen.getView().getId()), fullScreen);
-        if (theOtherQuarter != null) {
-            theOtherQuarter.getView().bringToFront();
-        }
     }
 
     /**
@@ -630,39 +764,52 @@ public class ScreenSplitHelper {
             @NonNull final ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
             @NonNull final WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
-        mTransitionListener = new Transition.TransitionListener() {
+        TransitionHelper helper = new TransitionHelper(view, fullScreen, theOtherQuarter);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
             @Override
-            public void onTransitionStart(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mTransitionLayoutEnd.removeListener(mTransitionListener);
-                TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
-                        .getParent(), mTransitionLayoutStart);
+            public void onFinish() {
+                Log.d(TAG, "onFinish: quarterToHalfFromEnd");
+                quarterToHalfOnChanged(view);
                 onEndQuarterToHalfFromEnd(view, lpStart, fullScreen, theOtherQuarter);
             }
+        });
+        helper.beginDelayedTransition();
 
-            @Override
-            public void onTransitionCancel(Transition transition) {
-                mTransitionLayoutEnd.removeListener(mTransitionListener);
-                onEndQuarterToHalfFromEnd(view, lpStart, fullScreen, theOtherQuarter);
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-                // nothing
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-                // nothing
-            }
-        };
-        mTransitionLayoutEnd.addListener(mTransitionListener);
-        TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
-                mTransitionLayoutEnd);
+        // mTransitionListener = new Transition.TransitionListener() {
+        //     @Override
+        //     public void onTransitionStart(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionEnd(Transition transition) {
+        //         mTransitionLayoutEnd.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         // TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
+        //         //         .getParent(), mTransitionLayoutStart);
+        //         onEndQuarterToHalfFromEnd(view, lpStart, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionCancel(Transition transition) {
+        //         mTransitionLayoutEnd.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         onEndQuarterToHalfFromEnd(view, lpStart, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionPause(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionResume(Transition transition) {
+        //         // nothing
+        //     }
+        // };
+        // mTransitionLayoutEnd.addListener(mTransitionListener);
+        // TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
+        //         mTransitionLayoutEnd);
         lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         view.getView().setLayoutParams(lpEnd);
         view.setState(WindowState.HALF_SCREEN);
@@ -678,15 +825,30 @@ public class ScreenSplitHelper {
      */
     private void onEndQuarterToHalfFromEnd(@NonNull WindowState view,
             @NonNull ConstraintLayout.LayoutParams lpStart,
-            @NonNull WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
+            @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        // TODO 缺少动画，大小缩放，fade in
+        TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: onEndQuarterToHalfFromEnd");
+                fullToHalfOnChanged(fullScreen);
+                // TODO 缺少动画，fade in
+                if (theOtherQuarter != null) {
+                    theOtherQuarter.getView().bringToFront();
+                }
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
         lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
         lpStart.endToStart = view.getView().getId();
         fullScreen.getView().setLayoutParams(lpStart);
         fullScreen.setState(WindowState.HALF_SCREEN);
         mWindowStates.put(String.valueOf(fullScreen.getView().getId()), fullScreen);
-        if (theOtherQuarter != null) {
-            theOtherQuarter.getView().bringToFront();
-        }
     }
 
     /**
@@ -702,109 +864,225 @@ public class ScreenSplitHelper {
             @NonNull final ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
             @NonNull final WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
-        onQuarterToHalfFromCenterListening(lpStart, lpEnd, fullScreen);
+        // onQuarterToHalfFromCenterListening(lpStart, lpEnd, fullScreen, theOtherQuarter);
         int fG = fullScreen.getGravity();
         if (fG == WindowState.END) {
-            TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
-                    mTransitionLayoutStart);
-            lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-            view.getView().setLayoutParams(lpStart);
+            quarterToHalfFromCenterWithFullEnd(view, lpStart, lpEnd, fullScreen, theOtherQuarter);
         } else {
-            TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
-                    mTransitionLayoutEnd);
-            lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-            view.getView().setLayoutParams(lpEnd);
-        }
-        view.setState(WindowState.HALF_SCREEN);
-        mWindowStates.put(String.valueOf(view.getView().getId()), view);
-
-        if (theOtherQuarter != null) {
-            theOtherQuarter.getView().bringToFront();
+            quarterToHalfFromCenterWithFullStart(view, lpStart, lpEnd, fullScreen, theOtherQuarter);
         }
     }
 
     /**
-     * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作的后半部分流程——全屏属于原始end位置的view，
-     * 将该View复原到end位置，将原始属于start位置位置的view该View复原到start位置，并且半屏。
+     * 被点击的四分屏是交互区域的原中心分屏，当前的全屏是原end区域的。
      *
+     * @param view       the clicked quarter view
      * @param lpStart    start位置的view布局参数
      * @param lpEnd      end位置的view布局参数
      * @param fullScreen 此时的全屏view
+     * @param theOtherQuarter 另外一个四分屏
      */
-    private void onQuarterToHalfFromCenterListening(
+    private void quarterToHalfFromCenterWithFullEnd(@NonNull final WindowState view,
+          @NonNull final ConstraintLayout.LayoutParams lpStart,
+          @NonNull final ConstraintLayout.LayoutParams lpEnd,
+          @NonNull final WindowState fullScreen, @Nullable WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(view, fullScreen, theOtherQuarter);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: quarterToHalfFromCenterWithFullEnd");
+                quarterToHalfOnChanged(view);
+                onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+            }
+        });
+        helper.beginDelayedTransition();
+        // mTransitionListener = new Transition.TransitionListener() {
+        //     @Override
+        //     public void onTransitionStart(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionEnd(Transition transition) {
+        //         mTransitionLayoutStart.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         // TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
+        //         //         .getParent(), mTransitionLayoutEnd);
+        //         onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionCancel(Transition transition) {
+        //         mTransitionLayoutStart.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionPause(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionResume(Transition transition) {
+        //         // nothing
+        //     }
+        // };
+        // mTransitionLayoutStart.addListener(mTransitionListener);
+        // TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
+        //         mTransitionLayoutStart);
+        lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+        view.getView().setLayoutParams(lpStart);
+        view.setState(WindowState.HALF_SCREEN);
+        mWindowStates.put(String.valueOf(view.getView().getId()), view);
+    }
+
+    /**
+     * 被点击的四分屏是交互区域的原中心分屏，当前的全屏是原end区域的。
+     *
+     * @param view       the clicked quarter view
+     * @param lpStart    start位置的view布局参数
+     * @param lpEnd      end位置的view布局参数
+     * @param fullScreen 此时的全屏view
+     * @param theOtherQuarter 另外一个四分屏
+     */
+    private void quarterToHalfFromCenterWithFullStart(@NonNull final WindowState view,
             @NonNull final ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
-            @NonNull final WindowState fullScreen) {
-        Transition transition;
-        int fG = fullScreen.getGravity();
-        if (fG == WindowState.END) {
-            transition = mTransitionLayoutStart;
-            mTransitionListener = new Transition.TransitionListener() {
-                @Override
-                public void onTransitionStart(Transition transition) {
-                    // nothing
-                }
-
-                @Override
-                public void onTransitionEnd(Transition transition) {
-                    mTransitionLayoutStart.removeListener(mTransitionListener);
-                    TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
-                            .getParent(), mTransitionLayoutEnd);
-                    onQuarterToHalfFromCenterEnd(lpEnd, fullScreen);
-                }
-
-                @Override
-                public void onTransitionCancel(Transition transition) {
-                    mTransitionLayoutStart.removeListener(mTransitionListener);
-                    onQuarterToHalfFromCenterEnd(lpEnd, fullScreen);
-                }
-
-                @Override
-                public void onTransitionPause(Transition transition) {
-                    // nothing
-                }
-
-                @Override
-                public void onTransitionResume(Transition transition) {
-                    // nothing
-                }
-            };
-        } else {
-            transition = mTransitionLayoutEnd;
-            mTransitionListener = new Transition.TransitionListener() {
-                @Override
-                public void onTransitionStart(Transition transition) {
-                    // nothing
-                }
-
-                @Override
-                public void onTransitionEnd(Transition transition) {
-                    mTransitionLayoutEnd.removeListener(mTransitionListener);
-                    TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
-                            .getParent(), mTransitionLayoutStart);
-                    onQuarterToHalfFromCenterStart(lpStart, fullScreen);
-                }
-
-                @Override
-                public void onTransitionCancel(Transition transition) {
-                    mTransitionLayoutEnd.removeListener(mTransitionListener);
-                    onQuarterToHalfFromCenterStart(lpStart, fullScreen);
-                }
-
-                @Override
-                public void onTransitionPause(Transition transition) {
-                    // nothing
-                }
-
-                @Override
-                public void onTransitionResume(Transition transition) {
-                    // nothing
-                }
-            };
-        }
-        transition.addListener(mTransitionListener);
-
+            @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(view, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: quarterToHalfFromCenterWithFullStart");
+                quarterToHalfOnChanged(view);
+                onQuarterToHalfFromCenterStart(lpStart, fullScreen, theOtherQuarter);
+            }
+        });
+        helper.beginDelayedTransition();
+        // mTransitionListener = new Transition.TransitionListener() {
+        //     @Override
+        //     public void onTransitionStart(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionEnd(Transition transition) {
+        //         mTransitionLayoutEnd.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         // TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
+        //         //         .getParent(), mTransitionLayoutStart);
+        //         onQuarterToHalfFromCenterStart(lpStart, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionCancel(Transition transition) {
+        //         mTransitionLayoutEnd.removeListener(mTransitionListener);
+        //         quarterToHalfOnChanged(view);
+        //         onQuarterToHalfFromCenterStart(lpStart, fullScreen, theOtherQuarter);
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionPause(Transition transition) {
+        //         // nothing
+        //     }
+        //
+        //     @Override
+        //     public void onTransitionResume(Transition transition) {
+        //         // nothing
+        //     }
+        // };
+        // mTransitionLayoutEnd.addListener(mTransitionListener);
+        // TransitionManager.beginDelayedTransition((ViewGroup) view.getView().getParent(),
+        //         mTransitionLayoutEnd);
+        lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+        view.getView().setLayoutParams(lpEnd);
+        view.setState(WindowState.HALF_SCREEN);
+        mWindowStates.put(String.valueOf(view.getView().getId()), view);
     }
+
+    // /**
+    //  * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作的后半部分流程——全屏属于原始end位置的view，
+    //  * 将该View复原到end位置，将原始属于start位置位置的view该View复原到start位置，并且半屏。
+    //  *
+    //  * @param lpStart    start位置的view布局参数
+    //  * @param lpEnd      end位置的view布局参数
+    //  * @param fullScreen 此时的全屏view
+    //  */
+    // private void onQuarterToHalfFromCenterListening(
+    //         @NonNull final ConstraintLayout.LayoutParams lpStart,
+    //         @NonNull final ConstraintLayout.LayoutParams lpEnd,
+    //         @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+    //     Transition transition;
+    //     int fG = fullScreen.getGravity();
+    //     if (fG == WindowState.END) {
+    //         transition = mTransitionLayoutStart;
+    //         mTransitionListener = new Transition.TransitionListener() {
+    //             @Override
+    //             public void onTransitionStart(Transition transition) {
+    //                 // nothing
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionEnd(Transition transition) {
+    //                 mTransitionLayoutStart.removeListener(mTransitionListener);
+    //                 // TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
+    //                 //         .getParent(), mTransitionLayoutEnd);
+    //                 onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionCancel(Transition transition) {
+    //                 mTransitionLayoutStart.removeListener(mTransitionListener);
+    //                 onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionPause(Transition transition) {
+    //                 // nothing
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionResume(Transition transition) {
+    //                 // nothing
+    //             }
+    //         };
+    //     } else {
+    //         transition = mTransitionLayoutEnd;
+    //         mTransitionListener = new Transition.TransitionListener() {
+    //             @Override
+    //             public void onTransitionStart(Transition transition) {
+    //                 // nothing
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionEnd(Transition transition) {
+    //                 mTransitionLayoutEnd.removeListener(mTransitionListener);
+    //                 // TransitionManager.beginDelayedTransition((ViewGroup) fullScreen.getView()
+    //                 //         .getParent(), mTransitionLayoutStart);
+    //                 onQuarterToHalfFromCenterStart(lpStart, fullScreen);
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionCancel(Transition transition) {
+    //                 mTransitionLayoutEnd.removeListener(mTransitionListener);
+    //                 onQuarterToHalfFromCenterStart(lpStart, fullScreen);
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionPause(Transition transition) {
+    //                 // nothing
+    //             }
+    //
+    //             @Override
+    //             public void onTransitionResume(Transition transition) {
+    //                 // nothing
+    //             }
+    //         };
+    //     }
+    //     transition.addListener(mTransitionListener);
+    //
+    // }
 
     /**
      * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作的后半部分流程——全屏属于原始end位置的view，
@@ -813,12 +1091,30 @@ public class ScreenSplitHelper {
      * @param lpEnd      end位置的view布局参数
      * @param fullScreen 此时的全屏view
      */
-    private void onQuarterToHalfFromCenterEnd(
-            @NonNull ConstraintLayout.LayoutParams lpEnd, @NonNull WindowState fullScreen) {
+    private void onQuarterToHalfFromCenterEnd(@NonNull ConstraintLayout.LayoutParams lpEnd,
+            @NonNull WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                fullToHalfOnChanged(fullScreen);
+                // TODO 缺动画，fade in
+                if (theOtherQuarter != null) {
+                    theOtherQuarter.getView().bringToFront();
+                }
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
+        // TODO 缺少动画，大小缩放，fade in
         lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         fullScreen.getView().setLayoutParams(lpEnd);
         fullScreen.setState(WindowState.HALF_SCREEN);
         mWindowStates.put(String.valueOf(fullScreen.getView().getId()), fullScreen);
+
     }
 
     /**
@@ -829,7 +1125,26 @@ public class ScreenSplitHelper {
      * @param fullScreen 此时的全屏view
      */
     private void onQuarterToHalfFromCenterStart(@NonNull ConstraintLayout.LayoutParams lpStart,
-            @NonNull WindowState fullScreen) {
+            @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
+            @Override
+            public void onFinish() {
+                Log.d(TAG, "onFinish: onQuarterToHalfFromCenterStart");
+                fullToHalfOnChanged(fullScreen);
+                // TODO 缺动画，fade in
+                if (theOtherQuarter != null) {
+                    theOtherQuarter.getView().bringToFront();
+                }
+                mIsSizeChanging = false;
+                if (mOnWindowSizeChanged != null) {
+                    mOnWindowSizeChanged.onSizeChanged();
+                }
+            }
+        });
+        helper.beginDelayedTransition();
+
+        // TODO 缺少动画，大小缩放，fade in
         lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
         fullScreen.getView().setLayoutParams(lpStart);
         fullScreen.setState(WindowState.HALF_SCREEN);
