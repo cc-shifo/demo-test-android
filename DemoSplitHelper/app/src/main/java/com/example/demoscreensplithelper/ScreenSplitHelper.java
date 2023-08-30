@@ -11,6 +11,9 @@
 package com.example.demoscreensplithelper;
 
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -185,6 +188,15 @@ public class ScreenSplitHelper {
             // 3.bring other views to front
             quarterToHalf(windowState);
         }
+    }
+
+    private int getViewIndex(View view) {
+        ViewParent parent = view.getParent();
+        if (parent instanceof ViewGroup) {
+            return ((ViewGroup) parent).indexOfChild(view);
+        }
+
+        return -1;
     }
 
     /**
