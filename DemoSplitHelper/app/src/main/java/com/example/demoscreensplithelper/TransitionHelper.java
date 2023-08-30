@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * 对ChangeBounds动画的封装，用于显示窗口切换过程中UI控件边界变化的动画效果。
+ */
 public class TransitionHelper implements Transition.TransitionListener {
     private static final String TAG = "TransitionHelper";
     private OnFinishListener mOnFinishListener;
@@ -18,29 +20,17 @@ public class TransitionHelper implements Transition.TransitionListener {
     /**
      * 当前动画的View
      */
-    private WindowState mView;
-    /**
-     * 下一个动画
-     */
-    private ConstraintLayout.LayoutParams lpStart;
-    /**
-     * 下一个动画的View
-     */
-    private WindowState mNext;
-    /**
-     * 最后一个动画的View
-     */
-    @Nullable
-    private WindowState mTheOther;
+    private final WindowState mView;
 
-    public TransitionHelper(@NonNull WindowState view, @Nullable WindowState next,
-            @Nullable WindowState theOtherQuarter) {
+    public TransitionHelper(@NonNull WindowState view) {
         mView = view;
-        mNext = next;
-        mTheOther = theOtherQuarter;
         mChangeBound.addListener(this);
     }
 
+    /**
+     * 设置ChangeBounds动画的持续时间
+     * @param duration 动画的持续时间
+     */
     public void setDuration(long duration) {
         mChangeBound.setDuration(duration);
     }
@@ -49,12 +39,18 @@ public class TransitionHelper implements Transition.TransitionListener {
         return mChangeBound.getDuration();
     }
 
+    /**
+     * 设置动画结束时的调用函数。
+     * @param onFinishListener 动画结束时调用的函数。
+     */
     public void setOnFinishListener(@Nullable OnFinishListener onFinishListener) {
         mOnFinishListener = onFinishListener;
     }
 
+    /**
+     * 启动场景动画
+     */
     public void beginDelayedTransition() {
-        // TransitionManager.beginDelayedTransition((ViewGroup) mView.getView().getParent(),
         TransitionManager.beginDelayedTransition((ViewGroup) mView.getView(),
                 mChangeBound);
     }
@@ -94,6 +90,9 @@ public class TransitionHelper implements Transition.TransitionListener {
         Log.d(TAG, "onTransitionResume: ");
     }
 
+    /**
+     * 场景动画结束时调用的接口。
+     */
     public interface OnFinishListener {
         void onFinish();
     }
