@@ -661,11 +661,12 @@ public class ScreenSplitHelper {
             @NonNull final ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
             @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
-        TransitionHelper helper = new TransitionHelper(view, fullScreen, theOtherQuarter);
+        final TransitionHelper helper = new TransitionHelper(view, fullScreen, theOtherQuarter);
+        // helper.setDuration(200);
         helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
             @Override
             public void onFinish() {
-                Log.d(TAG, "onFinish: quarterToHalfFromStart");
+                Log.d(TAG, "onFinish: quarterToHalfFromStart: " + helper.getDuration());
                 quarterToHalfOnChanged(view);
                 onEndQuarterToHalfFromStart(view, lpEnd, fullScreen, theOtherQuarter);
             }
@@ -726,11 +727,12 @@ public class ScreenSplitHelper {
     private void onEndQuarterToHalfFromStart(@NonNull WindowState view,
             @NonNull ConstraintLayout.LayoutParams lpEnd,
             @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
-        TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        final TransitionHelper helper = new TransitionHelper(fullScreen, null, null);
+        // helper.setDuration(100);
         helper.setOnFinishListener(new TransitionHelper.OnFinishListener() {
             @Override
             public void onFinish() {
-                Log.d(TAG, "onFinish: onEndQuarterToHalfFromStart");
+                Log.d(TAG, "onFinish: onEndQuarterToHalfFromStart: " + helper.getDuration());
                 fullToHalfOnChanged(fullScreen);
                 // TODO 缺少动画，fade in
                 if (theOtherQuarter != null) {

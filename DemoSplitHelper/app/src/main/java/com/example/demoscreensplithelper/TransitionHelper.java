@@ -41,6 +41,14 @@ public class TransitionHelper implements Transition.TransitionListener {
         mChangeBound.addListener(this);
     }
 
+    public void setDuration(long duration) {
+        mChangeBound.setDuration(duration);
+    }
+
+    public long getDuration() {
+        return mChangeBound.getDuration();
+    }
+
     public void setOnFinishListener(@Nullable OnFinishListener onFinishListener) {
         mOnFinishListener = onFinishListener;
     }
