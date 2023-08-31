@@ -445,6 +445,9 @@ public class ScreenSplitHelper {
 
         final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
+        if (isOppositeSideMoveCase) {
+            helper.setDuration(100);
+        }
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromStart");
             halfToQuarterOnChanged(halfScreen);
@@ -494,6 +497,9 @@ public class ScreenSplitHelper {
 
         final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
+        if (isOppositeSideMoveCase) {
+            helper.setDuration(100);
+        }
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromEnd");
             halfToQuarterOnChanged(halfScreen);
@@ -541,6 +547,9 @@ public class ScreenSplitHelper {
 
         final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
+        if (isOppositeSideMoveCase) {
+            helper.setDuration(100);
+        }
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromCenter");
             halfToQuarterOnChanged(halfScreen);

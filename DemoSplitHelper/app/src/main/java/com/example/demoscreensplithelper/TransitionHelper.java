@@ -5,13 +5,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
-import androidx.transition.ChangeScroll;
-import androidx.transition.ChangeTransform;
 import androidx.transition.Explode;
 import androidx.transition.Fade;
-import androidx.transition.Slide;
+import androidx.transition.SidePropagation;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
@@ -34,11 +31,9 @@ public class TransitionHelper implements Transition.TransitionListener {
 
     public TransitionHelper(@NonNull WindowState view, boolean autoTransition) {
         mView = view;
-        mChangeBound = !autoTransition ? new ChangeBounds() : new AutoTransition();
+        mChangeBound = !autoTransition ? new ChangeBounds() : new Fade();
         mChangeBound.addListener(this);
     }
-
-
 
     /**
      * 设置ChangeBounds动画的持续时间
