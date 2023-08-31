@@ -1,12 +1,12 @@
 package com.example.demoscreensplithelper;
 
 import android.content.Context;
-import android.transition.ChangeBounds;
-import android.transition.ChangeScroll;
-
-import android.transition.Explode;
-import android.transition.TransitionSet;
 import android.util.AttributeSet;
+
+import androidx.transition.ChangeBounds;
+import androidx.transition.Explode;
+import androidx.transition.TransitionSet;
+
 
 public class SceneTransition extends TransitionSet {
     public SceneTransition() {

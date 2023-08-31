@@ -1,13 +1,13 @@
 package com.example.demoscreensplithelper;
 
-import android.transition.ChangeBounds;
-import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.transition.ChangeBounds;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 /**
  * 对ChangeBounds动画的封装，用于显示窗口切换过程中UI控件边界变化的动画效果。
