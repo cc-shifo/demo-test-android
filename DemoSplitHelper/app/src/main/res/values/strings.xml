@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">DemoScreenSplitHelper</string>
-    <string name="tv_map">map</string>
-    <string name="tv_fpv">fpv</string>
-    <string name="tv_pcd">point cloud</string>
-    <string name="hello_map">Hello World! Map</string>
-    <string name="hello_fpv">Hello World! Fpv</string>
+    <string name="tv_map">center</string>
+    <string name="tv_fpv">video</string>
+    <string name="tv_pcd">remote</string>
+    <string name="hello_map">Hello World! Center</string>
+    <string name="hello_fpv">Hello World! video</string>
 </resources>

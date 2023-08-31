@@ -6,6 +6,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.transition.ChangeBounds;
+import androidx.transition.ChangeScroll;
+import androidx.transition.ChangeTransform;
+import androidx.transition.Explode;
+import androidx.transition.Fade;
+import androidx.transition.Slide;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
@@ -15,7 +20,7 @@ import androidx.transition.TransitionManager;
 public class TransitionHelper implements Transition.TransitionListener {
     private static final String TAG = "TransitionHelper";
     private OnFinishListener mOnFinishListener;
-    private final Transition mChangeBound = new ChangeBounds();
+    private Transition mChangeBound;
 
     /**
      * 当前动画的View
@@ -23,9 +28,16 @@ public class TransitionHelper implements Transition.TransitionListener {
     private final WindowState mView;
 
     public TransitionHelper(@NonNull WindowState view) {
+        this(view, false);
+    }
+
+    public TransitionHelper(@NonNull WindowState view, boolean scroll) {
         mView = view;
+        mChangeBound = !scroll ? new ChangeBounds() : new ChangeTransform();
         mChangeBound.addListener(this);
     }
+
+
 
     /**
      * 设置ChangeBounds动画的持续时间

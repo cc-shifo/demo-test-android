@@ -26,6 +26,7 @@ import java.util.HashMap;
  * 初始状态的左边小窗口决定了以后该窗口都是在左边。
  * 初始状态的右边小窗口决定了以后该窗口都是在右边。
  * 初始状态中央区域为可交换区。
+ * 左，中，右view的parent是同一个parent。
  */
 public class ScreenSplitHelper {
     private static final String TAG = "ScreenSplitHelper";
@@ -42,7 +43,19 @@ public class ScreenSplitHelper {
      * 由于窗口大小的变化添加了动画，动画播放需要时间，所以用此变量表示变化是否完成。
      */
     private boolean mIsSizeChanging;
+    /**
+     * 交换id。初次加载界面时，中间位置为交互区域，中间的这个view的id就是交互id。
+     */
     private int mSwapId;
+
+    /**
+     * 描述start区域的界面和end区域的界面进行对比，且四分屏（最开始位于中间区域的界面）位于点击界面的对侧这种场景。
+     * true表示是这种场景，否则false。
+     *
+     * start区域的界面和end区域的界面进行对比情况下，，被点击的界面和四分屏位于对侧时，半屏转四分屏前先移动四分屏
+     * 到半屏的对侧，后处理半屏转四分屏业务效果会更好
+     */
+    private boolean isOppositeSideMoveCase;
 
     public ScreenSplitHelper() {
         mWindowStates = new HashMap<>(4, 1);
@@ -168,15 +181,14 @@ public class ScreenSplitHelper {
             return;
         }
 
-        String key = String.valueOf(id);
-        WindowState windowState = mWindowStates.get(key);
+        WindowState windowState = mWindowStates.get(String.valueOf(id));
         if (windowState == null || windowState.getState() == WindowState.FULL_SCREEN) {
             return;
         }
 
         mIsSizeChanging = true;
         if (windowState.getState() == WindowState.HALF_SCREEN) {
-            halfToFullHalfToQuarter(key, windowState);
+            halfToFullHalfToQuarter(windowState);
             // 1.find the half screen, convert it to quarter, set align to start or end, and
             //  bring to front
             // 2.set align to end or start for the other quarter screen, and bring it to front
@@ -202,27 +214,58 @@ public class ScreenSplitHelper {
     /**
      * 半屏转全屏，全屏动画里对原半屏进行四分屏处理。
      *
-     * @param key   current view id
      * @param state current clicked view
      */
-    private void halfToFullHalfToQuarter(@NonNull String key, @NonNull WindowState state) {
-        halfToFull(key, state);
+    private void halfToFullHalfToQuarter(@NonNull WindowState state) {
+        halfToFullStep1(state);
     }
 
     /**
-     * 半屏转全屏
+     * 半屏转全屏。
+     * 如果是start和end进行对比，先移动四分屏，然后将被点击的半屏转全屏，将另外一个半屏转四分屏。
+     * 如果不是start和end进行对比，先将被点击的半屏转全屏，将另外一个半屏转四分屏，最后移动四分屏。
      *
-     * @param key   current view id
-     * @param state current clicked view
+     * @param view  current clicked view，是半屏
      */
-    private void halfToFull(@NonNull String key, @NonNull WindowState state) {
-        TransitionHelper helper = new TransitionHelper(state);
+    private void halfToFullStep1(@NonNull final WindowState view) {
+        int clickedId = view.getView().getId(); // 被点击的半屏
+
+        WindowState halfScreen = null;
+        WindowState quarterScreen = null;
+
+        // find half screen
+        // find quarter screen
+        for (WindowState win : mWindowStates.values()) {
+            int state = win.getState();
+            if (state == WindowState.QUARTER_SCREEN) {
+                quarterScreen = win;
+            } else if (win.getView().getId() != clickedId) {
+                halfScreen = win; // 此半屏将转成四分屏
+            }
+        }
+
+        isOppositeSideMoveCase = isStartVSEnd(view, halfScreen) && isOnOppositeSide(view,
+                quarterScreen);
+        if (isOppositeSideMoveCase) {
+            moveOppositeSideQuarter(view, quarterScreen);
+        } else {
+            halfToFullStep2(view);
+        }
+    }
+
+    /**
+     * 执行将被点击的半屏转全屏转成全屏，另外一个半屏转成四分屏
+     *
+     * @param view  current clicked view，是半屏
+     */
+    private void halfToFullStep2(@NonNull WindowState view) {
+        TransitionHelper helper = new TransitionHelper(view);
         helper.setOnFinishListener(() -> {
-            Log.d(TAG, "halfToFull onFinish: ");
-            halfToFullOnChanged(state);
-            halfToQuarter();
+            Log.d(TAG, "halfToFullStep2 onFinish: ");
+            halfToFullOnChanged(view);
+            halfToQuarter(view);
         });
-        helper.beginDelayedTransition();
+
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
                 ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
@@ -232,9 +275,10 @@ public class ScreenSplitHelper {
         layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
         layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        state.getView().setLayoutParams(layoutParams);
-        state.setState(WindowState.FULL_SCREEN);
-        mWindowStates.put(key, state);
+        helper.beginDelayedTransition();
+        view.getView().setLayoutParams(layoutParams);
+        view.setState(WindowState.FULL_SCREEN);
+        mWindowStates.put(String.valueOf(view.getView().getId()), view);
     }
 
     /**
@@ -250,11 +294,13 @@ public class ScreenSplitHelper {
     }
 
     /**
-     * 半屏转四分屏幕。
+     * 执行将半屏转四分屏幕。
      * find the half screen, then convert it to quarter screen and bring it to front.
      * find the quarter screen, then adjust its alignment and bring it to front.
+     *
+     * @param view 当前点击的view，已经从半屏转成全屏。
      */
-    private void halfToQuarter() {
+    private void halfToQuarter(@NonNull WindowState view) {
         WindowState fullScreen = null;
         WindowState halfScreen = null;
         WindowState quarterScreen = null;
@@ -293,13 +339,101 @@ public class ScreenSplitHelper {
         lpEnd.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT_PERCENT;
         lpEnd.matchConstraintPercentHeight = 0.25f;
         lpEnd.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT_PERCENT;
+        // isOppositeSideMoveCase = isStartVSEnd(view, halfScreen) && isOnOppositeSide(view,
+        //         quarterScreen);
+        // if (isOppositeSideMoveCase) {
+        //     moveOppositeSideQuarter(view, quarterScreen);
+        // }
         int gravity = halfScreen.getGravity();
         if (gravity == WindowState.START) {//固定位置，左对齐
-            halfToQuarterFromStart(halfScreen, lpStart, lpEnd, quarterScreen);
+            halfToQuarterFromStart(view, halfScreen, lpStart, lpEnd, quarterScreen);
         } else if (gravity == WindowState.END) {//固定位置，右对齐
-            halfToQuarterFromEnd(halfScreen, lpStart, lpEnd, quarterScreen);
+            halfToQuarterFromEnd(view, halfScreen, lpStart, lpEnd, quarterScreen);
         } else {// this half screen is swappable.当前半屏view是gravity等于center的view
-            halfToQuarterFromCenter(halfScreen, lpEnd, quarterScreen, fullScreen);
+            halfToQuarterFromCenter(view, halfScreen, lpEnd, quarterScreen, fullScreen);
+        }
+    }
+
+    /**
+     * 判断是否是start区域的界面和end区域的界面进行对比
+     * @param view 被点击的界面，已经转换成了全屏。
+     * @param half 对比中的半屏界面，将会被转成四分屏。
+     * @return true 是start区域的界面和end区域的界面进行对比，否则false。
+     */
+    private boolean isStartVSEnd(@NonNull WindowState view, @Nullable WindowState half) {
+        if (half == null) {
+            return false;
+        }
+
+        int hG = half.getGravity();
+        int clickedG = view.getGravity();
+        return (clickedG == WindowState.START && hG == WindowState.END)
+                || (clickedG == WindowState.END && hG == WindowState.START);
+    }
+
+    /**
+     * start区域的界面和end区域的界面进行对比情况下，判断半屏被点击的半屏和四分屏是不是处于对一侧。
+     *
+     * start区域的界面和end区域的界面进行对比情况下，被点击的界面和四分屏位于对侧时，半屏转四分屏前先移动四分屏
+     * 到半屏的对侧，后处理半屏转四分屏业务效果会更好（尤其是半屏在四分屏之上时，如果先处理半屏转四分屏业务，
+     * 后移动之前的四分屏，四分屏会从处理完后的四分屏下面出现，在性能不好的情况下，后移动的四分屏很可能不能出现在
+     * 全屏的上面。
+     *
+     * @param view 被点击的半屏界面，已经转换成了全屏。
+     * @param quarter 没有进行对比的四分屏，将会被移动。
+     * @return true 被点击的半屏和四分屏处于对侧，否则false。
+     */
+    private boolean isOnOppositeSide(@NonNull WindowState view, @Nullable WindowState quarter) {
+        if (quarter == null) {
+            return false;
+        }
+
+        int clickedG = view.getGravity();
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) quarter.getView()
+                .getLayoutParams();
+        if (clickedG == WindowState.START) {
+            return params.endToEnd == ConstraintLayout.LayoutParams.PARENT_ID;
+        } else if (clickedG == WindowState.END) {
+            return params.startToStart == ConstraintLayout.LayoutParams.PARENT_ID;
+        }
+
+        return false;
+    }
+
+    /**
+     * start区域的界面和end区域的界面进行对比情况下，被点击的半屏转全屏后，先移动四分屏（最开始位于中间区域的）
+     * @param view 被点击的半屏
+     * @param quarterScreen 将要被移动的四分屏（最开始位于中间区域的）
+     */
+    private void moveOppositeSideQuarter(@NonNull WindowState view,
+            @NonNull WindowState quarterScreen) {
+        int gravity = view.getGravity();
+        int full = getViewIndex(view.getView());
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+        lp.matchConstraintPercentWidth = 0.25f;
+        lp.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT_PERCENT;
+        lp.matchConstraintPercentHeight = 0.25f;
+        lp.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT_PERCENT;
+
+        TransitionHelper helper = new TransitionHelper(quarterScreen, true);
+        helper.setDuration(100);
+        helper.setOnFinishListener(() -> halfToFullStep2(view));
+        helper.beginDelayedTransition();
+        if (gravity == WindowState.END) {//固定位置，右对齐
+            // it's already been in quarter state, align it to end.
+            lp.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            lp.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+        } else if (gravity == WindowState.START) {// quarter start screen.
+            lp.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            //两个右下角半屏，地图位于右下角，其中一个半屏变全屏，另外一个半屏移动到右下角，地图被覆盖
+            lp.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+        }
+
+        quarterScreen.getView().setLayoutParams(lp);
+        if (full > getViewIndex(quarterScreen.getView())) {
+            quarterScreen.getView().bringToFront();
         }
     }
 
@@ -318,40 +452,47 @@ public class ScreenSplitHelper {
     /**
      * 从布局参数的start位置开始将该位置的view与其他view进行分屏操作
      *
+     * @param view 当前点击的view，已经从半屏转成全屏。
      * @param halfScreen    此时的半屏，将要转成四分屏
      * @param lpStart       start位置的view布局参数
      * @param lpEnd         end位置的view布局参数
      * @param quarterScreen 此时的全屏view
      */
-    private void halfToQuarterFromStart(@NonNull WindowState halfScreen,
+    private void halfToQuarterFromStart(@NonNull WindowState view, @NonNull WindowState halfScreen,
             @NonNull ConstraintLayout.LayoutParams lpStart,
             @NonNull final ConstraintLayout.LayoutParams lpEnd,
-            @Nullable final WindowState quarterScreen) {
+            @Nullable WindowState quarterScreen) {
+        final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromStart");
             halfToQuarterOnChanged(halfScreen);
-            if (quarterScreen != null) {
+            if (quarterScreen != null && !isOppositeSideMoveCase) {
                 // it's already been in quarter state, align it to end.
                 if (quarterScreen.getView().getId() == mSwapId) {//固定位置，右对齐
                     lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
                     lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
                     quarterScreen.getView().setLayoutParams(lpEnd);
                 }
-                quarterScreen.getView().bringToFront();
-            }
 
+                if (full > getViewIndex(quarterScreen.getView())) {
+                    quarterScreen.getView().bringToFront();
+                }
+            }
             mIsSizeChanging = false;
             if (mOnWindowSizeChanged != null) {
                 mOnWindowSizeChanged.onSizeChanged();
             }
         });
         helper.beginDelayedTransition();
+
         // convert it to quarter start screen.
         lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
         lpStart.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
         halfScreen.getView().setLayoutParams(lpStart);
-        halfScreen.getView().bringToFront();
+        if (full > getViewIndex(halfScreen.getView())) {
+            halfScreen.getView().bringToFront();
+        }
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
     }
@@ -359,27 +500,30 @@ public class ScreenSplitHelper {
     /**
      * 从布局参数的end位置开始将该位置的view与其他view进行分屏操作
      *
+     * @param view 当前点击的view，已经从半屏转成全屏。
      * @param halfScreen    此时的半屏，将要转成四分屏
      * @param lpStart       start位置的view布局参数
      * @param lpEnd         end位置的view布局参数
      * @param quarterScreen 此时的全屏view
      */
-    private void halfToQuarterFromEnd(@NonNull WindowState halfScreen,
-            @NonNull ConstraintLayout.LayoutParams lpStart,
-            @NonNull ConstraintLayout.LayoutParams lpEnd,
-            @Nullable WindowState quarterScreen) {
+    private void halfToQuarterFromEnd(@NonNull WindowState view, @NonNull WindowState halfScreen,
+            @NonNull final ConstraintLayout.LayoutParams lpStart,
+            @NonNull ConstraintLayout.LayoutParams lpEnd, @Nullable WindowState quarterScreen) {
+        final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromEnd");
             halfToQuarterOnChanged(halfScreen);
-            if (quarterScreen != null) {// quarter start screen.
+            if (quarterScreen != null && !isOppositeSideMoveCase) {// quarter start screen.
                 if (quarterScreen.getView().getId() == mSwapId) {
                     lpStart.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
                     //两个右下角半屏，地图位于右下角，其中一个半屏变全屏，另外一个半屏移动到右下角，地图被覆盖
                     lpStart.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
                     quarterScreen.getView().setLayoutParams(lpStart);
                 }
-                quarterScreen.getView().bringToFront();
+                if (full > getViewIndex(quarterScreen.getView())) {
+                    quarterScreen.getView().bringToFront();
+                }
             }
             mIsSizeChanging = false;
             if (mOnWindowSizeChanged != null) {
@@ -392,7 +536,9 @@ public class ScreenSplitHelper {
         lpEnd.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
         lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
         halfScreen.getView().setLayoutParams(lpEnd);
-        halfScreen.getView().bringToFront();
+        if (full > getViewIndex(halfScreen.getView())) {
+            halfScreen.getView().bringToFront();
+        }
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
     }
@@ -400,19 +546,20 @@ public class ScreenSplitHelper {
     /**
      * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作
      *
+     * @param view 当前点击的view，已经从半屏转成全屏。
      * @param halfScreen    此时的半屏，将要转成四分屏
      * @param lpEnd         end位置的view布局参数
      * @param quarterScreen 此时的全屏view
      */
-    private void halfToQuarterFromCenter(@NonNull WindowState halfScreen,
-            @NonNull ConstraintLayout.LayoutParams lpEnd,
-            @Nullable WindowState quarterScreen,
+    private void halfToQuarterFromCenter(@NonNull WindowState view, @NonNull WindowState halfScreen,
+            @NonNull ConstraintLayout.LayoutParams lpEnd, @Nullable final WindowState quarterScreen,
             @NonNull WindowState fullScreen) {
+        final int full = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(halfScreen);
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: halfToQuarterFromCenter");
             halfToQuarterOnChanged(halfScreen);
-            if (quarterScreen != null) {
+            if (quarterScreen != null && full > getViewIndex(quarterScreen.getView())) {
                 quarterScreen.getView().bringToFront();
             }
 
@@ -432,7 +579,9 @@ public class ScreenSplitHelper {
 
         lpEnd.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
         halfScreen.getView().setLayoutParams(lpEnd);
-        halfScreen.getView().bringToFront();
+        if (full > getViewIndex(halfScreen.getView())) {
+            halfScreen.getView().bringToFront();
+        }
         halfScreen.setState(WindowState.QUARTER_SCREEN);
         mWindowStates.put(String.valueOf(halfScreen.getView().getId()), halfScreen);
     }
@@ -456,6 +605,7 @@ public class ScreenSplitHelper {
                 }
             }
         }
+
 
         if (fullScreen == null) {
             Log.d(TAG, "quarterToHalf: fullScreen == null");
@@ -555,9 +705,9 @@ public class ScreenSplitHelper {
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: onEndQuarterToHalfFromStart: ");
             fullToHalfOnChanged(fullScreen);
-            if (theOtherQuarter != null) {
-                theOtherQuarter.getView().bringToFront();
-            }
+            // if (theOtherQuarter != null) {
+            //     theOtherQuarter.getView().bringToFront();
+            // }
             mIsSizeChanging = false;
             if (mOnWindowSizeChanged != null) {
                 mOnWindowSizeChanged.onSizeChanged();
@@ -612,9 +762,9 @@ public class ScreenSplitHelper {
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: onEndQuarterToHalfFromEnd");
             fullToHalfOnChanged(fullScreen);
-            if (theOtherQuarter != null) {
-                theOtherQuarter.getView().bringToFront();
-            }
+            // if (theOtherQuarter != null) {
+            //     theOtherQuarter.getView().bringToFront();
+            // }
             mIsSizeChanging = false;
             if (mOnWindowSizeChanged != null) {
                 mOnWindowSizeChanged.onSizeChanged();
@@ -651,7 +801,7 @@ public class ScreenSplitHelper {
     /**
      * 被点击的四分屏是交互区域的原中心分屏，当前的全屏是原end区域的。
      *
-     * @param view       the clicked quarter view
+     * @param view       the clicked quarter view，最开始固定于中间区域
      * @param lpStart    start位置的view布局参数
      * @param lpEnd      end位置的view布局参数
      * @param fullScreen 此时的全屏view
@@ -665,7 +815,7 @@ public class ScreenSplitHelper {
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: quarterToHalfFromCenterWithFullEnd");
             quarterToHalfOnChanged(view);
-            onQuarterToHalfFromCenterEnd(lpEnd, fullScreen, theOtherQuarter);
+            onQuarterToHalfFromCenterEnd(view, lpEnd, fullScreen, theOtherQuarter);
         });
         helper.beginDelayedTransition();
 
@@ -692,7 +842,7 @@ public class ScreenSplitHelper {
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: quarterToHalfFromCenterWithFullStart");
             quarterToHalfOnChanged(view);
-            onQuarterToHalfFromCenterStart(lpStart, fullScreen, theOtherQuarter);
+            onQuarterToHalfFromCenterStart(view, lpStart, fullScreen, theOtherQuarter);
         });
         helper.beginDelayedTransition();
 
@@ -706,15 +856,19 @@ public class ScreenSplitHelper {
      * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作的后半部分流程——全屏属于原始end位置的view，
      * 将该View复原到end位置，并且半屏。
      *
+     * @param view       被点击的四分屏，已经从四分屏转成半屏。最开始固定于中间区域。
      * @param lpEnd      end位置的view布局参数
      * @param fullScreen 此时的全屏view
      */
-    private void onQuarterToHalfFromCenterEnd(@NonNull ConstraintLayout.LayoutParams lpEnd,
+    private void onQuarterToHalfFromCenterEnd(@NonNull WindowState view,
+            @NonNull ConstraintLayout.LayoutParams lpEnd,
             @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        final int center = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(fullScreen);
         helper.setOnFinishListener(() -> {
             fullToHalfOnChanged(fullScreen);
-            if (theOtherQuarter != null) {
+            if (theOtherQuarter != null && center > getViewIndex(theOtherQuarter.getView())) {
+                // center > start
                 theOtherQuarter.getView().bringToFront();
             }
             mIsSizeChanging = false;
@@ -727,23 +881,26 @@ public class ScreenSplitHelper {
         fullScreen.getView().setLayoutParams(lpEnd);
         fullScreen.setState(WindowState.HALF_SCREEN);
         mWindowStates.put(String.valueOf(fullScreen.getView().getId()), fullScreen);
-
     }
 
     /**
      * 从布局参数的center位置开始将该位置的view与其他view进行分屏操作的后半部分流程——全屏属于原始end位置的view，
      * 将该View复原到start位置，并且半屏。
      *
+     * @param view       被点击的四分屏，已经从四分屏转成半屏。最开始固定于中间区域。
      * @param lpStart    start位置的view布局参数
      * @param fullScreen 此时的全屏view
      */
-    private void onQuarterToHalfFromCenterStart(@NonNull ConstraintLayout.LayoutParams lpStart,
+    private void onQuarterToHalfFromCenterStart(@NonNull WindowState view,
+            @NonNull ConstraintLayout.LayoutParams lpStart,
             @NonNull final WindowState fullScreen, @Nullable final WindowState theOtherQuarter) {
+        final int center = getViewIndex(view.getView());
         TransitionHelper helper = new TransitionHelper(fullScreen);
         helper.setOnFinishListener(() -> {
             Log.d(TAG, "onFinish: onQuarterToHalfFromCenterStart");
             fullToHalfOnChanged(fullScreen);
-            if (theOtherQuarter != null) {
+            if (theOtherQuarter != null && center > getViewIndex(theOtherQuarter.getView())) {
+                // center > end
                 theOtherQuarter.getView().bringToFront();
             }
             mIsSizeChanging = false;

@@ -22,18 +22,18 @@ import com.example.demoscreensplithelper.databinding.ActivitySecondBinding;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String MAP_FULL = "map full";
-    private static final String PCD_FULL = "pcd full";
-    private static final String FPV_FULL = "fpv full";
-    private static final String MAP_HALF = "map half";
-    private static final String PCD_HALF = "pcd half";
-    private static final String FPV_HALF = "fpv half";
-    private static final String MAP_QUARTER = "map quarter";
-    private static final String PCD_QUARTER = "pcd quarter";
-    private static final String FPV_QUARTER = "fpv quarter";
-    private static final String MAP_CENTER = "map center";
-    private static final String PCD_CENTER = "pcd center";
-    private static final String FPV_CENTER = "fpv center";
+    private static final String MAP_FULL = "center full";
+    private static final String PCD_FULL = "remote full";
+    private static final String FPV_FULL = "video full";
+    private static final String MAP_HALF = "center half";
+    private static final String PCD_HALF = "remote half";
+    private static final String FPV_HALF = "video half";
+    private static final String MAP_QUARTER = "center quarter";
+    private static final String PCD_QUARTER = "remote quarter";
+    private static final String FPV_QUARTER = "video quarter";
+    private static final String MAP_CENTER = "center center";
+    private static final String PCD_CENTER = "remote center";
+    private static final String FPV_CENTER = "video center";
     private ActivitySecondBinding mBinding;
     private ScreenSplitHelper mSplitScreenHelper;
 
