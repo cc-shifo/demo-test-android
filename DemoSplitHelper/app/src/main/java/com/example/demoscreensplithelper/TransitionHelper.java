@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
 import androidx.transition.ChangeScroll;
 import androidx.transition.ChangeTransform;
@@ -31,9 +32,9 @@ public class TransitionHelper implements Transition.TransitionListener {
         this(view, false);
     }
 
-    public TransitionHelper(@NonNull WindowState view, boolean scroll) {
+    public TransitionHelper(@NonNull WindowState view, boolean autoTransition) {
         mView = view;
-        mChangeBound = !scroll ? new ChangeBounds() : new ChangeTransform();
+        mChangeBound = !autoTransition ? new ChangeBounds() : new AutoTransition();
         mChangeBound.addListener(this);
     }
 
