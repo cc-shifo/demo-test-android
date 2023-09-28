@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoOpenSetting</string>
+    <string name="btn_open_wifi_setting1_txt">DemoOpenWiFiSetting 1</string>
+    <string name="please_allow_permission_toast">Please Allow Permission %1$s</string>
+</resources>
