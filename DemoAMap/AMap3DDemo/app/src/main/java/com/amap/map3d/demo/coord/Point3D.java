@@ -3,15 +3,7 @@ package com.amap.map3d.demo.coord;
 /**
  * 用于描述wgs84坐标系下的数据，经纬高。单位为度。
  */
-public class Point3D extends Coord {
-    /**
-     * 纬度，单位度。
-     */
-    public double mLat;
-    /**
-     * 经度，单位度。
-     */
-    public double mLng;
+public class Point3D extends Point {
     /**
      * 高，单位度。
      */
