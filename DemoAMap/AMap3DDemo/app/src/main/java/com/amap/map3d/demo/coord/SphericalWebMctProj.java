@@ -36,7 +36,7 @@ public class SphericalWebMctProj {
      * @param lng wgs84坐标，经度
      * @return web墨卡托坐标
      */
-    public XYZ toWebMct(double lat, double lng) {
+    public static XYZ toWebMct(double lat, double lng) {
         return toWebMct(lat, lng, Double.NaN);
     }
 
@@ -48,7 +48,7 @@ public class SphericalWebMctProj {
      * @param latLng wgs84坐标
      * @return web墨卡托坐标，z为height。
      */
-    public XYZ toWebMct(@NonNull Point3D latLng) {
+    public static XYZ toWebMct(@NonNull Point3D latLng) {
         return toWebMct(latLng.mLat, latLng.mLng, latLng.mHeight);
     }
 
@@ -62,7 +62,7 @@ public class SphericalWebMctProj {
      * @param height wgs84坐标，z值。可以取是海拔高，椭球高
      * @return web墨卡托坐标
      */
-    public XYZ toWebMct(double lat, double lng, double height) {
+    public static XYZ toWebMct(double lat, double lng, double height) {
         double x = lng * SEMI_PERIMETER / 180;
         double y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
         y = y * SEMI_PERIMETER / 180;
@@ -78,7 +78,7 @@ public class SphericalWebMctProj {
      * @param y web mercator y coordinate
      * @return wgs84
      */
-    public Point3D toWGS84(double x, double y) {
+    public static Point3D toWGS84(double x, double y) {
         return toWGS84(x, y, Double.NaN);
     }
 
@@ -90,7 +90,7 @@ public class SphericalWebMctProj {
      * @param xyz web mercator
      * @return wgs84
      */
-    public Point3D toWGS84(@NonNull XYZ xyz) {
+    public static Point3D toWGS84(@NonNull XYZ xyz) {
         return toWGS84(xyz.mX, xyz.mY, xyz.mZ);
     }
 
@@ -104,7 +104,7 @@ public class SphericalWebMctProj {
      * @param z 可以取是海拔高，椭球高
      * @return wgs84
      */
-    public Point3D toWGS84(double x, double y, double z) {
+    public static Point3D toWGS84(double x, double y, double z) {
         double lng = x / SEMI_PERIMETER * 180;
         double lat = y / SEMI_PERIMETER * 180;
         lat = 180 / Math.PI * (2 * Math.atan(Math.exp(lat * Math.PI / 180)) - Math.PI / 2);
