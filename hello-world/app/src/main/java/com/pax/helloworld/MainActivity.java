@@ -8,8 +8,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         dpReal = dm.heightPixels/xReal;// px = dp * (dpi/160)
         Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-heightDp(dp * (dReal/160))：" + dpReal);
 
+        Looper.myLooper().setMessageLogging(new LogPrinter(Log.DEBUG, "helloWorld"));
         //应用区域
         Rect outRect1 = new Rect();
         /*
