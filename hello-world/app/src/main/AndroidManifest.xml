@@ -12,13 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".third.ThirdActivity" />
+        <activity android:name=".third.ThirdActivity" android:exported="false" />
         <activity
+            android:exported="false"
             android:name=".second.SecondActivity"
             android:excludeFromRecents="true" />
         <activity
             android:name=".MainActivity"
-            android:excludeFromRecents="true">
+            android:excludeFromRecents="true"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
