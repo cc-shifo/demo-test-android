@@ -1,0 +1,73 @@
+plugins {
+    id 'com.android.application'
+    id 'therouter'
+
+    // 工程内有kotlin代码；工程内存java开发无需引入。
+    // ---->kotlin开发环境，存java代码无需引入。
+    // id 'org.jetbrains.kotlin.android'
+    // <----
+
+    // ---->为kotlin代码生成运行时注解时需要kapt或者ksp。存java开发无需引入kapt或者ksp，
+    // 使用annotationProcessor即可，
+    // id 'org.jetbrains.kotlin.kapt'
+    // id "com.google.devtools.ksp"
+    // <----
+}
+
+android {
+    namespace 'com.example.demotherouter'
+    // 方式一，静态数组
+    // compileSdk deps_vers.compileSdk
+    // 方式二，动态数组
+    compileSdk deps.compileSdk
+
+    defaultConfig {
+        applicationId "com.example.demotherouter"
+        // minSdk 23
+        // targetSdk 32
+        minSdk deps.minSdk
+        targetSdk deps.targetSdk
+        versionCode deps.versionCode
+        versionName deps.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "cn.therouter:router:$THEROUTER_VER"
+    // https://therouter.cn/docs/2022/11/23/01 第四步
+    annotationProcessor "cn.therouter:apt:$THEROUTER_VER"
+    // ---->为kotlin代码生成运行时注解时需要kapt或者ksp。存java开发无需引入kapt或者ksp，
+    // kapt "cn.therouter:apt:1.2.1"
+    // 为了与其他第三方编译时注解有更好的兼容性，不建议使用ksp，故屏蔽ksp。注意若使用ksp，需要
+    // 与org.jetbrains.kotlin.android版本对应
+    // ksp "cn.therouter:apt:1.2.1"
+    // <----
+
+    implementation project(':mod0')
+    implementation project(':mod1')
+    implementation project(':mod2')
+}

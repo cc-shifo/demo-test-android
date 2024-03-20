@@ -1,0 +1,25 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
+
+    // ---->工程内有kotlin代码时的开发环境
+    // id 'org.jetbrains.kotlin.android' version "$KOTLIN_VERSION" apply false
+    // <----
+
+    // ---->theRouter在为kotlin代码生成运行时注解时需要kapt或者ksp。存java开发无需引入kapt或者ksp。
+    // 为了与其他第三方编译时注解有更好的兼容性，不建议使用ksp，故屏蔽ksp。注意若使用ksp，需要
+    // 与org.jetbrains.kotlin.android版本对应
+    // https://therouter.cn/docs/2023/05/15/01
+    // https://github.com/google/ksp/releases
+    // id "com.google.devtools.ksp" version '1.6.21-1.0.6' apply false
+    // <----
+
+    // ---->theRouter 使用AGP7.x时引入该插件
+    id 'cn.therouter' version "$THEROUTER_VER" apply false
+    // <----
+    // ---->theRouter 使用AGP8.x引入该插件。AGP8.x必须是jdk 17及以上。
+    // id 'cn.therouter.agp8' version "$THEROUTER_VER" apply false
+    // <----
+}
+apply from: 'dep.gradle'
