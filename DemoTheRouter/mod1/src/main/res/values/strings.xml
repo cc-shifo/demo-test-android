@@ -1,3 +1,4 @@
 <resources>
     <string name="mod1_activity1">Mod1Activity1!</string>
+    <string name="activity_1_mod1_btn_txt">Mod1Activity1!</string>
 </resources>

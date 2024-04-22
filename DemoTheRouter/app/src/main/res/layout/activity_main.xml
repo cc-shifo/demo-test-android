@@ -42,4 +42,18 @@
         app:layout_constraintTop_toBottomOf="@id/btn_activity_0"
         android:text="@string/activity_2"/>
 
+    <Button
+        android:id="@+id/btn_mod_interface_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_activity2"
+        android:text="@string/mod_interface_1"/>
+    <Button
+        android:id="@+id/btn_mod_interface_1_single"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/btn_mod_interface_1"
+        app:layout_constraintTop_toBottomOf="@id/btn_activity2"
+        android:text="@string/mod_interface_1_single"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

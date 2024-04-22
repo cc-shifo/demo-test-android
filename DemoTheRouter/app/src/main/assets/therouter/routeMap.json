@@ -12,5 +12,12 @@
     "action": "",
     "description": "",
     "params": {}
+  },
+  {
+    "path": "/mod0/Mod0Activity1",
+    "className": "com.example.mod0.Mop0Activity1",
+    "action": "",
+    "description": "",
+    "params": {}
   }
 ]
