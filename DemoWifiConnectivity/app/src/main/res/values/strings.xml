@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DemoWifiConnectivity</string>
+    <string name="open_setting">Open WiFi Setting</string>
+    <string name="request_permissions">allow this permission</string>
+    <string name="btn_connect_12345">btn connect 12345</string>
+    <string name="btn_disconnect_12345">btn disconnect 12345</string>
+    <string name="btn_rcv_12345">btn rcv 12345</string>
+    <string name="btn_send_12345">btn send 12345</string>
+</resources>
