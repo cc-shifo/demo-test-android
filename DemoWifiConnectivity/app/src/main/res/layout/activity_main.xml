@@ -120,37 +120,61 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/open_cell_setting"
             android:textAllCaps="false" />
+        <!--<Button-->
+        <!--    android:id="@+id/btn_connect_cell_12345"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"-->
+        <!--    android:text="@string/btn_connect_cell_12345"-->
+        <!--    android:textAllCaps="false" />-->
+        <!--<Button-->
+        <!--    android:id="@+id/btn_disconnect_cell_12345"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_connect_cell_12345"-->
+        <!--    android:text="@string/btn_disconnect_cell_12345"-->
+        <!--    android:textAllCaps="false" />-->
+        <!--<Button-->
+        <!--    android:id="@+id/btn_rcv_cell_12345"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_disconnect_cell_12345"-->
+        <!--    android:text="@string/btn_rcv_cell_12345"-->
+        <!--    android:textAllCaps="false" />-->
+        <!--<Button-->
+        <!--    android:id="@+id/btn_send_cell_12345"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_rcv_cell_12345"-->
+        <!--    android:text="@string/btn_send_cell_12345"-->
+        <!--    android:textAllCaps="false" />-->
+        <!--<Button-->
+        <!--    android:id="@+id/btn_cell_con_always"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_send_cell_12345"-->
+        <!--    android:text="@string/btn_cell_con_always"-->
+        <!--    android:textAllCaps="false" />-->
+        <!--<Button-->
+        <!--    android:id="@+id/btn_cell_rcv_always"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    app:layout_constraintStart_toStartOf="parent"-->
+        <!--    app:layout_constraintTop_toBottomOf="@id/btn_cell_con_always"-->
+        <!--    android:text="@string/btn_cell_rcv_always"-->
+        <!--    android:textAllCaps="false" />-->
         <Button
-            android:id="@+id/btn_connect_cell_12345"
+            android:id="@+id/btn_cell_send_manually"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"
-            android:text="@string/btn_connect_cell_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_disconnect_cell_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_connect_cell_12345"
-            android:text="@string/btn_disconnect_cell_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_rcv_cell_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_disconnect_cell_12345"
-            android:text="@string/btn_rcv_cell_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_send_cell_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_rcv_cell_12345"
-            android:text="@string/btn_send_cell_12345"
+            android:text="@string/btn_cell_send_menu"
             android:textAllCaps="false" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,9 +19,9 @@ import javax.net.SocketFactory;
 
 import timber.log.Timber;
 
-public class CellTCPHelper{
-    private static final String IP = "121.43.224.154";
-    private static final int PORT = 59058;
+public class CellTCPHelper extends BaseTCPHelper {
+    private static final String IP = "8.135.10.183";
+    private static final int PORT = 37155;
     private static final String TAG = "CellTCPHelper";
     private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
     private Future<?> mFuture = null;
@@ -56,37 +56,75 @@ public class CellTCPHelper{
         return mRcvTextView;
     }
 
-    public void connectCell() {
-        if (mFuture != null && (!mFuture.isDone() || !mFuture.isCancelled())) {
-            mFuture.cancel(true);
-        }
-        mFuture = mExecutor.submit(() -> {
-            if (mWifiNetwork != null) {
-                if (mWifiSocket != null && !mWifiSocket.isClosed()) {
-                    try {
-                        mWifiSocket.close();
-                    } catch (IOException e) {
-                        Timber.e(e);
-                        textMessage("connectWifi: close Exception!!! " + e);
-                    }
-                }
-                SocketFactory wifiSocket = mWifiNetwork.getSocketFactory();
-                try {
-                    mWifiSocket = wifiSocket.createSocket();
-                    InetSocketAddress a = new InetSocketAddress(IP, PORT);
-                    mWifiSocket.connect(a, 15000);
-                    mSendSerialNum = 0;
-                    textMessage("connectWifi: true");
-                } catch (IOException e) {
-                    Timber.e(e);
-                    textMessage("connectWifi: connect Exception!!! " + e);
-                    mWifiSocket = null;
-                }
+    public void createSocket() {
+        if (mWifiSocket != null && !mWifiSocket.isClosed()) {
+            try {
+                mWifiSocket.close();
+            } catch (IOException e) {
+                Timber.e(e);
+                textMessage("connectWifi: close Exception!!! " + e);
             }
-            return null;
-        });
-
+        }
+        mWifiSocket = new Socket();
+        // if (mWifiSocket != null && !mWifiSocket.isClosed()) {
+        //     try {
+        //         mWifiSocket.close();
+        //     } catch (IOException e) {
+        //         Timber.e(e);
+        //         textMessage("connectWifi: close Exception!!! " + e);
+        //     }
+        // }
+        //
+        // SocketFactory wifiSocket = mWifiNetwork.getSocketFactory();
+        // try {
+        //     mWifiSocket = wifiSocket.createSocket();
+        // } catch (IOException e) {
+        //     Timber.e(e);
+        //     textMessage("connectWifi: connect Exception!!! " + e);
+        //     mWifiSocket = null;
+        // }
     }
+
+
+    public void bindWifiNetwork(@NonNull Network wifiNetwork) {
+        mWifiNetwork = wifiNetwork;
+        try {
+            if (mWifiSocket != null) {
+                wifiNetwork.bindSocket(mWifiSocket);
+            }
+        } catch (IOException e) {
+            Timber.tag(TAG).e(e);
+        }
+    }
+
+    public void mainEnter(@NonNull Network network) {
+        createSocket();
+        bindWifiNetwork(network);
+        connectAlways();
+        byte[] rcv = new byte[8192];
+        while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
+            int i = rcvWifi(rcv);
+            if (i > 0) {
+                textRcv(rcv, i);
+            }
+        }
+
+        if (!mStopped) {
+            safeThreadSleep5000MS();
+            mainEnter(network);
+        }
+    }
+
+    public void connectAlways() {
+        mStopped = false;
+        while (!mStopped && (mWifiSocket == null || !mWifiSocket.isClosed())) {
+            connectCell();
+            if (mWifiSocket != null) {
+                break;
+            }
+        }
+    }
+
 
     public void sendCell12345() {
         final byte[] bytes = new byte[]{
@@ -153,7 +191,50 @@ public class CellTCPHelper{
         }
     }
 
-    private int sendWifi(byte[] bytes, int len) {
+    public void connectCell() {
+        try {
+            InetSocketAddress a = new InetSocketAddress(IP, PORT);
+            mWifiSocket.connect(a, 15000);
+            mSendSerialNum = 0;
+            textMessage("connectWifi: true");
+        } catch (IOException e) {
+            Timber.e(e);
+            textMessage("connectWifi: connect Exception!!! " + e);
+            mWifiSocket = null;
+        }
+
+        // if (mFuture != null && (!mFuture.isDone() || !mFuture.isCancelled())) {
+        //     mFuture.cancel(true);
+        // }
+        // mFuture = mExecutor.submit(() -> {
+        //     if (mWifiNetwork != null) {
+        //         if (mWifiSocket != null && !mWifiSocket.isClosed()) {
+        //             try {
+        //                 mWifiSocket.close();
+        //             } catch (IOException e) {
+        //                 Timber.e(e);
+        //                 textMessage("connectWifi: close Exception!!! " + e);
+        //             }
+        //         }
+        //         SocketFactory wifiSocket = mWifiNetwork.getSocketFactory();
+        //         try {
+        //             mWifiSocket = wifiSocket.createSocket();
+        //             InetSocketAddress a = new InetSocketAddress(IP, PORT);
+        //             mWifiSocket.connect(a, 15000);
+        //             mSendSerialNum = 0;
+        //             textMessage("connectWifi: true");
+        //         } catch (IOException e) {
+        //             Timber.e(e);
+        //             textMessage("connectWifi: connect Exception!!! " + e);
+        //             mWifiSocket = null;
+        //         }
+        //     }
+        //     return null;
+        // });
+
+    }
+
+    public int sendWifi(byte[] bytes, int len) {
         OutputStream out = null;
         if (mWifiSocket == null || mWifiSocket.isClosed()) {
             textMessage("sendWifi: mWifiSocket null or closed");
@@ -194,7 +275,7 @@ public class CellTCPHelper{
         return -1;
     }
 
-    private int rcvWifi(byte[] bytes) {
+    public int rcvWifi(byte[] bytes) {
         InputStream in = null;
         if (mWifiSocket == null || mWifiSocket.isClosed()) {
             textMessage("rcvWifi: mWifiSocket null or closed");
@@ -231,6 +312,15 @@ public class CellTCPHelper{
     }
 
 
+    public void rcvCellAlways() {
+        byte[] bytes = new byte[8192];
+        while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
+            int i = rcvWifi(bytes);
+            if (i > 0) {
+                textRcv(bytes, i);
+            }
+        }
+    }
 
     private void textSend(byte[] buff, int len) {
         if (mSendText.length() + len * 3 >= TEXT_BUFFER_SIZE) {
@@ -252,5 +342,16 @@ public class CellTCPHelper{
 
     private void textMessage(@NonNull String message) {
         mMsgTextView.postValue(message);
+    }
+
+    private void safeThreadSleep5000MS() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            if (Thread.interrupted())  {
+                // Clears interrupted status!
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }

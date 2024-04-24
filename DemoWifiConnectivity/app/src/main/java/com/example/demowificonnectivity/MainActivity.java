@@ -111,24 +111,19 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (mWiFiStateHelper != null) {
             mWiFiStateHelper.unregisterBroadcast(this);
         }
-        if (mNetworkHelper != null) {
-            mNetworkHelper.unregisterNetworkCallback(this);
+        if (mWifiTCPModel != null) {
+            mWifiTCPModel.cancelListen(this);
         }
 
-        if (mWifiTCPHelper != null) {
-            mWifiTCPHelper.destroy();
+        if (mCellModel != null) {
+            mCellModel.cancelListen(this);
         }
-        if (mCellTCPHelper != null) {
-            mCellTCPHelper.destroy();
-        }
-
     }
 
     private static final int RC_ALL_PERMISSION = 1004;
-    private NetworkHelper mNetworkHelper;
+    // private NetworkHelper mNetworkHelper;
     private WiFiStateHelper mWiFiStateHelper;
-    private WifiTCPHelper mWifiTCPHelper;
-    private CellTCPHelper mCellTCPHelper;
+
     /**
      * TODO 分类型请求。分系统版本请求。
      */
@@ -160,22 +155,28 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      * initialization.
      */
     private void init() {
-        mWifiTCPHelper = new WifiTCPHelper();
-        mCellTCPHelper = new CellTCPHelper();
-        mWiFiStateHelper = new WiFiStateHelper();
-        mWiFiStateHelper.registerBroadcast(this);
-        mNetworkHelper = new NetworkHelper();
-        mNetworkHelper.registerNetworkCallback(this);
         mBinding.tvSend.setMovementMethod(ScrollingMovementMethod.getInstance());
         mBinding.tvRcv.setMovementMethod(ScrollingMovementMethod.getInstance());
+
+        mWiFiStateHelper = new WiFiStateHelper();
+        mWiFiStateHelper.registerBroadcast(this);
+
+
+        mWifiTCPModel = new WiFiModel();
+        mWifiTCPModel.listen(this);
         openSetting();
         connectWifi12345();
         sendWifi12345();
         rcvWifi12345();
 
-        connectCell12345();
-        sendCell12345();
-        rcvCell12345();
+        mCellModel = new CellModel();
+        mCellModel.listen(MainActivity.this);
+        // connectCell12345();
+        // sendCell12345();
+        // rcvCell12345();
+        // connectCellAlways();
+        // rcvCellAlways();
+        sendCellManually();
     }
 
 
@@ -223,22 +224,24 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
+    private WiFiModel mWifiTCPModel;
     private void connectWifi12345() {
         mBinding.btnConnect12345.setOnClickListener(v -> {
             getNetWork();
             if (mWifiNetwork != null) {
-                mWifiTCPHelper.bindWifiNetwork(mWifiNetwork);
+                mWifiTCPModel.createSocket();
+                mWifiTCPModel.bindWifiNetwork(mWifiNetwork);
             }
-            mWifiTCPHelper.connectWifi();
+            mWifiTCPModel.connectWifi12345();
         });
-        mBinding.btnDisconnect12345.setOnClickListener(v -> mWifiTCPHelper.disconnectWifi());
+        mBinding.btnDisconnect12345.setOnClickListener(v -> mWifiTCPModel.disconnectWifi());
     }
 
     private void sendWifi12345() {
         mBinding.btnSend12345.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWifiTCPHelper.sendWifi12345();
+                mWifiTCPModel.sendWifi12345();
             }
         });
     }
@@ -247,29 +250,64 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mBinding.btnRcv12345.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWifiTCPHelper.rcvWifi12345();
+                byte[] bytes = new byte[8192];
+                mWifiTCPModel.rcvWifi12345(bytes);
             }
         });
     }
 
 
+    // cellular
+    private CellModel mCellModel;
+    // private void connectCell12345() {
+    //     mBinding.btnConnectCell12345.setOnClickListener(v -> {
+    //         mCellModel.connectWifi12345();
+    //     });
+    //     mBinding.btnDisconnectCell12345.setOnClickListener(v -> {
+    //         mCellModel.disconnectWifi();
+    //     });
+    // }
+    //
+    // // cellular
+    // private void sendCell12345() {
+    //     mBinding.btnSendCell12345.setOnClickListener(v -> {
+    //         mCellModel.sendWifi12345();
+    //     });
+    // }
+    //
+    // // cellular
+    // private void rcvCell12345() {
+    //     mBinding.btnRcvCell12345.setOnClickListener(v -> {
+    //         byte[] bytes = new byte[8192];
+    //         mCellModel.rcvWifi12345(bytes);
+    //     });
+    // }
+    //
+    // public void connectCellAlways() {
+    //     mBinding.btnCellConAlways.setOnClickListener(new View.OnClickListener() {
+    //         @Override
+    //         public void onClick(View v) {
+    //             mCellModel.connectAlways();
+    //         }
+    //     });
+    // }
+    //
+    // public void rcvCellAlways() {
+    //     mBinding.btnCellConAlways.setOnClickListener(new View.OnClickListener() {
+    //         @Override
+    //         public void onClick(View v) {
+    //             mCellModel.connectAlways();
+    //         }
+    //     });
+    // }
 
     // cellular
-    private void connectCell12345() {
-        mBinding.btnConnectCell12345.setOnClickListener(v -> {
-            mCellTCPHelper.setCellNetwork(null);
-            mCellTCPHelper.connectCell();
+    private void sendCellManually() {
+        mBinding.btnCellSendManually.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCellModel.sendWifi12345();
+            }
         });
-        mBinding.btnDisconnectCell12345.setOnClickListener(v -> mCellTCPHelper.disconnectCell());
-    }
-
-    // cellular
-    private void sendCell12345() {
-        mBinding.btnSend12345.setOnClickListener(v -> mCellTCPHelper.sendCell12345());
-    }
-
-    // cellular
-    private void rcvCell12345() {
-        mBinding.btnRcv12345.setOnClickListener(v -> mCellTCPHelper.rcvCell12345());
     }
 }
