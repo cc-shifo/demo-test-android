@@ -20,19 +20,14 @@ import android.net.NetworkRequest;
 
 import androidx.annotation.NonNull;
 
-
 import timber.log.Timber;
 
 /**
  * 监听网络是否可以访问互联网。
  */
-public class NetworkHelper extends ConnectivityManager.NetworkCallback {
-    public interface NetType {
-        void onAvailable(@NonNull Network network);
-        void onLost(@NonNull Network network);
-    }
+public class ImplNetworkCallback extends ConnectivityManager.NetworkCallback {
     private volatile boolean mConnected;
-    public NetworkHelper() {
+    public ImplNetworkCallback() {
         // nothing
     }
 

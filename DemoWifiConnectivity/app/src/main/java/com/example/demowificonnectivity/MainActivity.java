@@ -8,7 +8,6 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.provider.Settings;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -19,28 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.demowificonnectivity.databinding.ActivityMainBinding;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.util.List;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-
-import javax.net.SocketFactory;
 
 import pub.devrel.easypermissions.EasyPermissions;
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
-    private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
-    private ScheduledFuture<?> mScheduledFuture = null;
-    private Future<?> mFuture = null;
-    private boolean mStopped = false;
+public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+    public static final String TAG = "MainActivity-Net";
     /**
      * Android 11及以上。
      */
@@ -123,17 +108,27 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disconnectWifi();
-        if (mExecutor != null) {
-            mExecutor.shutdown();
+        if (mWiFiStateHelper != null) {
+            mWiFiStateHelper.unregisterBroadcast(this);
         }
-        if (mFuture != null && !mFuture.isCancelled()) {
-            mFuture.cancel(true);
+        if (mNetworkHelper != null) {
+            mNetworkHelper.unregisterNetworkCallback(this);
         }
+
+        if (mWifiTCPHelper != null) {
+            mWifiTCPHelper.destroy();
+        }
+        if (mCellTCPHelper != null) {
+            mCellTCPHelper.destroy();
+        }
+
     }
 
     private static final int RC_ALL_PERMISSION = 1004;
-
+    private NetworkHelper mNetworkHelper;
+    private WiFiStateHelper mWiFiStateHelper;
+    private WifiTCPHelper mWifiTCPHelper;
+    private CellTCPHelper mCellTCPHelper;
     /**
      * TODO 分类型请求。分系统版本请求。
      */
@@ -160,28 +155,39 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
+
     /**
      * initialization.
      */
     private void init() {
+        mWifiTCPHelper = new WifiTCPHelper();
+        mCellTCPHelper = new CellTCPHelper();
+        mWiFiStateHelper = new WiFiStateHelper();
+        mWiFiStateHelper.registerBroadcast(this);
+        mNetworkHelper = new NetworkHelper();
+        mNetworkHelper.registerNetworkCallback(this);
         mBinding.tvSend.setMovementMethod(ScrollingMovementMethod.getInstance());
         mBinding.tvRcv.setMovementMethod(ScrollingMovementMethod.getInstance());
         openSetting();
         connectWifi12345();
         sendWifi12345();
         rcvWifi12345();
+
+        connectCell12345();
+        sendCell12345();
+        rcvCell12345();
     }
 
-    private Network mWifiNetwork;
-    private Socket mWifiSocket;
-    private Network mCellNetwork;
 
+
+    private Network mWifiNetwork;// 打印
+    private Network mCellNetwork; // 打印
     private void getNetWork() {
         mWifiNetwork = null;
         mCellNetwork = null;
         // https://www.jianshu.com/p/d261e5b7ea38
         ConnectivityManager manager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
+                MyAPP.getMyAPP().getSystemService(Context.CONNECTIVITY_SERVICE);
         Network[] networks = manager.getAllNetworks();
         for (Network n : networks) {
             NetworkCapabilities c = manager.getNetworkCapabilities(n);
@@ -192,6 +198,18 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             } else if (c.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                 mCellNetwork = n;
             }
+        }
+
+        if (mWifiNetwork == null) {
+            Timber.tag(TAG).d("mWifiNetwork null");
+        } else {
+            Timber.tag(TAG).d("mWifiNetwork %s", mWifiNetwork.toString());
+        }
+
+        if (mCellNetwork == null) {
+            Timber.tag(TAG).d("mCellNetwork null");
+        } else {
+            Timber.tag(TAG).d("mCellNetwork %s", mCellNetwork.toString());
         }
     }
 
@@ -206,43 +224,21 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void connectWifi12345() {
-        mBinding.btnConnect12345.setOnClickListener(v -> connectWifi());
-        mBinding.btnDisconnect12345.setOnClickListener(v -> disconnectWifi());
+        mBinding.btnConnect12345.setOnClickListener(v -> {
+            getNetWork();
+            if (mWifiNetwork != null) {
+                mWifiTCPHelper.bindWifiNetwork(mWifiNetwork);
+            }
+            mWifiTCPHelper.connectWifi();
+        });
+        mBinding.btnDisconnect12345.setOnClickListener(v -> mWifiTCPHelper.disconnectWifi());
     }
 
-    // 连接成功后发送序号清零
-    private long mSendSerialNum = 0;
-
-    private static final int TEXT_BUFFER_SIZE = 4096;
-    private StringBuilder mSendText = new StringBuilder(TEXT_BUFFER_SIZE);
-    private StringBuilder mRcvText = new StringBuilder(TEXT_BUFFER_SIZE);
     private void sendWifi12345() {
         mBinding.btnSend12345.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final byte[] bytes = new byte[]{
-                        0x01, 0x02, 0x03, 0x04, 0x05,
-                        0x06, 0x07, 0x08, 0x09, 0x0A,
-                        0x00, 0x00, 0x00, 0x00, 0x00,
-                        0x00, 0x00, 0x00
-                };
-                mSendSerialNum++;
-                bytes[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-                bytes[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-                bytes[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-                bytes[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-                bytes[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-                bytes[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-                bytes[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
-                bytes[17] = (byte) (mSendSerialNum & 0xFF);
-                mExecutor.submit(() -> {
-                    sendWifi(bytes, bytes.length);
-                    // byte[] rcv = new byte[8192];
-                    // int i = rcvWifi(rcv);
-                    // if (i > 0) {
-                    //     textRcv(rcv, i);
-                    // }
-                });
+                mWifiTCPHelper.sendWifi12345();
             }
         });
     }
@@ -251,187 +247,29 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mBinding.btnRcv12345.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExecutor.submit(new Runnable() {
-                    @Override
-                    public void run() {
-                        byte[] rcv = new byte[8192];
-                        while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
-                            int i = rcvWifi(rcv);
-                            if (i > 0) {
-                                textRcv(rcv, i);
-                            }
-                        }
-
-                    }
-                });
+                mWifiTCPHelper.rcvWifi12345();
             }
         });
     }
 
 
-    private void connectWifi() {
-        getNetWork();
-        if (mFuture != null && (!mFuture.isDone() || !mFuture.isCancelled())) {
-            mFuture.cancel(true);
-        }
-        mFuture = mExecutor.submit(() -> {
-            if (mWifiNetwork != null) {
-                if (mWifiSocket != null && !mWifiSocket.isClosed()) {
-                    try {
-                        mWifiSocket.close();
-                    } catch (IOException e) {
-                        Timber.e(e);
-                        textMessage("connectWifi: close Exception!!! " + e);
-                    }
-                }
-                SocketFactory wifiSocket = mWifiNetwork.getSocketFactory();
-                try {
-                    mWifiSocket = wifiSocket.createSocket();
-                    InetSocketAddress a = new InetSocketAddress("192.168.137.1", 12345);
-                    mWifiSocket.connect(a, 15000);
-                    mSendSerialNum = 0;
-                    textMessage("connectWifi: true");
-                } catch (IOException e) {
-                    Timber.e(e);
-                    textMessage("connectWifi: connect Exception!!! " + e);
-                    mWifiSocket = null;
-                }
-            }
-            return null;
+
+    // cellular
+    private void connectCell12345() {
+        mBinding.btnConnectCell12345.setOnClickListener(v -> {
+            mCellTCPHelper.setCellNetwork(null);
+            mCellTCPHelper.connectCell();
         });
-
+        mBinding.btnDisconnectCell12345.setOnClickListener(v -> mCellTCPHelper.disconnectCell());
     }
 
-
-    private int sendWifi(byte[] bytes, int len) {
-        OutputStream out = null;
-        if (mWifiSocket == null || mWifiSocket.isClosed()) {
-            textMessage("sendWifi: mWifiSocket null or closed");
-            return -1;
-        }
-        try {
-            out = mWifiSocket.getOutputStream();
-            out.write(bytes, 0, len);
-            textSend(bytes, len);
-            return len;
-        } catch (IOException e) {
-            Timber.e(e);
-            if (!mWifiSocket.isClosed()) {
-                try {
-                    mWifiSocket.close();
-                } catch (IOException ex) {
-                    Timber.e(ex);
-                    textMessage("sendWifi: " + ex);
-                }
-            }
-        } finally {
-            // if (out != null) {
-            //     try {
-            //         mWifiSocket.shutdownOutput();
-            //     } catch (IOException e) {
-            //         Timber.e(e);
-            //     }
-            // }
-            // if (out != null) {
-            //     try {
-            //         out.close(); // 整个socket都关闭了
-            //     } catch (IOException e) {
-            //         Timber.e(e);
-            //     }
-            // }
-        }
-
-        return -1;
+    // cellular
+    private void sendCell12345() {
+        mBinding.btnSend12345.setOnClickListener(v -> mCellTCPHelper.sendCell12345());
     }
 
-    private int rcvWifi(byte[] bytes) {
-        InputStream in = null;
-        if (mWifiSocket == null || mWifiSocket.isClosed()) {
-            textMessage("rcvWifi: mWifiSocket null or closed");
-            return -1;
-        }
-        try {
-            // StandardSocketOptions, 读写之前设置才有效。
-            mWifiSocket.setSoTimeout(10000); // SocketOptions.SO_TIMEOUT
-            in = mWifiSocket.getInputStream();
-            return in.read(bytes, 0, bytes.length);
-        } catch (IOException e) {
-            if (!(e instanceof SocketTimeoutException)) {
-                Timber.e(e);
-                if (!mWifiSocket.isClosed()) {
-                    try {
-                        mWifiSocket.close();
-                    } catch (IOException ex) {
-                        Timber.e(ex);
-                        textMessage("rcvWifi: " + ex);
-                    }
-                }
-            }
-        } finally {
-            // if (in != null) {
-            //     try {
-            //         in.close(); // 不能单独关闭，否则整个socket的双向都被关了。
-            //     } catch (IOException e) {
-            //         Timber.e(e);
-            //     }
-            // }
-        }
-
-        return -1;
-    }
-
-    private void disconnectWifi() {
-        mStopped = true;
-        if (mWifiSocket != null && !mWifiSocket.isClosed()) {
-            try {
-                mWifiSocket.close();
-            } catch (IOException e) {
-                Timber.e(e);
-            }
-            mWifiSocket = null;
-            textMessage("disconnectWifi: true");
-        }
-    }
-
-
-    public void textSend(byte[] buff, int len) {
-        if (mSendText.length() + len * 3 >= TEXT_BUFFER_SIZE) {
-            mSendText.setLength(0);
-        }
-        String s = String.format("[socket-send]>>: %s\n", HexUtil.byte2Hex(buff, len));
-        mSendText.append(s);
-        mBinding.tvSend.post(new Runnable() {
-            @Override
-            public void run() {
-                mBinding.tvSend.setText(mSendText.toString());
-            }
-        });
-    }
-
-    public void textRcv(byte[] buff, int len) {
-        if (mRcvText.length() + len * 3 >= TEXT_BUFFER_SIZE) {
-            mRcvText.setLength(0);
-        }
-        String s = String.format("[socket-rcv]<<: %s\n", HexUtil.byte2Hex(buff, len));
-        mRcvText.append(s);
-        mBinding.tvRcv.post(new Runnable() {
-            @Override
-            public void run() {
-                mBinding.tvRcv.setText(mRcvText.toString());
-            }
-        });
-    }
-
-    public void textMessage(@NonNull String message) {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            mBinding.tvMessage.setText(message);
-        } else {
-            mBinding.tvMessage.post(new Runnable() {
-                @Override
-                public void run() {
-                    mBinding.tvMessage.setText(message);
-                }
-            });
-        }
+    // cellular
+    private void rcvCell12345() {
+        mBinding.btnRcv12345.setOnClickListener(v -> mCellTCPHelper.rcvCell12345());
     }
 }

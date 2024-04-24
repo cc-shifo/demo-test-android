@@ -50,45 +50,154 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_open_setting"
-        android:layout_width="wrap_content"
+
+
+    <!--左边-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_left_wifi"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_content"
-        android:text="@string/open_setting"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/btn_connect_12345"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_open_setting"
-        android:text="@string/btn_connect_12345"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/btn_disconnect_12345"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_connect_12345"
-        android:text="@string/btn_disconnect_12345"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/btn_rcv_12345"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_disconnect_12345"
-        android:text="@string/btn_rcv_12345"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/btn_send_12345"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_rcv_12345"
-        android:text="@string/btn_send_12345"
-        android:textAllCaps="false" />
+        app:layout_constraintBottom_toTopOf="@id/barrier_horizontal">
+        <Button
+            android:id="@+id/btn_open_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/open_setting"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_connect_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_open_setting"
+            android:text="@string/btn_connect_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_disconnect_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_connect_12345"
+            android:text="@string/btn_disconnect_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_rcv_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_disconnect_12345"
+            android:text="@string/btn_rcv_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_send_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_rcv_12345"
+            android:text="@string/btn_send_12345"
+            android:textAllCaps="false" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--右边-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_right_cell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/btn_left_wifi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content"
+        app:layout_constraintBottom_toTopOf="@id/barrier_horizontal"
+        >
+        <Button
+            android:id="@+id/btn_open_cell_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/open_cell_setting"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_connect_cell_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"
+            android:text="@string/btn_connect_cell_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_disconnect_cell_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_connect_cell_12345"
+            android:text="@string/btn_disconnect_cell_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_rcv_cell_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_disconnect_cell_12345"
+            android:text="@string/btn_rcv_cell_12345"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_send_cell_12345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_rcv_cell_12345"
+            android:text="@string/btn_send_cell_12345"
+            android:textAllCaps="false" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btn_left_wifi, btn_right_cell"
+        app:layout_constraintTop_toBottomOf="@id/btn_left_wifi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        app:barrierDirection="bottom" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tv_cell_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_horizontal"
+        app:layout_constraintHeight_percent="0.3">
+        <TextView
+            android:id="@+id/tv_cell_send"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Hello World!"
+            android:maxLines="10"
+            android:background="@color/teal_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_cell_rcv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scrollbars="vertical"/>
+
+        <TextView
+            android:id="@+id/tv_cell_rcv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Hello World!"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:background="@color/teal_200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_cell_send"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
