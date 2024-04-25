@@ -1,4 +1,3 @@
-
 package com.example.demowificonnectivity;
 
 import androidx.annotation.NonNull;
@@ -41,6 +40,7 @@ public class HexUtil {
 
     /**
      * 小端字节数组转long。
+     *
      * @return 长整型
      */
     public static long leByte2Long(@NonNull byte[] src, int off) {
@@ -54,6 +54,7 @@ public class HexUtil {
 
     /**
      * 小端字节数组转int。
+     *
      * @return 整型
      */
     public static int leByte2Int(@NonNull byte[] src, int off) {

@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -41,14 +42,30 @@ public class CellModel {
         }
     }
 
+
+    public LiveData<String> getMsg() {
+        return mWifiTCPHelper.mMsgTextView;
+    }
+
+    public LiveData<String> getSentData() {
+        return mWifiTCPHelper.mSendTextView;
+    }
+
+    public LiveData<String> getRcvData() {
+        return mWifiTCPHelper.mRcvTextView;
+    }
+
     public void bindWifiNetwork(@NonNull Network wifiNetwork) {
         mWifiTCPHelper.bindWifiNetwork(wifiNetwork);
     }
 
-    public void connectAlways() {
+    public void connectAlways(@NonNull final Network network) {
         mExecutor.submit(new Runnable() {
             @Override
             public void run() {
+                mWifiTCPHelper.reset();
+                mWifiTCPHelper.createSocket();
+                mWifiTCPHelper.bindWifiNetwork(network);
                 mWifiTCPHelper.connectAlways();
             }
         });
@@ -116,7 +133,7 @@ public class CellModel {
             @Override
             public void run() {
                 if (mWifiTCPHelper != null) {
-                    mWifiTCPHelper.destroy();
+                    mWifiTCPHelper.disconnectCell();
                     mWifiTCPHelper.mainEnter(network);
                 }
             }

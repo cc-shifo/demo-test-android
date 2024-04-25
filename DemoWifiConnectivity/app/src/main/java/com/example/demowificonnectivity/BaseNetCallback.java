@@ -13,12 +13,14 @@ package com.example.demowificonnectivity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.LinkAddress;
 import android.net.LinkProperties;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.NetworkRequest;
 
 import androidx.annotation.NonNull;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -26,8 +28,9 @@ import timber.log.Timber;
  * 监听网络是否可以访问互联网。
  */
 public class BaseNetCallback extends ConnectivityManager.NetworkCallback {
-    public static final String TAG = "MainActivity-BaseNet";
+    public static final String TAG = "BaseNet";
     private volatile boolean mConnected;
+
     public BaseNetCallback() {
         // nothing
     }
@@ -39,7 +42,8 @@ public class BaseNetCallback extends ConnectivityManager.NetworkCallback {
         // NetworkCapabilities c = manager.getNetworkCapabilities(network);
         //
         // c.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-        Timber.tag(MainActivity.TAG).i("initNetworkCallback onAvailable: %s, %s", network.toString(), this.toString());
+        Timber.tag(MainActivity.TAG).i("initNetworkCallback onAvailable: %s, %s",
+                network.toString(), this.toString());
         getNetWork();
     }
 
@@ -69,20 +73,29 @@ public class BaseNetCallback extends ConnectivityManager.NetworkCallback {
 
         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
 
-        Timber.tag(MainActivity.TAG).i("initNetworkCallback onCapabilitiesChanged: %s, connected=%s, %s",
+        Timber.tag(MainActivity.TAG).i(
+                "initNetworkCallback onCapabilitiesChanged: %s, connected=%s, %s",
                 network.toString(), String.valueOf(mConnected), this.toString());
     }
 
     @Override
     public void onLinkPropertiesChanged(@NonNull Network network,
             @NonNull LinkProperties linkProperties) {
-        Timber.tag(MainActivity.TAG).i("initNetworkCallback onLinkPropertiesChanged: %s, properties=%s, %s",
+        Timber.tag(MainActivity.TAG).i(
+                "initNetworkCallback onLinkPropertiesChanged: %s, properties=%s, %s",
                 network.toString(), linkProperties.toString(), this.toString());
+        List<LinkAddress> list = linkProperties.getLinkAddresses();
+        for (LinkAddress a : list) {
+            Timber.tag(MainActivity.TAG).i(
+                    "initNetworkCallback onLinkPropertiesChanged: %s", a.getAddress().toString());
+        }
+
     }
 
     @Override
     public void onBlockedStatusChanged(@NonNull Network network, boolean blocked) {
-        Timber.tag(MainActivity.TAG).i("initNetworkCallback onBlockedStatusChanged: %s, blocked=%s, %s",
+        Timber.tag(MainActivity.TAG).i(
+                "initNetworkCallback onBlockedStatusChanged: %s, blocked=%s, %s",
                 network.toString(), String.valueOf(blocked), this.toString());
     }
     //
@@ -125,6 +138,7 @@ public class BaseNetCallback extends ConnectivityManager.NetworkCallback {
 
     private Network mWifiNetwork;// 打印
     private Network mCellNetwork; // 打印
+
     private void getNetWork() {
         mWifiNetwork = null;
         mCellNetwork = null;

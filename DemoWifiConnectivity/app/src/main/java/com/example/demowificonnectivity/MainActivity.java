@@ -15,6 +15,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.demowificonnectivity.databinding.ActivityMainBinding;
 
@@ -163,6 +164,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
 
         mWifiTCPModel = new WiFiModel();
+        mWifiTCPModel.getMsg().observe(this, s -> mBinding.tvMessage.setText(s));
+        mWifiTCPModel.getSentData().observe(this, s -> mBinding.tvSend.setText(s));
+        mWifiTCPModel.getRcvData().observe(this, s -> mBinding.tvRcv.setText(s));
         mWifiTCPModel.listen(this);
         openSetting();
         connectWifi12345();
@@ -170,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         rcvWifi12345();
 
         mCellModel = new CellModel();
+        mCellModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
+        mWifiTCPModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
+        mWifiTCPModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
         mCellModel.listen(MainActivity.this);
         // connectCell12345();
         // sendCell12345();

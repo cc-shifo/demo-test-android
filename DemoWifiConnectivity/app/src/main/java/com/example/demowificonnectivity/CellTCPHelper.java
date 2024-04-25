@@ -56,6 +56,10 @@ public class CellTCPHelper extends BaseTCPHelper {
         return mRcvTextView;
     }
 
+    public void reset() {
+        mStopped = false;
+    }
+
     public void createSocket() {
         if (mWifiSocket != null && !mWifiSocket.isClosed()) {
             try {
@@ -98,25 +102,25 @@ public class CellTCPHelper extends BaseTCPHelper {
     }
 
     public void mainEnter(@NonNull Network network) {
-        createSocket();
-        bindWifiNetwork(network);
-        connectAlways();
-        byte[] rcv = new byte[8192];
-        while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
-            int i = rcvWifi(rcv);
-            if (i > 0) {
-                textRcv(rcv, i);
+        mStopped = false;
+        while (!mStopped) {
+            createSocket();
+            bindWifiNetwork(network);
+            connectAlways();
+            byte[] rcv = new byte[8192];
+            while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
+                int i = rcvWifi(rcv);
+                if (i > 0) {
+                    textRcv(rcv, i);
+                }
             }
-        }
-
-        if (!mStopped) {
-            safeThreadSleep5000MS();
-            mainEnter(network);
+            if (!mStopped) {
+                safeThreadSleep5000MS();
+            }
         }
     }
 
     public void connectAlways() {
-        mStopped = false;
         while (!mStopped && (mWifiSocket == null || !mWifiSocket.isClosed())) {
             connectCell();
             if (mWifiSocket != null) {
@@ -189,6 +193,7 @@ public class CellTCPHelper extends BaseTCPHelper {
         if (mFuture != null && !mFuture.isCancelled()) {
             mFuture.cancel(true);
         }
+        textMessage("connected: network lost");
     }
 
     public void connectCell() {

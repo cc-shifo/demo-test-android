@@ -13,11 +13,10 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import timber.log.Timber;
 
-public class WifiTCPHelper  extends BaseTCPHelper {
+public class WifiTCPHelper extends BaseTCPHelper {
     public static final String TAG = "MainActivity-Net-Wifi";
 
     private ScheduledFuture<?> mScheduledFuture = null;
@@ -26,16 +25,23 @@ public class WifiTCPHelper  extends BaseTCPHelper {
     private Network mWifiNetwork;// 打印
     private Socket mWifiSocket;
 
+    private boolean mConnected;
+
+    private String mIP;
+    private int mPort;
+
     public final MutableLiveData<String> mMsgTextView = new MutableLiveData<>();
     public final MutableLiveData<String> mSendTextView = new MutableLiveData<>();
     public final MutableLiveData<String> mRcvTextView = new MutableLiveData<>();
-
 
 
     private static final int TEXT_BUFFER_SIZE = 4096;
     private StringBuilder mSendText = new StringBuilder(TEXT_BUFFER_SIZE);
     private StringBuilder mRcvText = new StringBuilder(TEXT_BUFFER_SIZE);
 
+    public void reset() {
+        mStopped = false;
+    }
 
     public void createSocket() {
         if (mWifiSocket != null && !mWifiSocket.isClosed()) {
@@ -81,16 +87,24 @@ public class WifiTCPHelper  extends BaseTCPHelper {
         }
     }
 
-    public void mainEnter(@NonNull Network network) {
-        createSocket();
-        bindWifiNetwork(network);
-        connectAlways();
-        rcvWifiAlways();
+    public void mainEnter(@NonNull Network network, @NonNull String ip, int port) {
+        mStopped = false;
+        mIP = ip;
+        // "192.168.137.1", 12345
+        mPort = port;
+        do {
+            createSocket();
+            bindWifiNetwork(network);
+            connectAlways();
+            rcvWifiAlways();
+            if (!mStopped) {
+                ThreadUtil.safeThreadSleep5000MS();
+            }
+        } while (!mStopped);
     }
 
     public void connectAlways() {
-        mStopped = false;
-        while (!mStopped && (mWifiSocket == null || mWifiSocket.isClosed())) {
+        while (!mStopped && (mWifiSocket == null || !mWifiSocket.isClosed())) {
             connectWifi();
             if (mWifiSocket != null) {
                 break;
@@ -100,12 +114,14 @@ public class WifiTCPHelper  extends BaseTCPHelper {
 
     public void connectWifi() {
         try {
-            InetSocketAddress a = new InetSocketAddress("192.168.137.1", 12345);
+            InetSocketAddress a = new InetSocketAddress(mIP, mPort);
             mWifiSocket.connect(a, 2000);
             textMessage("connectWifi: true");
+            mConnected = true;
         } catch (IOException e) {
             Timber.e(e);
             textMessage("connectWifi: connect Exception!!! " + e);
+            mConnected = false;
             mWifiSocket = null;
         }
     }
@@ -215,6 +231,7 @@ public class WifiTCPHelper  extends BaseTCPHelper {
         if (mFuture != null && !mFuture.isCancelled()) {
             mFuture.cancel(true);
         }
+        textMessage("connected: network lost");
     }
 
     private void textSend(byte[] buff, int len) {
@@ -237,5 +254,11 @@ public class WifiTCPHelper  extends BaseTCPHelper {
 
     private void textMessage(@NonNull String message) {
         mMsgTextView.postValue(message);
+    }
+
+
+    public static String ipv4Int2Str(int addr) {
+        return (addr & 0xFF) + "." + ((addr >> 8) & 0xFF) + "." + ((addr >> 16) & 0xFF)
+                + "." + ((addr >> 24) & 0xFF);
     }
 }

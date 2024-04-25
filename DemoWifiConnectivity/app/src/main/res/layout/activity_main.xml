@@ -8,12 +8,21 @@
 
     <TextView
         android:id="@+id/tv_message"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_cell_message"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_percent="0.1"/>
+    <TextView
+        android:id="@+id/tv_cell_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        tools:background="@android:color/darker_gray"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tv_content"
@@ -53,138 +62,180 @@
 
 
     <!--左边-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_left_wifi"
+    <ScrollView
+        android:id="@+id/btn_left_scroll"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_right_scroll"
         app:layout_constraintTop_toBottomOf="@id/tv_content"
-        app:layout_constraintBottom_toTopOf="@id/barrier_horizontal">
-        <Button
-            android:id="@+id/btn_open_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/open_setting"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_connect_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_open_setting"
-            android:text="@string/btn_connect_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_disconnect_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_connect_12345"
-            android:text="@string/btn_disconnect_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_rcv_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_disconnect_12345"
-            android:text="@string/btn_rcv_12345"
-            android:textAllCaps="false" />
-        <Button
-            android:id="@+id/btn_send_12345"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_rcv_12345"
-            android:text="@string/btn_send_12345"
-            android:textAllCaps="false" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintHeight_percent="0.3">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_left_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edt_ip_123456"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:hint="@string/edt_hint_local_ip"/>
+            <EditText
+                android:id="@+id/edt_port_123456"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_ip_123456"
+                android:hint="@string/edt_hint_local_port"/>
+            <Button
+                android:id="@+id/btn_open_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_port_123456"
+                android:text="@string/open_setting"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_connect_12345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_open_setting"
+                android:text="@string/btn_connect_12345"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_disconnect_12345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_connect_12345"
+                android:text="@string/btn_disconnect_12345"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_rcv_12345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_disconnect_12345"
+                android:text="@string/btn_rcv_12345"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_send_12345"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_rcv_12345"
+                android:text="@string/btn_send_12345"
+                android:textAllCaps="false" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <!--右边-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_right_cell"
+    <ScrollView
+        android:id="@+id/btn_right_scroll"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/btn_left_wifi"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/btn_left_scroll"
         app:layout_constraintTop_toBottomOf="@id/tv_content"
-        app:layout_constraintBottom_toTopOf="@id/barrier_horizontal"
-        >
-        <Button
-            android:id="@+id/btn_open_cell_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/open_cell_setting"
-            android:textAllCaps="false" />
-        <!--<Button-->
-        <!--    android:id="@+id/btn_connect_cell_12345"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"-->
-        <!--    android:text="@string/btn_connect_cell_12345"-->
-        <!--    android:textAllCaps="false" />-->
-        <!--<Button-->
-        <!--    android:id="@+id/btn_disconnect_cell_12345"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_connect_cell_12345"-->
-        <!--    android:text="@string/btn_disconnect_cell_12345"-->
-        <!--    android:textAllCaps="false" />-->
-        <!--<Button-->
-        <!--    android:id="@+id/btn_rcv_cell_12345"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_disconnect_cell_12345"-->
-        <!--    android:text="@string/btn_rcv_cell_12345"-->
-        <!--    android:textAllCaps="false" />-->
-        <!--<Button-->
-        <!--    android:id="@+id/btn_send_cell_12345"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_rcv_cell_12345"-->
-        <!--    android:text="@string/btn_send_cell_12345"-->
-        <!--    android:textAllCaps="false" />-->
-        <!--<Button-->
-        <!--    android:id="@+id/btn_cell_con_always"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_send_cell_12345"-->
-        <!--    android:text="@string/btn_cell_con_always"-->
-        <!--    android:textAllCaps="false" />-->
-        <!--<Button-->
-        <!--    android:id="@+id/btn_cell_rcv_always"-->
-        <!--    android:layout_width="wrap_content"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    app:layout_constraintStart_toStartOf="parent"-->
-        <!--    app:layout_constraintTop_toBottomOf="@id/btn_cell_con_always"-->
-        <!--    android:text="@string/btn_cell_rcv_always"-->
-        <!--    android:textAllCaps="false" />-->
-        <Button
-            android:id="@+id/btn_cell_send_manually"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"
-            android:text="@string/btn_cell_send_menu"
-            android:textAllCaps="false" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_right_cell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edt_ip_cell_123456"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:hint="@string/edt_hint_ip"/>
+            <EditText
+                android:id="@+id/edt_port_cell_123456"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_ip_cell_123456"
+                android:hint="@string/edt_hint_port"/>
+            <!--<Button-->
+            <!--    android:id="@+id/btn_open_cell_setting"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/edt_port_cell_123456"-->
+            <!--    android:text="@string/open_cell_setting"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_connect_cell_12345"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_open_cell_setting"-->
+            <!--    android:text="@string/btn_connect_cell_12345"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_disconnect_cell_12345"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_connect_cell_12345"-->
+            <!--    android:text="@string/btn_disconnect_cell_12345"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_rcv_cell_12345"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_disconnect_cell_12345"-->
+            <!--    android:text="@string/btn_rcv_cell_12345"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_send_cell_12345"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_rcv_cell_12345"-->
+            <!--    android:text="@string/btn_send_cell_12345"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_cell_con_always"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_send_cell_12345"-->
+            <!--    android:text="@string/btn_cell_con_always"-->
+            <!--    android:textAllCaps="false" />-->
+            <!--<Button-->
+            <!--    android:id="@+id/btn_cell_rcv_always"-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    app:layout_constraintStart_toStartOf="parent"-->
+            <!--    app:layout_constraintTop_toBottomOf="@id/btn_cell_con_always"-->
+            <!--    android:text="@string/btn_cell_rcv_always"-->
+            <!--    android:textAllCaps="false" />-->
+            <Button
+                android:id="@+id/btn_cell_send_manually"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_port_cell_123456"
+                android:text="@string/btn_cell_send_menu"
+                android:textAllCaps="false" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btn_left_wifi, btn_right_cell"
-        app:layout_constraintTop_toBottomOf="@id/btn_left_wifi"
+        app:constraint_referenced_ids="btn_left_scroll, btn_right_scroll"
+        app:layout_constraintTop_toBottomOf="@id/btn_left_scroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="horizontal"
@@ -197,7 +248,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_horizontal"
-        app:layout_constraintHeight_percent="0.3">
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
         <TextView
             android:id="@+id/tv_cell_send"
             android:layout_width="0dp"

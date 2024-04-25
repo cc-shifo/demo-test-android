@@ -2,10 +2,10 @@
     <string name="app_name">DemoWifiConnectivity</string>
     <string name="open_setting">Open WiFi Setting</string>
     <string name="request_permissions">allow this permission</string>
-    <string name="btn_connect_12345">btn connect 12345</string>
-    <string name="btn_disconnect_12345">btn disconnect 12345</string>
-    <string name="btn_rcv_12345">btn rcv 12345</string>
-    <string name="btn_send_12345">btn send 12345</string>
+    <string name="btn_connect_12345">btn connect</string>
+    <string name="btn_disconnect_12345">btn disconnect</string>
+    <string name="btn_rcv_12345">btn rcv</string>
+    <string name="btn_send_12345">btn send</string>
 
     <string name="open_cell_setting">Open Cell Setting</string>
     <string name="btn_connect_cell_12345">btn connect 12345</string>
@@ -16,4 +16,9 @@
     <string name="btn_cell_listen">listen Always</string>
     <string name="btn_cell_rcv_always">rcv Always</string>
     <string name="btn_cell_send_menu">send Manually</string>
+    <string name="edt_hint_ip">IP</string>
+    <string name="edt_hint_port">PORT</string>
+
+    <string name="edt_hint_local_ip">Local Net IP</string>
+    <string name="edt_hint_local_port">Local Net PORT</string>
 </resources>

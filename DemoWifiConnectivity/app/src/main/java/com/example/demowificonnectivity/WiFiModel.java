@@ -2,12 +2,21 @@ package com.example.demowificonnectivity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.DhcpInfo;
+import android.net.LinkProperties;
 import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
-import java.net.Socket;
+import java.net.Inet4Address;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+import timber.log.Timber;
 
 public class WiFiModel {
     private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
@@ -22,13 +31,44 @@ public class WiFiModel {
             @Override
             public void onAvailable(@NonNull Network network) {
                 super.onAvailable(network);
-                // startService(network);
+                String address = "";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    ConnectivityManager manager = (ConnectivityManager) context
+                            .getSystemService(Context.CONNECTIVITY_SERVICE);
+                    LinkProperties linkProperties = manager.getLinkProperties(network);
+                    address = linkProperties.getDhcpServerAddress().getHostAddress();
+                    // linkProperties.getLinkAddresses(); // 本机地址
+                } else {
+                    WifiManager wifiManager = (WifiManager) MyAPP.getMyAPP()
+                            .getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    // 31 Build.VERSION_CODES.S deprecated
+                    DhcpInfo info = wifiManager.getDhcpInfo();
+                    if (info != null) {
+                        address = WifiTCPHelper.ipv4Int2Str(info.serverAddress);
+                    }
+                }
+                // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                //     capabilities.getNetworkSpecifier();
+                // }
+                // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                //     capabilities.getTransportInfo(); // 连接到热点时，获取的是本机当前地址
+                // }
+                Timber.d("initNetworkCallback: server address %s", address);
+                if (!TextUtils.isEmpty(address)) {
+                    startService(network, address, 12345);
+                }
+            }
+
+            @Override
+            public void onCapabilitiesChanged(@NonNull Network network,
+                    @NonNull NetworkCapabilities capabilities) {
+                super.onCapabilitiesChanged(network, capabilities);
             }
 
             @Override
             public void onLost(@NonNull Network network) {
                 super.onLost(network);
-                // stopService();
+                stopService();
             }
         };
         NetworkHelper.registerWiFiNetworkCallback(context, mWiFiCallback);
@@ -42,7 +82,20 @@ public class WiFiModel {
         }
     }
 
+    public LiveData<String> getMsg() {
+        return mWifiTCPHelper.mMsgTextView;
+    }
+
+    public LiveData<String> getSentData() {
+        return mWifiTCPHelper.mSendTextView;
+    }
+
+    public LiveData<String> getRcvData() {
+        return mWifiTCPHelper.mRcvTextView;
+    }
+
     public void createSocket() {
+        mWifiTCPHelper.reset();
         mWifiTCPHelper.createSocket();
 
         // if (mWifiNetwork != null) {
@@ -119,13 +172,14 @@ public class WiFiModel {
         });
     }
 
-    private void startService(@NonNull final Network network) {
+    private void startService(@NonNull final Network network,
+            @NonNull final String address, int port) {
         mExecutor.submit(new Runnable() {
             @Override
             public void run() {
                 if (mWifiTCPHelper != null) {
-                    mWifiTCPHelper.destroy();
-                    mWifiTCPHelper.mainEnter(network);
+                    mWifiTCPHelper.disconnectWifi();
+                    mWifiTCPHelper.mainEnter(network, address, port);
                 }
             }
         });
