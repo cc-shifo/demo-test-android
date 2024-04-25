@@ -1,0 +1,14 @@
+
+a
+java:S1301<"KReplace this "switch" statement by "if" statements to increase readability.(¸èï˜
+p	java:S116"VRename this field "TIME_SENSOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æı™Âüÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(æı™Âüÿÿÿÿ
+S
+java:S1874"8Remove this use of "TYPE_ORIENTATION"; it is deprecated.(¢ÕÙşÿÿÿÿ
+M
+java:S11353"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+7	java:S131<""Add a default case to this switch.(¸èï˜
+N
+java:S1874="8Remove this use of "TYPE_ORIENTATION"; it is deprecated.(ú»Ú¯
+7	java:S131W""Add a default case to this switch.(Ü¬×î

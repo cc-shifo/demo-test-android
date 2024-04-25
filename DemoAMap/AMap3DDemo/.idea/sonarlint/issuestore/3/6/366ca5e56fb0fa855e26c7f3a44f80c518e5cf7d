@@ -1,0 +1,52 @@
+
+u
+java:S2293¨"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚·üÿÿÿÿ
+K
+java:S1066ú"/Merge this if statement with the enclosing one.(ÕÉª‘ıÿÿÿÿ
+F
+java:S1066é"/Merge this if statement with the enclosing one.(Ô‹¦ú
+F
+java:S1066ê"/Merge this if statement with the enclosing one.(Ä‘â†
+Q
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+|
+java:S1488¿"eImmediately return this expression instead of assigning it to the temporary variable "permissionInt".(­æ³
+
+java:S1488É"eImmediately return this expression instead of assigning it to the temporary variable "permissionInt".(¼„õ»úÿÿÿÿ
+i
+java:S3252º"MUse static access with "android.text.Spanned" for "SPAN_EXCLUSIVE_EXCLUSIVE".(ïä…¡şÿÿÿÿ
+A
+java:S1181ş"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181™"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(ö¹ÿ°úÿÿÿÿ
+A
+java:S1181“"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+D	java:S108“")Either remove or fill this block of code.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181¶"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+B
+java:S1168¹"+Return an empty collection instead of null.(¥¹ï
+A
+java:S1181Á"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+D	java:S108Á")Either remove or fill this block of code.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181Ë"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+D	java:S108Ë")Either remove or fill this block of code.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181Ş"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+V
+java:S1161å":Add the "@Override" annotation above this method signature(şèçúÿÿÿÿ
+A
+java:S1181ğ"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181œ"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181‡"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181“"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181¬"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+L
+java:S1068u"1Remove this unused "descriptionId" private field.(¾çö¯ıÿÿÿÿ

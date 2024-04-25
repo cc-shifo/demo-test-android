@@ -1,0 +1,42 @@
+
+S
+java:S2589´"7Remove this expression which always evaluates to "true"(Å‹µûÿÿÿÿ
+`
+java:S2583˜"DChange this condition so that it does not always evaluate to "false"(˜œ·‰øÿÿÿÿ
+[
+java:S2583”"DChange this condition so that it does not always evaluate to "false"(¶ª×ù
+n	java:S1162"YRename this field "ROUTE_TYPE_BUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô–‰
+7
+java:S11701"!Make this final field static too.(¦Îõ´
+7
+java:S11702"!Make this final field static too.(Ô–‰
+˜
+java:S1186À"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÌÝÊ¡
+˜
+java:S1186Å"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢é­÷
+t
+java:S1450,"^Remove the "mBusRouteResult" field and declare it as a local variable in the relevant methods.(âæÍ…
+o
+java:S14505"ZRemove the "mHeadLayout" field and declare it as a local variable in the relevant methods.(”Ä "
+Q
+java:S18747"6Remove this use of "ProgressDialog"; it is deprecated.(‰Èåøüÿÿÿÿ
+M
+java:S1874F"2Remove this use of "BusDefault"; it is deprecated.(‚üÝ˜ýÿÿÿÿ
+M
+java:S1135t"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+M
+java:S1135z"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+N
+java:S1135€"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+N
+java:S1135†"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+N
+java:S1135Œ"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+Z
+java:S1155¯">Use isEmpty() to check whether the collection is empty or not.(¤ÒÆçúÿÿÿÿ
+M
+java:S1874Ï"6Remove this use of "ProgressDialog"; it is deprecated.(¼ÐÖ’
+M
+java:S1874Ð"6Remove this use of "ProgressDialog"; it is deprecated.(ç£¾›
+N
+java:S1135†"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ

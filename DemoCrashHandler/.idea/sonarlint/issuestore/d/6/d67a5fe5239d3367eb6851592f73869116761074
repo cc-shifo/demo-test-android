@@ -1,0 +1,10 @@
+
+E
+java:S1604#"(Make this anonymous inner class a lambda(ÉãÃ®8çôÖÂ1
+c
+java:S2259-"AA "NullPointerException" could be thrown; "txt" is nullable here.(ÔÆÒ–şÿÿÿÿ8ùôÖÂ1
+t
+java:S1450"WRemove the "mBinding" field and declare it as a local variable in the relevant methods.(á“¯è8ıôÖÂ1
+{
+java:S2142("^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ƒõÖÂ1
+U	java:S106."9Replace this use of System.out or System.err by a logger.(ÏÇĞ8ƒõÖÂ1
