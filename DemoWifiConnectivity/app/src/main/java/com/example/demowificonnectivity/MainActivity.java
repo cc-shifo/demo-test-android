@@ -119,6 +119,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (mCellModel != null) {
             mCellModel.cancelListen(this);
         }
+
+        if (mWiFiUDPServerModel != null) {
+            mWiFiUDPServerModel.cancelListen(this);
+        }
     }
 
     private static final int RC_ALL_PERMISSION = 1004;
@@ -173,11 +177,25 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         sendWifi12345();
         rcvWifi12345();
 
-        mCellModel = new CellModel();
-        mCellModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
-        mWifiTCPModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
-        mWifiTCPModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
-        mCellModel.listen(MainActivity.this);
+        // mCellModel = new CellModel();
+        // mCellModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
+        // mWifiTCPModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
+        // mWifiTCPModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
+        // mCellModel.listen(MainActivity.this);
+        // // connectCell12345();
+        // // sendCell12345();
+        // // rcvCell12345();
+        // // connectCellAlways();
+        // // rcvCellAlways();
+        // sendCellManually();
+
+        mWiFiUDPServerModel = new WiFiUDPServerModel();
+
+        mWiFiUDPServerModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
+        mWiFiUDPServerModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
+        mWiFiUDPServerModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
+        mWiFiUDPServerModel.listen(MainActivity.this);
+
         // connectCell12345();
         // sendCell12345();
         // rcvCell12345();
@@ -317,4 +335,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             }
         });
     }
+
+    private WiFiUDPServerModel mWiFiUDPServerModel;
 }
