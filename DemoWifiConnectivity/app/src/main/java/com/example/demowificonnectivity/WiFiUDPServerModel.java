@@ -87,7 +87,7 @@ public class WiFiUDPServerModel {
 
     public void cancelListen(@NonNull Context context) {
         // mAPHelper.unregister(context);
-
+        mAPHelper.stop();
         stopService();
         if (mWiFiCallback != null) {
             NetworkHelper.unregisterWiFiNetworkCallback(context, mWiFiCallback);
