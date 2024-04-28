@@ -6,22 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RadioGroup
+        android:id="@+id/rg_server_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rb_server"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/rg_server_client_server"/>
+        <RadioButton
+            android:id="@+id/rb_client"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/rg_server_client_client"/>
+    </RadioGroup>
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_cell_message"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.1"/>
+        app:layout_constraintTop_toBottomOf="@id/rg_server_client"
+        app:layout_constraintHeight_percent="0.1"
+        android:maxLines="5"
+        android:scrollbars="vertical"/>
     <TextView
         android:id="@+id/tv_cell_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/tv_message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_message"
         app:layout_constraintHeight_percent="0.1"
+        android:maxLines="5"
+        android:scrollbars="vertical"
         tools:background="@android:color/darker_gray"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="Hello World!"
-            android:maxLines="10"
+            android:maxLines="6"
             android:background="@color/teal_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_rcv"
@@ -50,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="Hello World!"
-            android:maxLines="10"
+            android:maxLines="6"
             android:scrollbars="vertical"
             android:background="@color/teal_200"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +92,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_right_scroll"
         app:layout_constraintTop_toBottomOf="@id/tv_content"
-        app:layout_constraintHeight_percent="0.3">
+        app:layout_constraintHeight_percent="0.2" >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_left_wifi"
             android:layout_width="match_parent"
@@ -255,7 +278,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="Hello World!"
-            android:maxLines="10"
+            android:maxLines="6"
             android:background="@color/teal_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_cell_rcv"
@@ -268,7 +291,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="Hello World!"
-            android:maxLines="10"
+            android:maxLines="6"
             android:scrollbars="vertical"
             android:background="@color/teal_200"
             app:layout_constraintBottom_toBottomOf="parent"

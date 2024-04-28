@@ -21,4 +21,6 @@
 
     <string name="edt_hint_local_ip">Local Net IP</string>
     <string name="edt_hint_local_port">Local Net PORT</string>
+    <string name="rg_server_client_server">Server</string>
+    <string name="rg_server_client_client">Client</string>
 </resources>

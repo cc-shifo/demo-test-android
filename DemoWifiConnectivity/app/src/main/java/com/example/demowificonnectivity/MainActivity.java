@@ -12,6 +12,8 @@ import android.provider.Settings;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -123,6 +125,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (mWiFiUDPServerModel != null) {
             mWiFiUDPServerModel.cancelListen(this);
         }
+
+        if (mWiFiUDPClientModel != null) {
+            mWiFiUDPClientModel.cancelListen(this);
+        }
     }
 
     private static final int RC_ALL_PERMISSION = 1004;
@@ -189,12 +195,47 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         // // rcvCellAlways();
         // sendCellManually();
 
-        mWiFiUDPServerModel = new WiFiUDPServerModel();
 
-        mWiFiUDPServerModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
-        mWiFiUDPServerModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
-        mWiFiUDPServerModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
-        mWiFiUDPServerModel.listen(MainActivity.this);
+
+        mBinding.rbClient.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    }
+                });
+
+        mWiFiUDPServerModel = new WiFiUDPServerModel();
+        mWiFiUDPClientModel = new WiFiUDPClientModel();
+
+        mBinding.rbServer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mWiFiUDPClientModel.cancelListen(MainActivity.this);
+                    clearTextObservers();
+
+                    mWiFiUDPServerModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
+                    mWiFiUDPServerModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
+                    mWiFiUDPServerModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
+                    mWiFiUDPServerModel.listen(MainActivity.this);
+                }
+            }
+        });
+        mBinding.rbClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mWiFiUDPServerModel.cancelListen(MainActivity.this);
+                    clearTextObservers();
+
+                    mWiFiUDPClientModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
+                    mWiFiUDPClientModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
+                    mWiFiUDPClientModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
+                    mWiFiUDPClientModel.listen(MainActivity.this);
+                }
+            }
+        });
 
         // connectCell12345();
         // sendCell12345();
@@ -204,6 +245,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         sendCellManually();
     }
 
+    private void clearTextObservers() {
+        mWiFiUDPServerModel.getMsg().removeObservers(MainActivity.this);
+        mWiFiUDPServerModel.getSentData().removeObservers(MainActivity.this);
+        mWiFiUDPServerModel.getRcvData().removeObservers(MainActivity.this);
+        mWiFiUDPClientModel.getMsg().removeObservers(MainActivity.this);
+        mWiFiUDPClientModel.getSentData().removeObservers(MainActivity.this);
+        mWiFiUDPClientModel.getRcvData().removeObservers(MainActivity.this);
+    }
 
 
     private Network mWifiNetwork;// 打印
@@ -337,4 +386,5 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private WiFiUDPServerModel mWiFiUDPServerModel;
+    private WiFiUDPClientModel mWiFiUDPClientModel;
 }

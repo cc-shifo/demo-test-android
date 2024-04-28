@@ -15,4 +15,15 @@ public class ThreadUtil {
             }
         }
     }
+
+    public static void safeThreadSleepMS(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            if (Thread.interrupted())  {
+                // Clears interrupted status!
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
 }

@@ -11,15 +11,14 @@ import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
 
 import timber.log.Timber;
 
-public class WiFiUDPServerHelper {
+public class WiFiUDPClientHelper {
     public static final String TAG = "MainActivity-Net-Wifi";
 
     private final ScheduledFuture<?> mScheduledFuture = null;
@@ -44,28 +43,28 @@ public class WiFiUDPServerHelper {
     private final StringBuilder mSendText = new StringBuilder(TEXT_BUFFER_SIZE);
     private final StringBuilder mRcvText = new StringBuilder(TEXT_BUFFER_SIZE);
 
-    public WiFiUDPServerHelper() {
+    public WiFiUDPClientHelper() {
         mRcvPacket = new DatagramPacket(new byte[8192], 8192);
         mSendPacket = new DatagramPacket(new byte[8192], 8192);
     }
 
-    public void mainEnter(/*@NonNull Network network, */@NonNull String ip, int port) {
+    public void mainEnter(@NonNull Network network, @NonNull String ip, int port) {
         mStopped = false;
         mIP = ip;
         // "192.168.137.1", 12345
         mPort = port;
+
         do {
-            createSocket();
-            // bindWifiNetwork(network);
-            // mRcvPacket.setData(bytes, 0, bytes.length);
-            try {
-                mWifiSocket.receive(mRcvPacket);
-                mSendPacket.setAddress(mRcvPacket.getAddress());
-                mSendPacket.setPort(mRcvPacket.getPort());
-            } catch (IOException e) {
-                Timber.e(e);
+            if (setServerAddress() < 0) {
+                ThreadUtil.safeThreadSleep5000MS();
+                continue;
             }
-            sendWifiAlways();
+
+            createSocket();
+            bindWifiNetwork(network);
+            if (sendWiFiOnce() > 0) {
+                rcvWifiAlways();
+            }
             if (!mStopped) {
                 ThreadUtil.safeThreadSleep5000MS();
             }
@@ -222,6 +221,42 @@ public class WiFiUDPServerHelper {
         return -1;
     }
 
+    private int setServerAddress() {
+        try {
+            mSendPacket.setAddress(InetAddress.getByName(mIP));
+        } catch (UnknownHostException e) {
+            textMessage("setServerAddress: " + e);
+            Timber.e(e);
+            return -1;
+        }
+        mSendPacket.setPort(mPort);
+        return 0;
+    }
+
+    private int sendWiFiOnce() {
+        byte[] send = new byte[8192];
+        send[0] = (byte) 0x01;
+        send[1] = (byte) (0x02 & 0xFF);
+        send[2] = (byte) (0x03 & 0xFF);
+        send[3] = (byte) (0x04 & 0xFF);
+        send[4] = (byte) (0x05 & 0xFF);
+        send[5] = (byte) (0x06 & 0xFF);
+        send[6] = (byte) (0x07 & 0xFF);
+        send[7] = (byte) (0x08 & 0xFF);
+        send[8] = (byte) (0x09 & 0xFF);
+        send[9] = (byte) (0x0A & 0xFF);
+        mSendSerialNum++;
+        send[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
+        send[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
+        send[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
+        send[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
+        send[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
+        send[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
+        send[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+        send[17] = (byte) (mSendSerialNum & 0xFF);
+        return sendWifi(send, 0, 18);
+    }
+
     public void rcvWifiAlways() {
         byte[] rcv = new byte[8192];
         while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
@@ -246,9 +281,9 @@ public class WiFiUDPServerHelper {
             textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
             return mRcvPacket.getLength();
         } catch (IOException e) {
+            Timber.e(e);
             if (!(e instanceof SocketTimeoutException)) {
                 textMessage("rcvWifi: " + e);
-                Timber.e(e);
                 if (!mWifiSocket.isClosed()) {
                     mWifiSocket.close();
                 }
