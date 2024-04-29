@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mBinding.btnCellStartManually.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearText();
+                clearRightBtnsText();
                 if (mBinding.rbServer.isChecked()) {
                     mWiFiUDPClientModel.cancelListen(MainActivity.this);
                     mWiFiUDPServerModel.listen(MainActivity.this);
@@ -284,10 +284,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mWiFiUDPClientModel.getRcvData().removeObservers(MainActivity.this);
     }
 
-    private void clearText() {
+    private void clearRightBtnsText() {
         mBinding.tvCellMessage.setText(R.string.hello_world);
         mBinding.tvCellSend.setText(R.string.hello_world);
         mBinding.tvCellRcv.setText(R.string.hello_world);
+    }
+
+    private void clearTextManuallyLeftBtns() {
         mBinding.tvMessage.setText(R.string.hello_world);
         mBinding.tvSend.setText(R.string.hello_world);
         mBinding.tvRcv.setText(R.string.hello_world);
