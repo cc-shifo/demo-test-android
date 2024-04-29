@@ -42,9 +42,11 @@ public class WiFiUDPServerHelper {
     private final StringBuilder mSendText = new StringBuilder(TEXT_BUFFER_SIZE);
     private final StringBuilder mRcvText = new StringBuilder(TEXT_BUFFER_SIZE);
 
+    private final byte[] mSendBuf = new byte[8192];
+    private final byte[] mRcvBuf = new byte[8192];
     public WiFiUDPServerHelper() {
-        mRcvPacket = new DatagramPacket(new byte[8192], 8192);
-        mSendPacket = new DatagramPacket(new byte[8192], 8192);
+        mRcvPacket = new DatagramPacket(mRcvBuf, mRcvBuf.length);
+        mSendPacket = new DatagramPacket(mSendBuf, mSendBuf.length);
     }
 
     public void mainEnter(/*@NonNull Network network, */@NonNull String ip, int port) {
@@ -52,21 +54,45 @@ public class WiFiUDPServerHelper {
         mIP = ip;
         // "192.168.137.1", 12345
         mPort = port;
+        long seq;
+        boolean connected;
+        int n;
         do {
+            seq = -1;
+            connected = false;
             createSocket();
             // bindWifiNetwork(network);
             // mRcvPacket.setData(bytes, 0, bytes.length);
             try {
+                mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
                 mWifiSocket.receive(mRcvPacket);
-                textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
-                mSendPacket.setAddress(mRcvPacket.getAddress());
-                mSendPacket.setPort(mRcvPacket.getPort());
-                sendWifi(mRcvPacket.getData(), 0, mRcvPacket.getLength()); // 收到什么回什么
+                if (mRcvPacket.getLength() == 8) {
+                    Timber.d("connecting: request-%s", HexUtil.byte2Hex(mRcvPacket.getData(), 8));
+                    seq = HexUtil.leByte2Long(mRcvPacket.getData(), 0);
+                    mSendPacket.setAddress(mRcvPacket.getAddress());
+                    mSendPacket.setPort(mRcvPacket.getPort());
+                    System.arraycopy(mRcvPacket.getData(), 0, mSendBuf, 0, 8);
+                    mSendPacket.setData(mSendBuf, 0, 8);
+                    mWifiSocket.send(mSendPacket); // 收到什么回什么
+                    Timber.d("connecting: response-%s", HexUtil.byte2Hex(mSendBuf, 8));
+                    mWifiSocket.setSoTimeout(1000);
+                    mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
+                    mWifiSocket.receive(mRcvPacket); // 收到确认
+                    n = mRcvPacket.getLength();
+                    if (n == 8) {
+                        Timber.d("connecting: ACK-%s", HexUtil.byte2Hex(mRcvPacket.getData(), 8));
+                    }
+                    connected = n == 8 && seq == HexUtil.leByte2Long(mRcvPacket.getData(), 0);
+                }
             } catch (IOException e) {
                 Timber.e(e);
+            }
+
+            if (!connected) {
                 ThreadUtil.safeThreadSleepMS(3000);
                 continue;
             }
+            textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
             sendWifiAlways();
             if (!mStopped) {
                 ThreadUtil.safeThreadSleep5000MS();
@@ -122,6 +148,7 @@ public class WiFiUDPServerHelper {
             Timber.tag(TAG).e(e);
         }
     }
+
     public void connectAlways() {
         while (!mStopped && (mWifiSocket == null || !mWifiSocket.isClosed())) {
             connectWifi();
