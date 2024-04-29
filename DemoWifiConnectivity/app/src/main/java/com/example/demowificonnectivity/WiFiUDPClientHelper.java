@@ -57,7 +57,6 @@ public class WiFiUDPClientHelper {
         do {
             if (setServerAddress() < 0) {
                 ThreadUtil.safeThreadSleep5000MS();
-                continue;
             }
 
             createSocket();
