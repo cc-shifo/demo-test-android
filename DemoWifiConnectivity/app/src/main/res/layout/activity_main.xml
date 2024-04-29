@@ -164,7 +164,7 @@
         app:layout_constraintStart_toEndOf="@id/btn_left_scroll"
         app:layout_constraintTop_toBottomOf="@id/tv_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3">
+        app:layout_constraintHeight_percent="0.2">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_right_cell"
             android:layout_width="match_parent"
