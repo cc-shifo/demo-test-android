@@ -13,11 +13,9 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 
 import com.example.demowificonnectivity.databinding.ActivityMainBinding;
 
@@ -109,8 +107,23 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (isFinishing()) {
+            Timber.d("isFinishing: true");
+        } else {
+            Timber.d("isFinishing: isFinishing false");
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (isDestroyed()) {
+            Timber.d("isFinishing: isDestroyed true");
+        } else {
+            Timber.d("isFinishing: isDestroyed false");
+        }
         if (mWiFiStateHelper != null) {
             mWiFiStateHelper.unregisterBroadcast(this);
         }
@@ -197,14 +210,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
 
 
-        mBinding.rbClient.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    }
-                });
-
         mWiFiUDPServerModel = new WiFiUDPServerModel();
         mWiFiUDPClientModel = new WiFiUDPClientModel();
 
@@ -218,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     mWiFiUDPServerModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
                     mWiFiUDPServerModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
                     mWiFiUDPServerModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
-                    mWiFiUDPServerModel.listen(MainActivity.this);
+                    // mWiFiUDPServerModel.listen(MainActivity.this);
                 }
             }
         });
@@ -232,8 +237,32 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     mWiFiUDPClientModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
                     mWiFiUDPClientModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
                     mWiFiUDPClientModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
-                    mWiFiUDPClientModel.listen(MainActivity.this);
+                    // mWiFiUDPClientModel.listen(MainActivity.this);
                 }
+            }
+        });
+
+        mBeingInListening = false;
+        mBinding.btnCellStartManually.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBinding.rbServer.isChecked()) {
+                    mWiFiUDPClientModel.cancelListen(MainActivity.this);
+                    mWiFiUDPServerModel.listen(MainActivity.this);
+                    mBeingInListening = true;
+                } else if (mBinding.rbClient.isChecked()) {
+                    mWiFiUDPServerModel.cancelListen(MainActivity.this);
+                    mWiFiUDPClientModel.listen(MainActivity.this);
+                    mBeingInListening = true;
+                }
+            }
+        });
+        mBinding.btnCellStopManually.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWiFiUDPServerModel.cancelListen(MainActivity.this);
+                mWiFiUDPClientModel.cancelListen(MainActivity.this);
+                mBeingInListening = false;
             }
         });
 
@@ -387,4 +416,5 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     private WiFiUDPServerModel mWiFiUDPServerModel;
     private WiFiUDPClientModel mWiFiUDPClientModel;
+    private boolean mBeingInListening;
 }

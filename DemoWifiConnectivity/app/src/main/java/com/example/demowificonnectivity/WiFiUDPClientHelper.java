@@ -261,8 +261,8 @@ public class WiFiUDPClientHelper {
         byte[] rcv = new byte[8192];
         while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
             int i = rcvWifi(rcv);
-            if (i > 0) {
-                textDebugRcv(rcv, i);
+            if (i < 0) {
+                break;
             }
         }
     }
@@ -323,7 +323,8 @@ public class WiFiUDPClientHelper {
             mSendText.setLength(0);
         }
         String s = String.format("[socket-send]>>: %s\n", HexUtil.byte2Hex(buff, len));
-        mSendText.append(s);
+        // mSendText.append(s);
+        mSendText.insert(0, s);
         mSendTextView.postValue(mSendText.toString());
     }
 
@@ -332,7 +333,8 @@ public class WiFiUDPClientHelper {
             mRcvText.setLength(0);
         }
         String s = String.format("[socket-rcv]<<: %s\n", HexUtil.byte2Hex(buff, len));
-        mRcvText.append(s);
+        // mRcvText.append(s);
+        mRcvText.insert(0, s);
         mRcvTextView.postValue(mRcvText.toString());
     }
 

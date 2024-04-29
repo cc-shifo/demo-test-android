@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toStartOf="@id/tv_cell_message"
         app:layout_constraintTop_toBottomOf="@id/rg_server_client"
         app:layout_constraintHeight_percent="0.1"
-        android:maxLines="5"
+        android:maxLines="3"
         android:scrollbars="vertical"/>
     <TextView
         android:id="@+id/tv_cell_message"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_message"
         app:layout_constraintHeight_percent="0.1"
-        android:maxLines="5"
+        android:maxLines="3"
         android:scrollbars="vertical"
         tools:background="@android:color/darker_gray"/>
 
@@ -247,7 +247,23 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_port_cell_123456"
-                android:text="@string/btn_cell_send_menu"
+                android:text="@string/btn_cell_send_manually"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_cell_start_manually"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_cell_send_manually"
+                android:text="@string/btn_cell_start_manually"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_cell_stop_manually"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_cell_start_manually"
+                android:text="@string/btn_cell_stop_manually"
                 android:textAllCaps="false" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

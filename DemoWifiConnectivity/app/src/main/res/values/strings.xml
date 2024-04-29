@@ -15,7 +15,9 @@
     <string name="btn_cell_con_always">Connect Always</string>
     <string name="btn_cell_listen">listen Always</string>
     <string name="btn_cell_rcv_always">rcv Always</string>
-    <string name="btn_cell_send_menu">send Manually</string>
+    <string name="btn_cell_send_manually">send Manually</string>
+    <string name="btn_cell_start_manually">start Manually</string>
+    <string name="btn_cell_stop_manually">stop Manually</string>
     <string name="edt_hint_ip">IP</string>
     <string name="edt_hint_port">PORT</string>
 

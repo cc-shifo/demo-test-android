@@ -11,8 +11,6 @@ import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
@@ -60,6 +58,7 @@ public class WiFiUDPServerHelper {
             // mRcvPacket.setData(bytes, 0, bytes.length);
             try {
                 mWifiSocket.receive(mRcvPacket);
+                textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
                 mSendPacket.setAddress(mRcvPacket.getAddress());
                 mSendPacket.setPort(mRcvPacket.getPort());
             } catch (IOException e) {
@@ -148,31 +147,38 @@ public class WiFiUDPServerHelper {
 
     public void sendWifiAlways() {
         byte[] send = new byte[8192];
-        send[0] = (byte) 0x01;
-        send[1] = (byte) (0x02 & 0xFF);
-        send[2] = (byte) (0x03 & 0xFF);
-        send[3] = (byte) (0x04 & 0xFF);
-        send[4] = (byte) (0x05 & 0xFF);
-        send[5] = (byte) (0x06 & 0xFF);
-        send[6] = (byte) (0x07 & 0xFF);
-        send[7] = (byte) (0x08 & 0xFF);
-        send[8] = (byte) (0x09 & 0xFF);
-        send[9] = (byte) (0x0A & 0xFF);
+        // send[0] = (byte) 0x01;
+        // send[1] = (byte) (0x02 & 0xFF);
+        // send[2] = (byte) (0x03 & 0xFF);
+        // send[3] = (byte) (0x04 & 0xFF);
+        // send[4] = (byte) (0x05 & 0xFF);
+        // send[5] = (byte) (0x06 & 0xFF);
+        // send[6] = (byte) (0x07 & 0xFF);
+        // send[7] = (byte) (0x08 & 0xFF);
+        // send[8] = (byte) (0x09 & 0xFF);
+        // send[9] = (byte) (0x0A & 0xFF);
 
         mSendSerialNum = 0;
         while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
             mSendSerialNum++;
-            send[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-            send[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-            send[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-            send[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-            send[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-            send[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-            send[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
-            send[17] = (byte) (mSendSerialNum & 0xFF);
-            int i = sendWifi(send, 0, send.length);
+            // send[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
+            // send[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
+            // send[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
+            // send[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
+            // send[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
+            // send[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
+            // send[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+            // send[17] = (byte) (mSendSerialNum & 0xFF);
+            send[0] = (byte) ((mSendSerialNum >> 56) & 0xFF);
+            send[1] = (byte) ((mSendSerialNum >> 48) & 0xFF);
+            send[2] = (byte) ((mSendSerialNum >> 40) & 0xFF);
+            send[3] = (byte) ((mSendSerialNum >> 32) & 0xFF);
+            send[4] = (byte) ((mSendSerialNum >> 24) & 0xFF);
+            send[5] = (byte) ((mSendSerialNum >> 16) & 0xFF);
+            send[6] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+            send[7] = (byte) (mSendSerialNum & 0xFF);
+            int i = sendWifi(send, 0, 8);
             if (i > 0) {
-                textDebugSend(send, i);
                 ThreadUtil.safeThreadSleepMS(1000);
             }
 
@@ -226,8 +232,8 @@ public class WiFiUDPServerHelper {
         byte[] rcv = new byte[8192];
         while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
             int i = rcvWifi(rcv);
-            if (i > 0) {
-                textDebugRcv(rcv, i);
+            if (i < 0) {
+                break;
             }
         }
     }
@@ -288,8 +294,10 @@ public class WiFiUDPServerHelper {
             mSendText.setLength(0);
         }
         String s = String.format("[socket-send]>>: %s\n", HexUtil.byte2Hex(buff, len));
-        mSendText.append(s);
+        // mSendText.append(s);
+        mSendText.insert(0, s);
         mSendTextView.postValue(mSendText.toString());
+        Timber.d("%s", s);
     }
 
     private void textDebugRcv(byte[] buff, int len) {
@@ -297,8 +305,10 @@ public class WiFiUDPServerHelper {
             mRcvText.setLength(0);
         }
         String s = String.format("[socket-rcv]<<: %s\n", HexUtil.byte2Hex(buff, len));
-        mRcvText.append(s);
+        // mRcvText.append(s);
+        mRcvText.insert(0, s);
         mRcvTextView.postValue(mRcvText.toString());
+        Timber.d("%s", s);
     }
 
     private void textMessage(@NonNull String message) {
