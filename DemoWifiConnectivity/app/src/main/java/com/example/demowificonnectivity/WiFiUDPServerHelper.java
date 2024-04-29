@@ -61,8 +61,11 @@ public class WiFiUDPServerHelper {
                 textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
                 mSendPacket.setAddress(mRcvPacket.getAddress());
                 mSendPacket.setPort(mRcvPacket.getPort());
+                sendWifi(mRcvPacket.getData(), 0, mRcvPacket.getLength()); // 收到什么回什么
             } catch (IOException e) {
                 Timber.e(e);
+                ThreadUtil.safeThreadSleepMS(3000);
+                continue;
             }
             sendWifiAlways();
             if (!mStopped) {
