@@ -285,12 +285,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void clearText() {
-        mBinding.tvCellMessage.setText("");
-        mBinding.tvCellSend.setText("");
-        mBinding.tvCellRcv.setText("");
-        mBinding.tvMessage.setText("");
-        mBinding.tvSend.setText("");
-        mBinding.tvRcv.setText("");
+        mBinding.tvCellMessage.setText(R.string.hello_world);
+        mBinding.tvCellSend.setText(R.string.hello_world);
+        mBinding.tvCellRcv.setText(R.string.hello_world);
+        mBinding.tvMessage.setText(R.string.hello_world);
+        mBinding.tvSend.setText(R.string.hello_world);
+        mBinding.tvRcv.setText(R.string.hello_world);
     }
 
 
