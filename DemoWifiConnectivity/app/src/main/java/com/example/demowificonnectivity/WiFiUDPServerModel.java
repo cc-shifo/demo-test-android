@@ -2,27 +2,18 @@ package com.example.demowificonnectivity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.DhcpInfo;
-import android.net.LinkProperties;
 import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.wifi.WifiManager;
-import android.os.Build;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import timber.log.Timber;
-
 public class WiFiUDPServerModel {
-    private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
+    private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(5);
     private ConnectivityManager.NetworkCallback mWiFiCallback;
-    private WiFiUDPServerHelper mWifiTCPHelper = new WiFiUDPServerHelper();
-    private APHelper mAPHelper = new APHelper();
+    private final WiFiUDPServerHelper mWifiTCPHelper = new WiFiUDPServerHelper();
+    private final APHelper mAPHelper = new APHelper();
 
     // 连接成功后发送序号清零
     private long mSendSerialNum = 0;

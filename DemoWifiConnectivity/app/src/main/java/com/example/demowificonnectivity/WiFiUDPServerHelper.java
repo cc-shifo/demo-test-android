@@ -13,15 +13,16 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import timber.log.Timber;
 
 public class WiFiUDPServerHelper {
     public static final String TAG = "MainActivity-Net-Wifi";
 
-    private final ScheduledFuture<?> mScheduledFuture = null;
-    private final Future<?> mFuture = null;
+    // private final ScheduledFuture<?> mScheduledFuture = null;
+    private  Future<?> mFuture = null;
+    private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(1);
     private boolean mStopped = false;
     private Network mWifiNetwork;// 打印
     private DatagramSocket mWifiSocket;
@@ -54,45 +55,11 @@ public class WiFiUDPServerHelper {
         mIP = ip;
         // "192.168.137.1", 12345
         mPort = port;
-        long seq;
-        boolean connected;
-        int n;
         do {
-            seq = -1;
-            connected = false;
             createSocket();
             // bindWifiNetwork(network);
             // mRcvPacket.setData(bytes, 0, bytes.length);
-            try {
-                mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
-                mWifiSocket.receive(mRcvPacket);
-                if (mRcvPacket.getLength() == 8) {
-                    Timber.d("connecting: request-%s", HexUtil.byte2Hex(mRcvPacket.getData(), 8));
-                    seq = HexUtil.leByte2Long(mRcvPacket.getData(), 0);
-                    mSendPacket.setAddress(mRcvPacket.getAddress());
-                    mSendPacket.setPort(mRcvPacket.getPort());
-                    System.arraycopy(mRcvPacket.getData(), 0, mSendBuf, 0, 8);
-                    mSendPacket.setData(mSendBuf, 0, 8);
-                    mWifiSocket.send(mSendPacket); // 收到什么回什么
-                    Timber.d("connecting: response-%s", HexUtil.byte2Hex(mSendBuf, 8));
-                    mWifiSocket.setSoTimeout(1000);
-                    mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
-                    mWifiSocket.receive(mRcvPacket); // 收到确认
-                    n = mRcvPacket.getLength();
-                    if (n == 8) {
-                        Timber.d("connecting: ACK-%s", HexUtil.byte2Hex(mRcvPacket.getData(), 8));
-                    }
-                    connected = n == 8 && seq == HexUtil.leByte2Long(mRcvPacket.getData(), 0);
-                }
-            } catch (IOException e) {
-                Timber.e(e);
-            }
-
-            if (!connected) {
-                ThreadUtil.safeThreadSleepMS(3000);
-                continue;
-            }
-            textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
+            rcvHeartbeat();
             sendWifiAlways();
             if (!mStopped) {
                 ThreadUtil.safeThreadSleep5000MS();
@@ -317,6 +284,29 @@ public class WiFiUDPServerHelper {
             mFuture.cancel(true);
         }
         textMessage("connected: network lost");
+    }
+
+    public void rcvHeartbeat() {
+        if (mFuture != null && (!mFuture.isDone() || !mFuture.isCancelled())) {
+            mFuture.cancel(true);
+        }
+        mFuture = mExecutor.submit(new Runnable() {
+            @Override
+            public void run() {
+                while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed() ) {
+                    mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
+                    try {
+                        mWifiSocket.receive(mRcvPacket); // 创建socket时已经绑定接受任意ip来的数据
+                    } catch (IOException e) {
+                        Timber.e(e);
+                        break;
+                    }
+                    textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
+                    mSendPacket.setAddress(mRcvPacket.getAddress());
+                    mSendPacket.setPort(mRcvPacket.getPort());
+                }
+            }
+        });
     }
 
     private void textDebugSend(byte[] buff, int len) {
