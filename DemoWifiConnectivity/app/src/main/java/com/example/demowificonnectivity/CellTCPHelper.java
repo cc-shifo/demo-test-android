@@ -15,16 +15,14 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import javax.net.SocketFactory;
-
 import timber.log.Timber;
 
 public class CellTCPHelper extends BaseTCPHelper {
     private static final String IP = "8.135.10.183";
     private static final int PORT = 37155;
     private static final String TAG = "CellTCPHelper";
-    private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
-    private Future<?> mFuture = null;
+    private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
+    private final Future<?> mFuture = null;
     private boolean mStopped = false;
 
     // 连接成功后发送序号清零
@@ -138,13 +136,13 @@ public class CellTCPHelper extends BaseTCPHelper {
                 0x00, 0x00, 0x00
         };
         mSendSerialNum++;
-        bytes[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-        bytes[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-        bytes[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-        bytes[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-        bytes[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-        bytes[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-        bytes[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+        bytes[10] = (byte) ((mSendSerialNum >>> 56) & 0xFF);
+        bytes[11] = (byte) ((mSendSerialNum >>> 48) & 0xFF);
+        bytes[12] = (byte) ((mSendSerialNum >>> 40) & 0xFF);
+        bytes[13] = (byte) ((mSendSerialNum >>> 32) & 0xFF);
+        bytes[14] = (byte) ((mSendSerialNum >>> 24) & 0xFF);
+        bytes[15] = (byte) ((mSendSerialNum >>> 16) & 0xFF);
+        bytes[16] = (byte) ((mSendSerialNum >>> 8) & 0xFF);
         bytes[17] = (byte) (mSendSerialNum & 0xFF);
         mExecutor.submit(() -> {
             sendWifi(bytes, bytes.length);

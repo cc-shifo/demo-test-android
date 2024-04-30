@@ -160,13 +160,13 @@ public class WiFiUDPClientHelper {
         mSendSerialNum = 0;
         while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed()) {
             mSendSerialNum++;
-            send[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-            send[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-            send[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-            send[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-            send[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-            send[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-            send[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+            send[10] = (byte) ((mSendSerialNum >>> 56) & 0xFF);
+            send[11] = (byte) ((mSendSerialNum >>> 48) & 0xFF);
+            send[12] = (byte) ((mSendSerialNum >>> 40) & 0xFF);
+            send[13] = (byte) ((mSendSerialNum >>> 32) & 0xFF);
+            send[14] = (byte) ((mSendSerialNum >>> 24) & 0xFF);
+            send[15] = (byte) ((mSendSerialNum >>> 16) & 0xFF);
+            send[16] = (byte) ((mSendSerialNum >>> 8) & 0xFF);
             send[17] = (byte) (mSendSerialNum & 0xFF);
             int i = sendWifi(send, 0, send.length);
             if (i > 0) {
@@ -245,13 +245,13 @@ public class WiFiUDPClientHelper {
         send[8] = (byte) (0x09 & 0xFF);
         send[9] = (byte) (0x0A & 0xFF);
         mSendSerialNum++;
-        send[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-        send[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-        send[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-        send[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-        send[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-        send[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-        send[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+        send[10] = (byte) ((mSendSerialNum >>> 56) & 0xFF);
+        send[11] = (byte) ((mSendSerialNum >>> 48) & 0xFF);
+        send[12] = (byte) ((mSendSerialNum >>> 40) & 0xFF);
+        send[13] = (byte) ((mSendSerialNum >>> 32) & 0xFF);
+        send[14] = (byte) ((mSendSerialNum >>> 24) & 0xFF);
+        send[15] = (byte) ((mSendSerialNum >>> 16) & 0xFF);
+        send[16] = (byte) ((mSendSerialNum >>> 8) & 0xFF);
         send[17] = (byte) (mSendSerialNum & 0xFF);
         return sendWifi(send, 0, 18);
     }

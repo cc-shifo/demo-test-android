@@ -13,15 +13,14 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import java.net.Inet4Address;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import timber.log.Timber;
 
 public class WiFiModel {
-    private ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
+    private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(3);
     private ConnectivityManager.NetworkCallback mWiFiCallback;
-    private WifiTCPHelper mWifiTCPHelper = new WifiTCPHelper();
+    private final WifiTCPHelper mWifiTCPHelper = new WifiTCPHelper();
 
     // 连接成功后发送序号清零
     private long mSendSerialNum = 0;
@@ -145,13 +144,13 @@ public class WiFiModel {
                 0x00, 0x00, 0x00
         };
         mSendSerialNum++;
-        bytes[10] = (byte) ((mSendSerialNum >> 56) & 0xFF);
-        bytes[11] = (byte) ((mSendSerialNum >> 48) & 0xFF);
-        bytes[12] = (byte) ((mSendSerialNum >> 40) & 0xFF);
-        bytes[13] = (byte) ((mSendSerialNum >> 32) & 0xFF);
-        bytes[14] = (byte) ((mSendSerialNum >> 24) & 0xFF);
-        bytes[15] = (byte) ((mSendSerialNum >> 16) & 0xFF);
-        bytes[16] = (byte) ((mSendSerialNum >> 8) & 0xFF);
+        bytes[10] = (byte) ((mSendSerialNum >>> 56) & 0xFF);
+        bytes[11] = (byte) ((mSendSerialNum >>> 48) & 0xFF);
+        bytes[12] = (byte) ((mSendSerialNum >>> 40) & 0xFF);
+        bytes[13] = (byte) ((mSendSerialNum >>> 32) & 0xFF);
+        bytes[14] = (byte) ((mSendSerialNum >>> 24) & 0xFF);
+        bytes[15] = (byte) ((mSendSerialNum >>> 16) & 0xFF);
+        bytes[16] = (byte) ((mSendSerialNum >>> 8) & 0xFF);
         bytes[17] = (byte) (mSendSerialNum & 0xFF);
         mExecutor.submit(() -> {
             mWifiTCPHelper.sendWifi(bytes, bytes.length);

@@ -197,6 +197,14 @@ public class WiFiUDPServerHelper {
                     send[off + 21] = 0;
                     send[off + 22] = 0;
                     num++;
+                    if (rawPoints == 0) {
+                        Timber.d("Double.doubleToRawLongBits: %s\n, long x=%d, y=%d, z=%d",
+                                HexUtil.byte2Hex(send, 46),
+                                Double.doubleToLongBits(x),
+                                Double.doubleToLongBits(y),
+                                Float.floatToIntBits(z));
+
+                    }
                     rawPoints++;
                     if (num >= 300) {
                         int i = sendWifi(send, 0, off + 23);
@@ -398,6 +406,8 @@ public class WiFiUDPServerHelper {
     }
 
     public void rcvHeartbeat() {
+        mRcvPacket.setAddress(null);
+        mSendPacket.setAddress(null);
         mFuture = mExecutor.submit(new Runnable() {
             @Override
             public void run() {

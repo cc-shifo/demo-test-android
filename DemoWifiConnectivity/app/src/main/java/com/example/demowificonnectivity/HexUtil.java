@@ -74,7 +74,7 @@ public class HexUtil {
         if (off + 8 <= b.length) {
             int end = off + 8;
             for (int i = off; i < end; i++) {
-                b[i] = (byte) ((value >> 8 * i) & 0xff);
+                b[i] = (byte) ((value >>> 8 * i) & 0xff);
             }
         }
         return b;
@@ -88,7 +88,7 @@ public class HexUtil {
         if (off + 4 <= b.length) {
             int end = off + 4;
             for (int i = off; i < end; i++) {
-                b[i] = (byte) ((value >> 8 * i) & 0xff);
+                b[i] = (byte) ((value >>> 8 * i) & 0xff);
             }
         }
         return b;
