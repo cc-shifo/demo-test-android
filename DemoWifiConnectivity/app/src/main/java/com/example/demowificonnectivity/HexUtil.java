@@ -65,4 +65,32 @@ public class HexUtil {
 
         return v;
     }
+
+    /**
+     * @param size size >= 8
+     */
+    public static byte[] double2LeBytes(double d, @NonNull byte[] b, int off, int size) {
+        long value = Double.doubleToRawLongBits(d);
+        if (off + 8 <= b.length) {
+            int end = off + 8;
+            for (int i = off; i < end; i++) {
+                b[i] = (byte) ((value >> 8 * i) & 0xff);
+            }
+        }
+        return b;
+    }
+
+    /**
+     * @param size size >= 4
+     */
+    public static byte[] float2LeBytes(float d, @NonNull byte[] b, int off, int size) {
+        int value = Float.floatToRawIntBits(d);
+        if (off + 4 <= b.length) {
+            int end = off + 4;
+            for (int i = off; i < end; i++) {
+                b[i] = (byte) ((value >> 8 * i) & 0xff);
+            }
+        }
+        return b;
+    }
 }
