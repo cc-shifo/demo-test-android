@@ -2,12 +2,19 @@ package com.example.demowificonnectivity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.DhcpInfo;
+import android.net.LinkProperties;
 import android.net.Network;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+import timber.log.Timber;
 
 public class WiFiUDPServerModel {
     private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(5);
@@ -26,53 +33,57 @@ public class WiFiUDPServerModel {
         // Network network = manager.getActiveNetwork();
         //
         //
-        // mWiFiCallback = new BaseNetCallback() {
-        //     @Override
-        //     public void onAvailable(@NonNull Network network) {
-        //         super.onAvailable(network);
-        //         String address = "";
-        //         String ipAddress = "";
-        //         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        //             ConnectivityManager manager = (ConnectivityManager) context
-        //                     .getSystemService(Context.CONNECTIVITY_SERVICE);
-        //             LinkProperties linkProperties = manager.getLinkProperties(network);
-        //             address = linkProperties.getDhcpServerAddress().getHostAddress();
-        //             // linkProperties.getLinkAddresses(); // 本机地址
-        //         } else {
-        //             WifiManager wifiManager = (WifiManager) MyAPP.getMyAPP()
-        //                     .getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        //             // 31 Build.VERSION_CODES.S deprecated
-        //             DhcpInfo info = wifiManager.getDhcpInfo();
-        //             if (info != null) {
-        //                 ipAddress = WifiTCPHelper.ipv4Int2Str(info.ipAddress);
-        //                 address = WifiTCPHelper.ipv4Int2Str(info.serverAddress);
-        //             }
-        //         }
-        //         // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        //         //     capabilities.getNetworkSpecifier();
-        //         // }
-        //         // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        //         //     capabilities.getTransportInfo(); // 连接到热点时，获取的是本机当前地址
-        //         // }
-        //         Timber.d("initNetworkCallback: server address %s, local ip %s", address, ipAddress);
-        //         if (!TextUtils.isEmpty(address)) {
-        //             // startService(network, address, 12345);
-        //         }
-        //     }
-        //
-        //     @Override
-        //     public void onCapabilitiesChanged(@NonNull Network network,
-        //             @NonNull NetworkCapabilities capabilities) {
-        //         super.onCapabilitiesChanged(network, capabilities);
-        //     }
-        //
-        //     @Override
-        //     public void onLost(@NonNull Network network) {
-        //         super.onLost(network);
-        //         stopService();
-        //     }
-        // };
-        // NetworkHelper.registerWiFiNetworkCallback(context, mWiFiCallback);
+        mWiFiCallback = new BaseNetCallback() {
+            @Override
+            public void onAvailable(@NonNull Network network) {
+                super.onAvailable(network);
+                String address = "";
+                String ipAddress = "";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    ConnectivityManager manager = (ConnectivityManager) context
+                            .getSystemService(Context.CONNECTIVITY_SERVICE);
+                    LinkProperties linkProperties = manager.getLinkProperties(network);
+                    address = linkProperties.getDhcpServerAddress().getHostAddress();
+                    // linkProperties.getLinkAddresses(); // 本机地址
+                } else {
+                    WifiManager wifiManager = (WifiManager) MyAPP.getMyAPP()
+                            .getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    // 31 Build.VERSION_CODES.S deprecated
+                    DhcpInfo info = wifiManager.getDhcpInfo();
+                    if (info != null) {
+                        ipAddress = WifiTCPHelper.ipv4Int2Str(info.ipAddress);
+                        address = WifiTCPHelper.ipv4Int2Str(info.serverAddress);
+                    }
+                }
+                // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                //     capabilities.getNetworkSpecifier();
+                // }
+                // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                //     capabilities.getTransportInfo(); // 连接到热点时，获取的是本机当前地址
+                // }
+                Timber.d("initNetworkCallback: server address %s, local ip %s", address, ipAddress);
+                // if (!TextUtils.isEmpty(address)) {
+                //     // startService(network, address, 12345);
+                // }
+            }
+
+            @Override
+            public void onLost(@NonNull Network network) {
+                super.onLost(network);
+                // stopService();
+            }
+        };
+        NetworkHelper.registerWiFiNetworkCallback(context, mWiFiCallback);
+        ConnectivityManager manager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network[] list = manager.getAllNetworks();
+        if (list.length > 0) {
+            for (Network n : list) {
+                Timber.d("initNetworkCallback: getAllNetworks Network %s", n.toString());
+            }
+        } else {
+            Timber.d("initNetworkCallback: getAllNetworks 0");
+        }
         startService("", 12345);
     }
 
@@ -182,8 +193,11 @@ public class WiFiUDPServerModel {
             @Override
             public void run() {
                 if (mWifiTCPHelper != null) {
-                    mWifiTCPHelper.disconnectWifi();
-                    mWifiTCPHelper.mainEnter(/*network, */address, port);
+                    String ap = NetworkHelper.getApIpAddress2();
+                    if (!TextUtils.isEmpty(ap)) {
+                        mWifiTCPHelper.disconnectWifi();
+                        mWifiTCPHelper.mainEnter(/*network, */ap, port);
+                    }
                 }
             }
         });

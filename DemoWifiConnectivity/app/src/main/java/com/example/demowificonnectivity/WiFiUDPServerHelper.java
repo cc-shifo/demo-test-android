@@ -76,8 +76,10 @@ public class WiFiUDPServerHelper {
             mWifiSocket.close();
         }
         try {
-            mWifiSocket = new DatagramSocket(12345);
+            // mWifiSocket = new DatagramSocket(new InetSocketAddress(InetAddress.getLocalHost(), 12345));
+            mWifiSocket = new DatagramSocket(12345, InetAddress.getByName("192.168.43.155"));
             mWifiSocket.setReuseAddress(true);
+            // mWifiSocket.bind();
         } catch (IOException e) {
             Timber.e(e);
             textMessage("createSocket: create Exception!!! " + e);
@@ -128,7 +130,7 @@ public class WiFiUDPServerHelper {
     public void connectWifi() {
         try {
             InetAddress address = InetAddress.getByName(mIP);
-            mWifiSocket.setSoTimeout(2000);
+            // mWifiSocket.setSoTimeout(2000);
             mWifiSocket.connect(address, mPort);
             textMessage("connectWifi: true");
             mConnected = true;
@@ -195,10 +197,13 @@ public class WiFiUDPServerHelper {
             return -1;
         }
         try {
-            mSendPacket.setData(bytes, off, len);
-            mWifiSocket.send(mSendPacket);
-            textDebugSend(bytes, len);
-            return len;
+            if (mSendPacket.getAddress() != null) {
+                mSendPacket.setData(bytes, off, len);
+                // mWifiSocket.setSoTimeout(500); // 无client时send阻塞。
+                mWifiSocket.send(mSendPacket);
+                textDebugSend(bytes, len);
+                return len;
+            }
         } catch (IOException e) {
             textMessage("sendWifi: " + e);
             Timber.e(e);
@@ -243,7 +248,7 @@ public class WiFiUDPServerHelper {
         }
         try {
             // StandardSocketOptions, 读写之前设置才有效。
-            mWifiSocket.setSoTimeout(5000); // SocketOptions.SO_TIMEOUT
+            // mWifiSocket.setSoTimeout(5000); // SocketOptions.SO_TIMEOUT
             mRcvPacket.setData(bytes, 0, bytes.length);
             mWifiSocket.receive(mRcvPacket);
             textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
@@ -296,14 +301,24 @@ public class WiFiUDPServerHelper {
                 while (!mStopped && mWifiSocket != null && !mWifiSocket.isClosed() ) {
                     mRcvPacket.setData(mRcvBuf, 0, mRcvBuf.length);
                     try {
+                        // mWifiSocket.setSoTimeout(0); // 无client时send阻塞。
                         mWifiSocket.receive(mRcvPacket); // 创建socket时已经绑定接受任意ip来的数据
+                        // mWifiSocket.connect(mRcvPacket.getAddress(), mRcvPacket.getPort());
+                        textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
+                        mSendPacket.setAddress(mRcvPacket.getAddress());
+                        mSendPacket.setPort(mRcvPacket.getPort());
                     } catch (IOException e) {
                         Timber.e(e);
-                        break;
+                        if (!(e instanceof SocketTimeoutException)) {
+                            textMessage("rcvWifi: " + e);
+                            Timber.e(e);
+                            if (!mWifiSocket.isClosed()) {
+                                mWifiSocket.close();
+                            }
+                            break;
+                        }
                     }
-                    textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
-                    mSendPacket.setAddress(mRcvPacket.getAddress());
-                    mSendPacket.setPort(mRcvPacket.getPort());
+
                 }
             }
         });

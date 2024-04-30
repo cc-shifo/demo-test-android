@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.demowificonnectivity.databinding.ActivityMainBinding;
 
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         sendWifi12345();
         rcvWifi12345();
 
-        // mCellModel = new CellModel();
+        mCellModel = new CellModel();
         // mCellModel.getMsg().observe(this, s -> mBinding.tvCellMessage.setText(s));
         // mWifiTCPModel.getSentData().observe(this, s -> mBinding.tvCellSend.setText(s));
         // mWifiTCPModel.getRcvData().observe(this, s -> mBinding.tvCellRcv.setText(s));
@@ -220,25 +221,22 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     mWiFiUDPClientModel.cancelListen(MainActivity.this);
                     clearTextObservers();
 
-                    mWiFiUDPServerModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
-                    mWiFiUDPServerModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
-                    mWiFiUDPServerModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
+                    mWiFiUDPServerModel.getMsg().observe(MainActivity.this, mCellMessageObserver);
+                    mWiFiUDPServerModel.getSentData().observe(MainActivity.this, mCellSendObserver);
+                    mWiFiUDPServerModel.getRcvData().observe(MainActivity.this, mCellRcvObserver);
                     // mWiFiUDPServerModel.listen(MainActivity.this);
                 }
             }
         });
-        mBinding.rbClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mWiFiUDPServerModel.cancelListen(MainActivity.this);
-                    clearTextObservers();
+        mBinding.rbClient.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                mWiFiUDPServerModel.cancelListen(MainActivity.this);
+                clearTextObservers();
 
-                    mWiFiUDPClientModel.getMsg().observe(MainActivity.this, s -> mBinding.tvCellMessage.setText(s));
-                    mWiFiUDPClientModel.getSentData().observe(MainActivity.this, s -> mBinding.tvCellSend.setText(s));
-                    mWiFiUDPClientModel.getRcvData().observe(MainActivity.this, s -> mBinding.tvCellRcv.setText(s));
-                    // mWiFiUDPClientModel.listen(MainActivity.this);
-                }
+                mWiFiUDPClientModel.getMsg().observe(MainActivity.this, mCellMessageObserver);
+                mWiFiUDPClientModel.getSentData().observe(MainActivity.this, mCellSendObserver);
+                mWiFiUDPClientModel.getRcvData().observe(MainActivity.this, mCellRcvObserver);
+                // mWiFiUDPClientModel.listen(MainActivity.this);
             }
         });
 
@@ -275,13 +273,34 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         sendCellManually();
     }
 
+    private Observer<String> mMsgObserver;
+    private Observer<String> mSentDataObserver;
+    private Observer<String> mRcvDataObserver;
+    private final Observer<String> mCellMessageObserver = new Observer<String>() {
+        public void onChanged(String msg) {
+            mBinding.tvCellMessage.setText(msg);
+        }
+    };
+    private final Observer<String> mCellSendObserver = new Observer<String>() {
+        @Override
+        public void onChanged(String sendData) {
+            mBinding.tvCellSend.setText(sendData);
+        }
+    } ;
+    private final Observer<String> mCellRcvObserver = new Observer<String>() {
+        @Override
+        public void onChanged(String rcvData) {
+            mBinding.tvCellRcv.setText(rcvData);
+        }
+    };
     private void clearTextObservers() {
-        mWiFiUDPServerModel.getMsg().removeObservers(MainActivity.this);
-        mWiFiUDPServerModel.getSentData().removeObservers(MainActivity.this);
-        mWiFiUDPServerModel.getRcvData().removeObservers(MainActivity.this);
-        mWiFiUDPClientModel.getMsg().removeObservers(MainActivity.this);
-        mWiFiUDPClientModel.getSentData().removeObservers(MainActivity.this);
-        mWiFiUDPClientModel.getRcvData().removeObservers(MainActivity.this);
+        // mWiFiUDPServerModel.getMsg().
+        mWiFiUDPServerModel.getMsg().removeObserver(mCellMessageObserver);
+        mWiFiUDPServerModel.getSentData().removeObserver(mCellSendObserver);
+        mWiFiUDPServerModel.getRcvData().removeObserver(mCellRcvObserver);
+        mWiFiUDPClientModel.getMsg().removeObserver(mCellMessageObserver);
+        mWiFiUDPClientModel.getSentData().removeObserver(mCellSendObserver);
+        mWiFiUDPClientModel.getRcvData().removeObserver(mCellRcvObserver);
     }
 
     private void clearRightBtnsText() {
@@ -430,4 +449,5 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private WiFiUDPServerModel mWiFiUDPServerModel;
     private WiFiUDPClientModel mWiFiUDPClientModel;
     private boolean mBeingInListening;
+
 }
