@@ -60,19 +60,22 @@ public class WiFiUDPServerHelper {
         mIP = ip;
         // "192.168.137.1", 12345
         mPort = port;
-        do {
-            createSocket(); // thread current
-            // bindWifiNetwork(network);
-            // mRcvPacket.setData(bytes, 0, bytes.length);
-            rcvHeartbeat(); // thread 1
-            if (waitClient()) { // thread current
-                sendWifiAlways(); // thread current
-            }
+        // do {
+        //
+        // } while (!mStopped);
+        createSocket(); // thread current
+        // bindWifiNetwork(network);
+        // mRcvPacket.setData(bytes, 0, bytes.length);
+        rcvHeartbeat(); // thread 1
+        if (waitClient()) { // thread current
+            sendWifiAlways(); // thread current
+        }
 
-            if (!mStopped) {
-                ThreadUtil.safeThreadSleep5000MS();
-            }
-        } while (!mStopped);
+        if (!mStopped) {
+            ThreadUtil.safeThreadSleep5000MS();
+        }
+
+        destroy();
     }
 
     public void reset() {
@@ -190,9 +193,9 @@ public class WiFiUDPServerHelper {
                     y = Double.parseDouble(params[1]);
                     z = Float.parseFloat(params[2]);
                     off = num * 23;
-                    HexUtil.double2LeBytes(x, send, off, 8);
-                    HexUtil.double2LeBytes(y, send, off + 8, 8);
-                    HexUtil.float2LeBytes(z, send, off + 16, 4);
+                    HexUtil.double2LeBytes(x, send, off);
+                    HexUtil.double2LeBytes(y, send, off + 8);
+                    HexUtil.float2LeBytes(z, send, off + 16);
                     send[off + 20] = 0;
                     send[off + 21] = 0;
                     send[off + 22] = 0;
@@ -203,7 +206,6 @@ public class WiFiUDPServerHelper {
                                 Double.doubleToLongBits(x),
                                 Double.doubleToLongBits(y),
                                 Float.floatToIntBits(z));
-
                     }
                     rawPoints++;
                     if (num >= 300) {
@@ -232,6 +234,7 @@ public class WiFiUDPServerHelper {
                             cnt, cntSuccess, cnt - cntSuccess, i);
                     num = 0;
                     // off = 0;
+                    return;
                 }
             }
         } catch (Exception e) {
@@ -290,20 +293,23 @@ public class WiFiUDPServerHelper {
             return false;
         }
 
-        if (mSendPacket == null || mSendPacket.getAddress() == null) {
-            return false;
-        }
+        return mHasClient;
 
-        try {
-            return mSendPacket.getAddress().isReachable(1000);
-        } catch (IOException e) {
-            Timber.e(e, "%s:%d isReachable false", mSendPacket.getAddress().getHostAddress(),
-                    mSendPacket.getPort());
-        }
+        // if (mSendPacket == null || mSendPacket.getAddress() == null) {
+        //     return false;
+        // }
 
-        return false;
+        // try {
+        //     return mSendPacket.getAddress().isReachable(1000);
+        // } catch (IOException e) {
+        //     Timber.e(e, "%s:%d isReachable false", mSendPacket.getAddress().getHostAddress(),
+        //             mSendPacket.getPort());
+        // }
+        //
+        // return false;
     }
 
+    private long mTotalCnt = 0;
     public int sendWifi(byte[] bytes, int off, int len) {
         OutputStream out = null;
         if (mWifiSocket == null || mWifiSocket.isClosed()) {
@@ -311,10 +317,12 @@ public class WiFiUDPServerHelper {
             return -1;
         }
         try {
-            if (mSendPacket.getAddress() != null) {
+            if (mHasClient) { // mSendPacket.getAddress() != null
                 mSendPacket.setData(bytes, off, len);
                 // mWifiSocket.setSoTimeout(500); // 无client时send阻塞。
+                mSendPacket = new DatagramPacket(bytes, off, len, mClientInetAddress, mClientPort);
                 mWifiSocket.send(mSendPacket);
+                mTotalCnt++;
                 textDebugSend(bytes, len);
                 return len;
             }
@@ -405,6 +413,9 @@ public class WiFiUDPServerHelper {
         textMessage("connected: network lost");
     }
 
+    private volatile boolean mHasClient = false;
+    private InetAddress mClientInetAddress = null;
+    private int mClientPort = -1;
     public void rcvHeartbeat() {
         mRcvPacket.setAddress(null);
         mSendPacket.setAddress(null);
@@ -418,9 +429,13 @@ public class WiFiUDPServerHelper {
                         mWifiSocket.receive(mRcvPacket); // 创建socket时已经绑定接受任意ip来的数据
                         // mWifiSocket.connect(mRcvPacket.getAddress(), mRcvPacket.getPort());
                         textDebugRcv(mRcvPacket.getData(), mRcvPacket.getLength());
-                        mSendPacket.setAddress(mRcvPacket.getAddress());
-                        mSendPacket.setPort(mRcvPacket.getPort());
+                        // mSendPacket.setAddress(mRcvPacket.getAddress());
+                        // mSendPacket.setPort(mRcvPacket.getPort());
+                        mClientInetAddress = mRcvPacket.getAddress();
+                        mClientPort = mRcvPacket.getPort();
+                        mHasClient = true;
                     } catch (IOException e) {
+                        mHasClient = false;
                         Timber.e(e);
                         if (!(e instanceof SocketTimeoutException)) {
                             textMessage("rcvWifi: " + e);
@@ -448,7 +463,7 @@ public class WiFiUDPServerHelper {
         }
         String s;
         if (len > 40) {
-            s = String.format("[socket-send]>>: %d\n", len);
+            s = String.format("[socket-send]>>: bytes len=%d, total=%d\n", len, mTotalCnt);
         } else {
             s = String.format("[socket-send]>>: %s\n", HexUtil.byte2Hex(buff, len));
         }

@@ -12,12 +12,14 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import timber.log.Timber;
 
 public class WiFiUDPServerModel {
     private final ScheduledThreadPoolExecutor mExecutor = new ScheduledThreadPoolExecutor(5);
+    private Future<?> mFutureMain = null;
     private ConnectivityManager.NetworkCallback mWiFiCallback;
     private final WiFiUDPServerHelper mWifiTCPHelper = new WiFiUDPServerHelper();
     private final APHelper mAPHelper = new APHelper();
@@ -189,7 +191,7 @@ public class WiFiUDPServerModel {
 
     private void startService(/*@NonNull final Network network,*/
             @NonNull final String address, int port) {
-        mExecutor.submit(new Runnable() {
+        mFutureMain = mExecutor.submit(new Runnable() {
             @Override
             public void run() {
                 if (mWifiTCPHelper != null) {
@@ -206,6 +208,9 @@ public class WiFiUDPServerModel {
     private void stopService() {
         if (mWifiTCPHelper != null) {
             mWifiTCPHelper.destroy();
+        }
+        if (mFutureMain != null && mFutureMain.isDone()) {
+            mFutureMain.cancel(true);
         }
     }
 }
