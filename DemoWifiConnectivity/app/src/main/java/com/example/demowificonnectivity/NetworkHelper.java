@@ -30,6 +30,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
@@ -198,7 +199,7 @@ public class NetworkHelper {
                     List<InterfaceAddress> interfaceAddressList = networkInterface.getInterfaceAddresses();
                     for (InterfaceAddress interfaceAddress : interfaceAddressList) {
                         InetAddress inetAddress = interfaceAddress.getAddress();
-                        if (!inetAddress.isLinkLocalAddress()) {
+                        if (!inetAddress.isLinkLocalAddress() && inetAddress instanceof Inet4Address) {
                             return inetAddress.getHostAddress();
                             // int prefix = interfaceAddress.getNetworkPrefixLength();
                             // return inetAddress.toString().substring(1) + "/" + prefix;
