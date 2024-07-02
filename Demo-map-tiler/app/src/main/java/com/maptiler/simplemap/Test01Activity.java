@@ -39,8 +39,8 @@ public class Test01Activity extends AppCompatActivity {
                 // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key=" + BuildConfig.mapTilerKey;
                 mMap = mapboxMap;
                 mMap.setStyle(mStyleUrl);
-                mMap.getUiSettings().setLogoEnabled(false);
-                mMap.getUiSettings().setAttributionEnabled(false);
+                // mMap.getUiSettings().setLogoEnabled(false);
+                // mMap.getUiSettings().setAttributionEnabled(false);
                 CameraPosition cm = new CameraPosition.Builder()
                         // .target(LatLng(47.127757, 8.579139))
                         .target(new LatLng(30.42491669227814, 114.41992218256276))

@@ -6,10 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".EnterMainActivity">
 
+    <!--查看MapboxMapOptions.java文件app:mapbox_apiBaseUri-->
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:mapbox_uiLogo="false"
+        app:mapbox_uiAttribution="false"
+        app:mapbox_renderTextureMode="true"/>
 
     <TextView
         android:id="@+id/hello_world"
