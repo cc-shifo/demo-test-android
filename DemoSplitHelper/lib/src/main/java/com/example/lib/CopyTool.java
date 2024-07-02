@@ -23,8 +23,13 @@ public class CopyTool {
     // static String path = "D:\\Androidstudio2.3.3\\Android Studio\\gradle\\m2repository";
     // static String path = "D:\\gradle_cache\\files-2.1";
 //    static String path = "D:\\test\\files-2.1"; //C:\Users\Administrator\.gradle\caches\modules-2\files-2.1
-    static String path = "D:\\files-2.1";
-    // static String stopName= "files-2.1";
+
+
+    // static String path = "D:\\files-2.1";
+    // // static String stopName= "files-2.1";
+    // static String stopName = "files-2.1";
+
+    static String path = "C:\\Users\\liujian\\Desktop\\demo-pcv\\orignal\\files-2.1";
     static String stopName = "files-2.1";
 
     public static void main(String[] args) {

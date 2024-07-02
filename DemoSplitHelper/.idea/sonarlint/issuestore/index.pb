@@ -7,9 +7,15 @@ z
 Japp/src/main/java/com/example/demoscreensplithelper/ScreenSplitHelper.java,7\2\729b9784a12c707f1964bd46a97547d86b6086a2
 y
 Iapp/src/main/java/com/example/demoscreensplithelper/TransitionHelper.java,a\b\abd5b9cd9576a8d99602348d6cf968c3be602174
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 t
 Dapp/src/main/java/com/example/demoscreensplithelper/WindowState.java,1\7\178024f51bea625a9e2feec21338c076b2963e4e
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 @
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+lib/build.gradle,2\0\20a0e9d2816cf61b90e7871f247ec86230bdde79
+_
+/lib/src/main/java/com/example/lib/CopyTool.java,3\7\371c1c532602444dbd6d0bf5d78d431425646726
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">demo-map-box</string>
+    <string name="activity_main_request_permission">请打开权限</string>
+</resources>
