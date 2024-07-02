@@ -54,7 +54,7 @@ public class Test01Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mMap != null) {
-                    mMap.setStyle(mStreet);
+                    mMap.setStyle(mStyleUrl);
                     mMap.getUiSettings().setLogoEnabled(false);
                     mMap.getUiSettings().setAttributionEnabled(false);
                 }
@@ -65,7 +65,8 @@ public class Test01Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mMap != null) {
-                    mMap.setStyle(mStyleUrl);
+
+                    mMap.setStyle(mStreet);
                     mMap.getUiSettings().setLogoEnabled(false);
                     mMap.getUiSettings().setAttributionEnabled(false);
                 }
