@@ -38,7 +38,7 @@ public class EnterMainActivity extends AppCompatActivity {
         mStyleUrl = mStyleUrl + getMapTilerKey();
 
         // Get the MapBox context
-        Mapbox.getInstance(this, null);
+        Mapbox.getInstance(this);
 
         mBinding = ActivityTest01Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());

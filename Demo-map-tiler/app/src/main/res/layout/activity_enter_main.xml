@@ -11,9 +11,9 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:mapbox_uiLogo="false"
-        app:mapbox_uiAttribution="false"
-        app:mapbox_renderTextureMode="true"/>
+        app:maplibre_uiLogo="false"
+        app:maplibre_uiAttribution="false"
+        app:maplibre_renderTextureMode="true"/>
 
     <TextView
         android:id="@+id/hello_world"

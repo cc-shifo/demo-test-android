@@ -3,17 +3,20 @@ package com.maptiler.simplemap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
+
 
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.maptiler.simplemap.databinding.ActivityTest01Binding;
 
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
 public class Test01Activity extends AppCompatActivity {
 
     private ActivityTest01Binding mBinding;
@@ -29,7 +32,7 @@ public class Test01Activity extends AppCompatActivity {
         // val styleUrl = "https://api.maptiler.com/maps/satellite/style.json?key=${mapTilerKey}";
 
         // Get the MapBox context
-        Mapbox.getInstance(this, null);
+        Mapbox.getInstance(this);
         mBinding = ActivityTest01Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mBinding.mapView.onCreate(savedInstanceState);
@@ -50,6 +53,8 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
 
+
+
         mBinding.btnSatelliteHybrid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +70,61 @@ public class Test01Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mMap != null) {
-
                     mMap.setStyle(mStreet);
                     mMap.getUiSettings().setLogoEnabled(false);
                     mMap.getUiSettings().setAttributionEnabled(false);
                 }
+            }
+        });
+        mBinding.btnSizeQuarter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                params.matchConstraintPercentWidth = 0.25f;
+                params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                        .MATCH_CONSTRAINT_PERCENT;
+                params.matchConstraintPercentHeight = 0.25f;
+                params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                        .MATCH_CONSTRAINT_PERCENT;
+                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                mBinding.mapView.setLayoutParams(params);
+            }
+        });
+        mBinding.btnSizeHalf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                params.matchConstraintPercentWidth = 0.5f;
+                params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                        .MATCH_CONSTRAINT_PERCENT;
+                params.matchConstraintPercentHeight = 0.5f;
+                params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                        .MATCH_CONSTRAINT_PERCENT;
+                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                mBinding.mapView.setLayoutParams(params);
+            }
+        });
+        mBinding.btnSizeFull.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                mBinding.mapView.setLayoutParams(params);
             }
         });
     }

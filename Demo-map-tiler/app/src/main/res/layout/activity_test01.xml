@@ -9,9 +9,11 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:mapbox_uiLogo="false"
-        app:mapbox_uiAttribution="false"
-        app:mapbox_renderTextureMode="true"     />
+        app:maplibre_uiLogo="false"
+        app:maplibre_uiAttribution="false"
+        app:maplibre_renderTextureMode="true"
+        app:maplibre_uiCompass="false"
+        />
 
     <Button
         android:id="@+id/btn_satellite_hybrid"
@@ -29,5 +31,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_satellite_hybrid"
         android:text="street"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_size_quarter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_street"
+        android:text="Size quarter"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_size_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_size_quarter"
+        android:text="Size half"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_size_full"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_size_half"
+        android:text="Size full"
         android:textAllCaps="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
