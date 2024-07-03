@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -76,6 +77,7 @@ public class EnterMainActivity extends AppCompatActivity {
                         .target(new LatLng(30.42491669227814, 114.41992218256276))
                         .zoom(14.0)
                         .build();
+                map.getCameraPosition();
                 map.setCameraPosition(cameraPosition);
                 addMarker();
             }

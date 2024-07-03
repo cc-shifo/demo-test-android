@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Test01Activity">
+    <!--<org.maplibre.android.maps.MapView-->
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -14,6 +15,11 @@
         app:maplibre_renderTextureMode="true"
         app:maplibre_uiCompass="false"
         />
+    <!--app:mapbox_uiLogo="false"-->
+    <!--app:mapbox_uiAttribution="false"-->
+    <!--app:mapbox_renderTextureMode="true"-->
+    <!--app:mapbox_uiCompass="false"-->
+
 
     <Button
         android:id="@+id/btn_satellite_hybrid"
@@ -55,5 +61,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_size_half"
         android:text="Size full"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_polygon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_size_full"
+        android:text="polygon"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_polyline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_polygon"
+        android:text="polyline"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_polyline"
+        android:text="clear line"
         android:textAllCaps="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

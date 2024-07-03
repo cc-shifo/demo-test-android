@@ -7,13 +7,16 @@
     tools:context=".EnterMainActivity">
 
     <!--查看MapboxMapOptions.java文件app:mapbox_apiBaseUri-->
+    <!--<org.maplibre.android.maps.MapView-->
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:maplibre_uiLogo="false"
         app:maplibre_uiAttribution="false"
-        app:maplibre_renderTextureMode="true"/>
+        app:maplibre_renderTextureMode="true"
+        app:maplibre_uiCompass="false"
+        />
 
     <TextView
         android:id="@+id/hello_world"
