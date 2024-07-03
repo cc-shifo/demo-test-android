@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.mapbox.geojson.utils.PolylineUtils;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Polygon;
 import com.mapbox.mapboxsdk.annotations.PolygonOptions;
@@ -234,6 +233,52 @@ public class Test01Activity extends AppCompatActivity {
                 }
             }
         });
+
+        // touch event
+        // 1.MapView#onTouchEvent
+        // 2.MapGestureDetector#onTouchEvent mapGestureDetector
+        // 3.AndroidGesturesManager#onTouchEvent gesturesManager; || super#onTouchEvent from
+        // View#TouchEvent
+        // 4.all BaseGesture#onTouchEvent
+        //  RotateGestureDetector, StandardScaleGestureDetector
+        //  ShoveGestureDetector, SidewaysShoveGestureDetector
+        //  MultiFingerTapGestureDetector, MoveGestureDetector
+        //  StandardGestureDetector
+        // 5.BaseGesture#analyze
+        // 6.BaseGesture#analyzeEvent
+        //  all RotateGestureDetector#analyzeEvent, StandardScaleGestureDetector#analyzeEvent,
+        //  ShoveGestureDetector#analyzeEvent, SidewaysShoveGestureDetector#analyzeEvent,
+        //  MultiFingerTapGestureDetector#analyzeEvent, MoveGestureDetector#analyzeEvent,
+        //  StandardGestureDetector#analyzeEvent, MoveGestureDetector#analyzeEvent,
+        // 7. e.g StandardGestureDetector#analyzeEvent
+        //  StandardGestureDetector#gestureDetector.onTouchEvent(motionEvent)
+        //  BaseGesture#listener.
+        //  MapGestureDetector#StandardGestureDetector#listener. from
+        //  MapGestureDetector#initializeGestureListeners.
+        //  from gesturesManager#setStandardGestureListener(standardGestureListener),
+        //  from gesturesManager#setMoveGestureListener(moveGestureListener),
+        //  from gesturesManager#setStandardScaleGestureListener(scaleGestureListener),
+        //  from gesturesManager#setRotateGestureListener(setRotateGestureListener),
+        //  from gesturesManager#setShoveGestureListener(shoveGestureListener),
+        //  from gesturesManager#setMultiFingerTapGestureListener(tapGestureListener).
+
+        //  from AndroidGesturesManager#setStandardGestureListener(standardGestureListener),
+        //  from AndroidGesturesManager#setMoveGestureListener(moveGestureListener),
+        //  from AndroidGesturesManager#setStandardScaleGestureListener(scaleGestureListener),
+        //  from AndroidGesturesManager#setRotateGestureListener(setRotateGestureListener),
+        //  from AndroidGesturesManager#setShoveGestureListener(shoveGestureListener),
+        //  from AndroidGesturesManager#setMultiFingerTapGestureListener(tapGestureListener),
+        //  listener#onSingleTapConfirmed
+        //  MapGestureDetector#StandardGestureListener#onSingleTapConfirmed
+        //  MapGestureDetector#StandardGestureListener#notifyOnMapClickListeners(LatLng)
+
+        // 8. e.g MoveGestureDetector#analyzeEvent
+        //  MoveGestureListener#onMoveBegin
+        //  MoveGestureListener#onMove
+        //  MoveGestureListener#onMoveEnd#notifyOnMoveEndListeners
+
+
+        // mMap.getProjection().toScreenLocation()
     }
 
     @Override
