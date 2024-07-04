@@ -23,6 +23,25 @@
     <!--app:mapbox_uiAttribution="false"-->
     <!--app:mapbox_renderTextureMode="true"-->
     <!--app:mapbox_uiCompass="false"-->
+    <TextView
+        android:id="@+id/tv_message_blackboard"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+
+        android:fadeScrollbars="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:scrollbars="vertical"
+        android:background="@color/colorGrey"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:background="@color/colorAccent"/>
 
 
     <Button
@@ -88,6 +107,22 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_polyline"
-        android:text="clear line"
+        android:text="clear map"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_enable_edit_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_clear"
+        android:text="enable edit"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_disable_edit_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_enable_edit_point"
+        android:text="disable edit"
         android:textAllCaps="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

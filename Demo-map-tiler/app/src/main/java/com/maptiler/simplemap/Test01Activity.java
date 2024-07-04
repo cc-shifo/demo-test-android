@@ -1,15 +1,25 @@
 package com.maptiler.simplemap;
 
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewConfiguration;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Icon;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.annotations.InfoWindow;
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.Polygon;
 import com.mapbox.mapboxsdk.annotations.PolygonOptions;
 import com.mapbox.mapboxsdk.annotations.Polyline;
@@ -53,18 +63,7 @@ public class Test01Activity extends AppCompatActivity {
         mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key="
-                // + BuildConfig.mapTilerKey;
-                mMap = mapboxMap;
-                mMap.setStyle(mStyleUrl);
-                // mMap.getUiSettings().setLogoEnabled(false);
-                // mMap.getUiSettings().setAttributionEnabled(false);
-                CameraPosition cm = new CameraPosition.Builder()
-                        // .target(LatLng(47.127757, 8.579139))
-                        .target(new LatLng(30.42491669227814, 114.41992218256276))
-                        .zoom(14.0)
-                        .build();
-                mMap.setCameraPosition(cm);
+                initMapEle(mapboxMap);
             }
         });
 
@@ -234,6 +233,7 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
 
+
         // touch event
         // 1.MapView#onTouchEvent
         // 2.MapGestureDetector#onTouchEvent mapGestureDetector
@@ -336,4 +336,197 @@ public class Test01Activity extends AppCompatActivity {
 
         return true;
     }
+
+
+    private void initMapEle(@NonNull MapboxMap mapboxMap) {
+        // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key="
+        // + BuildConfig.mapTilerKey;
+        mMap = mapboxMap;
+        mMap.setStyle(mStyleUrl);
+        moveToCurrentLocation();
+        addMarker();
+        addClickListen();
+    }
+
+    private void moveToCurrentLocation() {
+        // mMap.getUiSettings().setLogoEnabled(false);
+        // mMap.getUiSettings().setAttributionEnabled(false);
+        CameraPosition cm = new CameraPosition.Builder()
+                // .target(LatLng(47.127757, 8.579139))
+                .target(new LatLng(30.42491669227814, 114.41992218256276))
+                .zoom(14.0)
+                .build();
+        mMap.setCameraPosition(cm);
+    }
+
+    private LatLng mMarkerLatLng;
+    private LatLng mMarkerLatLng2;
+    private Marker mMarker;
+    private Marker mMarker2;
+    private List<Feature> mFeatureList = new ArrayList<>();
+
+    private void addMarker() {
+        mMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                LatLng latLng = marker.getPosition();
+                PointF pointF = mMap.getProjection().toScreenLocation(latLng);
+                mTextBlackboard.setLength(0);
+                mTextBlackboard.append("onMapClick: marker id=").append(marker.getId())
+                        .append(", latLng=")
+                        .append(latLng)
+                        .append(", marker x=").append(pointF.x).append(",y=").append(pointF.y)
+                        .append("\n");
+                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+                return true; // 返回true消耗掉事件，将不显示窗口
+            }
+        });
+        // MapGestureDetector#StandardGestureListener#onSingleTapConfirmed
+        // annotationManager.onTap(tapPoint)
+        // AnnotationManager#onTap(tapPoint)
+        // AnnotationManager#isClickHandledForMarker(markerId)
+        // handledDefaultClick = AnnotationManager#onClickMarker() // false就显示点击后的窗口
+        // AnnotationManager#toggleMarkerSelectionState(marker) // 显示点击后的窗口
+        // AnnotationManager#selectMarker(marker) // 显示点击后的窗口
+        // AnnotationManager#infoWindowManager.add(marker.showInfoWindow(mapboxMap, mapView))
+        // Marker#showInfoWindow(mapboxMap, mapView)
+        // Marker#showInfoWindow(infoWindow, mapView) //
+        // Marker#MapboxMap.InfoWindowAdapter infoWindowAdapter = getMapboxMap()
+        // .getInfoWindowAdapter() // 获取自定义窗口适配。这种适配器可以自定义窗口。
+        // 如果没有创建这种适配器，就获取默认的窗口，即maplibre_infowindow_content.xml。
+        // Marker#infoWindow = new InfoWindow(content, mapboxMap) // 获取默认窗口 InfoWindow
+        // Marker#iw.open(mapView, this, getPosition(), rightOffsetPixels, topOffsetPixels)
+        // Marker#mapView.addView(view, lp) // 将窗口添加到mapView上，显示。
+
+        addTestMarkers();
+
+        FeatureCollection featureCollection = FeatureCollection.fromFeatures(mFeatureList);
+        // featureCollection.features().addAll()
+        Feature.fromGeometry(Point.fromLngLat(30.42491669227814, 114.41992218256276));
+
+    }
+
+    private void addTestMarkers() {
+        Icon icon = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_cat);
+        mMarkerLatLng = new LatLng(30.42491669227814, 114.41992218256276);
+        // Use MarkerOptions and addMarker() to add a new marker in map
+        MarkerOptions options = new MarkerOptions()
+                .position(mMarkerLatLng)
+                .title("dateString")
+                .snippet("snippet")
+                .icon(icon);
+        mMarker = mMap.addMarker(options);
+        InfoWindow infoWindow = mMarker.getInfoWindow();
+        // .getView().setClickable(false);
+        // maplibre_infowindow_content.xml // 点击后显示的窗口
+
+        Icon icon2 = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test);
+        mMarkerLatLng2 = new LatLng(30.42121669227814, 114.41932218256276);
+        // Use MarkerOptions and addMarker() to add a new marker in map
+        MarkerOptions options2 = new MarkerOptions()
+                .position(mMarkerLatLng2)
+                .title("dateString")
+                .snippet("snippet")
+                .icon(icon2);
+        mMarker2 = mMap.addMarker(options2);
+
+
+        Icon iconDot = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_dot);
+        List<MarkerOptions> markerOptionsList = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            LatLng latLng = new LatLng(30.42491669227814 + 0.001 * (i + 1), 114.41992218256276);
+            MarkerOptions op = new MarkerOptions()
+                    .position(latLng)
+                    .title("dateString" + i)
+                    .snippet("snippet" + i)
+                    .icon(iconDot);
+            markerOptionsList.add(op);
+            // op.getMarker().setIcon(); // 更新图标
+            // op.getMarker().setPosition(); // 更新位置
+        }
+        Icon iconTest00 = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_01);
+        LatLng latLngTest00 = new LatLng(30.42491669227814, 114.41932218256276 + 0.002);
+        MarkerOptions opTest00 = new MarkerOptions()
+                .position(latLngTest00)
+                .title("test01")
+                .snippet("snippet test01")
+                .icon(iconTest00);
+        markerOptionsList.add(opTest00);
+        iconTest00 = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_02);
+        latLngTest00 = new LatLng(30.42491669227814, 114.41932218256276 + 0.003);
+        opTest00 = new MarkerOptions()
+                .position(latLngTest00)
+                .title("test02")
+                .snippet("snippet test02")
+                .icon(iconTest00);
+        markerOptionsList.add(opTest00);
+        iconTest00 = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_03);
+        latLngTest00 = new LatLng(30.42491669227814, 114.41932218256276 + 0.004);
+        opTest00 = new MarkerOptions()
+                .position(latLngTest00)
+                .title("test03")
+                .snippet("snippet test03")
+                .icon(iconTest00);
+        markerOptionsList.add(opTest00);
+        iconTest00 = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_04);
+        latLngTest00 = new LatLng(30.42491669227814, 114.41932218256276 + 0.005);
+        opTest00 = new MarkerOptions()
+                .position(latLngTest00)
+                .title("test04")
+                .snippet("snippet test04")
+                .icon(iconTest00);
+        markerOptionsList.add(opTest00);
+        mMap.addMarkers(markerOptionsList);
+    }
+
+    private StringBuilder mTextBlackboard = new StringBuilder();
+
+    private void addClickListen() {
+        mMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
+            @Override
+            public boolean onMapClick(@NonNull LatLng point) {
+
+                boolean result = false;
+                mTextBlackboard.setLength(0);
+                PointF scr = mMap.getProjection().toScreenLocation(point);
+                List<Feature> features = mMap.queryRenderedFeatures(scr);
+                mTextBlackboard.append("onMapClick: ").append(point.toString()).append("\n")
+                        .append("on screen x=").append(scr.x).append(",y=").append(scr.y)
+                        .append("\n").append("The marker is latLng=");
+                if (mMarkerLatLng != null) {
+                    // int distance = (deltaX * deltaX) + (deltaY * deltaY);
+                    // if (distance > mTouchSlopSquare)
+                    PointF mrk = mMap.getProjection().toScreenLocation(mMarkerLatLng);
+                    mTextBlackboard.append(mMarkerLatLng.toString())
+                            .append(" on screen x=").append(mrk.x).append(",y=").append(mrk.y)
+                            .append("\n");
+                    final ViewConfiguration configuration = ViewConfiguration.get(
+                            Test01Activity.this);
+                    final int touchSlop = configuration.getScaledTouchSlop();
+                    if (Math.abs(mrk.x - scr.x) < touchSlop && Math.abs(mrk.y - scr.y) <
+                            touchSlop) {
+                        mTextBlackboard.append("*** marker clicked ***").append("\n");
+                        result = true;
+                    }
+                } else {
+                    mTextBlackboard.append("null").append("\n");
+                }
+
+                if (mMarker2 != null) {
+                    mMarker2.setPosition(point);
+                }
+                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+                return result;
+            }
+        });
+    }
+
+
 }
