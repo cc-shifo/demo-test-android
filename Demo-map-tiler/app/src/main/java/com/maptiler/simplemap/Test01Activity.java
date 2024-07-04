@@ -279,6 +279,7 @@ public class Test01Activity extends AppCompatActivity {
 
 
         // mMap.getProjection().toScreenLocation()
+        // DraggableMarkerActivity.kt查看MoveGestureDetector#getMoveObject获取到按下时候的x,y
     }
 
     @Override
