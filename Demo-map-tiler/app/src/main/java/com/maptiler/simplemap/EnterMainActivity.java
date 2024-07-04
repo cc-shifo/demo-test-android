@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -32,6 +33,10 @@ public class EnterMainActivity extends AppCompatActivity {
 
     private TextView mHelloWorld;
     private MapboxMap mMaplibreMap;
+    private MarkerOptions mMarkerOptions;
+    private Icon mIconCat;
+    private Icon mIconMap;
+    private Marker mMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,7 @@ public class EnterMainActivity extends AppCompatActivity {
                         .build();
                 map.getCameraPosition();
                 map.setCameraPosition(cameraPosition);
+                initMapMarkOptions();
                 addMarker();
             }
         });
@@ -96,6 +102,26 @@ public class EnterMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(EnterMainActivity.this, Test01Activity.class);
                 startActivity(intent);
+            }
+        });
+        Button btnIconCat = findViewById(R.id.btn_icon_cat);
+        btnIconCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMarker != null) {
+                    // mMaplibreMap.removeMarker(mMarker);
+                    mMarkerOptions.setIcon(mIconCat); // 序列化用
+                    mMarker.setIcon(mIconCat);
+                }
+
+            }
+        });
+        Button btnIconMap = findViewById(R.id.btn_icon_map);
+        btnIconMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMarkerOptions.setIcon(mIconMap); // 序列化用
+                mMarker.setIcon(mIconMap);
             }
         });
     }
@@ -154,16 +180,21 @@ public class EnterMainActivity extends AppCompatActivity {
         return "";
     }
 
-    private void addMarker() {
-        Icon icon = IconFactory.getInstance(this)
+    private void initMapMarkOptions() {
+        mIconCat = IconFactory.getInstance(this)
+                .fromResource(R.drawable.test_cat);
+        mIconMap = IconFactory.getInstance(this)
                 .fromResource(R.drawable.test);
         LatLng latLng = new LatLng(30.42491669227814, 114.41992218256276);
         // Use MarkerOptions and addMarker() to add a new marker in map
-        MarkerOptions markerOptions = new MarkerOptions()
+        mMarkerOptions = new MarkerOptions()
                 .position(latLng)
                 .title("dateString")
                 .snippet("snippet")
-                .icon(icon);
-        mMaplibreMap.addMarker(markerOptions);
+                .icon(mIconMap);
+    }
+
+    private void addMarker() {
+        mMarker = mMaplibreMap.addMarker(mMarkerOptions);
     }
 }
