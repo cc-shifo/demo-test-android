@@ -14,7 +14,11 @@
         app:maplibre_uiAttribution="false"
         app:maplibre_renderTextureMode="true"
         app:maplibre_uiCompass="false"
+
         />
+    <!--Activity创建，Mapbox初始化，显示地图加载前景颜色（地图加载前一闪而过的颜色），显示加载后地图-->
+    <!--app:maplibre_foregroundLoadColor="@android:color/transparent"-->
+    <!--app:maplibre_renderTextureTranslucentSurface="true"--> <!--没有发现有什么效果-->
     <!--app:mapbox_uiLogo="false"-->
     <!--app:mapbox_uiAttribution="false"-->
     <!--app:mapbox_renderTextureMode="true"-->
