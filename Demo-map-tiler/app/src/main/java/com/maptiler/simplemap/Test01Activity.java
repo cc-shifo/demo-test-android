@@ -63,6 +63,9 @@ public class Test01Activity extends AppCompatActivity {
         mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                // 避免之前Activity下map的InfoWindow没有关闭，再进入到当前Activity时出现InfoWindow null的
+                // 崩溃现象。
+                mapboxMap.clear();
                 initMapEle(mapboxMap);
             }
         });
