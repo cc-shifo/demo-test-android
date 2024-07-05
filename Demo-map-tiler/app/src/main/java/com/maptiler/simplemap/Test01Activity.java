@@ -5,8 +5,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -83,6 +85,8 @@ public class Test01Activity extends AppCompatActivity {
                 new MapView.OnDidFinishLoadingStyleListener() {
                     @Override
                     public void onDidFinishLoadingStyle() {
+                        addMarker();
+
                         addHeadingIcon();
                     }
                 });
@@ -381,7 +385,6 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
         moveToCurrentLocation();
-        addMarker();
         addClickListen();
     }
 
@@ -435,9 +438,7 @@ public class Test01Activity extends AppCompatActivity {
         // Marker#mapView.addView(view, lp) // 将窗口添加到mapView上，显示。
 
         addTestMarkers();
-
-
-
+        addSymbolMarkers();
     }
 
     private SymbolLayer mMarkerLayer;
@@ -448,43 +449,49 @@ public class Test01Activity extends AppCompatActivity {
         // Feature.fromGeometry(Point.fromLngLat(30.42491669227814, 114.41992218256276));
 
         Bitmap dotIcon = BitmapFactory.decodeResource(
-                getResources(), R.drawable.test_dot);
-        mStyle.addImage("DOT_MARKER_ICON_ID", dotIcon);
+                getResources(), R.drawable.test_plus_icon);
+        mStyle.addImage("PLUS_MARKER_ICON_ID", dotIcon);
 
 
         for (int i = 1; i < 5; i++) {
             // LatLng latLng = new LatLng(30.42491669227814 + 0.001 * (i + 1), 114.41992218256276);
-            Feature feature = Feature.fromGeometry(Point.fromLngLat(114.41992218256276,
-                    30.42491669227814 + 0.001 * (i + 1)));
+            Feature feature = Feature.fromGeometry(Point.fromLngLat(114.41992218256276 - 0.001 * (i + 1),
+                    30.42491669227814 - 0.001 * (i + 1)));
             mFeatureList.add(feature);
             // op.getMarker().setIcon(); // 更新图标
             // op.getMarker().setPosition(); // 更新位置
         }
-        GeoJsonSource source = new GeoJsonSource("DOT_GEOJSON_SOURCE_ID",
+        GeoJsonSource source = new GeoJsonSource("PLUS_GEOJSON_SOURCE_ID",
                 FeatureCollection.fromFeatures(mFeatureList));
-
-        mHeadingSymbolLayer = new SymbolLayer("DOT_LAYER_ID", "DOT_GEOJSON_SOURCE_ID")
+        mStyle.addSource(source);
+        mMarkerLayer = new SymbolLayer("PLUS_LAYER_ID", "PLUS_GEOJSON_SOURCE_ID")
                 .withProperties(
-                        PropertyFactory.iconImage("DOT_MARKER_ICON_ID"),
+                        PropertyFactory.textField("hello world"),
+                        PropertyFactory.iconImage("PLUS_MARKER_ICON_ID"),
                         PropertyFactory.iconIgnorePlacement(true),
-                        PropertyFactory.iconAllowOverlap(true)
-                               );
-        mStyle.addLayer(mHeadingSymbolLayer);
+                        PropertyFactory.iconAllowOverlap(true));
+        mStyle.addLayer(mMarkerLayer);
+
     }
 
     private void addTestMarkers() {
+        addCustomInfoWindowAdapter(mMap); // 自定义提示框
+        mMap.getUiSettings().setDeselectMarkersOnTap(false); // false 点击地图后，不自动关闭提示框。
+        mMap.setAllowConcurrentMultipleOpenInfoWindows(true);
+
         Icon icon = IconFactory.getInstance(this)
                 .fromResource(R.drawable.test_cat);
         mMarkerLatLng = new LatLng(30.42491669227814, 114.41992218256276);
         // Use MarkerOptions and addMarker() to add a new marker in map
         MarkerOptions options = new MarkerOptions()
                 .position(mMarkerLatLng)
-                .title("dateString")
-                .snippet("snippet")
+                // .title("dateString")
+                // .snippet("snippet")
                 .icon(icon);
         mMarker = mMap.addMarker(options);
-        InfoWindow infoWindow = mMarker.getInfoWindow();
-        // .getView().setClickable(false);
+        mMap.selectMarker(mMarker); // 打开提示框，默认点击地图后会自动关闭提示框。
+
+        // InfoWindowAdapter自定义提示框
         // maplibre_infowindow_content.xml // 点击后显示的窗口
 
         Icon icon2 = IconFactory.getInstance(this)
@@ -497,6 +504,7 @@ public class Test01Activity extends AppCompatActivity {
                 .snippet("snippet")
                 .icon(icon2);
         mMarker2 = mMap.addMarker(options2);
+        mMap.selectMarker(mMarker2);
 
 
         Icon iconDot = IconFactory.getInstance(this)
@@ -589,6 +597,8 @@ public class Test01Activity extends AppCompatActivity {
                     mMarker2.setPosition(point);
                 }
                 mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+
+                updateMarkerHint(mMarker2.getInfoWindow(), point.toString());
                 return result;
             }
         });
@@ -622,8 +632,8 @@ public class Test01Activity extends AppCompatActivity {
                             // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
                             // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/* 初始化角，也可以用*/
                             PropertyFactory.iconIgnorePlacement(true),
-                            PropertyFactory.iconAllowOverlap(true)
-                                   );
+                            PropertyFactory.iconAllowOverlap(true));
+
             mStyle.addLayer(mHeadingSymbolLayer);
         }
     }
@@ -641,6 +651,43 @@ public class Test01Activity extends AppCompatActivity {
                     Point.fromLngLat(114.41992218256276 - mDeltaLat, 30.42491669227814 -
                     mDeltaLat)));
             mHeadingSymbolLayer.setProperties(PropertyFactory.iconRotate(mHeading));
+        }
+    }
+
+    private void addCustomInfoWindowAdapter(MapboxMap map) {
+        MapboxMap.InfoWindowAdapter adapter = new MapboxMap.InfoWindowAdapter() {
+            @Nullable
+            @Override
+            public View getInfoWindow(@NonNull Marker marker) {
+                TextView tv = new TextView(Test01Activity.this);
+                tv.setWidth(200);
+                tv.setHeight(100);
+                tv.setText("info");
+                // tv.setTextSize(R.dimen.plus_info_window_text_size);
+                tv.setTextColor(Color.WHITE);
+                // int p = (int) getResources().getDimension(R.dimen.plus_info_window_text_padding);
+                // tv.setPadding(p, p, p, p);
+                tv.setBackgroundColor(Color.BLACK);
+                tv.setGravity(Gravity.NO_GRAVITY);
+                return tv;
+            }
+        };
+        map.setInfoWindowAdapter(adapter);
+
+    }
+
+    private void updateMarkerHint(@Nullable InfoWindow infoWindow, @Nullable String hint) {
+        if (infoWindow != null) {
+            View view = infoWindow.getView();
+            if (view instanceof TextView) {
+                ((TextView) view).setText(hint);
+                view.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        infoWindow.update();
+                    }
+                });
+            }
         }
     }
 }
