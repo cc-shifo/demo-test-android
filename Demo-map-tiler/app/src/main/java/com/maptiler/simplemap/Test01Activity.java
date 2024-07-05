@@ -1,5 +1,7 @@
 package com.maptiler.simplemap;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.gson.JsonObject;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
@@ -26,8 +29,14 @@ import com.mapbox.mapboxsdk.annotations.Polyline;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.expressions.Expression;
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.maptiler.simplemap.databinding.ActivityTest01Binding;
 
 import java.util.ArrayList;
@@ -38,6 +47,7 @@ public class Test01Activity extends AppCompatActivity {
 
     private ActivityTest01Binding mBinding;
     private MapboxMap mMap;
+    private Style mStyle;
     private final String mStyleUrl =
             "https://api.maptiler.com/maps/hybrid/style.json?key=" + BuildConfig.mapTilerKey;
     private final String mStreet =
@@ -69,6 +79,13 @@ public class Test01Activity extends AppCompatActivity {
                 initMapEle(mapboxMap);
             }
         });
+        mBinding.mapView.addOnDidFinishLoadingStyleListener(
+                new MapView.OnDidFinishLoadingStyleListener() {
+                    @Override
+                    public void onDidFinishLoadingStyle() {
+                        addHeadingIcon();
+                    }
+                });
 
 
         mBinding.btnSatelliteHybrid.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +253,18 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
 
+        mBinding.btnRotateIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHeading = mHeading + 5f;
+                if (mHeading >= 360f) {
+                    mHeading = mHeading - 360f;
+                }
+                mDeltaLat = mDeltaLat + 0.001f;
+                btnRotate();
+            }
+        });
+
 
         // touch event
         // 1.MapView#onTouchEvent
@@ -345,7 +374,12 @@ public class Test01Activity extends AppCompatActivity {
         // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key="
         // + BuildConfig.mapTilerKey;
         mMap = mapboxMap;
-        mMap.setStyle(mStyleUrl);
+        mMap.setStyle(mStyleUrl, new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+                mStyle = style;
+            }
+        });
         moveToCurrentLocation();
         addMarker();
         addClickListen();
@@ -366,7 +400,6 @@ public class Test01Activity extends AppCompatActivity {
     private LatLng mMarkerLatLng2;
     private Marker mMarker;
     private Marker mMarker2;
-    private List<Feature> mFeatureList = new ArrayList<>();
 
     private void addMarker() {
         mMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
@@ -403,10 +436,40 @@ public class Test01Activity extends AppCompatActivity {
 
         addTestMarkers();
 
-        FeatureCollection featureCollection = FeatureCollection.fromFeatures(mFeatureList);
-        // featureCollection.features().addAll()
-        Feature.fromGeometry(Point.fromLngLat(30.42491669227814, 114.41992218256276));
 
+
+    }
+
+    private SymbolLayer mMarkerLayer;
+    private List<Feature> mFeatureList = new ArrayList<>();
+    private void addSymbolMarkers() {
+        // FeatureCollection featureCollection = FeatureCollection.fromFeatures(mFeatureList);
+        // featureCollection.features().addAll()
+        // Feature.fromGeometry(Point.fromLngLat(30.42491669227814, 114.41992218256276));
+
+        Bitmap dotIcon = BitmapFactory.decodeResource(
+                getResources(), R.drawable.test_dot);
+        mStyle.addImage("DOT_MARKER_ICON_ID", dotIcon);
+
+
+        for (int i = 1; i < 5; i++) {
+            // LatLng latLng = new LatLng(30.42491669227814 + 0.001 * (i + 1), 114.41992218256276);
+            Feature feature = Feature.fromGeometry(Point.fromLngLat(114.41992218256276,
+                    30.42491669227814 + 0.001 * (i + 1)));
+            mFeatureList.add(feature);
+            // op.getMarker().setIcon(); // 更新图标
+            // op.getMarker().setPosition(); // 更新位置
+        }
+        GeoJsonSource source = new GeoJsonSource("DOT_GEOJSON_SOURCE_ID",
+                FeatureCollection.fromFeatures(mFeatureList));
+
+        mHeadingSymbolLayer = new SymbolLayer("DOT_LAYER_ID", "DOT_GEOJSON_SOURCE_ID")
+                .withProperties(
+                        PropertyFactory.iconImage("DOT_MARKER_ICON_ID"),
+                        PropertyFactory.iconIgnorePlacement(true),
+                        PropertyFactory.iconAllowOverlap(true)
+                               );
+        mStyle.addLayer(mHeadingSymbolLayer);
     }
 
     private void addTestMarkers() {
@@ -532,4 +595,52 @@ public class Test01Activity extends AppCompatActivity {
     }
 
 
+    private void addHeadingIcon() {
+        if (mStyle != null) {
+            Bitmap compassNeedleSymbolLayerIcon = BitmapFactory.decodeResource(
+                    getResources(), R.drawable.test_composs);
+            mStyle.addImage("AIRCRAFT_MARKER_ICON_ID", compassNeedleSymbolLayerIcon);
+
+            // 方法一，无初始化方向角。
+            GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID",
+                    Feature.fromGeometry(Point.fromLngLat(114.41992218256276 - 0.03,
+                            30.42491669227814 - 0.03)));
+            mStyle.addSource(source);
+
+
+            // 方法二, 初始化方向角45
+            // JsonObject jsonObject = new JsonObject();
+            // jsonObject.addProperty(PROPERTY_BEARING, 45f);
+            // Feature feature = Feature.fromGeometry(Point.fromLngLat(114.41992218256276 - 0.03,
+            //         30.42491669227814 - 0.03), jsonObject);
+            // GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID", feature);
+            // mStyle.addSource(source);
+
+            mHeadingSymbolLayer = new SymbolLayer("AIRCRAFT_LAYER_ID", "GEOJSON_SOURCE_ID")
+                    .withProperties(
+                            PropertyFactory.iconImage("AIRCRAFT_MARKER_ICON_ID"),
+                            // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
+                            // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/* 初始化角，也可以用*/
+                            PropertyFactory.iconIgnorePlacement(true),
+                            PropertyFactory.iconAllowOverlap(true)
+                                   );
+            mStyle.addLayer(mHeadingSymbolLayer);
+        }
+    }
+
+    private SymbolLayer mHeadingSymbolLayer;
+    private float mHeading;
+    private float mDeltaLat = 0.001f;
+    private static final String PROPERTY_BEARING = "bearing";
+
+    private void btnRotate() {
+        // 方法一
+        GeoJsonSource source = mStyle.getSourceAs("GEOJSON_SOURCE_ID");
+        if (source != null && mHeadingSymbolLayer != null) {
+            source.setGeoJson(Feature.fromGeometry(
+                    Point.fromLngLat(114.41992218256276 - mDeltaLat, 30.42491669227814 -
+                    mDeltaLat)));
+            mHeadingSymbolLayer.setProperties(PropertyFactory.iconRotate(mHeading));
+        }
+    }
 }

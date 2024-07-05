@@ -125,4 +125,12 @@
         app:layout_constraintTop_toBottomOf="@id/btn_enable_edit_point"
         android:text="disable edit"
         android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_rotate_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_disable_edit_point"
+        android:text="rotate icon"
+        android:textAllCaps="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
