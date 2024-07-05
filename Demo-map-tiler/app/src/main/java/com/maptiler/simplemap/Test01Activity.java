@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -15,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.google.gson.JsonObject;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
@@ -35,7 +35,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
@@ -46,7 +45,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Test01Activity extends AppCompatActivity {
-
+    private static final String TAG = "Test01Activity";
     private ActivityTest01Binding mBinding;
     private MapboxMap mMap;
     private Style mStyle;
@@ -78,39 +77,107 @@ public class Test01Activity extends AppCompatActivity {
                 // 避免之前Activity下map的InfoWindow没有关闭，再进入到当前Activity时出现InfoWindow null的
                 // 崩溃现象。
                 mapboxMap.clear();
-                initMapEle(mapboxMap);
+                initMapEle(mapboxMap, mStyleUrl);
             }
         });
-        mBinding.mapView.addOnDidFinishLoadingStyleListener(
-                new MapView.OnDidFinishLoadingStyleListener() {
+        mBinding.mapView.addOnCanRemoveUnusedStyleImageListener(
+                new MapView.OnCanRemoveUnusedStyleImageListener() {
                     @Override
-                    public void onDidFinishLoadingStyle() {
-                        addMarker();
-
-                        addHeadingIcon();
+                    public boolean onCanRemoveUnusedStyleImage(@NonNull String id) {
+                        Log.d(TAG, "onCanRemoveUnusedStyleImage: " + id);
+                        return false;
                     }
                 });
-
+        mBinding.mapView.addOnStyleImageMissingListener(new MapView.OnStyleImageMissingListener() {
+            @Override
+            public void onStyleImageMissing(@NonNull String id) {
+                Log.d(TAG, "onStyleImageMissing: " + id);
+            }
+        });
+        mBinding.mapView.addOnSourceChangedListener(new MapView.OnSourceChangedListener() {
+            @Override
+            public void onSourceChangedListener(String id) {
+                Log.d(TAG, "onSourceChangedListener: " + id);
+            }
+        });
+        mBinding.mapView.addOnDidFinishLoadingStyleListener(() -> {
+            // This above code may not work sometimes when you add the marker in the
+            // onMapReady() callback. Because onMapReady() is called before all
+            // styles are loaded. Hence add the marker in
+            // addOnDidFinishLoadingStyleListener() callback.
+            // https://stackoverflow.com/questions/53517370/rotate-and-change-position-for-markers-in-latest-mapbox-sdk-6-7/54124090#54124090
+            Log.d(TAG, "onDidFinishLoadingStyle: onStyleLoaded: " +
+                    mMap.getStyle().toString());
+            // 此回调存在多次被调用的情况。调用顺序如下
+            // 2024-07-05 19:30:23.106 19206-19206/com.maptiler.simplemap
+            // E/Mbgl-MapChangeReceiver: Exception in onDidFinishLoadingStyle
+            // java.lang.IllegalStateException: Calling removeImage when a newer
+            // style is loading/has loaded.
+            // at com.mapbox.mapboxsdk.maps.Style.validateState(Style.java:776)
+            // at com.mapbox.mapboxsdk.maps.Style.removeImage(Style.java:614)
+            // at com.maptiler.simplemap.Test01Activity.clearStyle(Test01Activity
+            // .java:755)
+            // at com.maptiler.simplemap.Test01Activity.access$200(Test01Activity
+            // .java:49)
+            // at com.maptiler.simplemap.Test01Activity$7$1$1.onStyleLoaded
+            // (Test01Activity.java:151)
+            // at com.mapbox.mapboxsdk.maps.MapboxMap.notifyStyleLoaded(MapboxMap
+            // .java:962)
+            // at com.mapbox.mapboxsdk.maps.MapboxMap.onFinishLoadingStyle(MapboxMap
+            // .java:224)
+            // at com.mapbox.mapboxsdk.maps.MapView$MapCallback
+            // .onDidFinishLoadingStyle(MapView.java:1346)
+            // at com.mapbox.mapboxsdk.maps.MapChangeReceiver.onDidFinishLoadingStyle
+            // (MapChangeReceiver.java:198)
+            // at com.mapbox.mapboxsdk.maps.NativeMapView.onDidFinishLoadingStyle
+            // (NativeMapView.java:1124)
+            // at android.os.MessageQueue.nativePollOnce(Native Method)
+            // at android.os.MessageQueue.next(MessageQueue.java:336)
+            // at android.os.Looper.loop(Looper.java:174)
+            // at android.app.ActivityThread.main(ActivityThread.java:7386)
+            // at java.lang.reflect.Method.invoke(Native Method)
+            // at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run
+            // (RuntimeInit.java:492)
+        });
 
         mBinding.btnSatelliteHybrid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mMap != null) {
-                    mMap.setStyle(mStyleUrl);
-                    mMap.getUiSettings().setLogoEnabled(false);
-                    mMap.getUiSettings().setAttributionEnabled(false);
-                }
+                mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                        mMap.setStyle(mStyleUrl, new Style.OnStyleLoaded() {
+                            @Override
+                            public void onStyleLoaded(@NonNull Style style) {
+                                Log.d(TAG, "btnSatelliteHybrid onStyleLoaded: " + style.toString());
+                                // clearStyle();
+                                mStyle = style;
+                                addSymbolMarkers();
+                                addHeadingIcon();
+                            }
+                        });
+                    }
+                });
             }
         });
 
         mBinding.btnStreet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mMap != null) {
-                    mMap.setStyle(mStreet);
-                    mMap.getUiSettings().setLogoEnabled(false);
-                    mMap.getUiSettings().setAttributionEnabled(false);
-                }
+                mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                        mMap.setStyle(mStreet, new Style.OnStyleLoaded() {
+                            @Override
+                            public void onStyleLoaded(@NonNull Style style) {
+                                Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
+                                mStyle = style;
+                                addSymbolMarkers();
+                                addHeadingIcon();
+                            }
+                        });
+                    }
+                });
             }
         });
         mBinding.btnSizeQuarter.setOnClickListener(new View.OnClickListener() {
@@ -374,18 +441,26 @@ public class Test01Activity extends AppCompatActivity {
     }
 
 
-    private void initMapEle(@NonNull MapboxMap mapboxMap) {
+    private void initMapEle(@NonNull MapboxMap mapboxMap, @NonNull String style) {
         // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key="
         // + BuildConfig.mapTilerKey;
         mMap = mapboxMap;
-        mMap.setStyle(mStyleUrl, new Style.OnStyleLoaded() {
+        // mMap.getUiSettings().setLogoEnabled(false); // set in xml
+        // mMap.getUiSettings().setAttributionEnabled(false);  // set in xml
+        mMap.setStyle(style, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
+                Log.d(TAG, "onStyleLoaded: " + style.toString());
                 mStyle = style;
+                addSymbolMarkers();
+                addHeadingIcon();
             }
         });
+
+
         moveToCurrentLocation();
         addClickListen();
+        addMarker();
     }
 
     private void moveToCurrentLocation() {
@@ -438,15 +513,16 @@ public class Test01Activity extends AppCompatActivity {
         // Marker#mapView.addView(view, lp) // 将窗口添加到mapView上，显示。
 
         addTestMarkers();
-        addSymbolMarkers();
     }
 
     private SymbolLayer mMarkerLayer;
     private List<Feature> mFeatureList = new ArrayList<>();
+
     private void addSymbolMarkers() {
         // FeatureCollection featureCollection = FeatureCollection.fromFeatures(mFeatureList);
         // featureCollection.features().addAll()
         // Feature.fromGeometry(Point.fromLngLat(30.42491669227814, 114.41992218256276));
+
 
         Bitmap dotIcon = BitmapFactory.decodeResource(
                 getResources(), R.drawable.test_plus_icon);
@@ -455,8 +531,9 @@ public class Test01Activity extends AppCompatActivity {
 
         for (int i = 1; i < 5; i++) {
             // LatLng latLng = new LatLng(30.42491669227814 + 0.001 * (i + 1), 114.41992218256276);
-            Feature feature = Feature.fromGeometry(Point.fromLngLat(114.41992218256276 - 0.001 * (i + 1),
-                    30.42491669227814 - 0.001 * (i + 1)));
+            Feature feature = Feature.fromGeometry(
+                    Point.fromLngLat(114.41992218256276 - 0.001 * (i + 1),
+                            30.42491669227814 - 0.001 * (i + 1)));
             mFeatureList.add(feature);
             // op.getMarker().setIcon(); // 更新图标
             // op.getMarker().setPosition(); // 更新位置
@@ -613,8 +690,7 @@ public class Test01Activity extends AppCompatActivity {
 
             // 方法一，无初始化方向角。
             GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID",
-                    Feature.fromGeometry(Point.fromLngLat(114.41992218256276 - 0.03,
-                            30.42491669227814 - 0.03)));
+                    Feature.fromGeometry(mRotate));
             mStyle.addSource(source);
 
 
@@ -629,8 +705,10 @@ public class Test01Activity extends AppCompatActivity {
             mHeadingSymbolLayer = new SymbolLayer("AIRCRAFT_LAYER_ID", "GEOJSON_SOURCE_ID")
                     .withProperties(
                             PropertyFactory.iconImage("AIRCRAFT_MARKER_ICON_ID"),
+                            PropertyFactory.iconRotate(mHeading),
                             // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
-                            // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/* 初始化角，也可以用*/
+                            // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/*
+                            // 初始化角，也可以用*/
                             PropertyFactory.iconIgnorePlacement(true),
                             PropertyFactory.iconAllowOverlap(true));
 
@@ -639,17 +717,20 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private SymbolLayer mHeadingSymbolLayer;
-    private float mHeading;
+    private float mHeading = 0f;
     private float mDeltaLat = 0.001f;
     private static final String PROPERTY_BEARING = "bearing";
+
+    private Point mRotate = Point.fromLngLat(114.41992218256276 - 0.008,
+            30.42491669227814 - 0.008);
 
     private void btnRotate() {
         // 方法一
         GeoJsonSource source = mStyle.getSourceAs("GEOJSON_SOURCE_ID");
         if (source != null && mHeadingSymbolLayer != null) {
-            source.setGeoJson(Feature.fromGeometry(
-                    Point.fromLngLat(114.41992218256276 - mDeltaLat, 30.42491669227814 -
-                    mDeltaLat)));
+            mRotate = Point.fromLngLat(114.41992218256276 - mDeltaLat, 30.42491669227814 -
+                    mDeltaLat);
+            source.setGeoJson(Feature.fromGeometry(mRotate));
             mHeadingSymbolLayer.setProperties(PropertyFactory.iconRotate(mHeading));
         }
     }
@@ -688,6 +769,18 @@ public class Test01Activity extends AppCompatActivity {
                     }
                 });
             }
+        }
+    }
+
+    private void clearStyle() {
+        if (mStyle != null) {
+            mStyle.removeImage("PLUS_MARKER_ICON_ID");
+            mStyle.removeSource("PLUS_GEOJSON_SOURCE_ID");
+            mStyle.removeLayer("PLUS_LAYER_ID");
+            mStyle.removeImage("AIRCRAFT_MARKER_ICON_ID");
+            mStyle.removeSource("GEOJSON_SOURCE_ID");
+            mStyle.removeLayer("AIRCRAFT_LAYER_ID");
+            mStyle = null;
         }
     }
 }
