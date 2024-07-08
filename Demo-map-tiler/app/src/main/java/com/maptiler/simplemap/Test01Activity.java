@@ -14,12 +14,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.LongSparseArray;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Annotation;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.InfoWindow;
@@ -153,7 +155,9 @@ public class Test01Activity extends AppCompatActivity {
                                 // clearStyle();
                                 mStyle = style;
                                 addSymbolMarkers();
-                                addHeadingIcon();
+                                if (mmHeadingSymbolLayerInitiated) {
+                                    addHeadingIcon();
+                                }
                             }
                         });
                     }
@@ -173,7 +177,9 @@ public class Test01Activity extends AppCompatActivity {
                                 Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
                                 mStyle = style;
                                 addSymbolMarkers();
-                                addHeadingIcon();
+                                if (mmHeadingSymbolLayerInitiated) {
+                                    addHeadingIcon();
+                                }
                             }
                         });
                     }
@@ -324,17 +330,31 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
 
-        mBinding.btnRotateIcon.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnRotateAircraftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //避免快速点击多次
                 mHeading = mHeading + 5f;
                 if (mHeading >= 360f) {
                     mHeading = mHeading - 360f;
                 }
                 mDeltaLat = mDeltaLat + 0.001f;
+                if (!mmHeadingSymbolLayerInitiated) {
+                    addHeadingIcon();
+                    mmHeadingSymbolLayerInitiated = true;
+                }
                 btnRotate();
             }
         });
+        mBinding.btnDeleteAircraftIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                remoteHeadingIcon();
+                mmHeadingSymbolLayerInitiated = false;
+            }
+        });
+
+        btnAddOneMarker();
+        btnRemoveOneMarker();
 
 
         // touch event
@@ -453,7 +473,9 @@ public class Test01Activity extends AppCompatActivity {
                 Log.d(TAG, "onStyleLoaded: " + style.toString());
                 mStyle = style;
                 addSymbolMarkers();
-                addHeadingIcon();
+                if (mmHeadingSymbolLayerInitiated) {
+                    addHeadingIcon();
+                }
             }
         });
 
@@ -480,20 +502,24 @@ public class Test01Activity extends AppCompatActivity {
     private Marker mMarker2;
 
     private void addMarker() {
-        mMap.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                LatLng latLng = marker.getPosition();
-                PointF pointF = mMap.getProjection().toScreenLocation(latLng);
-                mTextBlackboard.setLength(0);
-                mTextBlackboard.append("onMapClick: marker id=").append(marker.getId())
-                        .append(", latLng=")
-                        .append(latLng)
-                        .append(", marker x=").append(pointF.x).append(",y=").append(pointF.y)
-                        .append("\n");
-                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
-                return true; // 返回true消耗掉事件，将不显示窗口
-            }
+        testOnMarkerClicked();
+        addTestMarkers();
+    }
+
+
+    private void testOnMarkerClicked() {
+        mMap.setOnMarkerClickListener(marker -> {
+            mClickedId = marker.getId();
+            LatLng latLng = marker.getPosition();
+            PointF pointF = mMap.getProjection().toScreenLocation(latLng);
+            mTextBlackboard.setLength(0);
+            mTextBlackboard.append("onMapClick: marker id=").append(marker.getId())
+                    .append(", latLng=")
+                    .append(latLng)
+                    .append(", marker x=").append(pointF.x).append(",y=").append(pointF.y)
+                    .append("\n");
+            mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+            return true; // 返回true消耗掉事件，将不显示窗口
         });
         // MapGestureDetector#StandardGestureListener#onSingleTapConfirmed
         // annotationManager.onTap(tapPoint)
@@ -511,8 +537,6 @@ public class Test01Activity extends AppCompatActivity {
         // Marker#infoWindow = new InfoWindow(content, mapboxMap) // 获取默认窗口 InfoWindow
         // Marker#iw.open(mapView, this, getPosition(), rightOffsetPixels, topOffsetPixels)
         // Marker#mapView.addView(view, lp) // 将窗口添加到mapView上，显示。
-
-        addTestMarkers();
     }
 
     private SymbolLayer mMarkerLayer;
@@ -684,14 +708,18 @@ public class Test01Activity extends AppCompatActivity {
 
     private void addHeadingIcon() {
         if (mStyle != null) {
-            Bitmap compassNeedleSymbolLayerIcon = BitmapFactory.decodeResource(
-                    getResources(), R.drawable.test_composs);
-            mStyle.addImage("AIRCRAFT_MARKER_ICON_ID", compassNeedleSymbolLayerIcon);
+            if (mStyle.getImage("AIRCRAFT_MARKER_ICON_ID") == null) {
+                Bitmap compassNeedleSymbolLayerIcon = BitmapFactory.decodeResource(
+                        getResources(), R.drawable.test_composs);
+                mStyle.addImage("AIRCRAFT_MARKER_ICON_ID", compassNeedleSymbolLayerIcon);
+            }
 
-            // 方法一，无初始化方向角。
-            GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID",
-                    Feature.fromGeometry(mRotate));
-            mStyle.addSource(source);
+            if (mStyle.getSource("GEOJSON_SOURCE_ID") == null) {
+                // 方法一，无初始化方向角。
+                GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID",
+                        Feature.fromGeometry(mRotate));
+                mStyle.addSource(source);
+            }
 
 
             // 方法二, 初始化方向角45
@@ -702,23 +730,33 @@ public class Test01Activity extends AppCompatActivity {
             // GeoJsonSource source = new GeoJsonSource("GEOJSON_SOURCE_ID", feature);
             // mStyle.addSource(source);
 
-            mHeadingSymbolLayer = new SymbolLayer("AIRCRAFT_LAYER_ID", "GEOJSON_SOURCE_ID")
-                    .withProperties(
-                            PropertyFactory.iconImage("AIRCRAFT_MARKER_ICON_ID"),
-                            PropertyFactory.iconRotate(mHeading),
-                            // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
-                            // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/*
-                            // 初始化角，也可以用*/
-                            PropertyFactory.iconIgnorePlacement(true),
-                            PropertyFactory.iconAllowOverlap(true));
-
-            mStyle.addLayer(mHeadingSymbolLayer);
+            if (mStyle.getLayer("AIRCRAFT_LAYER_ID") == null) {
+                mHeadingSymbolLayer = new SymbolLayer("AIRCRAFT_LAYER_ID", "GEOJSON_SOURCE_ID")
+                        .withProperties(
+                                PropertyFactory.iconImage("AIRCRAFT_MARKER_ICON_ID"),
+                                PropertyFactory.iconRotate(mHeading),
+                                // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
+                                // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/*
+                                // 初始化角，也可以用*/
+                                PropertyFactory.iconIgnorePlacement(true),
+                                PropertyFactory.iconAllowOverlap(true));
+                mStyle.addLayer(mHeadingSymbolLayer);
+            }
         }
     }
 
+    private void remoteHeadingIcon() {
+        mHeading = 0;
+        mDeltaLat = 0;
+        mStyle.removeImage("AIRCRAFT_MARKER_ICON_ID");
+        mStyle.removeSource("GEOJSON_SOURCE_ID");
+        mStyle.removeLayer("AIRCRAFT_LAYER_ID");
+    }
+
+    private boolean mmHeadingSymbolLayerInitiated;
     private SymbolLayer mHeadingSymbolLayer;
     private float mHeading = 0f;
-    private float mDeltaLat = 0.001f;
+    private float mDeltaLat = 0.0f;
     private static final String PROPERTY_BEARING = "bearing";
 
     private Point mRotate = Point.fromLngLat(114.41992218256276 - 0.008,
@@ -772,15 +810,55 @@ public class Test01Activity extends AppCompatActivity {
         }
     }
 
-    private void clearStyle() {
-        if (mStyle != null) {
-            mStyle.removeImage("PLUS_MARKER_ICON_ID");
-            mStyle.removeSource("PLUS_GEOJSON_SOURCE_ID");
-            mStyle.removeLayer("PLUS_LAYER_ID");
-            mStyle.removeImage("AIRCRAFT_MARKER_ICON_ID");
-            mStyle.removeSource("GEOJSON_SOURCE_ID");
-            mStyle.removeLayer("AIRCRAFT_LAYER_ID");
-            mStyle = null;
-        }
+    // 切换地图风格时不可以进行remove操作，否则出现崩溃异常。
+    // private void clearStyle() {
+    //     if (mStyle != null) {
+    //         mStyle.removeImage("PLUS_MARKER_ICON_ID");
+    //         mStyle.removeSource("PLUS_GEOJSON_SOURCE_ID");
+    //         mStyle.removeLayer("PLUS_LAYER_ID");
+    //         mStyle.removeImage("AIRCRAFT_MARKER_ICON_ID");
+    //         mStyle.removeSource("GEOJSON_SOURCE_ID");
+    //         mStyle.removeLayer("AIRCRAFT_LAYER_ID");
+    //         mStyle = null;
+    //     }
+    // }
+
+    private LongSparseArray<Annotation> mMarkerBtnAddedList = new LongSparseArray<>();
+    private float mBtnAddMarkerOffSet = 0.0f;
+
+    private void btnAddOneMarker() {
+        mBinding.btnAddMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Icon icon = IconFactory.getInstance(Test01Activity.this)
+                        .fromResource(R.drawable.test_dot);
+                mBtnAddMarkerOffSet += 0.03f;
+                LatLng latLng = new LatLng(30.42491669227814 - mBtnAddMarkerOffSet,
+                        114.41992218256276 + mBtnAddMarkerOffSet);
+                // Use MarkerOptions and addMarker() to add a new marker in map
+                MarkerOptions options = new MarkerOptions()
+                        .position(latLng)
+                        // .title("dateString")
+                        // .snippet("snippet")
+                        .icon(icon);
+                Marker marker = mMap.addMarker(options);
+                mMap.selectMarker(marker);
+                updateMarkerHint(marker.getInfoWindow(), String.valueOf(marker.getId()));
+                mMarkerBtnAddedList.put(marker.getId(), marker);
+            }
+        });
+    }
+
+    private static final long NO_MARKER = -1;
+    private long mClickedId = NO_MARKER;
+    private void btnRemoveOneMarker() {
+        mBinding.btnRemoveMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMarkerBtnAddedList.containsKey(mClickedId)) {
+                    mMap.removeMarker((Marker) mMarkerBtnAddedList.get(mClickedId));
+                }
+            }
+        });
     }
 }

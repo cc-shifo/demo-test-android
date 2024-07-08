@@ -44,93 +44,129 @@
         tools:background="@color/colorAccent"/>
 
 
-    <Button
-        android:id="@+id/btn_satellite_hybrid"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="satellite hybrid"
-        android:textAllCaps="false"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_satellite_hybrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="satellite hybrid"
+                android:textAllCaps="false"/>
 
-    <Button
-        android:id="@+id/btn_street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_satellite_hybrid"
-        android:text="street"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_size_quarter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_street"
-        android:text="Size quarter"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_size_half"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_size_quarter"
-        android:text="Size half"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_size_full"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_size_half"
-        android:text="Size full"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_polygon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_size_full"
-        android:text="polygon"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_polyline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_polygon"
-        android:text="polyline"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_polyline"
-        android:text="clear map"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_enable_edit_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_clear"
-        android:text="enable edit"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_disable_edit_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_enable_edit_point"
-        android:text="disable edit"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn_rotate_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_disable_edit_point"
-        android:text="rotate icon"
-        android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_satellite_hybrid"
+                android:text="street"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_size_quarter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_street"
+                android:text="size quarter"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_size_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_size_quarter"
+                android:text="size half"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_size_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_size_half"
+                android:text="size full"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_size_full"
+                android:text="polygon"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_polyline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_polygon"
+                android:text="polyline"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_polyline"
+                android:text="clear map"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_enable_edit_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_clear"
+                android:text="enable edit"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_disable_edit_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_enable_edit_point"
+                android:text="disable edit"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_rotate_aircraft_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_disable_edit_point"
+                android:text="rotate aircraft icon"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_delete_aircraft_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_rotate_aircraft_icon"
+                android:text="delete aircraft icon"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_add_marker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_delete_aircraft_icon"
+                android:text="add marker"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_remove_marker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_add_marker"
+                android:text="remove marker"
+                android:textAllCaps="false"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
