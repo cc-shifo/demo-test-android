@@ -56,6 +56,17 @@ import com.maptiler.simplemap.databinding.ActivityTest01Binding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Test01Activity extends AppCompatActivity {
     private static final String TAG = "Test01Activity";
@@ -366,6 +377,7 @@ public class Test01Activity extends AppCompatActivity {
 
         btnAddOneMarker();
         btnRemoveOneMarker();
+        btnGetAddress();
 
 
         // touch event
@@ -420,7 +432,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mBinding.mapView.onStart();
-        // testStartLocation();
+        testStartLocation();
     }
 
     @Override
@@ -876,6 +888,15 @@ public class Test01Activity extends AppCompatActivity {
         });
     }
 
+    private void btnGetAddress() {
+        mBinding.btnGetAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testReverseGeo();
+            }
+        });
+    }
+
 
     private LocationEngine mLocationEngine;
     private LocationComponent mLocationComponent;
@@ -960,5 +981,90 @@ public class Test01Activity extends AppCompatActivity {
         if (mLocationEngine != null) {
             mLocationEngine.removeLocationUpdates(mLocationEngineCallback);
         }
+    }
+
+    private void testReverseGeo() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger()
+        {
+            @Override
+            public void log(String message)
+            {
+                if (BuildConfig.DEBUG) Log.d("Http----", message+"");
+            }
+        });
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)//设置日志打印
+                .retryOnConnectionFailure(true)//失败重连
+                .connectTimeout(30, TimeUnit.SECONDS)//网络请求超时时间单位为秒
+                .build();
+
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl("https://api.maptiler.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                        .client(okHttpClient)
+                        .build();
+        APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
+        // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
+        apiReverseGeo.getAddress(114.420270,30.425054, BuildConfig.mapTilerKey
+                /*APIReverseGeo.LIMIT APIReverseGeo.LNG, APIReverseGeo.TYPES, false*/)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<SearchJsonObj>() {
+                    @Override
+                    public void accept(SearchJsonObj searchJsonObj) throws Throwable {
+                        Log.d(TAG, "accept: " + searchJsonObj);
+                        List<Features> features = searchJsonObj.getFeatures();
+                        if (features != null && !features.isEmpty()) {
+                            Log.d(TAG, "accept: address[114.41992218256276, 30.42491669227814] " +
+                                    features.get(0).getPlaceName());
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.e(TAG, "accept: ", throwable);
+
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Throwable {
+                        Log.i(TAG, "run: complete");
+                    }
+                });
+
+        // Maptiler Cloud API调用手册
+        // https://docs.maptiler.com/cloud/api/geocoding/#search-by-coordinates-reverse
+
+        // 开发手册
+        // https://www.jawg.io/docs/integration/maplibre-gl-android/add-marker/
+        // https://stackoverflow.com/questions/53517370/rotate-and-change-position-for-markers-in-latest-mapbox-sdk-6-7/54124090#54124090
+
+        //
+        // OkHttpClient client = new OkHttpClient();
+        // OkHttpClient builder = new OkHttpClient.Builder()
+        //         .connectTimeout(5000, TimeUnit.MILLISECONDS)
+        //         .build();
+        //
+        // Request request = new Request.Builder().url(
+        //                 " https://api.maptiler.com/geocoding/{longitude},{latitude}.json")
+        //         .get().build();
+        // client.newCall(request).enqueue(new Callback() {
+        //     @Override
+        //     public void onFailure(@NonNull Call call, @NonNull IOException e) {
+        //
+        //     }
+        //
+        //     @Override
+        //     public void onResponse(@NonNull Call call, @NonNull Response response)
+        //             throws IOException {
+        //         if (response.isSuccessful()) {
+        //             ResponseBody body = response.body();
+        //             body.
+        //         }
+        //     }
+        // });
+
     }
 }
