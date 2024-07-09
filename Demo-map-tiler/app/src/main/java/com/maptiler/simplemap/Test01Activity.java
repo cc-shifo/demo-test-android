@@ -1,10 +1,13 @@
 package com.maptiler.simplemap;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -33,6 +36,14 @@ import com.mapbox.mapboxsdk.annotations.Polyline;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.LocationComponentOptions;
+import com.mapbox.mapboxsdk.location.engine.LocationEngine;
+import com.mapbox.mapboxsdk.location.engine.LocationEngineCallback;
+import com.mapbox.mapboxsdk.location.engine.LocationEngineDefault;
+import com.mapbox.mapboxsdk.location.engine.LocationEngineRequest;
+import com.mapbox.mapboxsdk.location.engine.LocationEngineResult;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -409,6 +420,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mBinding.mapView.onStart();
+        // testStartLocation();
     }
 
     @Override
@@ -421,6 +433,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mBinding.mapView.onPause();
+        testStopLocation();
     }
 
     @Override
@@ -851,6 +864,7 @@ public class Test01Activity extends AppCompatActivity {
 
     private static final long NO_MARKER = -1;
     private long mClickedId = NO_MARKER;
+
     private void btnRemoveOneMarker() {
         mBinding.btnRemoveMarker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -860,5 +874,91 @@ public class Test01Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    private LocationEngine mLocationEngine;
+    private LocationComponent mLocationComponent;
+    private LocationEngineCallback mLocationEngineCallback =
+            new LocationEngineCallback<LocationEngineResult>() {
+                @Override
+                public void onSuccess(LocationEngineResult result) {
+                    Location location = result.getLastLocation();
+                    Log.d(TAG, "current onSuccess: " + location);
+                }
+
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d(TAG, "current onFailure: " + exception.getMessage());
+                }
+            };
+    private LocationEngineCallback mLastLocationEngineCallback =
+            new LocationEngineCallback<LocationEngineResult>() {
+                @Override
+                public void onSuccess(LocationEngineResult result) {
+                    Location location = result.getLastLocation();
+                    Log.d(TAG, "Last onSuccess: " + location);
+                }
+
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d(TAG, "Last onFailure: " + exception.getMessage());
+                }
+            };
+
+
+    @SuppressLint("MissingPermission")
+    private void testLocation() {
+        // private LocationEngine locationEngine;
+        // @NonNull
+        // private LocationEngineRequest locationEngineRequest =
+        //         new LocationEngineRequest.Builder(5000)
+        //                 .setFastestInterval(5000)
+        //                 .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+        //                 .build();
+        // private LocationEngineCallback<LocationEngineResult> currentLocationEngineListener
+        //         = new LocationComponent.CurrentLocationEngineCallback(this);
+        // private LocationEngineCallback<LocationEngineResult> lastLocationEngineListener
+        //         = new LocationComponent.LastLocationEngineCallback(this);
+
+        mLocationEngine = LocationEngineDefault.INSTANCE.getDefaultLocationEngine(this);
+        mLocationComponent = mMap.getLocationComponent();
+        LocationComponentOptions locationComponentOptions =
+                LocationComponentOptions.builder(this)
+                        .pulseEnabled(false)
+                        .build();
+        LocationEngineRequest request = new LocationEngineRequest.Builder(5000)
+                .setFastestInterval(5000)
+                .setMaxWaitTime(10000)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY).build();
+        LocationComponentActivationOptions activationOptions =
+                new LocationComponentActivationOptions.Builder(this, mStyle)
+                        .locationComponentOptions(locationComponentOptions)
+                        .locationEngine(mLocationEngine)
+                        .locationEngineRequest(request)
+                        .build();
+        mLocationComponent.activateLocationComponent(activationOptions);
+        mLocationComponent.setLocationComponentEnabled(false);
+    }
+
+    // 获取定位信息
+    @SuppressLint("MissingPermission")
+    private void testStartLocation() {
+        mLocationEngine = LocationEngineDefault.INSTANCE.getDefaultLocationEngine(this);
+        LocationEngineRequest request = new LocationEngineRequest.Builder(5000)
+                .setFastestInterval(5000)
+                .setMaxWaitTime(10000)
+                .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
+                .build();
+        mLocationEngine.requestLocationUpdates(request, mLocationEngineCallback
+                , Looper.getMainLooper());
+        mLocationEngine.getLastLocation(mLastLocationEngineCallback);
+
+    }
+
+    private void testStopLocation() {
+        if (mLocationEngine != null) {
+            mLocationEngine.removeLocationUpdates(mLocationEngineCallback);
+        }
     }
 }
