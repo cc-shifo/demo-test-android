@@ -992,6 +992,7 @@ public class Test01Activity extends AppCompatActivity {
                 if (BuildConfig.DEBUG) Log.d("Http----", message+"");
             }
         });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)//设置日志打印
                 .retryOnConnectionFailure(true)//失败重连
@@ -1008,7 +1009,7 @@ public class Test01Activity extends AppCompatActivity {
         APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
         apiReverseGeo.getAddress(114.420270,30.425054, BuildConfig.mapTilerKey
-                /*APIReverseGeo.LIMIT APIReverseGeo.LNG, APIReverseGeo.TYPES, false*/)
+                /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<SearchJsonObj>() {

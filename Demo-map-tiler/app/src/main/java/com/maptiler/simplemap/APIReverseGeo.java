@@ -18,8 +18,8 @@ public interface APIReverseGeo {
     // lat,lng.json?key=apiKey
     // https://api.maptiler.com/geocoding/114.420270,30.425054.json?key=QqNtsRF5xtXnAoAaCSmC
     @GET("geocoding/{lng},{lat}.json?")/*key={key}*/
-    Observable<SearchJsonObj> getAddress(@Path("lng") double lng, @Path("lng") double lat,
-            @Query("key") String key/*, @Query("limit") int limit,
-            @Query("language") String en, @Query("types") List<String> types,
-             @Query("excludeTypes") boolean excludeTypes*/);
+    Observable<SearchJsonObj> getAddress(@Path("lng") double lng, @Path("lat") double lat,
+            @Query("key") String key, /*@Query("limit") int limit,
+            @Query("language") String en, */@Query("types") List<String> types,
+             @Query("excludeTypes") boolean excludeTypes);
 }
