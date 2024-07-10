@@ -44,7 +44,6 @@ import com.mapbox.mapboxsdk.location.engine.LocationEngineCallback;
 import com.mapbox.mapboxsdk.location.engine.LocationEngineDefault;
 import com.mapbox.mapboxsdk.location.engine.LocationEngineRequest;
 import com.mapbox.mapboxsdk.location.engine.LocationEngineResult;
-import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
@@ -56,26 +55,24 @@ import com.maptiler.simplemap.databinding.ActivityTest01Binding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.functions.Action;
-import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// @SuppressWarnings({"unused"})/*, "deprecation"*/
 public class Test01Activity extends AppCompatActivity {
     private static final String TAG = "Test01Activity";
     private ActivityTest01Binding mBinding;
     private MapboxMap mMap;
     private Style mStyle;
-    private final String mStyleUrl =
+    private static final String mStyleUrl =
             "https://api.maptiler.com/maps/hybrid/style.json?key=" + BuildConfig.mapTilerKey;
-    private final String mStreet =
+    private static final String mStreet =
             "https://api.maptiler.com/maps/streets/style.json?key=" + BuildConfig.mapTilerKey;
 
     private List<LatLng> mLatLngList = new ArrayList<>();
@@ -95,35 +92,21 @@ public class Test01Activity extends AppCompatActivity {
         mBinding = ActivityTest01Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mBinding.mapView.onCreate(savedInstanceState);
-        mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                // 避免之前Activity下map的InfoWindow没有关闭，再进入到当前Activity时出现InfoWindow null的
-                // 崩溃现象。
-                mapboxMap.clear();
-                initMapEle(mapboxMap, mStyleUrl);
-            }
+        mBinding.mapView.getMapAsync(mapboxMap -> {
+            // 避免之前Activity下map的InfoWindow没有关闭，再进入到当前Activity时出现InfoWindow null的
+            // 崩溃现象。
+            mapboxMap.clear();
+            initMapEle(mapboxMap);
         });
         mBinding.mapView.addOnCanRemoveUnusedStyleImageListener(
-                new MapView.OnCanRemoveUnusedStyleImageListener() {
-                    @Override
-                    public boolean onCanRemoveUnusedStyleImage(@NonNull String id) {
-                        Log.d(TAG, "onCanRemoveUnusedStyleImage: " + id);
-                        return false;
-                    }
+                id -> {
+                    Log.d(TAG, "onCanRemoveUnusedStyleImage: " + id);
+                    return false;
                 });
-        mBinding.mapView.addOnStyleImageMissingListener(new MapView.OnStyleImageMissingListener() {
-            @Override
-            public void onStyleImageMissing(@NonNull String id) {
-                Log.d(TAG, "onStyleImageMissing: " + id);
-            }
-        });
-        mBinding.mapView.addOnSourceChangedListener(new MapView.OnSourceChangedListener() {
-            @Override
-            public void onSourceChangedListener(String id) {
-                Log.d(TAG, "onSourceChangedListener: " + id);
-            }
-        });
+        mBinding.mapView.addOnStyleImageMissingListener(
+                id -> Log.d(TAG, "onStyleImageMissing: " + id));
+        mBinding.mapView.addOnSourceChangedListener(
+                id -> Log.d(TAG, "onSourceChangedListener: " + id));
         mBinding.mapView.addOnDidFinishLoadingStyleListener(() -> {
             // This above code may not work sometimes when you add the marker in the
             // onMapReady() callback. Because onMapReady() is called before all
@@ -164,215 +147,171 @@ public class Test01Activity extends AppCompatActivity {
             // (RuntimeInit.java:492)
         });
 
-        mBinding.btnSatelliteHybrid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                        mMap.setStyle(mStyleUrl, new Style.OnStyleLoaded() {
-                            @Override
-                            public void onStyleLoaded(@NonNull Style style) {
-                                Log.d(TAG, "btnSatelliteHybrid onStyleLoaded: " + style.toString());
-                                // clearStyle();
-                                mStyle = style;
-                                addSymbolMarkers();
-                                if (mmHeadingSymbolLayerInitiated) {
-                                    addHeadingIcon();
-                                }
-                            }
-                        });
+        mBinding.btnSatelliteHybrid.setOnClickListener(v -> mBinding.mapView.getMapAsync(
+                mapboxMap -> mMap.setStyle(mStyleUrl, style -> {
+                    Log.d(TAG, "btnSatelliteHybrid onStyleLoaded: " + style.toString());
+                    // clearStyle();
+                    mStyle = style;
+                    addSymbolMarkers();
+                    if (mmHeadingSymbolLayerInitiated) {
+                        addHeadingIcon();
                     }
-                });
-            }
-        });
+                })));
 
-        mBinding.btnStreet.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnStreet.setOnClickListener(v -> mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onClick(View v) {
-                mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                        mMap.setStyle(mStreet, new Style.OnStyleLoaded() {
-                            @Override
-                            public void onStyleLoaded(@NonNull Style style) {
-                                Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
-                                mStyle = style;
-                                addSymbolMarkers();
-                                if (mmHeadingSymbolLayerInitiated) {
-                                    addHeadingIcon();
-                                }
-                            }
-                        });
+            public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                mMap.setStyle(mStreet, style -> {
+                    Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
+                    mStyle = style;
+                    addSymbolMarkers();
+                    if (mmHeadingSymbolLayerInitiated) {
+                        addHeadingIcon();
                     }
                 });
             }
+        }));
+        mBinding.btnSizeQuarter.setOnClickListener(v -> {
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+            params.matchConstraintPercentWidth = 0.25f;
+            params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                    .MATCH_CONSTRAINT_PERCENT;
+            params.matchConstraintPercentHeight = 0.25f;
+            params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                    .MATCH_CONSTRAINT_PERCENT;
+            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            mBinding.mapView.setLayoutParams(params);
         });
-        mBinding.btnSizeQuarter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
-                params.matchConstraintPercentWidth = 0.25f;
-                params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
-                        .MATCH_CONSTRAINT_PERCENT;
-                params.matchConstraintPercentHeight = 0.25f;
-                params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
-                        .MATCH_CONSTRAINT_PERCENT;
-                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                mBinding.mapView.setLayoutParams(params);
-            }
+        mBinding.btnSizeHalf.setOnClickListener(v -> {
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+            params.matchConstraintPercentWidth = 0.5f;
+            params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                    .MATCH_CONSTRAINT_PERCENT;
+            params.matchConstraintPercentHeight = 0.5f;
+            params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                    .MATCH_CONSTRAINT_PERCENT;
+            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            mBinding.mapView.setLayoutParams(params);
         });
-        mBinding.btnSizeHalf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
-                params.matchConstraintPercentWidth = 0.5f;
-                params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
-                        .MATCH_CONSTRAINT_PERCENT;
-                params.matchConstraintPercentHeight = 0.5f;
-                params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
-                        .MATCH_CONSTRAINT_PERCENT;
-                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                mBinding.mapView.setLayoutParams(params);
-            }
-        });
-        mBinding.btnSizeFull.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
-                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                mBinding.mapView.setLayoutParams(params);
-            }
+        mBinding.btnSizeFull.setOnClickListener(v -> {
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            mBinding.mapView.setLayoutParams(params);
         });
 
         final int BLUE_COLOR = Color.parseColor("#3bb2d0");
         final int FILL_BLUE_COLOR = Color.parseColor("#9A2196F3");
-        mBinding.btnPolygon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLatLngList.clear();
-                double lat = 30.42491669227814;
-                double lng = 114.41992218256276;
-                // for (int i = 0; i <= 4; i++) {
-                //     if (i % 4 == 1) {
-                //         mLatLngList.add(new LatLng(lat - 0.0001 * i, lng + 0.0001 * i));
-                //     } else if (i % 4 == 2) {
-                //         mLatLngList.add(new LatLng(lat - 0.0004 * i, lng - 0.0004 * i));
-                //     } else if (i % 4 == 3) {
-                //         mLatLngList.add(new LatLng(lat - 0.0006 * i, lng + 0.0006 * i));
-                //     } else {
-                //         mLatLngList.add(new LatLng(lat + 0.0008 * i, lng + 0.0008 * i));
-                //     }
-                // }
+        mBinding.btnPolygon.setOnClickListener(v -> {
+            mLatLngList.clear();
+            double lat = 30.42491669227814;
+            double lng = 114.41992218256276;
+            // for (int i = 0; i <= 4; i++) {
+            //     if (i % 4 == 1) {
+            //         mLatLngList.add(new LatLng(lat - 0.0001 * i, lng + 0.0001 * i));
+            //     } else if (i % 4 == 2) {
+            //         mLatLngList.add(new LatLng(lat - 0.0004 * i, lng - 0.0004 * i));
+            //     } else if (i % 4 == 3) {
+            //         mLatLngList.add(new LatLng(lat - 0.0006 * i, lng + 0.0006 * i));
+            //     } else {
+            //         mLatLngList.add(new LatLng(lat + 0.0008 * i, lng + 0.0008 * i));
+            //     }
+            // }
 
-                List<LatLng> l1 = new ArrayList<>(4);
-                List<LatLng> l2 = new ArrayList<>(4);
-                for (int i = 0; i < 8; i++) {
-                    if (i % 2 == 0) {
-                        l2.add(new LatLng(lat + 0.0005 * i, lng + 0.0005 * i));
-                    } else {
-                        l1.add(new LatLng(lat - 0.0005 * i, lng + 0.0005 * i));
-                    }
-                }
-                mLatLngList.addAll(l1);
-                Collections.reverse(l2);
-                mLatLngList.addAll(l2);
-                mLatLngList.add(l1.get(0));
-                PolygonOptions options = new PolygonOptions();
-                options.addAll(mLatLngList);
-                options.strokeColor(BLUE_COLOR);// 边界线
-                options.fillColor(FILL_BLUE_COLOR);
-                options.alpha(0.4f);
-
-                if (mMap != null) {
-                    // 方法一
-                    if (mPolygon != null) {
-                        mMap.removePolygon(mPolygon);
-                        mPolygon = null;
-                    }
-                    mPolygon = mMap.addPolygon(options);
-                    // 方法二
-                    // mMap.clear();
-                    // mMap.addPolygon(options);
+            List<LatLng> l1 = new ArrayList<>(4);
+            List<LatLng> l2 = new ArrayList<>(4);
+            for (int i = 0; i < 8; i++) {
+                if (i % 2 == 0) {
+                    l2.add(new LatLng(lat + 0.0005 * i, lng + 0.0005 * i));
+                } else {
+                    l1.add(new LatLng(lat - 0.0005 * i, lng + 0.0005 * i));
                 }
             }
-        });
+            mLatLngList.addAll(l1);
+            Collections.reverse(l2);
+            mLatLngList.addAll(l2);
+            mLatLngList.add(l1.get(0));
+            PolygonOptions options = new PolygonOptions();
+            options.addAll(mLatLngList);
+            options.strokeColor(BLUE_COLOR);// 边界线
+            options.fillColor(FILL_BLUE_COLOR);
+            options.alpha(0.4f);
 
-        mBinding.btnPolyline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLatLngList.clear();
-                mPolylineOptionsList.clear();
-                double lat = 30.42491669227814;
-                double lng = 114.41992218256276;
-                PolylineOptions line = new PolylineOptions();
-                for (int i = 0; i < 8; i++) {
-                    if (i % 2 == 0) {
-                        mLatLngList.add(new LatLng(lat + 0.0005 * i, lng + 0.0005 * i));
-                    } else {
-                        mLatLngList.add(new LatLng(lat - 0.0005 * i, lng + 0.0005 * i));
-                    }
-                }
-                line.addAll(mLatLngList);
-                line.color(BLUE_COLOR);
-                line.width(4);
+            if (mMap != null) {
                 // 方法一
-                if (mPolyline != null) {
-                    mMap.removePolyline(mPolyline);
+                if (mPolygon != null) {
+                    mMap.removePolygon(mPolygon);
                     mPolygon = null;
                 }
-                mPolyline = mMap.addPolyline(line);
+                mPolygon = mMap.addPolygon(options);
                 // 方法二
                 // mMap.clear();
-                // mMap.addPolyline(line);
+                // mMap.addPolygon(options);
             }
         });
 
-        mBinding.btnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMap != null) {
-                    mMap.clear();
+        mBinding.btnPolyline.setOnClickListener(v -> {
+            mLatLngList.clear();
+            mPolylineOptionsList.clear();
+            double lat = 30.42491669227814;
+            double lng = 114.41992218256276;
+            PolylineOptions line = new PolylineOptions();
+            for (int i = 0; i < 8; i++) {
+                if (i % 2 == 0) {
+                    mLatLngList.add(new LatLng(lat + 0.0005 * i, lng + 0.0005 * i));
+                } else {
+                    mLatLngList.add(new LatLng(lat - 0.0005 * i, lng + 0.0005 * i));
                 }
+            }
+            line.addAll(mLatLngList);
+            line.color(BLUE_COLOR);
+            line.width(4);
+            // 方法一
+            if (mPolyline != null) {
+                mMap.removePolyline(mPolyline);
+                mPolygon = null;
+            }
+            mPolyline = mMap.addPolyline(line);
+            // 方法二
+            // mMap.clear();
+            // mMap.addPolyline(line);
+        });
+
+        mBinding.btnClear.setOnClickListener(v -> {
+            if (mMap != null) {
+                mMap.clear();
             }
         });
 
-        mBinding.btnRotateAircraftIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { //避免快速点击多次
-                mHeading = mHeading + 5f;
-                if (mHeading >= 360f) {
-                    mHeading = mHeading - 360f;
-                }
-                mDeltaLat = mDeltaLat + 0.001f;
-                if (!mmHeadingSymbolLayerInitiated) {
-                    addHeadingIcon();
-                    mmHeadingSymbolLayerInitiated = true;
-                }
-                btnRotate();
+        mBinding.btnRotateAircraftIcon.setOnClickListener(v -> { //避免快速点击多次
+            mHeading = mHeading + 5f;
+            if (mHeading >= 360f) {
+                mHeading = mHeading - 360f;
             }
+            mDeltaLat = mDeltaLat + 0.001f;
+            if (!mmHeadingSymbolLayerInitiated) {
+                addHeadingIcon();
+                mmHeadingSymbolLayerInitiated = true;
+            }
+            btnRotate();
         });
-        mBinding.btnDeleteAircraftIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remoteHeadingIcon();
-                mmHeadingSymbolLayerInitiated = false;
-            }
+        mBinding.btnDeleteAircraftIcon.setOnClickListener(v -> {
+            remoteHeadingIcon();
+            mmHeadingSymbolLayerInitiated = false;
         });
 
         btnAddOneMarker();
@@ -471,6 +410,13 @@ public class Test01Activity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mBinding.mapView.onDestroy();
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            mDisposable.dispose();
+        }
+
+        if (mOkHttpClient != null) {
+            mOkHttpClient.connectionPool().evictAll();
+        }
     }
 
     private String getMapTilerKey() {
@@ -486,21 +432,18 @@ public class Test01Activity extends AppCompatActivity {
     }
 
 
-    private void initMapEle(@NonNull MapboxMap mapboxMap, @NonNull String style) {
+    private void initMapEle(@NonNull MapboxMap mapboxMap) {
         // final String styleUrl = "https://api.maptiler.com/maps/hybrid/style.json?key="
-        // + BuildConfig.mapTilerKey;
+        // + BuildConfig.mapTilerKey
         mMap = mapboxMap;
         // mMap.getUiSettings().setLogoEnabled(false); // set in xml
         // mMap.getUiSettings().setAttributionEnabled(false);  // set in xml
-        mMap.setStyle(style, new Style.OnStyleLoaded() {
-            @Override
-            public void onStyleLoaded(@NonNull Style style) {
-                Log.d(TAG, "onStyleLoaded: " + style.toString());
-                mStyle = style;
-                addSymbolMarkers();
-                if (mmHeadingSymbolLayerInitiated) {
-                    addHeadingIcon();
-                }
+        mMap.setStyle(mStyleUrl, style -> {
+            Log.d(TAG, "onStyleLoaded: " + style);
+            mStyle = style;
+            addSymbolMarkers();
+            if (mmHeadingSymbolLayerInitiated) {
+                addHeadingIcon();
             }
         });
 
@@ -565,7 +508,7 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private SymbolLayer mMarkerLayer;
-    private List<Feature> mFeatureList = new ArrayList<>();
+    private final List<Feature> mFeatureList = new ArrayList<>();
 
     private void addSymbolMarkers() {
         // FeatureCollection featureCollection = FeatureCollection.fromFeatures(mFeatureList);
@@ -686,47 +629,44 @@ public class Test01Activity extends AppCompatActivity {
         mMap.addMarkers(markerOptionsList);
     }
 
-    private StringBuilder mTextBlackboard = new StringBuilder();
+    private final StringBuilder mTextBlackboard = new StringBuilder();
 
     private void addClickListen() {
-        mMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
-            @Override
-            public boolean onMapClick(@NonNull LatLng point) {
+        mMap.addOnMapClickListener(point -> {
 
-                boolean result = false;
-                mTextBlackboard.setLength(0);
-                PointF scr = mMap.getProjection().toScreenLocation(point);
-                List<Feature> features = mMap.queryRenderedFeatures(scr);
-                mTextBlackboard.append("onMapClick: ").append(point.toString()).append("\n")
-                        .append("on screen x=").append(scr.x).append(",y=").append(scr.y)
-                        .append("\n").append("The marker is latLng=");
-                if (mMarkerLatLng != null) {
-                    // int distance = (deltaX * deltaX) + (deltaY * deltaY);
-                    // if (distance > mTouchSlopSquare)
-                    PointF mrk = mMap.getProjection().toScreenLocation(mMarkerLatLng);
-                    mTextBlackboard.append(mMarkerLatLng.toString())
-                            .append(" on screen x=").append(mrk.x).append(",y=").append(mrk.y)
-                            .append("\n");
-                    final ViewConfiguration configuration = ViewConfiguration.get(
-                            Test01Activity.this);
-                    final int touchSlop = configuration.getScaledTouchSlop();
-                    if (Math.abs(mrk.x - scr.x) < touchSlop && Math.abs(mrk.y - scr.y) <
-                            touchSlop) {
-                        mTextBlackboard.append("*** marker clicked ***").append("\n");
-                        result = true;
-                    }
-                } else {
-                    mTextBlackboard.append("null").append("\n");
+            boolean result = false;
+            mTextBlackboard.setLength(0);
+            PointF scr = mMap.getProjection().toScreenLocation(point);
+            List<Feature> features = mMap.queryRenderedFeatures(scr);
+            mTextBlackboard.append("onMapClick: ").append(point.toString()).append("\n")
+                    .append("on screen x=").append(scr.x).append(",y=").append(scr.y)
+                    .append("\n").append("The marker is latLng=");
+            if (mMarkerLatLng != null) {
+                // int distance = (deltaX * deltaX) + (deltaY * deltaY);
+                // if (distance > mTouchSlopSquare)
+                PointF mrk = mMap.getProjection().toScreenLocation(mMarkerLatLng);
+                mTextBlackboard.append(mMarkerLatLng.toString())
+                        .append(" on screen x=").append(mrk.x).append(",y=").append(mrk.y)
+                        .append("\n");
+                final ViewConfiguration configuration = ViewConfiguration.get(
+                        Test01Activity.this);
+                final int touchSlop = configuration.getScaledTouchSlop();
+                if (Math.abs(mrk.x - scr.x) < touchSlop && Math.abs(mrk.y - scr.y) <
+                        touchSlop) {
+                    mTextBlackboard.append("*** marker clicked ***").append("\n");
+                    result = true;
                 }
-
-                if (mMarker2 != null) {
-                    mMarker2.setPosition(point);
-                }
-                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
-
-                updateMarkerHint(mMarker2.getInfoWindow(), point.toString());
-                return result;
+            } else {
+                mTextBlackboard.append("null").append("\n");
             }
+
+            if (mMarker2 != null) {
+                mMarker2.setPosition(point);
+            }
+            mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+
+            updateMarkerHint(mMarker2.getInfoWindow(), point.toString());
+            return result;
         });
     }
 
@@ -799,22 +739,18 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private void addCustomInfoWindowAdapter(MapboxMap map) {
-        MapboxMap.InfoWindowAdapter adapter = new MapboxMap.InfoWindowAdapter() {
-            @Nullable
-            @Override
-            public View getInfoWindow(@NonNull Marker marker) {
-                TextView tv = new TextView(Test01Activity.this);
-                tv.setWidth(200);
-                tv.setHeight(100);
-                tv.setText("info");
-                // tv.setTextSize(R.dimen.plus_info_window_text_size);
-                tv.setTextColor(Color.WHITE);
-                // int p = (int) getResources().getDimension(R.dimen.plus_info_window_text_padding);
-                // tv.setPadding(p, p, p, p);
-                tv.setBackgroundColor(Color.BLACK);
-                tv.setGravity(Gravity.NO_GRAVITY);
-                return tv;
-            }
+        MapboxMap.InfoWindowAdapter adapter = marker -> {
+            TextView tv = new TextView(Test01Activity.this);
+            tv.setWidth(200);
+            tv.setHeight(100);
+            tv.setText("info");
+            // tv.setTextSize(R.dimen.plus_info_window_text_size);
+            tv.setTextColor(Color.WHITE);
+            // int p = (int) getResources().getDimension(R.dimen.plus_info_window_text_padding);
+            // tv.setPadding(p, p, p, p);
+            tv.setBackgroundColor(Color.BLACK);
+            tv.setGravity(Gravity.NO_GRAVITY);
+            return tv;
         };
         map.setInfoWindowAdapter(adapter);
 
@@ -825,12 +761,7 @@ public class Test01Activity extends AppCompatActivity {
             View view = infoWindow.getView();
             if (view instanceof TextView) {
                 ((TextView) view).setText(hint);
-                view.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        infoWindow.update();
-                    }
-                });
+                view.post(infoWindow::update);
             }
         }
     }
@@ -848,29 +779,26 @@ public class Test01Activity extends AppCompatActivity {
     //     }
     // }
 
-    private LongSparseArray<Annotation> mMarkerBtnAddedList = new LongSparseArray<>();
+    private final LongSparseArray<Annotation> mMarkerBtnAddedList = new LongSparseArray<>();
     private float mBtnAddMarkerOffSet = 0.0f;
 
     private void btnAddOneMarker() {
-        mBinding.btnAddMarker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Icon icon = IconFactory.getInstance(Test01Activity.this)
-                        .fromResource(R.drawable.test_dot);
-                mBtnAddMarkerOffSet += 0.03f;
-                LatLng latLng = new LatLng(30.42491669227814 - mBtnAddMarkerOffSet,
-                        114.41992218256276 + mBtnAddMarkerOffSet);
-                // Use MarkerOptions and addMarker() to add a new marker in map
-                MarkerOptions options = new MarkerOptions()
-                        .position(latLng)
-                        // .title("dateString")
-                        // .snippet("snippet")
-                        .icon(icon);
-                Marker marker = mMap.addMarker(options);
-                mMap.selectMarker(marker);
-                updateMarkerHint(marker.getInfoWindow(), String.valueOf(marker.getId()));
-                mMarkerBtnAddedList.put(marker.getId(), marker);
-            }
+        mBinding.btnAddMarker.setOnClickListener(v -> {
+            Icon icon = IconFactory.getInstance(Test01Activity.this)
+                    .fromResource(R.drawable.test_dot);
+            mBtnAddMarkerOffSet += 0.03f;
+            LatLng latLng = new LatLng(30.42491669227814 - mBtnAddMarkerOffSet,
+                    114.41992218256276 + mBtnAddMarkerOffSet);
+            // Use MarkerOptions and addMarker() to add a new marker in map
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    // .title("dateString")
+                    // .snippet("snippet")
+                    .icon(icon);
+            Marker marker = mMap.addMarker(options);
+            mMap.selectMarker(marker);
+            updateMarkerHint(marker.getInfoWindow(), String.valueOf(marker.getId()));
+            mMarkerBtnAddedList.put(marker.getId(), marker);
         });
     }
 
@@ -878,29 +806,22 @@ public class Test01Activity extends AppCompatActivity {
     private long mClickedId = NO_MARKER;
 
     private void btnRemoveOneMarker() {
-        mBinding.btnRemoveMarker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMarkerBtnAddedList.containsKey(mClickedId)) {
-                    mMap.removeMarker((Marker) mMarkerBtnAddedList.get(mClickedId));
-                }
+        mBinding.btnRemoveMarker.setOnClickListener(v -> {
+            if (mMarkerBtnAddedList.containsKey(mClickedId)) {
+                mMap.removeMarker((Marker) mMarkerBtnAddedList.get(mClickedId));
             }
         });
     }
 
     private void btnGetAddress() {
-        mBinding.btnGetAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testReverseGeo();
-            }
-        });
+        mOkHttpClient = OkHttpHelper.createClient();
+        mBinding.btnGetAddress.setOnClickListener(v -> testReverseGeo());
     }
 
 
     private LocationEngine mLocationEngine;
     private LocationComponent mLocationComponent;
-    private LocationEngineCallback mLocationEngineCallback =
+    private final LocationEngineCallback mLocationEngineCallback =
             new LocationEngineCallback<LocationEngineResult>() {
                 @Override
                 public void onSuccess(LocationEngineResult result) {
@@ -913,7 +834,7 @@ public class Test01Activity extends AppCompatActivity {
                     Log.d(TAG, "current onFailure: " + exception.getMessage());
                 }
             };
-    private LocationEngineCallback mLastLocationEngineCallback =
+    private final LocationEngineCallback mLastLocationEngineCallback =
             new LocationEngineCallback<LocationEngineResult>() {
                 @Override
                 public void onSuccess(LocationEngineResult result) {
@@ -983,57 +904,48 @@ public class Test01Activity extends AppCompatActivity {
         }
     }
 
+    private Disposable mDisposable;
+    private OkHttpClient mOkHttpClient;
     private void testReverseGeo() {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger()
-        {
-            @Override
-            public void log(String message)
-            {
-                if (BuildConfig.DEBUG) Log.d("Http----", message+"");
-            }
-        });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)//设置日志打印
-                .retryOnConnectionFailure(true)//失败重连
-                .connectTimeout(30, TimeUnit.SECONDS)//网络请求超时时间单位为秒
-                .build();
-
         Retrofit retrofit =
                 new Retrofit.Builder()
                         .baseUrl("https://api.maptiler.com/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                        .client(okHttpClient)
+                        .client(mOkHttpClient)
                         .build();
         APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
-        apiReverseGeo.getAddress(114.420270,30.425054, BuildConfig.mapTilerKey
+        mDisposable = apiReverseGeo.getAddress(114.420270,30.425054, BuildConfig.mapTilerKey
                 /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<SearchJsonObj>() {
-                    @Override
-                    public void accept(SearchJsonObj searchJsonObj) throws Throwable {
-                        Log.d(TAG, "accept: " + searchJsonObj);
-                        List<Features> features = searchJsonObj.getFeatures();
-                        if (features != null && !features.isEmpty()) {
-                            Log.d(TAG, "accept: address[114.41992218256276, 30.42491669227814] " +
-                                    features.get(0).getPlaceName());
+                .subscribe(searchJsonObj -> {
+                    Log.d(TAG, "accept: " + searchJsonObj);
+                    List<Features> features = searchJsonObj.getFeatures();
+                    if (features != null && !features.isEmpty()) {
+                        Log.d(TAG, "accept: address[114.41992218256276, 30.42491669227814] " +
+                                features.get(0).getPlaceName());
+                        Features f = features.get(0);
+                        List<Context> cList = f.getContext();
+                        if (cList != null) {
+                            mTextBlackboard.setLength(0);
+                            for (int i = 0; i < cList.size(); i++) {
+                                Context c = cList.get(i);
+                                mTextBlackboard.append(c.getText());
+                                if (i != cList.size() - 1) {
+                                    mTextBlackboard.append(",");
+                                }
+                            }
                         }
+                        mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
+                        mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Throwable {
-                        Log.e(TAG, "accept: ", throwable);
-
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Throwable {
-                        Log.i(TAG, "run: complete");
-                    }
-                });
+                }, throwable -> {
+                            Log.e(TAG, "accept: ", throwable);
+                            mBinding.tvMessageBlackboard.setText(throwable.getMessage());
+                        },
+                        () -> Log.i(TAG, "run: complete"));
 
         // Maptiler Cloud API调用手册
         // https://docs.maptiler.com/cloud/api/geocoding/#search-by-coordinates-reverse
@@ -1042,30 +954,14 @@ public class Test01Activity extends AppCompatActivity {
         // https://www.jawg.io/docs/integration/maplibre-gl-android/add-marker/
         // https://stackoverflow.com/questions/53517370/rotate-and-change-position-for-markers-in-latest-mapbox-sdk-6-7/54124090#54124090
 
-        //
-        // OkHttpClient client = new OkHttpClient();
-        // OkHttpClient builder = new OkHttpClient.Builder()
-        //         .connectTimeout(5000, TimeUnit.MILLISECONDS)
-        //         .build();
-        //
-        // Request request = new Request.Builder().url(
-        //                 " https://api.maptiler.com/geocoding/{longitude},{latitude}.json")
-        //         .get().build();
-        // client.newCall(request).enqueue(new Callback() {
-        //     @Override
-        //     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-        //
-        //     }
-        //
-        //     @Override
-        //     public void onResponse(@NonNull Call call, @NonNull Response response)
-        //             throws IOException {
-        //         if (response.isSuccessful()) {
-        //             ResponseBody body = response.body();
-        //             body.
-        //         }
-        //     }
-        // });
+        // 在线坐标查找地址工具
+        // https://docs.maptiler.com/sdk-js/examples/geocoding-reverse-json/
+        // 总体数据结构
+        // https://docs.maptiler.com/cloud/api/geocoding/#SearchResults
+        // https://docs.maptiler.com/cloud/api/geocoding/#SearchResults
 
+        // 在线json转java工具
+        // https://www.lddgo.net/string/jsontojava
+        // https://tool.lu/json/
     }
 }
