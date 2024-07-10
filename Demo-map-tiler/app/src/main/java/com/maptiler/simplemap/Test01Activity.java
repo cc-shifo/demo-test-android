@@ -388,7 +388,6 @@ public class Test01Activity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mBinding.mapView.onPause();
-        testStopLocation();
     }
 
     @Override
@@ -401,6 +400,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mBinding.mapView.onStop();
+        testStopLocation();
     }
 
     @Override
