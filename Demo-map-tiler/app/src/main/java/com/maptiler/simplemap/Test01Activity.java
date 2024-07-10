@@ -1,5 +1,7 @@
 package com.maptiler.simplemap;
 
+import static com.mapbox.mapboxsdk.maps.widgets.CompassView.TIME_MAP_NORTH_ANIMATION;
+
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -158,19 +160,20 @@ public class Test01Activity extends AppCompatActivity {
                     }
                 })));
 
-        mBinding.btnStreet.setOnClickListener(v -> mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                mMap.setStyle(mStreet, style -> {
-                    Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
-                    mStyle = style;
-                    addSymbolMarkers();
-                    if (mmHeadingSymbolLayerInitiated) {
-                        addHeadingIcon();
+        mBinding.btnStreet.setOnClickListener(
+                v -> mBinding.mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                        mMap.setStyle(mStreet, style -> {
+                            Log.d(TAG, "btnStreet onStyleLoaded: " + style.toString());
+                            mStyle = style;
+                            addSymbolMarkers();
+                            if (mmHeadingSymbolLayerInitiated) {
+                                addHeadingIcon();
+                            }
+                        });
                     }
-                });
-            }
-        }));
+                }));
         mBinding.btnSizeQuarter.setOnClickListener(v -> {
             ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                     ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
@@ -317,6 +320,7 @@ public class Test01Activity extends AppCompatActivity {
         btnAddOneMarker();
         btnRemoveOneMarker();
         btnGetAddress();
+        btnCompassNorth();
 
 
         // touch event
@@ -447,6 +451,41 @@ public class Test01Activity extends AppCompatActivity {
             }
         });
 
+        mMap.addOnCameraIdleListener(new MapboxMap.OnCameraIdleListener() {
+            @Override
+            public void onCameraIdle() {
+                Log.d(TAG, "onCameraIdle: 0");
+                mIsMapGestureIdle = true;
+            }
+        });
+        mMap.addOnCameraMoveStartedListener(new MapboxMap.OnCameraMoveStartedListener() {
+            @Override
+            public void onCameraMoveStarted(int reason) {
+                Log.d(TAG, "onCameraMoveStarted: 1");
+                mIsMapGestureIdle = false;
+            }
+        });
+        mMap.addOnCameraMoveListener(new MapboxMap.OnCameraMoveListener() {
+            @Override
+            public void onCameraMove() {
+                Log.d(TAG, "onCameraMove: 2");
+                mIsMapGestureIdle = false;
+            }
+        });
+        mMap.addOnCameraMoveCancelListener(new MapboxMap.OnCameraMoveCanceledListener() {
+            @Override
+            public void onCameraMoveCanceled() {
+                Log.d(TAG, "onCameraMoveCanceled: 3");
+                mIsMapGestureIdle = false;
+            }
+        });
+        mMap.addOnFlingListener(new MapboxMap.OnFlingListener() {
+            @Override
+            public void onFling() {
+                Log.d(TAG, "onCamera onFling: 1");
+                mIsMapGestureIdle = false;
+            }
+        });
 
         moveToCurrentLocation();
         addClickListen();
@@ -819,6 +858,22 @@ public class Test01Activity extends AppCompatActivity {
     }
 
 
+    private boolean mIsMapGestureIdle = true; // 判断地图是否在交互移动中
+    private void btnCompassNorth() {
+        mBinding.btnCompassNorth.setOnClickListener(v -> {
+            if (mMap != null && mIsMapGestureIdle) {
+                boolean enable = !mMap.getUiSettings().isRotateGesturesEnabled();
+                mTextBlackboard.setLength(0);
+                mTextBlackboard.append("rotation enabled: ").append(enable);
+                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+                mMap.getUiSettings().setRotateGesturesEnabled(enable);
+                mMap.setFocalBearing(0, mMap.getWidth() / 2, mMap.getHeight() / 2,
+                        TIME_MAP_NORTH_ANIMATION);
+            }
+        });
+    }
+
+
     private LocationEngine mLocationEngine;
     private LocationComponent mLocationComponent;
     private final LocationEngineCallback mLocationEngineCallback =
@@ -906,6 +961,7 @@ public class Test01Activity extends AppCompatActivity {
 
     private Disposable mDisposable;
     private OkHttpClient mOkHttpClient;
+
     private void testReverseGeo() {
         Retrofit retrofit =
                 new Retrofit.Builder()
@@ -916,32 +972,33 @@ public class Test01Activity extends AppCompatActivity {
                         .build();
         APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
-        mDisposable = apiReverseGeo.getAddress(114.420270,30.425054, BuildConfig.mapTilerKey
-                /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
+        mDisposable = apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
+                        /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(searchJsonObj -> {
-                    Log.d(TAG, "accept: " + searchJsonObj);
-                    List<Features> features = searchJsonObj.getFeatures();
-                    if (features != null && !features.isEmpty()) {
-                        Log.d(TAG, "accept: address[114.41992218256276, 30.42491669227814] " +
-                                features.get(0).getPlaceName());
-                        Features f = features.get(0);
-                        List<Context> cList = f.getContext();
-                        if (cList != null) {
-                            mTextBlackboard.setLength(0);
-                            for (int i = 0; i < cList.size(); i++) {
-                                Context c = cList.get(i);
-                                mTextBlackboard.append(c.getText());
-                                if (i != cList.size() - 1) {
-                                    mTextBlackboard.append(",");
+                            Log.d(TAG, "accept: " + searchJsonObj);
+                            List<Features> features = searchJsonObj.getFeatures();
+                            if (features != null && !features.isEmpty()) {
+                                Log.d(TAG, "accept: address[114.41992218256276, 30" +
+                                        ".42491669227814] " +
+                                        features.get(0).getPlaceName());
+                                Features f = features.get(0);
+                                List<Context> cList = f.getContext();
+                                if (cList != null) {
+                                    mTextBlackboard.setLength(0);
+                                    for (int i = 0; i < cList.size(); i++) {
+                                        Context c = cList.get(i);
+                                        mTextBlackboard.append(c.getText());
+                                        if (i != cList.size() - 1) {
+                                            mTextBlackboard.append(",");
+                                        }
+                                    }
                                 }
+                                mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
+                                mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
                             }
-                        }
-                        mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
-                        mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
-                    }
-                }, throwable -> {
+                        }, throwable -> {
                             Log.e(TAG, "accept: ", throwable);
                             mBinding.tvMessageBlackboard.setText(throwable.getMessage());
                         },
