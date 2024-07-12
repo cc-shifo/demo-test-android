@@ -1,3 +1,14 @@
+接入可以在国外使用的地图。
+1、为什么没集成google Map。
+大疆遥控器上没装gms服务，就算集成了google Map，地图也运行不起来。
+2、为什么没用MapBox。
+据了解MapBox在2020后不打算继续发展移动端SDK，也正是如此才出现了MapTiler(MapLibre Native的前身)。
+另外，MapBox禁止中国用户，包括开发者使用MapBox相关服务。
+最后，MapBox最新SDK状态表现得不正常——正常情况是库的资源不是在公网上，用户集成即可。而MapBox SDK需要通过他们服务器下载，且需要用户和密码，库内部依赖的资源也只能通过MapBox服务下载。
+3、接入可以在国外用的MapLibre Native。开发者偏少，社区资源不足，技术支持力度不够。
+
+
+开发指引
 https://api.maptiler.com/geocoding/114.420270,30.425054.json?key=QqNtsRF5xtXnAoAaCSmC
 https://api.maptiler.com/geocoding/country.26561650.json?key=QqNtsRF5xtXnAoAaCSmC
 https://api.maptiler.com/geocoding/8.528509,47.3774434.json?key=QqNtsRF5xtXnAoAaCSmC
