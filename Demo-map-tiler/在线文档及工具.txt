@@ -1,0 +1,503 @@
+https://api.maptiler.com/geocoding/114.420270,30.425054.json?key=QqNtsRF5xtXnAoAaCSmC
+https://api.maptiler.com/geocoding/country.26561650.json?key=QqNtsRF5xtXnAoAaCSmC
+https://api.maptiler.com/geocoding/8.528509,47.3774434.json?key=QqNtsRF5xtXnAoAaCSmC
+
+在线查找工具
+https://docs.maptiler.com/sdk-js/examples/geocoding-reverse-json/
+
+
+在线json转java工具
+https://www.lddgo.net/string/jsontojava
+https://tool.lu/json/
+
+总体数据结构
+https://docs.maptiler.com/cloud/api/geocoding/#SearchResults
+https://docs.maptiler.com/cloud/api/geocoding/#SearchResults
+
+
+
+
+
+
+
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:w170686911",
+				"country_code": "cn",
+				"kind": "street",
+				"place_type_name": [
+					"地址"
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					114.42309691064702,
+					30.421115704715728
+				]
+			},
+			"bbox": [
+				114.40225515514612,
+				30.4011888243486,
+				114.43799793720244,
+				30.441431902141446
+			],
+			"center": [
+				114.42309691064702,
+				30.421115704715728
+			],
+			"place_name": "杨桥湖大道, 江夏区, 中国",
+			"place_type": [
+				"address"
+			],
+			"relevance": 1,
+			"id": "address.12012464",
+			"text": "杨桥湖大道",
+			"place_type_name": [
+				"地址"
+			],
+			"context": [
+				{
+					"ref": "osm:n11425066657",
+					"country_code": "cn",
+					"id": "place.1374438",
+					"text": "湖北经济学院社区",
+					"kind": "place",
+					"osm:place_type": "quarter",
+					"text_zh": "湖北经济学院社区",
+					"text_en": "湖北经济学院社区"
+				},
+				{
+					"ref": "osm:r3080417",
+					"country_code": "cn",
+					"id": "joint_municipality.7110",
+					"text": "江夏区",
+					"wikidata": "Q1337329",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "江夏区",
+					"language_zh": "zh",
+					"text_en": "Jiangxia District",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r3076268",
+					"country_code": "cn",
+					"id": "county.3690",
+					"text": "武汉市",
+					"wikidata": "Q11746",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "武汉市",
+					"language_zh": "zh",
+					"text_en": "Wuhan",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r913106",
+					"country_code": "cn",
+					"id": "subregion.425",
+					"text": "湖北省",
+					"wikidata": "Q46862",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "湖北省",
+					"language_zh": "zh",
+					"text_en": "Hubei",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r270056",
+					"country_code": "cn",
+					"id": "country.146",
+					"text": "中国",
+					"wikidata": "Q148",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "中国",
+					"language_zh": "zh",
+					"text_en": "China",
+					"language_en": "en"
+				}
+			],
+			"text_zh": "杨桥湖大道",
+			"place_name_zh": "杨桥湖大道, 湖北经济学院社区, 江夏区, 武汉市, 湖北省, 中国",
+			"text_en": "杨桥湖大道",
+			"place_name_en": "杨桥湖大道, 湖北经济学院社区, Jiangxia District, Wuhan, Hubei, China"
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:n11425066657",
+				"country_code": "cn",
+				"kind": "place",
+				"osm:place_type": "quarter",
+				"place_type_name": [
+					"地方"
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					114.42571409046651,
+					30.422107651314818
+				]
+			},
+			"bbox": [
+				114.42571409046651,
+				30.422107651314818,
+				114.42571409046651,
+				30.422107651314818
+			],
+			"center": [
+				114.42571409046651,
+				30.422107651314818
+			],
+			"place_name": "湖北经济学院社区, 江夏区, 中国",
+			"place_type": [
+				"place"
+			],
+			"relevance": 1,
+			"id": "place.1374438",
+			"text": "湖北经济学院社区",
+			"place_type_name": [
+				"地方"
+			],
+			"context": [
+				{
+					"ref": "osm:r3080417",
+					"country_code": "cn",
+					"id": "joint_municipality.7110",
+					"text": "江夏区",
+					"wikidata": "Q1337329",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "江夏区",
+					"language_zh": "zh",
+					"text_en": "Jiangxia District",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r3076268",
+					"country_code": "cn",
+					"id": "county.3690",
+					"text": "武汉市",
+					"wikidata": "Q11746",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "武汉市",
+					"language_zh": "zh",
+					"text_en": "Wuhan",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r913106",
+					"country_code": "cn",
+					"id": "subregion.425",
+					"text": "湖北省",
+					"wikidata": "Q46862",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "湖北省",
+					"language_zh": "zh",
+					"text_en": "Hubei",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r270056",
+					"country_code": "cn",
+					"id": "country.146",
+					"text": "中国",
+					"wikidata": "Q148",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "中国",
+					"language_zh": "zh",
+					"text_en": "China",
+					"language_en": "en"
+				}
+			],
+			"text_zh": "湖北经济学院社区",
+			"place_name_zh": "湖北经济学院社区, 江夏区, 武汉市, 湖北省, 中国",
+			"text_en": "湖北经济学院社区",
+			"place_name_en": "湖北经济学院社区, Jiangxia District, Wuhan, Hubei, China"
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:r3080417",
+				"country_code": "cn",
+				"wikidata": "Q1337329",
+				"kind": "admin_area",
+				"place_type_name": [
+					null
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					114.31616898626089,
+					30.378049632799282
+				]
+			},
+			"bbox": [
+				114.03038866817951,
+				29.971956061889884,
+				114.59821064025162,
+				30.53794226412381
+			],
+			"center": [
+				114.31616898626089,
+				30.378049632799282
+			],
+			"place_name": "江夏区, 中国",
+			"place_type": [
+				"joint_municipality"
+			],
+			"relevance": 1,
+			"id": "joint_municipality.7110",
+			"text": "江夏区",
+			"place_type_name": [
+				null
+			],
+			"context": [
+				{
+					"ref": "osm:r3076268",
+					"country_code": "cn",
+					"id": "county.3690",
+					"text": "武汉市",
+					"wikidata": "Q11746",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "武汉市",
+					"language_zh": "zh",
+					"text_en": "Wuhan",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r913106",
+					"country_code": "cn",
+					"id": "subregion.425",
+					"text": "湖北省",
+					"wikidata": "Q46862",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "湖北省",
+					"language_zh": "zh",
+					"text_en": "Hubei",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r270056",
+					"country_code": "cn",
+					"id": "country.146",
+					"text": "中国",
+					"wikidata": "Q148",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "中国",
+					"language_zh": "zh",
+					"text_en": "China",
+					"language_en": "en"
+				}
+			],
+			"language": "zh",
+			"text_zh": "江夏区",
+			"language_zh": "zh",
+			"place_name_zh": "江夏区, 武汉市, 湖北省, 中国",
+			"text_en": "Jiangxia District",
+			"language_en": "en",
+			"place_name_en": "Jiangxia District, Wuhan, Hubei, China"
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:r3076268",
+				"country_code": "cn",
+				"wikidata": "Q11746",
+				"kind": "admin_area",
+				"place_type_name": [
+					null
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					114.29993525147438,
+					30.595105247987075
+				]
+			},
+			"bbox": [
+				113.69246151298283,
+				29.971956061889884,
+				115.07693298161028,
+				31.362241216445017
+			],
+			"center": [
+				114.29993525147438,
+				30.595105247987075
+			],
+			"place_name": "武汉市, 中国",
+			"place_type": [
+				"county"
+			],
+			"relevance": 1,
+			"id": "county.3690",
+			"text": "武汉市",
+			"place_type_name": [
+				null
+			],
+			"context": [
+				{
+					"ref": "osm:r913106",
+					"country_code": "cn",
+					"id": "subregion.425",
+					"text": "湖北省",
+					"wikidata": "Q46862",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "湖北省",
+					"language_zh": "zh",
+					"text_en": "Hubei",
+					"language_en": "en"
+				},
+				{
+					"ref": "osm:r270056",
+					"country_code": "cn",
+					"id": "country.146",
+					"text": "中国",
+					"wikidata": "Q148",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "中国",
+					"language_zh": "zh",
+					"text_en": "China",
+					"language_en": "en"
+				}
+			],
+			"language": "zh",
+			"text_zh": "武汉市",
+			"language_zh": "zh",
+			"place_name_zh": "武汉市, 湖北省, 中国",
+			"text_en": "Wuhan",
+			"language_en": "en",
+			"place_name_en": "Wuhan, Hubei, China"
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:r913106",
+				"country_code": "cn",
+				"wikidata": "Q46862",
+				"kind": "admin_area",
+				"place_type_name": [
+					null
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					114.29993525147438,
+					30.595105247987075
+				]
+			},
+			"bbox": [
+				108.36257457733154,
+				29.03292821584967,
+				116.13218039274217,
+				33.27277303409473
+			],
+			"center": [
+				114.29993525147438,
+				30.595105247987075
+			],
+			"place_name": "湖北省, 中国",
+			"place_type": [
+				"subregion"
+			],
+			"relevance": 1,
+			"id": "subregion.425",
+			"text": "湖北省",
+			"place_type_name": [
+				null
+			],
+			"context": [
+				{
+					"ref": "osm:r270056",
+					"country_code": "cn",
+					"id": "country.146",
+					"text": "中国",
+					"wikidata": "Q148",
+					"kind": "admin_area",
+					"language": "zh",
+					"text_zh": "中国",
+					"language_zh": "zh",
+					"text_en": "China",
+					"language_en": "en"
+				}
+			],
+			"language": "zh",
+			"text_zh": "湖北省",
+			"language_zh": "zh",
+			"place_name_zh": "湖北省, 中国",
+			"text_en": "Hubei",
+			"language_en": "en",
+			"place_name_en": "Hubei, China"
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"ref": "osm:r270056",
+				"country_code": "cn",
+				"wikidata": "Q148",
+				"kind": "admin_area",
+				"place_type_name": [
+					"国家"
+				]
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					116.3912968710065,
+					39.905713632694834
+				]
+			},
+			"bbox": [
+				73.49973443895578,
+				8.665038713448075,
+				134.77519568055868,
+				53.56081559822489
+			],
+			"center": [
+				116.3912968710065,
+				39.905713632694834
+			],
+			"place_name": "中国",
+			"place_type": [
+				"country"
+			],
+			"relevance": 1,
+			"id": "country.146",
+			"text": "中国",
+			"place_type_name": [
+				"国家"
+			],
+			"language": "zh",
+			"text_zh": "中国",
+			"language_zh": "zh",
+			"place_name_zh": "中国",
+			"text_en": "China",
+			"language_en": "en",
+			"place_name_en": "China"
+		}
+	],
+	"query": [
+		114.42027000000007,
+		30.425054
+	],
+	"attribution": "<a href=\"https://www.maptiler.com/copyright/\" target=\"_blank\">&copy; MapTiler</a> <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">&copy; OpenStreetMap contributors</a>"
+}
