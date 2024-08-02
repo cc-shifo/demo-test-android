@@ -12,6 +12,7 @@
 https://api.maptiler.com/geocoding/114.420270,30.425054.json?key=QqNtsRF5xtXnAoAaCSmC
 https://api.maptiler.com/geocoding/country.26561650.json?key=QqNtsRF5xtXnAoAaCSmC
 https://api.maptiler.com/geocoding/8.528509,47.3774434.json?key=QqNtsRF5xtXnAoAaCSmC
+https://maplibre.org/maplibre-style-spec/
 
 在线查找工具
 https://docs.maptiler.com/sdk-js/examples/geocoding-reverse-json/
