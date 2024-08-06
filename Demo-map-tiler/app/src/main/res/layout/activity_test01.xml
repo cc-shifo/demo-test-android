@@ -183,6 +183,22 @@
                 app:layout_constraintTop_toBottomOf="@id/btn_get_address"
                 android:text="Compass north"
                 android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_screen_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_compass_north"
+                android:text="Screenshot"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_del_screen_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_screen_shot"
+                android:text="Delete Screenshot"
+                android:textAllCaps="false"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

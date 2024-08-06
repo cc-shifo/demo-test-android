@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -321,6 +323,7 @@ public class Test01Activity extends AppCompatActivity {
         btnRemoveOneMarker();
         btnGetAddress();
         btnCompassNorth();
+        btnScreenshot();
 
 
         // touch event
@@ -566,7 +569,8 @@ public class Test01Activity extends AppCompatActivity {
                     Point.fromLngLat(114.41992218256276 - 0.001 * (i + 1),
                             30.42491669227814 - 0.001 * (i + 1)));
             mFeatureList.add(feature);
-            // op.getMarker().setIcon(); // 更新图标
+                // PropertyFactory.iconImage(); // 更新图标
+            // op.getMarker().setIcon(); // 也是更新图标
             // op.getMarker().setPosition(); // 更新位置
         }
         GeoJsonSource source = new GeoJsonSource("PLUS_GEOJSON_SOURCE_ID",
@@ -580,6 +584,45 @@ public class Test01Activity extends AppCompatActivity {
                         PropertyFactory.iconAllowOverlap(true));
         mStyle.addLayer(mMarkerLayer);
 
+        initData();
+    }
+
+    private void initData(/*@NonNull String srcId, @NonNull String layerId,
+            @NonNull String bdSrcId, @NonNull String bdLayerId*/) {
+        String srcId = "MARKER_SOURCE_ID_PREFIX-1";
+        String layerId = "MARKER_LAYER_ID_PREFIX-1";
+        // 114.41903025347261, 30.425355477071445, 100.0
+        GeoJsonSource mSource = new GeoJsonSource(srcId, Point.fromLngLat(
+                114.41903025347261, 30.425355477071445, 100.0));
+
+        Bitmap mUnselectedIcon = BitmapFactory.decodeResource(
+                getResources(), R.drawable.ic_pot_white);
+        Bitmap mSelectedIcon = BitmapFactory.decodeResource(
+                getResources(), R.drawable.ic_pot_blue);
+        Drawable  drawable1 = getDrawable(R.drawable.ic_pot_white);
+        Drawable drawable2 = getDrawable(R.drawable.ic_pot_blue);
+        String mUnselectedIconId = "MARKER_ICON_ID_PREFIX-1";
+        String mSelectedIconId = "MARKER_ICON_ID_PREFIX-2";
+        Style style = mMap.getStyle();
+        if (style != null && style.isFullyLoaded()) {
+            style.addImage(mUnselectedIconId, drawable1);
+            style.addImage(mSelectedIconId, drawable2);
+            style.addSource(mSource);
+        }
+        //PropertyFactory.textAnchor(Property.TEXT_ANCHOR_BOTTOM),
+        //                         PropertyFactory.textOffset(new Float[] {0f, 2f}),
+
+        SymbolLayer mLayer = new SymbolLayer(layerId, mSource.getId())
+                .withProperties(
+                        // PropertyFactory.iconRotate(mAttrs.getRotation()),
+
+                        PropertyFactory.textField("h1"),
+                        //         PropertyFactory.textColor(Color.WHITE),
+                        //         PropertyFactory.backgroundColor(Color.GRAY),
+                        PropertyFactory.iconImage(mUnselectedIconId),
+                        PropertyFactory.iconAllowOverlap(true),
+                        PropertyFactory.iconIgnorePlacement(true));
+        mStyle.addLayer(mLayer);
     }
 
     private void addTestMarkers() {
@@ -869,6 +912,44 @@ public class Test01Activity extends AppCompatActivity {
                 mMap.getUiSettings().setRotateGesturesEnabled(enable);
                 mMap.setFocalBearing(0, mMap.getWidth() / 2, mMap.getHeight() / 2,
                         TIME_MAP_NORTH_ANIMATION);
+            }
+        });
+    }
+
+    private ImageView mScreenShotView;
+    private void btnScreenshot() {
+        mBinding.btnScreenShot.setOnClickListener(v -> {
+            if (mMap != null && mIsMapGestureIdle) {
+                mMap.snapshot(snapshot -> {
+                    if (mScreenShotView == null) {
+                        mScreenShotView = new ImageView(Test01Activity.this);
+                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                        params.matchConstraintPercentWidth = 0.5f;
+                        params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                                .MATCH_CONSTRAINT_PERCENT;
+                        params.matchConstraintPercentHeight = 0.5f;
+                        params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                                .MATCH_CONSTRAINT_PERCENT;
+                        params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                        params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                        params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                        params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                        mScreenShotView.setLayoutParams(params);
+                        mScreenShotView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                        mBinding.getRoot().addView(mScreenShotView);
+                        // mScreenShotView.setTag("mScreenShotView");
+                    }
+                    mScreenShotView.setImageBitmap(snapshot);
+                });
+            }
+        });
+        mBinding.btnDelScreenShot.setOnClickListener(v -> {
+            if (mMap != null && mIsMapGestureIdle && mScreenShotView != null) {
+                // mBinding.getRoot().findViewWithTag("mScreenShotView");
+                mBinding.getRoot().removeView(mScreenShotView);
+                mScreenShotView = null;
             }
         });
     }
