@@ -61,7 +61,10 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -417,8 +420,8 @@ public class Test01Activity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mBinding.mapView.onDestroy();
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
+        if (!mDisposables.isDisposed()) {
+            mDisposables.clear();
         }
 
         if (mOkHttpClient != null) {
@@ -920,29 +923,45 @@ public class Test01Activity extends AppCompatActivity {
     private void btnScreenshot() {
         mBinding.btnScreenShot.setOnClickListener(v -> {
             if (mMap != null && mIsMapGestureIdle) {
-                mMap.snapshot(snapshot -> {
-                    if (mScreenShotView == null) {
-                        mScreenShotView = new ImageView(Test01Activity.this);
-                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
-                        params.matchConstraintPercentWidth = 0.5f;
-                        params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
-                                .MATCH_CONSTRAINT_PERCENT;
-                        params.matchConstraintPercentHeight = 0.5f;
-                        params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
-                                .MATCH_CONSTRAINT_PERCENT;
-                        params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                        params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                        params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                        params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                        mScreenShotView.setLayoutParams(params);
-                        mScreenShotView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                        mBinding.getRoot().addView(mScreenShotView);
-                        // mScreenShotView.setTag("mScreenShotView");
-                    }
-                    mScreenShotView.setImageBitmap(snapshot);
-                });
+                mDisposables.add(Completable.create(emitter -> {
+                    mMap.snapshot(snapshot -> { // 测试发现截屏操作必须在主线程中进行
+                        Log.d(TAG, "btnScreenshot: my thread id=" + Thread.currentThread().getId());
+                        if (mScreenShotView == null) {
+                            mScreenShotView = new ImageView(Test01Activity.this);
+                            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                            params.matchConstraintPercentWidth = 0.5f;
+                            params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
+                                    .MATCH_CONSTRAINT_PERCENT;
+                            params.matchConstraintPercentHeight = 0.5f;
+                            params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
+                                    .MATCH_CONSTRAINT_PERCENT;
+                            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                            mScreenShotView.setLayoutParams(params);
+                            mScreenShotView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                            mBinding.getRoot().addView(mScreenShotView);
+                            // mScreenShotView.setTag("mScreenShotView");
+                        }
+                        mScreenShotView.setImageBitmap(snapshot);
+                    });
+                    emitter.onComplete();
+                }).subscribeOn(AndroidSchedulers.mainThread())// 测试发现截屏操作必须在主线程中进行
+                        .subscribe(new Action() {
+                            @Override
+                            public void run() throws Throwable {
+                                Log.d(TAG, "btnScreenshot onComplete");
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Throwable {
+                                Log.e(TAG, "btnScreenshot onError ", throwable);
+                            }
+                        }));
+
             }
         });
         mBinding.btnDelScreenShot.setOnClickListener(v -> {
@@ -1040,8 +1059,8 @@ public class Test01Activity extends AppCompatActivity {
         }
     }
 
-    private Disposable mDisposable;
     private OkHttpClient mOkHttpClient;
+    private CompositeDisposable mDisposables = new CompositeDisposable();
 
     private void testReverseGeo() {
         Retrofit retrofit =
@@ -1053,7 +1072,7 @@ public class Test01Activity extends AppCompatActivity {
                         .build();
         APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
-        mDisposable = apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
+        mDisposables.add(apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
                         /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1083,7 +1102,7 @@ public class Test01Activity extends AppCompatActivity {
                             Log.e(TAG, "accept: ", throwable);
                             mBinding.tvMessageBlackboard.setText(throwable.getMessage());
                         },
-                        () -> Log.i(TAG, "run: complete"));
+                        () -> Log.i(TAG, "run: complete")));
 
         // Maptiler Cloud API调用手册
         // https://docs.maptiler.com/cloud/api/geocoding/#search-by-coordinates-reverse
