@@ -62,7 +62,11 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -74,6 +78,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 // @SuppressWarnings({"unused"})/*, "deprecation"*/
 public class Test01Activity extends AppCompatActivity {
     private static final String TAG = "Test01Activity";
+    private static final String TAGABC = "TAGABC";
     private ActivityTest01Binding mBinding;
     private MapboxMap mMap;
     private Style mStyle;
@@ -327,6 +332,7 @@ public class Test01Activity extends AppCompatActivity {
         btnGetAddress();
         btnCompassNorth();
         btnScreenshot();
+        btnTestABC();
 
 
         // touch event
@@ -381,7 +387,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mBinding.mapView.onStart();
-        testStartLocation();
+        // testStartLocation();
     }
 
     @Override
@@ -406,7 +412,7 @@ public class Test01Activity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mBinding.mapView.onStop();
-        testStopLocation();
+        // testStopLocation();
     }
 
     @Override
@@ -572,7 +578,7 @@ public class Test01Activity extends AppCompatActivity {
                     Point.fromLngLat(114.41992218256276 - 0.001 * (i + 1),
                             30.42491669227814 - 0.001 * (i + 1)));
             mFeatureList.add(feature);
-                // PropertyFactory.iconImage(); // 更新图标
+            // PropertyFactory.iconImage(); // 更新图标
             // op.getMarker().setIcon(); // 也是更新图标
             // op.getMarker().setPosition(); // 更新位置
         }
@@ -602,7 +608,7 @@ public class Test01Activity extends AppCompatActivity {
                 getResources(), R.drawable.ic_pot_white);
         Bitmap mSelectedIcon = BitmapFactory.decodeResource(
                 getResources(), R.drawable.ic_pot_blue);
-        Drawable  drawable1 = getDrawable(R.drawable.ic_pot_white);
+        Drawable drawable1 = getDrawable(R.drawable.ic_pot_white);
         Drawable drawable2 = getDrawable(R.drawable.ic_pot_blue);
         String mUnselectedIconId = "MARKER_ICON_ID_PREFIX-1";
         String mSelectedIconId = "MARKER_ICON_ID_PREFIX-2";
@@ -788,7 +794,7 @@ public class Test01Activity extends AppCompatActivity {
                                 // PropertyFactory.iconRotate((float) 45.0),/* 初始化角，也可以用*/
                                 // PropertyFactory.iconRotate(Expression.get(PROPERTY_BEARING)),/*
                                 // 初始化角，也可以用*/
-                                PropertyFactory.iconIgnorePlacement(true),
+                                PropertyFactory.iconIgnorePlacement(false),
                                 PropertyFactory.iconAllowOverlap(true));
                 mStyle.addLayer(mHeadingSymbolLayer);
             }
@@ -905,6 +911,7 @@ public class Test01Activity extends AppCompatActivity {
 
 
     private boolean mIsMapGestureIdle = true; // 判断地图是否在交互移动中
+
     private void btnCompassNorth() {
         mBinding.btnCompassNorth.setOnClickListener(v -> {
             if (mMap != null && mIsMapGestureIdle) {
@@ -920,36 +927,41 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private ImageView mScreenShotView;
+
     private void btnScreenshot() {
         mBinding.btnScreenShot.setOnClickListener(v -> {
             if (mMap != null && mIsMapGestureIdle) {
                 mDisposables.add(Completable.create(emitter -> {
-                    mMap.snapshot(snapshot -> { // 测试发现截屏操作必须在主线程中进行
-                        Log.d(TAG, "btnScreenshot: my thread id=" + Thread.currentThread().getId());
-                        if (mScreenShotView == null) {
-                            mScreenShotView = new ImageView(Test01Activity.this);
-                            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
-                            params.matchConstraintPercentWidth = 0.5f;
-                            params.matchConstraintDefaultWidth = ConstraintLayout.LayoutParams
-                                    .MATCH_CONSTRAINT_PERCENT;
-                            params.matchConstraintPercentHeight = 0.5f;
-                            params.matchConstraintDefaultHeight = ConstraintLayout.LayoutParams
-                                    .MATCH_CONSTRAINT_PERCENT;
-                            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-                            mScreenShotView.setLayoutParams(params);
-                            mScreenShotView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                            mBinding.getRoot().addView(mScreenShotView);
-                            // mScreenShotView.setTag("mScreenShotView");
-                        }
-                        mScreenShotView.setImageBitmap(snapshot);
-                    });
-                    emitter.onComplete();
-                }).subscribeOn(AndroidSchedulers.mainThread())// 测试发现截屏操作必须在主线程中进行
+                            mMap.snapshot(snapshot -> { // 测试发现截屏操作必须在主线程中进行
+                                Log.d(TAG,
+                                        "btnScreenshot: my thread id=" + Thread.currentThread().getId());
+                                if (mScreenShotView == null) {
+                                    mScreenShotView = new ImageView(Test01Activity.this);
+                                    ConstraintLayout.LayoutParams params =
+                                            new ConstraintLayout.LayoutParams(
+                                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+                                                    ConstraintLayout.LayoutParams.MATCH_CONSTRAINT);
+                                    params.matchConstraintPercentWidth = 0.5f;
+                                    params.matchConstraintDefaultWidth =
+                                            ConstraintLayout.LayoutParams
+                                            .MATCH_CONSTRAINT_PERCENT;
+                                    params.matchConstraintPercentHeight = 0.5f;
+                                    params.matchConstraintDefaultHeight =
+                                            ConstraintLayout.LayoutParams
+                                            .MATCH_CONSTRAINT_PERCENT;
+                                    params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+                                    params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                                    params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+                                    params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+                                    mScreenShotView.setLayoutParams(params);
+                                    mScreenShotView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                                    mBinding.getRoot().addView(mScreenShotView);
+                                    // mScreenShotView.setTag("mScreenShotView");
+                                }
+                                mScreenShotView.setImageBitmap(snapshot);
+                            });
+                            emitter.onComplete();
+                        }).subscribeOn(AndroidSchedulers.mainThread())// 测试发现截屏操作必须在主线程中进行
                         .subscribe(new Action() {
                             @Override
                             public void run() throws Throwable {
@@ -970,6 +982,12 @@ public class Test01Activity extends AppCompatActivity {
                 mBinding.getRoot().removeView(mScreenShotView);
                 mScreenShotView = null;
             }
+        });
+    }
+
+    private void btnTestABC() {
+        mBinding.btnTestABC.setOnClickListener(v -> {
+            testABC();
         });
     }
 
@@ -1121,4 +1139,85 @@ public class Test01Activity extends AppCompatActivity {
         // https://www.lddgo.net/string/jsontojava
         // https://tool.lu/json/
     }
+
+    private Disposable mTestABCDisposable;
+    private void testABC() {
+        if (mTestABCDisposable != null && !mTestABCDisposable.isDisposed()) {
+            mTestABCDisposable.dispose();
+            mTestABCDisposable = null;
+        }
+        Observable<Integer> observable1 = Observable.create(
+                (ObservableOnSubscribe<Integer>) emitter -> {
+                    Thread.sleep(1000);
+                    Log.d(TAGABC, "subscribeLocation observable1: " + Thread.currentThread().getId());
+                    Log.e(TAGABC, "emit 1");
+                    emitter.onNext(1);
+
+                    Thread.sleep(1000);
+                    Log.e(TAGABC, "emit 2");
+                    emitter.onNext(2);
+
+                    Thread.sleep(1000);
+                    Log.e(TAGABC, "emit 3");
+                    emitter.onNext(3);
+
+                    Thread.sleep(200);
+                    Log.e(TAGABC, "emit 4");
+                    emitter.onNext(4);
+
+                    Log.e(TAGABC, "emit complete1");
+                    emitter.onComplete();
+                }).subscribeOn(Schedulers.newThread());    // 让上游1（第一个水管）在子线程中执行
+
+
+        Observable<String> observable2 = Observable.create(
+                (ObservableOnSubscribe<String>) emitter -> {
+                    Thread.sleep(4000);
+                    Log.d(TAGABC, "subscribeLocation observable2: " + Thread.currentThread().getId());
+                    Log.e(TAGABC, "emit A");
+                    emitter.onNext("A");
+
+                    Thread.sleep(4000);
+                    Log.e(TAGABC, "emit B");
+                    emitter.onNext("B");
+
+                    Thread.sleep(4000);
+                    Log.e(TAGABC, "emit C");
+                    emitter.onNext("C");
+
+                    Log.e(TAGABC, "emit complete2");
+                    emitter.onComplete();
+                }).subscribeOn(Schedulers.newThread());      // 让上游2（第二个水管）在子线程中执行
+
+
+        Observable.zip(observable1, observable2, (integer, s) -> {
+            Log.d(TAGABC, "subscribeLocation zip: apply： " + Thread.currentThread().getId());
+            return integer + s;
+        }).subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.e(TAGABC, "subscribe");
+                        mTestABCDisposable = d;
+                        mDisposables.add(d);
+                    }
+
+                    @Override
+                    public void onNext(String value) {
+                        Log.e(TAGABC, "next -> " + value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAGABC, "error");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAGABC, "complete");
+                    }
+                });
+    }
+
 }
