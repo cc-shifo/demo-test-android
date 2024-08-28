@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.LogPrinter;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.hardware.display.DisplayManagerCompat;
 
 import com.pax.helloworld.second.SecondActivity;
 import com.pax.helloworld.third.ThirdActivity;
@@ -83,35 +85,48 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("onWindowFocusChanged", "onWindowFocusChanged: " + mBinding.homeView.getBottom());
 //        Log.d("onWindowFocusChanged", "onWindowFocusChanged: " + mBinding.homeView.getHeight());
 
+        // 屏幕
+        DisplayManagerCompat displayManager = DisplayManagerCompat.getInstance(this);
+        Display display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
+        DisplayMetrics dm2 = new DisplayMetrics();
+        display.getMetrics(dm2);
+        DisplayMetrics dmReal2 = new DisplayMetrics();
+        display.getRealMetrics(dmReal2);
+        Log.e("HelloWorld", "屏幕-compat-正确方法-heightPixels：" + dm2.heightPixels);
+        Log.e("HelloWorld", "屏幕-compat-正确方法widthPixels：" + dm2.widthPixels);
+        Log.e("HelloWorld", "屏幕-compat-正确方法real heightPixels：" + dmReal2.heightPixels);
+        Log.e("HelloWorld", "屏幕-compat-正确方法real widthPixels：" + dmReal2.widthPixels);
+        Log.e("HelloWorld", "屏幕-compat-正确方法density：" + dm2.density);
+        Log.e("HelloWorld", "屏幕-compat-正确方法densityDpi：" + dm2.densityDpi);
 
         //屏幕
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         DisplayMetrics dmReal = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getRealMetrics(dmReal);
-        Log.e("WangJ", "屏幕-正确方法heightPixels：" + dm.heightPixels);
-        Log.e("WangJ", "屏幕-正确方法widthPixels：" + dm.widthPixels);
-        Log.e("WangJ", "屏幕-正确方法real heightPixels：" + dmReal.heightPixels);
-        Log.e("WangJ", "屏幕-正确方法real widthPixels：" + dmReal.widthPixels);
-        Log.e("WangJ", "屏幕-正确方法density：" + dm.density);
-        Log.e("WangJ", "屏幕-正确方法densityDpi：" + dm.densityDpi);
+        Log.e("HelloWorld", "屏幕-正确方法heightPixels：" + dm.heightPixels);
+        Log.e("HelloWorld", "屏幕-正确方法widthPixels：" + dm.widthPixels);
+        Log.e("HelloWorld", "屏幕-正确方法real heightPixels：" + dmReal.heightPixels);
+        Log.e("HelloWorld", "屏幕-正确方法real widthPixels：" + dmReal.widthPixels);
+        Log.e("HelloWorld", "屏幕-正确方法density：" + dm.density);
+        Log.e("HelloWorld", "屏幕-正确方法densityDpi：" + dm.densityDpi);
         // float dp = dm.widthPixels/1.5f;// px = dp * (dpi/160)
         float x = dm.densityDpi/160f;// px = dp * (dpi/160)
         float dp = dm.widthPixels/x;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法widthDp(dp * (dpi/160))：" + dp);
+        Log.e("HelloWorld", "屏幕-正确方法widthDp(dp * (dpi/160))：" + dp);
         dp = dm.heightPixels/x;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法heightDp(dp * (dm.densityDpi/160))：" + dp);
+        Log.e("HelloWorld", "屏幕-正确方法heightDp(dp * (dm.densityDpi/160))：" + dp);
 
         // 屏幕对角线
         double dReal = Math.sqrt(dm.widthPixels * dm.widthPixels + dm.heightPixels
                 * dm.heightPixels) / 5.5f;
-        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-Math.pow(Math.sqrt(dm.widthPixels) " +
+        Log.e("HelloWorld", "屏幕-正确方法-[屏幕对角线]-Math.pow(Math.sqrt(dm.widthPixels) " +
                 "+ Math.sqrt(dm.heightPixels), dpi：" + dReal);
         double xReal = dReal/160f;// px = dp * (dpi/160)
         double dpReal = dm.widthPixels/xReal;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-widthDp(dp * (dReal/160))：" + dpReal);
+        Log.e("HelloWorld", "屏幕-正确方法-[屏幕对角线]-widthDp(dp * (dReal/160))：" + dpReal);
         dpReal = dm.heightPixels/xReal;// px = dp * (dpi/160)
-        Log.e("WangJ", "屏幕-正确方法-[屏幕对角线]-heightDp(dp * (dReal/160))：" + dpReal);
+        Log.e("HelloWorld", "屏幕-正确方法-[屏幕对角线]-heightDp(dp * (dReal/160))：" + dpReal);
 
         Looper.myLooper().setMessageLogging(new LogPrinter(Log.DEBUG, "helloWorld"));
         //应用区域
@@ -125,32 +140,32 @@ public class MainActivity extends AppCompatActivity {
          *  */
         getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect1);
         int statusBar = dm.heightPixels - outRect1.height();  //状态栏高度=屏幕高度-应用区域高度
-        Log.e("WangJ", "应用区域 正确方法 状态栏-方法4:" + statusBar);//48
-        Log.e("WangJ", "应用区域 正确方法 top:" + outRect1.top);//48相对应屏幕的坐标
-        Log.e("WangJ", "应用区域 正确方法 bottom:" + outRect1.bottom);//1184相对应屏幕的坐标
-        Log.e("WangJ", "应用区域 v height:" + outRect1.height());//1136
+        Log.e("HelloWorld", "应用区域 正确方法 状态栏-方法4:" + statusBar);//48
+        Log.e("HelloWorld", "应用区域 正确方法 top:" + outRect1.top);//48相对应屏幕的坐标
+        Log.e("HelloWorld", "应用区域 正确方法 bottom:" + outRect1.bottom);//1184相对应屏幕的坐标
+        Log.e("HelloWorld", "应用区域 v height:" + outRect1.height());//1136
 
         //View绘制区域
         Rect outRect2 = new Rect();
         getWindow().findViewById(Window.ID_ANDROID_CONTENT).getDrawingRect(outRect2);
         //错误方法，也不叫错误吧。相对应绘制区的坐标, outRect2.top=0, bottom=1024,outRect2.height=1024
-        Log.e("WangJ", "View绘制区域顶部-错误方法：" + outRect2.top);
+        Log.e("HelloWorld", "View绘制区域顶部-错误方法：" + outRect2.top);
         //这个方法获取到的view就是程序不包括标题栏的部分
         View view = getWindow().findViewById(Window.ID_ANDROID_CONTENT);
-        Log.e("WangJ", "View绘制区域顶部-正确方法top：" + view.getTop());//112，相对应屏幕的坐标，要用这种方法
+        Log.e("HelloWorld", "View绘制区域顶部-正确方法top：" + view.getTop());//112，相对应屏幕的坐标，要用这种方法
         //那么相对应屏幕的坐标top=112 - outRect1.top=48相对应屏幕高度 是不是等于64=action bar
-        Log.e("WangJ", "View绘制区域顶部-正确方法Bottom：" + view.getBottom());//1136，应用区域的坐标，如果是
+        Log.e("HelloWorld", "View绘制区域顶部-正确方法Bottom：" + view.getBottom());//1136，应用区域的坐标，如果是
         //相对应屏幕的坐标的话，1136坐标的下面是什么？1136坐标离1184还有一段距离(48)呢！但是view.getTop()=112为什么
         // 又是相对应屏幕的坐标呢？
-        Log.e("WangJ", "View绘制区域顶部-正确方法Height：" + view.getHeight());//1024
-        Log.e("WangJ", "View绘制区域顶部-正确方法MeasuredHeight：" + view.getMeasuredHeight());//1024
+        Log.e("HelloWorld", "View绘制区域顶部-正确方法Height：" + view.getHeight());//1024
+        Log.e("HelloWorld", "View绘制区域顶部-正确方法MeasuredHeight：" + view.getMeasuredHeight());//1024
 
 
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId != 0) {
             //根据资源ID获取响应的尺寸值
             int statusBarHeight1 = getResources().getDimensionPixelSize(resourceId);
-            Log.e("WangJ", "状态栏 正确方法 statusBarHeight1：" + statusBarHeight1);//48
+            Log.e("HelloWorld", "状态栏 正确方法 statusBarHeight1：" + statusBarHeight1);//48
         }
 
         int rid = getResources().getIdentifier("config_showNavigationBar", "bool", "android");
@@ -159,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             //根据资源ID获取响应的尺寸值
             if (resourceId != 0) {
                 int NavigationBarrHeight1 = getResources().getDimensionPixelSize(resourceId);
-                Log.e("WangJ", "导航栏 正确方法 NavigationBarrHeight1：" + NavigationBarrHeight1);
+                Log.e("HelloWorld", "导航栏 正确方法 NavigationBarrHeight1：" + NavigationBarrHeight1);
             }
         }
 
@@ -168,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             //根据资源ID获取响应的尺寸值
             if (rid != 0) {
                 int NavigationBarrHeight2 = getResources().getDimensionPixelSize(rid);
-                Log.e("WangJ", "导航栏 正确方法 NavigationBarrHeight2：" + NavigationBarrHeight2);
+                Log.e("HelloWorld", "导航栏 正确方法 NavigationBarrHeight2：" + NavigationBarrHeight2);
             }
         }
     }
