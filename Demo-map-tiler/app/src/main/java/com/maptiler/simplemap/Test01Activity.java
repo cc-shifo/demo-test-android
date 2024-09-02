@@ -1138,6 +1138,11 @@ public class Test01Activity extends AppCompatActivity {
         // 在线json转java工具
         // https://www.lddgo.net/string/jsontojava
         // https://tool.lu/json/
+
+
+        // https://nominatim.org/release-docs/develop/api/Reverse/
+        // https://nominatim.openstreetmap.org/reverse?lat=30.42491669227814&lon=114.41992218256276&format=json&zoom=16
+        // https://nominatim.org/release-docs/develop/api/Output/
     }
 
     private Disposable mTestABCDisposable;
