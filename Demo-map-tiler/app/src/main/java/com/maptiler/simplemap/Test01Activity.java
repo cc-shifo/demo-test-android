@@ -1083,37 +1083,30 @@ public class Test01Activity extends AppCompatActivity {
     private void testReverseGeo() {
         Retrofit retrofit =
                 new Retrofit.Builder()
-                        .baseUrl("https://api.maptiler.com/")
+                        // .baseUrl("https://api.maptiler.com/")
+                        .baseUrl("https://geocode.maps.co")
                         .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                         .client(mOkHttpClient)
                         .build();
         APIReverseGeo apiReverseGeo = retrofit.create(APIReverseGeo.class);
+
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
-        mDisposables.add(apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
-                        /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
+        mDisposables.add(apiReverseGeo.getAddressGeoMap(
+                30.425054, 114.420270, "66d196e166266586258252klbf15ac1")
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(searchJsonObj -> {
                             Log.d(TAG, "accept: " + searchJsonObj);
-                            List<Features> features = searchJsonObj.getFeatures();
-                            if (features != null && !features.isEmpty()) {
+                            GeoMapPlaceObj.Address  address = searchJsonObj.getAddress();
+                            if (address != null) {
                                 Log.d(TAG, "accept: address[114.41992218256276, 30" +
                                         ".42491669227814] " +
-                                        features.get(0).getPlaceName());
-                                Features f = features.get(0);
-                                List<Context> cList = f.getContext();
-                                if (cList != null) {
-                                    mTextBlackboard.setLength(0);
-                                    for (int i = 0; i < cList.size(); i++) {
-                                        Context c = cList.get(i);
-                                        mTextBlackboard.append(c.getText());
-                                        if (i != cList.size() - 1) {
-                                            mTextBlackboard.append(",");
-                                        }
-                                    }
-                                }
-                                mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
+                                        searchJsonObj.getDisplayName());
+                                mTextBlackboard.setLength(0);
+                                mTextBlackboard.append(address.getSuburb()).append(",");
+                                mTextBlackboard.append(address.getCity());
+                                mTextBlackboard.append("\n\n\n");
                                 mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
                             }
                         }, throwable -> {
@@ -1121,6 +1114,39 @@ public class Test01Activity extends AppCompatActivity {
                             mBinding.tvMessageBlackboard.setText(throwable.getMessage());
                         },
                         () -> Log.i(TAG, "run: complete")));
+
+        // // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
+        // mDisposables.add(apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
+        //                 /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
+        //         .subscribeOn(Schedulers.computation())
+        //         .observeOn(AndroidSchedulers.mainThread())
+        //         .subscribe(searchJsonObj -> {
+        //                     Log.d(TAG, "accept: " + searchJsonObj);
+        //                     List<Features> features = searchJsonObj.getFeatures();
+        //                     if (features != null && !features.isEmpty()) {
+        //                         Log.d(TAG, "accept: address[114.41992218256276, 30" +
+        //                                 ".42491669227814] " +
+        //                                 features.get(0).getPlaceName());
+        //                         Features f = features.get(0);
+        //                         List<Context> cList = f.getContext();
+        //                         if (cList != null) {
+        //                             mTextBlackboard.setLength(0);
+        //                             for (int i = 0; i < cList.size(); i++) {
+        //                                 Context c = cList.get(i);
+        //                                 mTextBlackboard.append(c.getText());
+        //                                 if (i != cList.size() - 1) {
+        //                                     mTextBlackboard.append(",");
+        //                                 }
+        //                             }
+        //                         }
+        //                         mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
+        //                         mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
+        //                     }
+        //                 }, throwable -> {
+        //                     Log.e(TAG, "accept: ", throwable);
+        //                     mBinding.tvMessageBlackboard.setText(throwable.getMessage());
+        //                 },
+        //                 () -> Log.i(TAG, "run: complete")));
 
         // Maptiler Cloud API调用手册
         // https://docs.maptiler.com/cloud/api/geocoding/#search-by-coordinates-reverse
