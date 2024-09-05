@@ -51,8 +51,11 @@ import com.mapbox.mapboxsdk.location.engine.LocationEngineResult;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.expressions.Expression;
+import com.mapbox.mapboxsdk.style.layers.LineLayer;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.maptiler.simplemap.databinding.ActivityTest01Binding;
 
@@ -333,6 +336,7 @@ public class Test01Activity extends AppCompatActivity {
         btnCompassNorth();
         btnScreenshot();
         btnTestABC();
+        btnGradientLine();
 
 
         // touch event
@@ -721,9 +725,15 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private final StringBuilder mTextBlackboard = new StringBuilder();
+    private List<LatLng> mUserPointList = new ArrayList<>(0);
 
     private void addClickListen() {
         mMap.addOnMapClickListener(point -> {
+            if (mUserPointList.size() > 5) {
+                mUserPointList.clear();
+            } else {
+                mUserPointList.add(point);
+            }
 
             boolean result = false;
             mTextBlackboard.setLength(0);
@@ -944,11 +954,11 @@ public class Test01Activity extends AppCompatActivity {
                                     params.matchConstraintPercentWidth = 0.5f;
                                     params.matchConstraintDefaultWidth =
                                             ConstraintLayout.LayoutParams
-                                            .MATCH_CONSTRAINT_PERCENT;
+                                                    .MATCH_CONSTRAINT_PERCENT;
                                     params.matchConstraintPercentHeight = 0.5f;
                                     params.matchConstraintDefaultHeight =
                                             ConstraintLayout.LayoutParams
-                                            .MATCH_CONSTRAINT_PERCENT;
+                                                    .MATCH_CONSTRAINT_PERCENT;
                                     params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
                                     params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
                                     params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
@@ -1093,12 +1103,12 @@ public class Test01Activity extends AppCompatActivity {
 
         // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
         mDisposables.add(apiReverseGeo.getAddressGeoMap(
-                30.425054, 114.420270, "66d196e166266586258252klbf15ac1")
+                        30.425054, 114.420270, "66d196e166266586258252klbf15ac1")
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(searchJsonObj -> {
                             Log.d(TAG, "accept: " + searchJsonObj);
-                            GeoMapPlaceObj.Address  address = searchJsonObj.getAddress();
+                            GeoMapPlaceObj.Address address = searchJsonObj.getAddress();
                             if (address != null) {
                                 Log.d(TAG, "accept: address[114.41992218256276, 30" +
                                         ".42491669227814] " +
@@ -1115,7 +1125,8 @@ public class Test01Activity extends AppCompatActivity {
                         },
                         () -> Log.i(TAG, "run: complete")));
 
-        // // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig.mapTilerKey
+        // // apiReverseGeo.getAddress(114.41992218256276, 30.42491669227814, BuildConfig
+        // .mapTilerKey
         // mDisposables.add(apiReverseGeo.getAddress(114.420270, 30.425054, BuildConfig.mapTilerKey
         //                 /*APIReverseGeo.LIMIT APIReverseGeo.LNG*/, APIReverseGeo.TYPES, false)
         //         .subscribeOn(Schedulers.computation())
@@ -1139,7 +1150,8 @@ public class Test01Activity extends AppCompatActivity {
         //                                 }
         //                             }
         //                         }
-        //                         mTextBlackboard.append("\n\n\n").append(features.get(0).getPlaceName());
+        //                         mTextBlackboard.append("\n\n\n").append(features.get(0)
+        //                         .getPlaceName());
         //                         mBinding.tvMessageBlackboard.setText(mTextBlackboard.toString());
         //                     }
         //                 }, throwable -> {
@@ -1172,6 +1184,7 @@ public class Test01Activity extends AppCompatActivity {
     }
 
     private Disposable mTestABCDisposable;
+
     private void testABC() {
         if (mTestABCDisposable != null && !mTestABCDisposable.isDisposed()) {
             mTestABCDisposable.dispose();
@@ -1180,7 +1193,8 @@ public class Test01Activity extends AppCompatActivity {
         Observable<Integer> observable1 = Observable.create(
                 (ObservableOnSubscribe<Integer>) emitter -> {
                     Thread.sleep(1000);
-                    Log.d(TAGABC, "subscribeLocation observable1: " + Thread.currentThread().getId());
+                    Log.d(TAGABC,
+                            "subscribeLocation observable1: " + Thread.currentThread().getId());
                     Log.e(TAGABC, "emit 1");
                     emitter.onNext(1);
 
@@ -1204,7 +1218,8 @@ public class Test01Activity extends AppCompatActivity {
         Observable<String> observable2 = Observable.create(
                 (ObservableOnSubscribe<String>) emitter -> {
                     Thread.sleep(4000);
-                    Log.d(TAGABC, "subscribeLocation observable2: " + Thread.currentThread().getId());
+                    Log.d(TAGABC,
+                            "subscribeLocation observable2: " + Thread.currentThread().getId());
                     Log.e(TAGABC, "emit A");
                     emitter.onNext("A");
 
@@ -1222,9 +1237,10 @@ public class Test01Activity extends AppCompatActivity {
 
 
         Observable.zip(observable1, observable2, (integer, s) -> {
-            Log.d(TAGABC, "subscribeLocation zip: apply： " + Thread.currentThread().getId());
-            return integer + s;
-        }).subscribeOn(Schedulers.computation())
+                    Log.d(TAGABC,
+                            "subscribeLocation zip: apply： " + Thread.currentThread().getId());
+                    return integer + s;
+                }).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
@@ -1251,4 +1267,169 @@ public class Test01Activity extends AppCompatActivity {
                 });
     }
 
+
+    private GeoJsonSource mGradientLineSrc;
+    private LineLayer mGradientLineLayer;
+
+    private void btnGradientLine() {
+        mBinding.btnGradientLine.setOnClickListener(v -> addGradientLine());
+    }
+
+    private void addGradientLine() {
+        Style style = mMap.getStyle();
+        if (style != null && style.isFullyLoaded()) {
+            if (mGradientLineLayer != null) {
+                style.removeLayer("Gradient_line_LAYER_ID");
+                mGradientLineLayer = null;
+            }
+            if (mGradientLineSrc != null) {
+                style.removeSource("Gradient_line_source_ID");
+                mGradientLineSrc = null;
+            }
+        }
+
+        mGradientLineSrc = new GeoJsonSource("Gradient_line_source_ID",
+                GeoUtil.lineFrom(mUserPointList), new GeoJsonOptions().withLineMetrics(true));
+        // ;
+        // Expression.interpolate(
+        //         Expression.linear(),
+        //         Expression.l,
+        //         Expression.stop(0f, Expression.rgb(0, 0, 255)),
+        //         Expression.stop(0.5f, Expression.rgb(0, 255, 0)),
+        //         Expression.stop(1f, Expression.rgb(255, 0, 0))
+        //                       )
+        // method 1
+        // mGradientLineLayer = new LineLayer("Gradient_line_LAYER_ID", mGradientLineSrc.getId())
+        //         .withProperties(PropertyFactory.lineGradient(Color.RED),
+        //                 PropertyFactory.lineWidth(20f));
+        // method 2
+        //
+
+        // int[] hArray = {0, 100, 200, 300};
+        // int[] hArray = {0, 50,
+        //         101, 150,
+        //         201, 250,
+        //         301, 350,
+        //         401, 450
+        // };
+        int[] hArray = {0, 50,
+                101, 150,
+                201, 250,
+                301, 350,
+                401, 450
+        };
+        Expression inputH = Expression.literal(hArray);
+        Expression color = Expression.interpolate(Expression.linear(), inputH,
+                Expression.stop(Expression.literal(0), Expression.rgb(0xff, 0x0b, 0xff)),
+                Expression.stop(Expression.literal(100), Expression.rgb(0xff, 0xf6, 0xff)),// 紫色
+
+                Expression.stop(Expression.literal(101), Expression.rgb(0, 0, 0xb1)),
+                Expression.stop(Expression.literal(200), Expression.rgb(0x00, 0x00, 0xff)),// 蓝色
+
+                Expression.stop(Expression.literal(201), Expression.rgb(0x00, 0xb1, 0x00)),
+                Expression.stop(Expression.literal(300), Expression.rgb(0, 0xff, 0)),// 绿色
+
+                Expression.stop(Expression.literal(301), Expression.rgb(0xd9, 0xd9, 0x2e)),
+                Expression.stop(Expression.literal(400), Expression.rgb(0xff, 0xff, 0x08)),// 黄色
+
+                Expression.stop(Expression.literal(401), Expression.rgb(0x00, 0xb1, 0xb1)),
+                Expression.stop(Expression.literal(500), Expression.rgb(0x00, 0xff, 0xff))// 清色
+                                                 );
+
+        // Expression color1 = Expression.interpolate(Expression.linear(), inputH,
+        //
+        //
+        //         //Expression.literal()
+        //         // Expression.stop(0, Expression.rgb(0, 0, 0xb1)),
+        //         Expression.stop(100, Expression.rgb(0x00,0x00, 0xff)),// 蓝色
+        //
+        //         Expression.stop(101, Expression.rgb(0x00, 0xb1, 0x00)),
+        //         Expression.stop(200, Expression.rgb(0, 0xff, 0)),// 绿色
+        //
+        //         // Expression.stop(201, Expression.rgb(0x00, 0xb1, 0xb1)),
+        //         // Expression.stop(300, Expression.rgb(0x00, 0xff, 0xff)),// 清色
+        //
+        //         Expression.stop(301, Expression.rgb(0xd9, 0xd9, 0x2e)),
+        //         Expression.stop(400, Expression.rgb(0xff, 0xff, 0x08)),// 黄色
+        //
+        //         Expression.stop(401, Expression.rgb(0xff, 0x0b, 0xff)),
+        //         Expression.stop(500, Expression.rgb(0xff, 0xf6, 0xff))// 紫色
+        //                                           );
+
+
+        // int[] hArray2 = new int[500];
+        // for (int i = 0; i < hArray2.length; i++) {
+        //     hArray2[i] = i;
+        // }
+        // Expression color2 = Expression.interpolate(Expression.linear(), Expression.literal(hArray2),
+        //
+        //
+        //         //Expression.literal()
+        //         // Expression.stop(0, Expression.rgb(0, 0, 0xb1)),
+        //         Expression.stop(100, Expression.rgb(0x00, 0x00, 0xff)),// 蓝色
+        //
+        //         // Expression.stop(201, Expression.rgb(0x00, 0x9d, 0x9d)),
+        //         // Expression.stop(300, Expression.rgb(0x00, 0xec, 0xec)),// 清色
+        //
+        //         Expression.stop(101, Expression.rgb(0x00, 0xb1, 0x00)),
+        //         Expression.stop(200, Expression.rgb(0x00, 0xff, 0x00)),// 绿色
+        //
+        //
+        //         Expression.stop(301, Expression.rgb(0xd9, 0xd9, 0x2e)),
+        //         Expression.stop(400, Expression.rgb(0xff, 0xff, 0x08)),// 黄色
+        //
+        //         Expression.stop(401, Expression.rgb(0xff, 0x0b, 0xff)),
+        //         Expression.stop(500, Expression.rgb(0xff, 0xf6, 0xff))// 紫色
+        //                                           );
+
+        // Expression color3 = Expression.interpolate(Expression.linear(), Expression.lineProgress(),
+        //
+        //
+        //         // //Expression.literal()
+        //         // // Expression.stop(0, Expression.rgb(0, 0, 0xb1)),
+        //         Expression.stop(0.2, Expression.rgb(0x00, 0x00, 0xff)),// 蓝色 100
+        //
+        //         // Expression.stop(0.21, Expression.rgb(0x00, 0xb1, 0x00)),
+        //         Expression.stop(0.4, Expression.rgb(0x00, 0xff, 0x00)),// 绿色
+        //
+        //         // Expression.stop(0.41, Expression.rgb(0x00, 0xb1, 0xb1)),
+        //         Expression.stop(0.6, Expression.rgb(0x00, 0xff, 0xff)),// 清色
+        //
+        //         // Expression.stop(0.61, Expression.rgb(0xb1, 0xb1, 0x00)),
+        //         Expression.stop(0.8, Expression.rgb(0xff, 0xff, 0x00)),// 黄色
+        //
+        //         // Expression.stop(0.81, Expression.rgb(0xa8, 0x00, 0xa8)),
+        //         Expression.stop(1.0, Expression.rgb(0xf6, 0x00, 0xf6))// 紫色
+        //                                           );
+
+        Expression color4 = Expression.interpolate(Expression.linear(), Expression.lineProgress(),
+
+
+                // //Expression.literal()
+                // // Expression.stop(0, Expression.rgb(0, 0, 0xb1)),
+                Expression.stop(0.2, Expression.rgb(0x00, 0x00, 0xff)),// 蓝色 100
+
+                // Expression.stop(0.21, Expression.rgb(0x00, 0xb1, 0x00)),
+                Expression.stop(0.4, Expression.rgb(0x00, 0xff, 0x00)),// 绿色
+
+
+                // Expression.stop(0.41, Expression.rgb(0x00, 0xb1, 0xb1)),
+                Expression.stop(0.6, Expression.rgb(0x00, 0xff, 0xff)),// 清色
+
+                // Expression.stop(0.61, Expression.rgb(0xb1, 0xb1, 0x00)),
+                Expression.stop(0.8, Expression.rgb(0xff, 0xff, 0x00)),// 黄色
+
+                // Expression.stop(0.81, Expression.rgb(0xa8, 0x00, 0xa8)),
+                Expression.stop(1.0, Expression.rgb(0xf6, 0x00, 0xf6))// 紫色
+                                                  );
+
+        mGradientLineLayer = new LineLayer("Gradient_line_LAYER_ID", mGradientLineSrc.getId())
+                .withProperties(PropertyFactory.lineGradient(color4),
+                        PropertyFactory.lineColor(Expression.rgb(0, 0, 0xb1)),// 蓝色
+                        PropertyFactory.lineWidth(10f));
+        if (style != null && style.isFullyLoaded()) {
+            style.addSource(mGradientLineSrc);
+            style.addLayer(mGradientLineLayer);
+        }
+    }
 }

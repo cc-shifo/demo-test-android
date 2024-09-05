@@ -44,6 +44,48 @@
         tools:background="@color/colorAccent"/>
 
 
+    <LinearLayout
+        android:id="@+id/h_level_layout"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/h_le_level_100"
+            android:scaleType="centerInside"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/h_le_level_200"
+            android:scaleType="centerInside"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/h_le_level_300"
+            android:scaleType="centerInside"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/h_le_level_400"
+            android:scaleType="centerInside"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/h_le_level_500"
+            android:scaleType="centerInside"/>
+    </LinearLayout>
+
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -205,7 +247,15 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_del_screen_shot"
-                android:text="Test ABC"
+                android:text="Test zip() ABC"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/btn_gradient_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_test_ABC"
+                android:text="Gradient line"
                 android:textAllCaps="false"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
