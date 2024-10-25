@@ -107,6 +107,31 @@ public class Test01Activity extends AppCompatActivity {
         mBinding = ActivityTest01Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mBinding.mapView.onCreate(savedInstanceState);
+
+        /**
+         * 加载地图。地图由view和地图数据构成。{@link MapboxMap#setStyle(String, Style.OnStyleLoaded)}
+         * 会触发顺序一或者顺序二回调。
+         * 顺序一：地图的start回调，地图load失败回调，style完成回调，地图完成回调；
+         * 顺序二：地图的start回调，Style.OnStyleLoaded回调（地图load没有失败），style完成回调，地图完成回调；
+         *
+         * 第一点
+         * mapView.addOnWillStartLoadingMapListener(startListener);// start回调
+         * mapView.addOnDidFailLoadingMapListener(failedListener);// 地图load失败回调
+         * mapView.addOnDidFinishLoadingStyleListener(styleFinishListener);// style完成，发现多次回调。
+         * mapView.addOnDidFinishLoadingMapListener(finishListener);// 地图完成回调
+         * // 设置style完成后，如果在Style.OnStyleLoaded回调立即addMarker，addPolylne等操作mapbox获取的
+         * // style是null，或者addMarker addPolylne时返回null，所以不会成功的。需要延时到map finish load
+         * // 回调之后才能进行addMarker addPolylne等操作。
+         *
+         * 第二点
+         * map load没有失败时，Style.OnStyleLoaded会被执行，跟OnDidFailLoadingMapListener是互斥关系。
+         * map load失败, NativeMapView#onDidFailLoadingMap，
+         * 接着所有MapView#OnDidFailLoadingMapListener回调被执行，
+         * 其中MapView自身就实现了MapView#OnDidFailLoadingMapListener，
+         * 因此MapView#onDidFailLoadingMap会被调用，它的里面会调用MapBoxMap#onFailLoadingStyle
+         * MapBoxMap#onFailLoadingStyle里面接着会清空MapBoxMap#setStyle设置的Style.OnStyleLoaded
+         * 回调。
+         */
         mBinding.mapView.getMapAsync(mapboxMap -> {
             // 避免之前Activity下map的InfoWindow没有关闭，再进入到当前Activity时出现InfoWindow null的
             // 崩溃现象。
