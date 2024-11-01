@@ -11,6 +11,8 @@ import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,9 +24,11 @@ import com.example.demousb.databinding.ActivityUdiskBinding;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,8 +42,9 @@ public class UDiskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityUdiskBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_udisk);
+        setContentView(mBinding.getRoot());
         initTextLog();
+        initTestBtn();
         initUDiskReceiver();
     }
 
@@ -53,6 +58,24 @@ public class UDiskActivity extends AppCompatActivity {
 
     private void initTextLog() {
         mStringBuilder = new StringBuilder();
+    }
+
+    private List<String> mVolumeRootPathList = new ArrayList<>(0);
+    private void initTestBtn() {
+        mBinding.btnUsbDiskCreateDir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mVolumeRootPathList.isEmpty()) {
+                    Toast.makeText(UDiskActivity.this, "no volume path", Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
+                for (int i = 0; i < mVolumeRootPathList.size(); i++) {
+                    testCreateDirection(mVolumeRootPathList.get(i), i);
+                }
+            }
+        });
     }
 
     private void initUDiskReceiver() {
@@ -77,16 +100,24 @@ public class UDiskActivity extends AppCompatActivity {
     }
 
     private void testUSBPaths() {
+        mVolumeRootPathList.clear();
         Log.d(TAG, "\n\n\n\n\ntestUSBPaths: ");
         StorageManager srgMgr = (StorageManager) this.getSystemService(Context.STORAGE_SERVICE);
         List<String> pathList = getUsbPaths(this);
+        StorageVolume pV = srgMgr.getPrimaryStorageVolume();
         for (String p : pathList) {
             boolean mounted = checkMounted(srgMgr, p);
             Log.d(TAG, "path: " + p);
             Log.d(TAG,  "mounted: " + mounted);
             File f = new File(p);
+
+            StorageVolume volume = srgMgr.getStorageVolume(f);
+            Log.d(TAG,  "state: " + Environment.getExternalStorageState(f));
             Log.d(TAG,  "isEmulated: " + Environment.isExternalStorageEmulated(f));
             Log.d(TAG,  "isRemovable: " + Environment.isExternalStorageRemovable(f));
+            if (mounted) {
+                mVolumeRootPathList.add(p);
+            }
         }
     }
 
@@ -97,6 +128,7 @@ public class UDiskActivity extends AppCompatActivity {
             StorageManager srgMgr = (StorageManager) cxt.getSystemService(Context.STORAGE_SERVICE);
             Class<StorageManager> srgMgrClass = StorageManager.class;
             String[] paths = (String[]) srgMgrClass.getMethod("getVolumePaths").invoke(srgMgr);
+
             if (paths != null) {
                 return Arrays.asList(paths);
             }
@@ -130,6 +162,17 @@ public class UDiskActivity extends AppCompatActivity {
         return false;
     }
 
+
+    private void testCreateDirection(@NonNull String volumeRootPath, int id) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        File dir = new File(volumeRootPath + File.separator + "dir-" + id + "-" +format.format(new Date()));
+        boolean createdDir = dir.exists() ? dir.isDirectory() : dir.mkdirs();
+        if (createdDir) {
+            Log.d(TAG, "testCreateDirection: true, " + dir.getAbsolutePath());
+        } else {
+            Log.d(TAG, "testCreateDirection: false, " + dir.getAbsolutePath());
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getAllVolumes(@NonNull Context context) {

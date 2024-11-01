@@ -15,10 +15,17 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.demousb.databinding.ActivityMainBinding;
@@ -28,6 +35,7 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int PERMISSION_REQUEST_CODE = 1024;
+    private static final int PERMISSION_MANAGE_ALL_REQUEST_CODE = 1025;
 
 
     private ActivityMainBinding mBinding;
@@ -42,6 +50,20 @@ public class MainActivity extends AppCompatActivity {
             android.Manifest.permission.READ_EXTERNAL_STORAGE, // Log files
             // Manifest.permission.RECORD_AUDIO // Speaker accessory
     };
+
+    /**
+     * Android 13
+     */
+    private static final String[] REQUIRED_PERMISSION_LIST_30 = new String[]{
+            // Manifest.permission.VIBRATE, // Gimbal rotation
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE, // Log files
+            // Manifest.permission.BLUETOOTH, // Bluetooth connected products
+            // Manifest.permission.BLUETOOTH_ADMIN, // Bluetooth connected products
+            android.Manifest.permission.READ_EXTERNAL_STORAGE, // Log files
+            // Manifest.permission.RECORD_AUDIO // Speaker accessory
+            android.Manifest.permission.MANAGE_EXTERNAL_STORAGE, // external SD
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +82,27 @@ public class MainActivity extends AppCompatActivity {
         onPermissionResult(requestCode, permissions, grantResults);
     }
 
+
+
     private void checkAndRequestPermissions() {
-        if (hasPermissions(this, REQUIRED_PERMISSION_LIST)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            checkAndRequestPermissions30();
+        } else {
+            if (hasPermissions(this, REQUIRED_PERMISSION_LIST)) {
+                init();
+            } else {
+                requestPermissions(REQUIRED_PERMISSION_LIST, PERMISSION_REQUEST_CODE);
+            }
+        }
+    }
+
+
+    @RequiresApi(api = 30)
+    private void checkAndRequestPermissions30() {
+        if (hasPermissions(this, REQUIRED_PERMISSION_LIST_30) && getExtMng()) {
             init();
         } else {
-            requestPermissions(REQUIRED_PERMISSION_LIST, PERMISSION_REQUEST_CODE);
+            requestPermissions(REQUIRED_PERMISSION_LIST_30, PERMISSION_REQUEST_CODE);
         }
     }
 
@@ -140,14 +178,32 @@ public class MainActivity extends AppCompatActivity {
      * https://developer.android.google.cn/training/data-storage/shared/media?hl=zh-cn#storage
      * -volume
      */
-    private void getExtMng() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    private boolean getExtMng() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageManager()) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
-                startActivity(intent);
+                // intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
+                startActivityForResult(intent, PERMISSION_MANAGE_ALL_REQUEST_CODE);
             }
         }
+
+        // ActivityResultContracts.StartActivityForResult
+        //
+        // final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+        //         new ActivityResultContracts.StartActivityForResult(),
+        //         new ActivityResultCallback<ActivityResult>() {
+        //             @Override
+        //             public void onActivityResult(ActivityResult result) {
+        //
+        //             }
+        //         });
+        // Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+        // // intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
+        // launcher.launch(intent, );
+        // // ActivityResultLauncher和registerForActivityResult
+
+        return false;
+        
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -231,6 +287,8 @@ public class MainActivity extends AppCompatActivity {
                 uri = resultData.getData();
                 // Perform operations on the document using its URI.
             }
+        } else if (requestCode == PERMISSION_MANAGE_ALL_REQUEST_CODE) {
+
         }
     }
 }
