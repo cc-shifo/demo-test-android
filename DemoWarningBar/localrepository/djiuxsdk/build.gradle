@@ -1,0 +1,6 @@
+configurations.maybeCreate("default")
+// add local dependency below
+artifacts.add("default", file('mylibrary-release.aar'))
+task clean(type: Delete) {
+    delete "./build"
+}

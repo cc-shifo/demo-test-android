@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DemoWarningBar</string>
+
+    <string name="waring_bar_empty_content_v2">Normal</string>
+
+</resources>
