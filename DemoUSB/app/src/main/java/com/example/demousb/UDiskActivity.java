@@ -164,7 +164,14 @@ public class UDiskActivity extends AppCompatActivity {
 
 
     private void testCreateDirection(@NonNull String volumeRootPath, int id) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        File rootUSBDisk = new File(volumeRootPath);
+        Log.d(TAG, "testCreateDirection: " + volumeRootPath
+                + ", canRead=" + rootUSBDisk.canRead()
+                + ", canWrite=" + rootUSBDisk.canWrite()
+                + ", canExecute=" + rootUSBDisk.canExecute()
+             );
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
         File dir = new File(volumeRootPath + File.separator + "dir-" + id + "-" +format.format(new Date()));
         boolean createdDir = dir.exists() ? dir.isDirectory() : dir.mkdirs();
         if (createdDir) {

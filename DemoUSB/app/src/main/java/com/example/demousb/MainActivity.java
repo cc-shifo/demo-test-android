@@ -15,17 +15,12 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.demousb.databinding.ActivityMainBinding;
@@ -37,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1024;
     private static final int PERMISSION_MANAGE_ALL_REQUEST_CODE = 1025;
 
-
+    private ActivityResultLauncher<Intent> mLauncherManagerAppAllFiles;
     private ActivityMainBinding mBinding;
     /**
      * Android 10及以下。Manifest中requestLegacyExternalStorage=true
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             // Manifest.permission.BLUETOOTH_ADMIN, // Bluetooth connected products
             android.Manifest.permission.READ_EXTERNAL_STORAGE, // Log files
             // Manifest.permission.RECORD_AUDIO // Speaker accessory
-            android.Manifest.permission.MANAGE_EXTERNAL_STORAGE, // external SD
+            // android.Manifest.permission.MANAGE_EXTERNAL_STORAGE, // external SD
     };
 
 
@@ -71,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         checkAndRequestPermissions();
+        registerLauncherForManagerAppAllFile();
     }
 
 
@@ -88,21 +84,25 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             checkAndRequestPermissions30();
         } else {
-            if (hasPermissions(this, REQUIRED_PERMISSION_LIST)) {
-                init();
-            } else {
-                requestPermissions(REQUIRED_PERMISSION_LIST, PERMISSION_REQUEST_CODE);
-            }
+            checkAndRequestPermissions29();
         }
     }
 
 
     @RequiresApi(api = 30)
     private void checkAndRequestPermissions30() {
-        if (hasPermissions(this, REQUIRED_PERMISSION_LIST_30) && getExtMng()) {
-            init();
+        if (hasPermissions(this, REQUIRED_PERMISSION_LIST_30)) {
+            initBusiness();// 都允许
         } else {
             requestPermissions(REQUIRED_PERMISSION_LIST_30, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private void checkAndRequestPermissions29() {
+        if (hasPermissions(this, REQUIRED_PERMISSION_LIST)) {
+            initBusiness();// 都允许
+        } else {
+            requestPermissions(REQUIRED_PERMISSION_LIST, PERMISSION_REQUEST_CODE);
         }
     }
 
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (i == grantResults.length) {
-                    init();// 都允许
+                    initBusiness();// 都允许
                 } else {
                     requestPermissions(REQUIRED_PERMISSION_LIST, PERMISSION_REQUEST_CODE);
                 }
@@ -146,15 +146,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void init() {
+    private void initBusiness() {
         mBinding.btnUsbDisk.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, UDiskActivity.class);
-            startActivity(intent);
+            initCompactUSBDisk();
         });
         mBinding.btnUsbUsb.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, USBActivity.class);
             startActivity(intent);
         });
+    }
+
+
+    private void initCompactUSBDisk() {
+        if (hasManageAppAllFilesPermission()) {
+            Intent intent = new Intent(MainActivity.this, UDiskActivity.class);
+            startActivity(intent);
+        } else {
+            requestManageAppAllFiles();
+        }
     }
 
     /**
@@ -178,32 +187,42 @@ public class MainActivity extends AppCompatActivity {
      * https://developer.android.google.cn/training/data-storage/shared/media?hl=zh-cn#storage
      * -volume
      */
-    private boolean getExtMng() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                // intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
-                startActivityForResult(intent, PERMISSION_MANAGE_ALL_REQUEST_CODE);
-            }
-        }
+    private boolean hasManageAppAllFilesPermission() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.R ||
+                Environment.isExternalStorageManager();
+    }
 
-        // ActivityResultContracts.StartActivityForResult
-        //
-        // final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
-        //         new ActivityResultContracts.StartActivityForResult(),
-        //         new ActivityResultCallback<ActivityResult>() {
-        //             @Override
-        //             public void onActivityResult(ActivityResult result) {
-        //
-        //             }
-        //         });
-        // Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-        // // intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
-        // launcher.launch(intent, );
+    private void registerLauncherForManagerAppAllFile() {
+        if (!hasManageAppAllFilesPermission()) {
+            mLauncherManagerAppAllFiles = registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent intent = new Intent(MainActivity.this, UDiskActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    private void requestManageAppAllFiles() {
+        // 方式一跳转到总设置界面，然后在总设置界面上选择当前APP，进入到授权界面。
+        Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+        mLauncherManagerAppAllFiles.launch(intent, null);
+
+        // 方式二，直接进入到指定APP的授权界面进行设置。
+        // 必须在intent DATA里设置包名.
+        // For example "package:com.my.app".
+        // https://developer.android.google.cn/reference/android/provider/Settings#ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+        // Intent intent2 = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+        // intent2.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
+        // mLauncherManagerAppAllFiles.launch(intent2, null);
         // // ActivityResultLauncher和registerForActivityResult
 
-        return false;
-        
+        // Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+        // // intent.setData(Uri.parse("package:" + MainActivity.this.getPackageName()));
+        // startActivityForResult(intent, PERMISSION_MANAGE_ALL_REQUEST_CODE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
