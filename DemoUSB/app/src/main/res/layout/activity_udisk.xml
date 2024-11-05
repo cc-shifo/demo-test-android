@@ -14,6 +14,15 @@
         android:text="create dir"
         android:textAllCaps="false"/>
 
+    <Button
+        android:id="@+id/btn_usb_disk_permission_sd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_usb_disk_create_dir"
+        android:text="Allow Access SD"
+        android:textAllCaps="false"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"

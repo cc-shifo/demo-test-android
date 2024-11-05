@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 public class TestFileSelector {
 
     /**
-     * 注意不能访问的目录。详情见{@link TestStorageAccessFramework#openDirectory(Activity, Uri)}
+     * 注意不能访问的目录。/*详情见{@code  TestStorageAccessFramework#openDirectory(Activity, Uri)}
      */
     public static final int PICK_TREE = 30;
 

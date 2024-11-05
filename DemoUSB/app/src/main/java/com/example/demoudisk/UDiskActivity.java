@@ -1,4 +1,4 @@
-package com.example.demousb;
+package com.example.demoudisk;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
+import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -18,16 +19,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.documentfile.provider.DocumentFile;
+import androidx.lifecycle.MutableLiveData;
 
-import com.example.demousb.databinding.ActivityUdiskBinding;
+import com.example.demoudisk.databinding.ActivityUdiskBinding;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +38,7 @@ public class UDiskActivity extends AppCompatActivity {
     private ActivityUdiskBinding mBinding;
     private UDiskReceiver mReceiver;
     private StringBuilder mStringBuilder;
+    private MutableLiveData<List<String>> mLiveData = new MutableLiveData<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +58,17 @@ public class UDiskActivity extends AppCompatActivity {
         }
     }
 
+
+    private Uri mSDUri;
+
     private void initTextLog() {
         mStringBuilder = new StringBuilder();
+
+        mSDUri = getIntent().getData();
     }
 
     private List<String> mVolumeRootPathList = new ArrayList<>(0);
+
     private void initTestBtn() {
         mBinding.btnUsbDiskCreateDir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +79,29 @@ public class UDiskActivity extends AppCompatActivity {
                     return;
                 }
 
-                for (int i = 0; i < mVolumeRootPathList.size(); i++) {
-                    testCreateDirection(mVolumeRootPathList.get(i), i);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    for (int i = 0; i < mVolumeRootPathList.size(); i++) {
+                        testCreateDirection30(mVolumeRootPathList.get(i), i);
+                    }
+                } else {
+                    for (int i = 0; i < mVolumeRootPathList.size(); i++) {
+                        testCreateDirection29(mVolumeRootPathList.get(i), i);
+                    }
                 }
+            }
+        });
+
+        mBinding.btnUsbDiskPermissionSd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // File file = new File("storage/OFF9-2904");
+                // // DocumentFile documentFile = DocumentFile.fromFile(file);
+                // Uri uri = Uri.parse("content://com.android.externalstorage
+                // .documents/tree/0FF9-2904:");
+                // DocumentFile documentFile = DocumentFile.fromTreeUri(UDiskActivity.this, uri);
+                // if (documentFile != null) {
+                //     Log.d(TAG, "onClick: " + documentFile.getUri());
+                // }
             }
         });
     }
@@ -108,13 +136,13 @@ public class UDiskActivity extends AppCompatActivity {
         for (String p : pathList) {
             boolean mounted = checkMounted(srgMgr, p);
             Log.d(TAG, "path: " + p);
-            Log.d(TAG,  "mounted: " + mounted);
+            Log.d(TAG, "mounted: " + mounted);
             File f = new File(p);
 
             StorageVolume volume = srgMgr.getStorageVolume(f);
-            Log.d(TAG,  "state: " + Environment.getExternalStorageState(f));
-            Log.d(TAG,  "isEmulated: " + Environment.isExternalStorageEmulated(f));
-            Log.d(TAG,  "isRemovable: " + Environment.isExternalStorageRemovable(f));
+            Log.d(TAG, "state: " + Environment.getExternalStorageState(f));
+            Log.d(TAG, "isEmulated: " + Environment.isExternalStorageEmulated(f));
+            Log.d(TAG, "isRemovable: " + Environment.isExternalStorageRemovable(f));
             if (mounted) {
                 mVolumeRootPathList.add(p);
             }
@@ -147,9 +175,12 @@ public class UDiskActivity extends AppCompatActivity {
         try {
             Method getStorageState = srgMgr.getClass().getMethod("getVolumeState", String.class);
             String mountState = (String) getStorageState.invoke(srgMgr, path);
-            boolean mounted = !path.contains("emulated") && Environment.MEDIA_MOUNTED.equals(mountState);
-            // Method getStorageVolume = srgMgr.getClass().getMethod("getStorageVolume", File.class);
-            // StorageVolume storageVolume = (StorageVolume)getStorageVolume.invoke(srgMgr, new File(path));
+            boolean mounted = !path.contains("emulated") && Environment.MEDIA_MOUNTED.equals(
+                    mountState);
+            // Method getStorageVolume = srgMgr.getClass().getMethod("getStorageVolume", File
+            // .class);
+            // StorageVolume storageVolume = (StorageVolume)getStorageVolume.invoke(srgMgr, new
+            // File(path));
             // if (storageVolume != null) {
             //     storageVolume.getState();
             // }
@@ -163,22 +194,70 @@ public class UDiskActivity extends AppCompatActivity {
     }
 
 
-    private void testCreateDirection(@NonNull String volumeRootPath, int id) {
+    // android 11及以上
+    private void testCreateDirection30(@NonNull String volumeRootPath, int id) {
         File rootUSBDisk = new File(volumeRootPath);
-        Log.d(TAG, "testCreateDirection: " + volumeRootPath
+        Log.d(TAG, "testCreateDirection30: " + volumeRootPath
                 + ", canRead=" + rootUSBDisk.canRead()
                 + ", canWrite=" + rootUSBDisk.canWrite()
                 + ", canExecute=" + rootUSBDisk.canExecute()
              );
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-        File dir = new File(volumeRootPath + File.separator + "dir-" + id + "-" +format.format(new Date()));
+        File dir = new File(
+                volumeRootPath + File.separator + "dir-" + id + "-" + format.format(new Date()));
         boolean createdDir = dir.exists() ? dir.isDirectory() : dir.mkdirs();
         if (createdDir) {
-            Log.d(TAG, "testCreateDirection: true, " + dir.getAbsolutePath());
+            Log.d(TAG, "testCreateDirection30: true, " + dir.getAbsolutePath());
         } else {
-            Log.d(TAG, "testCreateDirection: false, " + dir.getAbsolutePath());
+            Log.d(TAG, "testCreateDirection30: false, " + dir.getAbsolutePath());
         }
+    }
+
+    private void testCreateDirection29(@NonNull String volumeRootPath, int id) {
+        DocumentsUtils.getExtSdCardPaths(this);
+        File rootUSBDisk = new File(volumeRootPath);
+        Log.d(TAG, "testCreateDirection29: " + volumeRootPath
+                + ", canRead=" + rootUSBDisk.canRead()
+                + ", canWrite=" + rootUSBDisk.canWrite()
+                + ", canExecute=" + rootUSBDisk.canExecute()
+             );
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        DocumentFile root = DocumentFile.fromTreeUri(this, mSDUri);
+        DocumentFile rootDir = DocumentFile.fromTreeUri(UDiskActivity.this, mSDUri);
+        if (rootDir != null && rootDir.canWrite()
+                && rootDir.canRead() && rootDir.isDirectory()) {
+            DocumentFile[]  file = rootDir.listFiles();
+            for (DocumentFile doc : file) {
+                Log.d(TAG, "name: " + doc.getName());
+            }
+        }
+
+
+        DocumentFile documentFile = null;
+        if (root != null) {
+            String path = "abcd" + File.separator
+                    + "123" + File.separator
+                    + "abcd" + File.separator
+                    + format.format(new Date());
+            documentFile = root.createDirectory(path);
+            documentFile.createFile("application/gzip", "demo-hello");
+            documentFile.createFile("*/*", "demo-hello-any-type");
+        }
+        // File dir = new File(volumeRootPath + File.separator + "ASF-dir-" + id + "-" +format
+        // .format(new Date()));
+        // DocumentFile documentFile = DocumentsUtils.getDocumentFile(dir, true,
+        //         UDiskActivity.this);
+        if (documentFile != null) {
+            Log.d(TAG, "testCreateDirection29: DocumentFile" + volumeRootPath
+                    + ", canRead=" + documentFile.canRead()
+                    + ", canWrite=" + documentFile.canWrite()
+                    + ", exists=" + documentFile.exists()
+                    + ", getUri=" + documentFile.getUri()
+                    + ", createDirectory=" + documentFile.createDirectory("123")
+                 );
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -202,13 +281,17 @@ public class UDiskActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.R)
     private void storageManagerCallback(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            StorageManager srgMgr = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
+            StorageManager srgMgr = (StorageManager) context.getSystemService(
+                    Context.STORAGE_SERVICE);
             // srgMgr.registerStorageVolumeCallback(Executor, StorageVolumeCallback)
         }
     }
 
     private static class UDiskReceiver extends BroadcastReceiver {
         private static final String TAG = "UDiskActivity";
+
+
+
         public UDiskReceiver() {
             // nothing
         }
@@ -233,11 +316,25 @@ public class UDiskActivity extends AppCompatActivity {
                     // 获取挂载路径, 读取U盘文件
                     Uri uri = intent.getData();
                     if (uri != null) {
-                        String filePath = uri.getPath();
-                        File rootFile = new File(filePath);
-                        for (File file : Objects.requireNonNull(rootFile.listFiles())) {
-                            Log.d(TAG, "name: " + file.getName() + "Path: " + file.getAbsolutePath());
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            String filePath = uri.getPath();
+                            File rootFile = new File(filePath);
+                            for (File file : Objects.requireNonNull(rootFile.listFiles())) {
+                                Log.d(TAG,
+                                        "name: " + file.getName() + "Path: " + file.getAbsolutePath());
+                            }
+                        } else {
+                           DocumentFile documentFile = DocumentFile.fromTreeUri(context, uri);
+                            if (documentFile != null && documentFile.canWrite()
+                                    && documentFile.canRead()) {
+                                DocumentFile[]  file = documentFile.listFiles();
+                                for (DocumentFile doc : file) {
+                                    Log.d(TAG, "name: " + doc.getName() + "Path: ");
+                                }
+                            }
                         }
+
+
                     }
                     Log.d(TAG, "\n\n");
                     break;

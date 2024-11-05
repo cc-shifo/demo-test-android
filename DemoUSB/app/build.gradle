@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.demousb'
+    namespace 'com.example.demoudisk'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.demousb"
+        applicationId "com.example.demoudisk"
         minSdk 25
         targetSdk 33
         versionCode 1
