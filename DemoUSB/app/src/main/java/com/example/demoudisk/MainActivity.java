@@ -186,7 +186,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     *      int uid = context.getApplicationInfo().uid;
+     *
+     *
+     *      return PackageManager.PERMISSION_GRANTED
+     *                         == context.checkPermission(
+     *                                 Manifest.permission.MANAGE_EXTERNAL_STORAGE, Process.myPid
+     *                                 (), uid);
+     *
+     * {@link Environment#getStorageDirectory()}
+     */
     private void initCompactUSBDisk() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // 11 Use File API Access SD
             if (Environment.isExternalStorageManager()) {
@@ -326,7 +336,25 @@ public class MainActivity extends AppCompatActivity {
                                 // Check for the freshest data.
                                 getContentResolver().takePersistableUriPermission(uri, takeFlags);
                             }
-
+                            Log.d(TAG, "registerLauncherForManagerAppAllFile: Uri=" + uri.toString()
+                                    + "\ngetScheme=" + uri.getScheme()
+                                    + "\ngetAuthority=" + uri.getAuthority()
+                                    + "\ngetPath=" + uri.getPath()
+                                    + "\ngetEncodedPath=" + uri.getEncodedPath()
+                                    + "\ngetFragment=" + uri.getFragment()
+                                    + "\ngetEncodedFragment=" + uri.getEncodedFragment()
+                                    + "\ngetDocumentId=" + (DocumentsContract.isDocumentUri(MainActivity.this, uri)
+                                    ? DocumentsContract.getDocumentId(uri): "not document uri")
+                                 );
+                            // DocumentsContract.isDocumentUri(context, uri)
+                            // DocumentsContract.getDocumentId(uri)
+                            // registerLauncherForManagerAppAllFile: Uri=content://com.android.externalstorage.documents/tree/4B71-8328%3A
+                            // getScheme=content
+                            // getAuthority=com.android.externalstorage.documents
+                            // getPath=/tree/4B71-8328:
+                            // getEncodedPath=/tree/4B71-8328%3A
+                            // getFragment=null
+                            // getEncodedFragment=null
                             // intent.setData(uri);
                             mUri = uri;// SD卡的root Uri传递出去
                         }
@@ -375,7 +403,8 @@ public class MainActivity extends AppCompatActivity {
         // Add a specific media item.
         ContentResolver resolver = getApplicationContext()
                 .getContentResolver();
-
+        // StorageManager#getStorageVolume("");
+        // MediaStore#VOLUME_EXTERNAL
         // Find all audio files on the primary external storage device.
         Uri audioCollection;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

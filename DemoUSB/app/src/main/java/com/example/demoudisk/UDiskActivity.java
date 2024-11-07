@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
-import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -227,7 +226,7 @@ public class UDiskActivity extends AppCompatActivity {
         DocumentFile rootDir = DocumentFile.fromTreeUri(UDiskActivity.this, mSDUri);
         if (rootDir != null && rootDir.canWrite()
                 && rootDir.canRead() && rootDir.isDirectory()) {
-            DocumentFile[]  file = rootDir.listFiles();
+            DocumentFile[] file = rootDir.listFiles();
             for (DocumentFile doc : file) {
                 Log.d(TAG, "name: " + doc.getName());
             }
@@ -291,7 +290,6 @@ public class UDiskActivity extends AppCompatActivity {
         private static final String TAG = "UDiskActivity";
 
 
-
         public UDiskReceiver() {
             // nothing
         }
@@ -316,18 +314,33 @@ public class UDiskActivity extends AppCompatActivity {
                     // 获取挂载路径, 读取U盘文件
                     Uri uri = intent.getData();
                     if (uri != null) {
+                        Log.d(TAG, "onReceive: Uri=" + uri.toString()
+                                + "\ngetScheme=" + uri.getScheme()
+                                + "\ngetAuthority=" + uri.getAuthority()
+                                + "\ngetPath=" + uri.getPath()
+                                + "\ngetEncodedPath=" + uri.getEncodedPath()
+                                + "\ngetFragment=" + uri.getFragment()
+                                + "\ngetEncodedFragment=" + uri.getEncodedFragment()
+                             );
+                        // onReceive: Uri=file:///storage/FE4CC8274CC7D913
+                        // getScheme=file
+                        // getAuthority=getPath=/storage/FE4CC8274CC7D913
+                        // getEncodedPath=/storage/FE4CC8274CC7D913
+                        // getFragment=null
+                        // getEncodedFragment=null
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                             String filePath = uri.getPath();
                             File rootFile = new File(filePath);
                             for (File file : Objects.requireNonNull(rootFile.listFiles())) {
                                 Log.d(TAG,
-                                        "name: " + file.getName() + "Path: " + file.getAbsolutePath());
+                                        "name: " + file.getName() + "Path: " +
+                                                file.getAbsolutePath());
                             }
                         } else {
-                           DocumentFile documentFile = DocumentFile.fromTreeUri(context, uri);
+                            DocumentFile documentFile = DocumentFile.fromTreeUri(context, uri);
                             if (documentFile != null && documentFile.canWrite()
                                     && documentFile.canRead()) {
-                                DocumentFile[]  file = documentFile.listFiles();
+                                DocumentFile[] file = documentFile.listFiles();
                                 for (DocumentFile doc : file) {
                                     Log.d(TAG, "name: " + doc.getName() + "Path: ");
                                 }
