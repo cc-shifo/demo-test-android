@@ -54,6 +54,42 @@ public class DocumentsUtils {
          * {@link MediaStore.VOLUME_INTERNAL} == "internal"
          * {@link android.os.storage.StorageManager#getStorageVolume(Uri)}
          * {@link MediaStore#getVolumeName(Uri)}
+         *
+         *
+         *
+         *     public static final String DIRECTORY_ANDROID = DIR_ANDROID;
+         *
+         *     private static final File DIR_ANDROID_ROOT = getDirectory(ENV_ANDROID_ROOT,
+         *     "/system");
+         *     private static final String DIR_ANDROID_DATA_PATH = getDirectoryPath
+         *     (ENV_ANDROID_DATA, "/data");
+         *     private static final File DIR_ANDROID_DATA = new File(DIR_ANDROID_DATA_PATH);
+         *     private static final File DIR_ANDROID_EXPAND = getDirectory(ENV_ANDROID_EXPAND,
+         *     "/mnt/expand");
+         *     private static final File DIR_ANDROID_STORAGE = getDirectory(ENV_ANDROID_STORAGE,
+         *     "/storage");
+         *     private static final File DIR_DOWNLOAD_CACHE = getDirectory(ENV_DOWNLOAD_CACHE,
+         *     "/cache");
+         *     private static final File DIR_METADATA = new File("/metadata");
+         *     private static final File DIR_OEM_ROOT = getDirectory(ENV_OEM_ROOT, "/oem");
+         *     private static final File DIR_ODM_ROOT = getDirectory(ENV_ODM_ROOT, "/odm");
+         *     private static final File DIR_VENDOR_ROOT = getDirectory(ENV_VENDOR_ROOT, "/vendor");
+         *     private static final File DIR_PRODUCT_ROOT = getDirectory(ENV_PRODUCT_ROOT,
+         *     "/product");
+         *     private static final File DIR_SYSTEM_EXT_ROOT = getDirectory(ENV_SYSTEM_EXT_ROOT,
+         *             "/system_ext");
+         *     private static final File DIR_APEX_ROOT = getDirectory(ENV_APEX_ROOT,
+         *             "/apex");
+         *
+         *
+         *
+         *     static File getDirectory(String variableName, String defaultPath) {
+         *         String path = System.getenv(variableName);
+         *         return path == null ? new File(defaultPath) : new File(path);
+         *     }
+         *
+         *
+         *
          *  String volumeName = MediaStore.getVolumeName(uri);
          *
          *         // When Uri is pointing at a synthetic volume, we're willing to query to
@@ -77,6 +113,7 @@ public class DocumentsUtils {
          *                     }
          *                 }
          *         }
+         *
          *
          *
          * {@link android.os.Environment#DIRECTORY_DOWNLOADS} == "Download"

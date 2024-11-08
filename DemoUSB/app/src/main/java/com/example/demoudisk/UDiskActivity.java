@@ -314,6 +314,7 @@ public class UDiskActivity extends AppCompatActivity {
                     // 获取挂载路径, 读取U盘文件
                     Uri uri = intent.getData();
                     if (uri != null) {
+                        String storage = System.getenv("ANDROID_STORAGE");
                         Log.d(TAG, "onReceive: Uri=" + uri.toString()
                                 + "\ngetScheme=" + uri.getScheme()
                                 + "\ngetAuthority=" + uri.getAuthority()
@@ -321,14 +322,22 @@ public class UDiskActivity extends AppCompatActivity {
                                 + "\ngetEncodedPath=" + uri.getEncodedPath()
                                 + "\ngetFragment=" + uri.getFragment()
                                 + "\ngetEncodedFragment=" + uri.getEncodedFragment()
+                                + "getLastPathSegment: " + uri.getLastPathSegment()
+                                + "System.getenv(\"ANDROID_STORAGE\"): " + storage != null ?
+                                storage : "is null, default /storage"
                              );
+
                         // onReceive: Uri=file:///storage/FE4CC8274CC7D913
                         // getScheme=file
                         // getAuthority=getPath=/storage/FE4CC8274CC7D913
                         // getEncodedPath=/storage/FE4CC8274CC7D913
                         // getFragment=null
                         // getEncodedFragment=null
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        // System.getenv("ANDROID_STORAGE"): /storage
+                        // getStorageDirectory: /storage
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            Log.d(TAG, "getStorageDirectory: " + Environment.getStorageDirectory()
+                                    .getAbsolutePath());
                             String filePath = uri.getPath();
                             File rootFile = new File(filePath);
                             for (File file : Objects.requireNonNull(rootFile.listFiles())) {
