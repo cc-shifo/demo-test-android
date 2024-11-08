@@ -50,6 +50,35 @@ public class DocumentsUtils {
         }
         /**
          * {@link MediaStore.VOLUME_EXTERNAL} == "external"
+         * {@link MediaStore.VOLUME_EXTERNAL_PRIMARY} == "external_primary"
+         * {@link MediaStore.VOLUME_INTERNAL} == "internal"
+         * {@link android.os.storage.StorageManager#getStorageVolume(Uri)}
+         * {@link MediaStore#getVolumeName(Uri)}
+         *  String volumeName = MediaStore.getVolumeName(uri);
+         *
+         *         // When Uri is pointing at a synthetic volume, we're willing to query to
+         *         // resolve the actual volume name
+         *         if (Objects.equals(volumeName, MediaStore.VOLUME_EXTERNAL)) {
+         *             try (Cursor c = mContext.getContentResolver().query(uri,
+         *                     new String[] { MediaStore.MediaColumns.VOLUME_NAME }, null, null)) {
+         *                 if (c.moveToFirst()) {
+         *                     volumeName = c.getString(0);
+         *                 }
+         *             }
+         *         }
+         *
+         *         switch (volumeName) {
+         *             case MediaStore.VOLUME_EXTERNAL_PRIMARY:
+         *                 return getPrimaryStorageVolume();
+         *             default:
+         *                 for (StorageVolume vol : getStorageVolumes()) {
+         *                     if (Objects.equals(vol.getMediaStoreVolumeName(), volumeName)) {
+         *                         return vol;
+         *                     }
+         *                 }
+         *         }
+         *
+         *
          * {@link android.os.Environment#DIRECTORY_DOWNLOADS} == "Download"
          * {@link android.os.Environment#DIRECTORY_DCIM} == "DCIM"
          *
