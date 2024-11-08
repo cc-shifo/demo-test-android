@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
+import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -310,7 +311,7 @@ public class UDiskActivity extends AppCompatActivity {
                     Log.d(TAG, "onReceive: ACTION_MEDIA_SCANNER_FINISHED");
                     break;
                 case Intent.ACTION_MEDIA_MOUNTED:
-                    Log.d(TAG, "onReceive: ACTION_MEDIA_SCANNER_FINISHED");
+                    Log.d(TAG, "onReceive: ACTION_MEDIA_MOUNTED");
                     // 获取挂载路径, 读取U盘文件
                     Uri uri = intent.getData();
                     if (uri != null) {
@@ -322,9 +323,9 @@ public class UDiskActivity extends AppCompatActivity {
                                 + "\ngetEncodedPath=" + uri.getEncodedPath()
                                 + "\ngetFragment=" + uri.getFragment()
                                 + "\ngetEncodedFragment=" + uri.getEncodedFragment()
-                                + "getLastPathSegment: " + uri.getLastPathSegment()
-                                + "System.getenv(\"ANDROID_STORAGE\"): " + storage != null ?
-                                storage : "is null, default /storage"
+                                + "\ngetLastPathSegment: " + uri.getLastPathSegment()
+                                + "\nSystem.getenv(\"ANDROID_STORAGE\"): " + (storage != null ?
+                                storage : "is null, default /storage")
                              );
 
                         // onReceive: Uri=file:///storage/FE4CC8274CC7D913
@@ -346,19 +347,24 @@ public class UDiskActivity extends AppCompatActivity {
                                                 file.getAbsolutePath());
                             }
                         } else {
-                            DocumentFile documentFile = DocumentFile.fromTreeUri(context, uri);
-                            if (documentFile != null && documentFile.canWrite()
-                                    && documentFile.canRead()) {
-                                DocumentFile[] file = documentFile.listFiles();
-                                for (DocumentFile doc : file) {
-                                    Log.d(TAG, "name: " + doc.getName() + "Path: ");
+                            // Uri=file:///storage/FE4CC8274CC7D913
+                            if (DocumentsContract.isTreeUri(uri)) {
+                                // 不是treeUri
+                                // DocumentFile documentFile = DocumentFile.fromTreeUri会崩溃
+                                DocumentFile documentFile = DocumentFile.fromTreeUri(context, uri);
+                                if (documentFile != null && documentFile.canWrite()
+                                        && documentFile.canRead()) {
+                                    DocumentFile[] file = documentFile.listFiles();
+                                    for (DocumentFile doc : file) {
+                                        Log.d(TAG, "name: " + doc.getName() + "Path: ");
+                                    }
                                 }
                             }
                         }
 
 
                     }
-                    Log.d(TAG, "\n\n");
+                    // Log.d(TAG, "\n\n");
                     break;
                 case Intent.ACTION_MEDIA_EJECT:
                     Log.d(TAG, "onReceive: ACTION_MEDIA_EJECT");
