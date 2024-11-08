@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.documentfile.provider.DocumentFile;
@@ -47,6 +48,20 @@ public class DocumentsUtils {
         if (sExtSdCardPaths.size() > 0) {
             return sExtSdCardPaths.toArray(new String[0]);
         }
+        /**
+         * {@link MediaStore.VOLUME_EXTERNAL} == "external"
+         * {@link android.os.Environment#DIRECTORY_DOWNLOADS} == "Download"
+         * {@link android.os.Environment#DIRECTORY_DCIM} == "DCIM"
+         *
+         * {@link android.os.Environment#getExternalStorageDirectory()}
+         * don't be confused by the word "external" here. This directory
+         * can better be thought as media/shared storage. It is a filesystem that
+         * can hold a relatively large amount of data and that is shared across all
+         * applications (does not enforce permissions). Traditionally this is an SD
+         * card, but it may also be implemented as built-in storage in a device that
+         * is distinct from the protected internal storage and can be mounted as a
+         * filesystem on a computer
+         */
         for (File file : context.getExternalFilesDirs("external")) {
             if (file != null && !file.equals(context.getExternalFilesDir("external"))) {
                 int index = file.getAbsolutePath().lastIndexOf("/Android/data");

@@ -343,9 +343,14 @@ public class MainActivity extends AppCompatActivity {
                                     + "\ngetEncodedPath=" + uri.getEncodedPath()
                                     + "\ngetFragment=" + uri.getFragment()
                                     + "\ngetEncodedFragment=" + uri.getEncodedFragment()
-                                    + "\ngetDocumentId=" + (DocumentsContract.isDocumentUri(MainActivity.this, uri)
-                                    ? DocumentsContract.getDocumentId(uri): "not document uri")
-                                 );
+                                    + "\ngetDocumentId=" + (DocumentsContract
+                                    .isDocumentUri(MainActivity.this, uri) ?
+                                    DocumentsContract.getDocumentId(uri): "not document uri")
+                                    + "\nisTreeUri=" + DocumentsContract.isTreeUri(uri)
+                                    // + "\nisTreeUri=" + DocumentsContract.EXTERNAL_STORAGE_PROVIDER_AUTHORITY
+                                    // + "\nisTreeUri=" + Providers.AUTHORITY_STORAGE // DocumentUI
+
+                            );
                             // DocumentsContract.isDocumentUri(context, uri)
                             // DocumentsContract.getDocumentId(uri)
                             // registerLauncherForManagerAppAllFile: Uri=content://com.android.externalstorage.documents/tree/4B71-8328%3A
@@ -355,6 +360,8 @@ public class MainActivity extends AppCompatActivity {
                             // getEncodedPath=/tree/4B71-8328%3A
                             // getFragment=null
                             // getEncodedFragment=null
+                            // getDocumentId=not document uri
+                            // isTreeUri=true
                             // intent.setData(uri);
                             mUri = uri;// SD卡的root Uri传递出去
                         }
