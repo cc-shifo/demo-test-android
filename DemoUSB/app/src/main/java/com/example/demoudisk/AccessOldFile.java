@@ -22,6 +22,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
 
+import org.jetbrains.annotations.NonNls;
+
 import java.io.File;
 import java.util.Formatter;
 import java.util.List;
@@ -48,12 +50,12 @@ public class AccessOldFile {
 
     private static Formatter formatter = new Formatter();
 
-    private static String formatTest(String format, Object ... args) {
+    private static String formatTest(String format, Object... args) {
         return formatter.format(format, args).toString();
     }
 
 
-    public static Intent createAccessIntent(@NonNull String directoryName) {
+    public static Intent createAccessIntent(@NonNull Activity activity, @NonNull String directoryName) {
         // @hide !Environment.isStandardDirectory(directoryName)
         final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -68,57 +70,57 @@ public class AccessOldFile {
             String path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + File.separator;
             DocumentFile documentFile = DocumentFile.fromFile(new File(path));
-            Log.d(TAG, formatTest("documentFile: exists=%b, canWrite=%b, canRead=%b",
+            logD(formatTest("documentFile: exists=%b, canWrite=%b, canRead=%b",
                     documentFile.exists(), documentFile.canWrite(), documentFile.canRead()));
             if (documentFile.exists()) {
                 spcUri = documentFile.getUri();
-                Log.d(TAG, "documentFile: uri=%s", spcUri.toString());
+                logD("documentFile: uri=%s", spcUri.toString());
             }
             // 试验2 Download下的路径：包名
             path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + File.separator
-                    + Utils.getApp().getPackageName();
+                    + activity.getPackageName();
             documentFile = DocumentFile.fromFile(new File(path));
-            Log.d(TAG, "documentFile: exists=%b, canWrite=%b, canRead=%b",
+            logD("documentFile: exists=%b, canWrite=%b, canRead=%b",
                     documentFile.exists(), documentFile.canWrite(), documentFile.canRead());
             if (documentFile.exists()) {
                 spcUri = documentFile.getUri();
-                Log.d(TAG, "documentFile: uri=%s", spcUri.toString());
+                logD("documentFile: uri=%s", spcUri.toString());
             }
 
             // 试验3 Download下的路径：包名+param
             path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()
-                    + File.separator + Utils.getApp().getPackageName()
+                    + File.separator + activity.getPackageName()
                     + File.separator + "param";
             documentFile = DocumentFile.fromFile(new File(path));
             // documentFile: exists=true, canWrite=true, canRead=true, length=3452(line:84)
-            Log.d(TAG, "documentFile: exists=%b, canWrite=%b, canRead=%b, length=%d",
+            logD("documentFile: exists=%b, canWrite=%b, canRead=%b, length=%d",
                     documentFile.exists(), documentFile.canWrite(), documentFile.canRead(),
                     documentFile.length());
             if (documentFile.exists()) {
                 spcUri = documentFile.getUri();
                 // documentFile: uri=file:///storage/emulated/0/Download/com.zhdgps.hdars/param
-                Log.d(TAG, "documentFile: uri=%s", spcUri.toString());
-                Log.d(TAG, "documentFile: delete=%b", documentFile.delete());// false
+                logD("documentFile: uri=%s", spcUri.toString());
+                logD("documentFile: delete=%b", documentFile.delete());// false
             }
 
 
             // StorageVolume
-            StorageManager srgMgr = (StorageManager) Utils.getApp().getSystemService(
+            StorageManager srgMgr = (StorageManager) activity.getSystemService(
                     Context.STORAGE_SERVICE);
             StorageVolume volume = srgMgr.getPrimaryStorageVolume();
             // final String rootId = isEmulated()// primary
             //         ? DocumentsContract.EXTERNAL_STORAGE_PRIMARY_EMULATED_ROOT_ID
             //         : mFsUuid;
             String mFsUuid = volume.getUuid();// output null
-            Log.d(TAG, "mFsUuid=%s", mFsUuid);// false
+            logD("mFsUuid=%s", mFsUuid);// false
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
-                Log.d(TAG, "getStorageUuid=%s", volume.getStorageUuid().toString());// false
+                logD("getStorageUuid=%s", volume.getStorageUuid().toString());// false
             }
             path = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()
-                    + File.separator + Utils.getApp().getPackageName()
+                    + File.separator + activity.getPackageName()
                     + File.separator + "param";
             // StorageVolume#createOpenDocumentTreeIntent
             // DocumentsContract.EXTERNAL_STORAGE_PRIMARY_EMULATED_ROOT_ID // primary
@@ -129,12 +131,12 @@ public class AccessOldFile {
             //             Uri.withAppendedPath(rootUri, path);
             Uri.Builder builder = rootUri.buildUpon();
             builder = builder.appendEncodedPath(Environment.DIRECTORY_DOWNLOADS)
-                    .appendEncodedPath(Utils.getApp().getPackageName());
+                    .appendEncodedPath(activity.getPackageName());
             spcUri = builder.build();
             // final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
             //         .putExtra(DocumentsContract.EXTRA_INITIAL_URI, rootUri)
             //         .putExtra(DocumentsContract.EXTRA_SHOW_ADVANCED, true);
-            Log.d(TAG, "buildRootUri=%s", spcUri.toString());// false
+            logD("buildRootUri=%s", spcUri.toString());// false
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -148,7 +150,7 @@ public class AccessOldFile {
                     path = uri.toString();
                 }
                 // content://com.android.externalstorage.documents/root/primary
-                Log.d(TAG, "createOpenDocumentTreeIntent=%s", path);
+                logD("createOpenDocumentTreeIntent=%s", path);
             }
             String original = new String(path);
 
@@ -157,31 +159,31 @@ public class AccessOldFile {
             tmp += "%3A";
 
             tmp += ("%2F" + Environment.DIRECTORY_DOWNLOADS);
-            tmp += ("%2F" + Utils.getApp().getPackageName());
+            tmp += ("%2F" + activity.getPackageName());
             spcUri = Uri.parse(tmp);
             // spcUri=content://com.android.externalstorage
             // .documents/document/primary%3A%2FDownload%2Fcom.zhdgps.hdars
-            Log.d(TAG, "spcUri=%s", spcUri);
+            logD("spcUri=%s", spcUri);
 
             tmp = new String(path);
             tmp = tmp.replace("root", "document");
             tmp += "%3A";
             spcUri = Uri.parse(tmp);
             spcUri = spcUri.buildUpon().appendEncodedPath(Environment.DIRECTORY_DOWNLOADS)
-                    .appendEncodedPath(Utils.getApp().getPackageName())
+                    .appendEncodedPath(activity.getPackageName())
                     .build();
             // 结果：不能用， appendEncodedPath内部携带了没有编码的文件分隔符。
             // spcUri=content://com.android.externalstorage
             // .documents/document/primary%3A/Download/com.zhdgps.hdars
-            Log.d(TAG, "spcUri=%s", spcUri.toString());
+            logD("spcUri=%s", spcUri.toString());
 
 
             // 测试File.separator能否被编码%2F
             String path2 = Environment.DIRECTORY_DOWNLOADS +
-                    File.separator + Utils.getApp().getPackageName();
+                    File.separator + activity.getPackageName();
             String encodeStr = Uri.encode(path2);
             // encodeStr=%2FDownload%2Fcom.zhdgps.hdars
-            Log.d(TAG, "encodeStr=%s", encodeStr);
+            logD("encodeStr=%s", encodeStr);
 
             // 测试能否直接使用路径。结果：可以用，但是没有被编译成%2F
             spcUri = Uri.parse(tmp);
@@ -189,7 +191,7 @@ public class AccessOldFile {
                     .build();
             // content://com.android.externalstorage.documents/document/primary%3A/Download/com
             // .zhdgps.hdars
-            Log.d(TAG, "appendEncodedPath path2=%s", spcUri.toString());
+            logD("appendEncodedPath path2=%s", spcUri.toString());
             spcUri = Uri.parse(tmp);
 
             // 测试Uri.encode后的路径能否直接使用。结果：可以用，但是在%3A之后的文件分隔符还是没有转成%2F
@@ -197,7 +199,7 @@ public class AccessOldFile {
                     .build();
             // path3=content://com.android.externalstorage
             // .documents/document/primary%3A/Download%2Fcom.zhdgps.hdars
-            Log.d(TAG, "appendEncodedPath path3=%s", spcUri.toString());
+            logD("appendEncodedPath path3=%s", spcUri.toString());
 
             // 测试字符串中有被编码的%3A和没有被编码的文件分隔符，能不能统一再次编码。
             spcUri = Uri.parse(tmp);
@@ -205,25 +207,25 @@ public class AccessOldFile {
                     .build();
             spcUri = Uri.parse(Uri.encode(spcUri.toString()));
             // 结果：再次编码将会把之前的%3A格式化错误。
-            Log.d(TAG, "Uri.parse(Uri.encode=%s", spcUri.toString());
+            logD("Uri.parse(Uri.encode=%s", spcUri.toString());
 
 
             // 结果：正常的需要编码。
             String okTmp = original.replace("root", "document");
             okTmp += "%3A";
             okTmp += ("%2F" + Environment.DIRECTORY_DOWNLOADS);
-            okTmp += ("%2F" + Utils.getApp().getPackageName());
+            okTmp += ("%2F" + activity.getPackageName());
             spcUri = Uri.parse(okTmp);
             // spcUri=content://com.android.externalstorage
             // .documents/document/primary%3A%2FDownload%2Fcom.zhdgps.hdars
-            Log.d(TAG, "spcUri=%s", spcUri);
+            logD("spcUri=%s", spcUri);
 
-            boolean granted = Utils.getApp().getApplicationContext().checkCallingUriPermission(
+            boolean granted = activity.getApplicationContext().checkCallingUriPermission(
                     spcUri,
                     /*Intent.FLAG_GRANT_READ_URI_PERMISSION
                             | */Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                     == PackageManager.PERMISSION_GRANTED;
-            Log.d(TAG, "GRANT_READ_and GRANT_WRITE_URI  granted=%b", granted);
+            logD("GRANT_READ_and GRANT_WRITE_URI  granted=%b", granted);
             if (granted) {
                 return null;
             }
@@ -232,28 +234,32 @@ public class AccessOldFile {
             final String testUir =
                     "content://com.android.externalstorage" +
                             ".documents/tree/primary%3ADownload%2Fcom.zhdgps.hdars";
-            granted = Utils.getApp().getApplicationContext().checkCallingUriPermission(
+            granted = activity.getApplicationContext().checkCallingUriPermission(
                     Uri.parse(testUir),
                     Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                     == PackageManager.PERMISSION_GRANTED;
             // checkCallingUriPermission  granted=false
-            Log.d(TAG, "checkCallingUriPermission  granted=%b", granted);
+            logD("checkCallingUriPermission  granted=%b", granted);
 
 
-            Log.d(TAG, "testUir=%s\n\n\n", testUir);
+            // AccessOldFile: permUri: content://com.android.externalstorage
+            // .documents/tree/primary%3ADownload%2Fcom.zhdgps.hdars,
+            // getPath=/tree/primary:Download/com.zhdgps.hdars, getFragment=null,
+            // getPathSegments=[tree, primary:Download/com.zhdgps.hdars],
+            logD("testUir=%s\n\n\n", testUir);
             List<UriPermission> uriPermissions =
-                    Utils.getApp().getApplicationContext().getContentResolver()
+                    activity.getApplicationContext().getContentResolver()
                             .getPersistedUriPermissions();
             for (UriPermission uriPermission : uriPermissions) {
                 Uri permUri = uriPermission.getUri();
                 String permUriStr = permUri.toString();
-                Log.d(TAG, "permUri: %s, getPath=%s, getFragment=%s, getPathSegments=%s, ",
+                logD("permUri: %s, getPath=%s, getFragment=%s, getPathSegments=%s, ",
                         permUriStr, permUri.getPath(),
                         permUri.getFragment(), permUri.getPathSegments().toString());
                 boolean permWrite = uriPermission.isWritePermission();
                 boolean permRead = uriPermission.isReadPermission();
                 boolean permUriGranted = permUriStr.equals(testUir) && permWrite && permRead;
-                Log.d(TAG, "UriPermission: %s, permWrite=%b, permRead=%b,  uriGranted=%b",
+                logD("UriPermission: %s, permWrite=%b, permRead=%b,  uriGranted=%b",
                         permUriStr, permWrite, permRead, permUriGranted);
                 if (permUriGranted) {
                     return null;
@@ -271,6 +277,11 @@ public class AccessOldFile {
         return intent;
     }
 
+    public static void logD(@NonNls String message, Object... args) {
+        formatter.format(message, args);
+        logD(formatter.toString());
+    }
+
     public static void initOldAccess1Permission(@NonNull final ComponentActivity activity) {
         mOldAccessLauncher1 = activity.registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -286,35 +297,35 @@ public class AccessOldFile {
                             // Android 7~10 SAF Uri
                             mOldFileUrl = data.getData();// U disk的tree Uri
                             if (mOldFileUrl != null) {
-                                Log.d(TAG, "mOldAccessLauncher: Downloads EXTERNAL_CONTENT_URI=%s",
+                                logD("mOldAccessLauncher: Downloads EXTERNAL_CONTENT_URI=%s",
                                         MediaStore.Downloads.EXTERNAL_CONTENT_URI);
-                                Log.d(TAG, "mOldAccessLauncher: Downloads INTERNAL_CONTENT_URI=%s",
+                                logD("mOldAccessLauncher: Downloads INTERNAL_CONTENT_URI=%s",
                                         MediaStore.Downloads.INTERNAL_CONTENT_URI);
-                                Log.d(TAG, "mOldAccessLauncher: mOldFileUrl=%s",
+                                logD("mOldAccessLauncher: mOldFileUrl=%s",
                                         mOldFileUrl.toString());
-                                Log.d(TAG, "mOldAccessLauncher: isTreeUri=%b",
+                                logD("mOldAccessLauncher: isTreeUri=%b",
                                         DocumentsContract.isTreeUri(mOldFileUrl));
-                                Log.d(TAG, "mOldAccessLauncher: isDocumentUri=%b",
+                                logD("mOldAccessLauncher: isDocumentUri=%b",
                                         DocumentsContract.isDocumentUri(activity, mOldFileUrl));
                                 final List<String> paths = mOldFileUrl.getPathSegments();
                                 for (int i = 0; i < paths.size(); i++) {
-                                    Log.d(TAG, "mOldAccessLauncher: getPathSegments[%d]=%s", i,
+                                    logD("mOldAccessLauncher: getPathSegments[%d]=%s", i,
                                             paths.get(i));
                                 }
 
 
-                                boolean granted = Utils.getApp().getApplicationContext()
+                                boolean granted = activity
                                         .checkCallingUriPermission(mOldFileUrl,
                                                 Intent.FLAG_GRANT_READ_URI_PERMISSION
                                                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                                         == PackageManager.PERMISSION_GRANTED;
-                                Log.d(TAG, "GRANT_READ_and GRANT_WRITE_URI  granted=%b", granted);
+                                logD("GRANT_READ_and GRANT_WRITE_URI  granted=%b", granted);
 
                                 // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                                 //     List<Uri> collections = new ArrayList<>();
                                 //     collections.add(mOldFileUrl);
                                 //     PendingIntent pendingIntent = MediaStore.createDeleteRequest(
-                                //             Utils.getApp().getContentResolver(),
+                                //             activity.getContentResolver(),
                                 //             collections);
                                 //     try {
                                 //         activity.startIntentSenderForResult(pendingIntent
@@ -340,21 +351,21 @@ public class AccessOldFile {
                                     DocumentFile[] fileList = file.listFiles();
                                     for (DocumentFile f : fileList) {
                                         // exists=true, canRead=true, canWrite=true, length=3452
-                                        Log.d(TAG,
+                                        logD(
                                                 "fileList: name=%s exists=%b, canRead=%b, " +
                                                         "canWrite=%b, length=%d",
                                                 f.getName(), f.exists(), f.canRead(), f.canWrite(),
                                                 f.length());
                                         if ("param".equals(f.getName())) {
                                             // AccessOldFile: param delete=true
-                                            Log.d(TAG, "param delete=%b", f.delete());
+                                            logD("param delete=%b", f.delete());
                                         }
                                     }
                                 }
 
 
                                 List<UriPermission> uriPermissions =
-                                        Utils.getApp().getContentResolver()
+                                        activity.getContentResolver()
                                                 .getPersistedUriPermissions();
                                 for (UriPermission uriPermission : uriPermissions) {
                                     String permUriStr = uriPermission.getUri().toString();
@@ -362,7 +373,7 @@ public class AccessOldFile {
                                     boolean permRead = uriPermission.isReadPermission();
                                     boolean permUriGranted = permUriStr.equals(
                                             mOldFileUrl.toString()) && permWrite && permRead;
-                                    Log.d(TAG,
+                                    logD(
                                             "uriPermissions getContentResolver: %s, permWrite=%b," +
                                                     " permRead=%b,  uriGranted=%b",
                                             permUriStr, permWrite, permRead, permUriGranted);
@@ -382,8 +393,8 @@ public class AccessOldFile {
                                 // // 特别注意相对路径要添加结束时的文件分隔符，不加的话查询不到。
                                 // String[] cv1 = new String[]{
                                 //         /*Environment.DIRECTORY_DOWNLOADS + File.separator,*/
-                                //         Utils.getApp().getPackageName()};
-                                // ContentResolver crl1 = Utils.getApp().getContentResolver();
+                                //         activity.getPackageName()};
+                                // ContentResolver crl1 = activity.getContentResolver();
                                 // try (Cursor cursor = crl1.query(MediaStore.Downloads
                                 // .EXTERNAL_CONTENT_URI,
                                 //         columns, null, null, null)) {
@@ -396,7 +407,7 @@ public class AccessOldFile {
                                 //         while (cursor.moveToNext()) {
                                 //             if (id >= 0) {
                                 //                 fileId = cursor.getString(id);
-                                //                 Log.d(TAG, "RELATIVE_PATH: %s, %s", fileId,
+                                //                 logD("RELATIVE_PATH: %s, %s", fileId,
                                 //                         cursor.getString(idFilePath));
                                 //                 break;
                                 //             }
@@ -415,7 +426,7 @@ public class AccessOldFile {
                                 // takeFlags);
                                 // Uri spcUri = Uri.withAppendedPath(mOldFileUrl, "param");
                                 // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                //     Log.d(TAG, "mOldAccessLauncher: spcUri=%s", spcUri
+                                //     logD("mOldAccessLauncher: spcUri=%s", spcUri
                                 //     .toString());
                                 //     contentResolver.delete(mOldFileUrl, null);
                                 // }
@@ -424,7 +435,7 @@ public class AccessOldFile {
                                 //     return paths.get(3);
                                 // }
                                 // String id = DocumentsContract.getDocumentId(mOldFileUrl);
-                                // Log.d(TAG, "mOldAccessLauncher: %s, %s", mOldFileUrl.toString(),
+                                // logD("mOldAccessLauncher: %s, %s", mOldFileUrl.toString(),
                                 // id);
                             }
                         }
@@ -443,7 +454,7 @@ public class AccessOldFile {
             public void onActivityResult(Uri result) {
                 mOldFileUrl = result;
                 if (mOldFileUrl != null) {
-                    Log.d(TAG, "mOldAccessLauncher2: " + mOldFileUrl.toString());
+                    logD("mOldAccessLauncher2: " + mOldFileUrl.toString());
                 }
             }
         });
