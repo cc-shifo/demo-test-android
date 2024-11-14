@@ -157,11 +157,12 @@ public class AccessOldFile {
             }
             String original = new String(path);
 
+
+            // 打开时使用content://com.android.externalstorage.documents/document/
             String tmp = new String(path);
             tmp = tmp.replace("root", "document");
             tmp += "%3A";
-
-            tmp += ("%2F" + Environment.DIRECTORY_DOWNLOADS);
+            tmp += (Environment.DIRECTORY_DOWNLOADS);
             tmp += ("%2F" + activity.getPackageName());
             spcUri = Uri.parse(tmp);
             // spcUri=content://com.android.externalstorage
@@ -213,10 +214,13 @@ public class AccessOldFile {
             logD("Uri.parse(Uri.encode=%s", spcUri.toString());
 
 
+            // 打开时使用content://com.android.externalstorage.documents/document/
+            // spcUri=content://com.android.externalstorage
+            // .documents/document/primary%3A%2FDownload%2Fcom.zhdgps.hdars
             // 结果：正常的需要编码。
             String okTmp = original.replace("root", "document");
             okTmp += "%3A";
-            okTmp += ("%2F" + Environment.DIRECTORY_DOWNLOADS);
+            okTmp += (/*"%2F" + */Environment.DIRECTORY_DOWNLOADS);
             okTmp += ("%2F" + activity.getPackageName());
             spcUri = Uri.parse(okTmp);
             // spcUri=content://com.android.externalstorage
@@ -233,7 +237,8 @@ public class AccessOldFile {
                 return null;
             }
 
-
+            // 授权时，使用回调里输出的tree uri
+            // 授权时，使用content://com.android.externalstorage.documents/tree/
             final String testUir =
                     "content://com.android.externalstorage" +
                             ".documents/tree/primary%3ADownload%2Fcom.zhdgps.hdars";
@@ -245,6 +250,8 @@ public class AccessOldFile {
             logD("checkCallingUriPermission  granted=%b", granted);
 
 
+            // 检查时，使用回调里输出的tree uri
+            // 检查时，使用content://com.android.externalstorage.documents/tree/
             // AccessOldFile: permUri: content://com.android.externalstorage
             // .documents/tree/primary%3ADownload%2Fcom.zhdgps.hdars,
             // getPath=/tree/primary:Download/com.zhdgps.hdars, getFragment=null,
