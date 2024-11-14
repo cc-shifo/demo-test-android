@@ -105,6 +105,9 @@ public class AccessOldFile {
                 logD("documentFile: delete=%b", documentFile.delete());// false
             }
 
+            // ContentResolver 不一样
+            logD("app=%s, activity=%s", activity.getApplicationContext().getContentResolver(),
+                    activity.getContentResolver());
 
             // StorageVolume
             StorageManager srgMgr = (StorageManager) activity.getSystemService(
