@@ -214,6 +214,10 @@ public class AccessOldFile {
             logD("Uri.parse(Uri.encode=%s", spcUri.toString());
 
 
+            // 打开时可以不用添加flag，如final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            //                     | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            //                     | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
+            //             intent.addFlags(takeFlags);
             // 打开时使用content://com.android.externalstorage.documents/document/
             // spcUri=content://com.android.externalstorage
             // .documents/document/primary%3A%2FDownload%2Fcom.zhdgps.hdars
@@ -237,6 +241,7 @@ public class AccessOldFile {
                 return null;
             }
 
+            // 授权时，持久的使用take, 单次的使用grant
             // 授权时，使用回调里输出的tree uri
             // 授权时，使用content://com.android.externalstorage.documents/tree/
             final String testUir =
@@ -347,6 +352,8 @@ public class AccessOldFile {
                                 // }
 
 
+                                // 授权时，持久的使用take, 单次的使用grant
+                                // 授权时，使用回调里输出的tree uri
                                 activity.grantUriPermission(activity.getPackageName(), mOldFileUrl,
                                         Intent
                                                 .FLAG_GRANT_READ_URI_PERMISSION | Intent
