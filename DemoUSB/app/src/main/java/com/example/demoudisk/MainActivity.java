@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Android 13
+     * target 33即以上申请READ_EXTERNAL_STORAGE立即返回false，在target 33之下是true。
      */
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     private static final String[] REQUIRED_PERMISSION_LIST_33 = new String[]{

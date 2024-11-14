@@ -1,0 +1,272 @@
+1、<android 10 需要read和write，并且开启requestLegacyExternalStorage
+2、=android 10 需要read和write，并且开启requestLegacyExternalStorage
+3、=android 11 12 需要read，无需write，但如果申请write，会直接返回没有被授权。
+3、=android 13 无需read，write，但如果申请，会直接返回没有被授权。
+1）如果你只需要读写 app 自身保存到媒体库的文件，不需要申请权限。
+2）如果你想读取其他 app 写入到媒体库的文件（媒体文件，音频，视频，图片），根据文件类型，你需要申请对应的权限：
+  READ_MEDIA_IMAGES：访问其他 app 写入的图片。
+  READ_MEDIA_VIDEO：访问其他 app 写入的视频。
+  READ_MEDIA_AUDIO：访问其他 app 写入的音频。
+3）写媒体文件
+  请注意，在绝大部分情况下，我们只是保存自己的媒体文件到媒体库，并不需要替换或者删除属于其他 app 的文件
+如果你需要写其他 app 拥有的文件，则需要使用 MediaStore API 中的
+create*Request 系列方法，例如 createWriteRequest, createTrashRequest 来写属于其他 app 的媒体文件
+
+
+
+https://medium.com/@wanxiao1994/android%E5%AD%98%E5%82%A8%E6%9D%83%E9%99%90%E9%80%82%E9%85%8D%E4%B8%8E%E8%AF%BB%E5%86%99%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6-5c2004a62dfa#:~:text=%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%83%B3%E8%AF%BB%E5%8F%96%E5%85%B6%E4%BB%96%20app%20%E5%86%99%E5%85%A5%E5%88%B0%E5%AA%92%E4%BD%93%E5%BA%93%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E7%94%B3%E8%AF%B7%20READ_EXTERNAL_STORAGE%E3%80%82%20API%20level%20%E2%89%A5%2033%EF%BC%88Android,app%20%E5%86%99%E5%85%A5%E7%9A%84%E5%9B%BE%E7%89%87%E3%80%82%20READ_MEDIA_VIDEO%EF%BC%9A%E8%AE%BF%E9%97%AE%E5%85%B6%E4%BB%96%20app%20%E5%86%99%E5%85%A5%E7%9A%84%E8%A7%86%E9%A2%91%E3%80%82%20READ_MEDIA_AUDIO%EF%BC%9A%E8%AE%BF%E9%97%AE%E5%85%B6%E4%BB%96%20app%20%E5%86%99%E5%85%A5%E7%9A%84%E9%9F%B3%E9%A2%91%E3%80%82
+Android存储权限适配与读写媒体文件
+
+我工作这些年，见过许多存储相关的代码，比如读写媒体文件。它们大部分都是错误的，比如在不需要申请权限的时候申请权限，查询文件路径再读文件，能正常工作也只是歪打正着。即便是官方推荐的正确写法，有时也无法工作。加上 Android 最近的几个版本不断的对存储权限做出修改，也是最近的版本才开始正视存储权限相关的问题，给出官方指引。这就导致，想写出正确的代码，还是需要注意一些东西的。
+
+读写app内部存储
+相关 API：Context.getFilesDir、Context.getCacheDir。
+
+读写 app 私有目录并不需要权限，直接使用 File API 即可。
+
+getFilesDir 在Android 13上，返回的路径为 /data/user/0/{packageName}/files 。
+
+读写app外部存储
+相关 API：Context.getExternalFilesDir、Context.getExternalCacheDir。
+
+直接使用 File API 即可。
+
+getExternalFilesDir在 Android 13 上，返回的路径为 /storage/emulated/0/Android/data/{packageName}/files 。
+
+权限要求
+
+API level < 19（Android 4.4）：WRITE_EXTERNAL_STORAGE 或者 READ_EXTERNAL_STORAGE 权限。
+
+API level ≥ 19（Android 4.4）：无需权限。
+
+读写外部共享存储
+相关API：Environment.getExternalStorageDirectory、Environment.getExternalStoragePublicDirectory。
+
+直接使用 File API 即可。
+
+注意 Android 11（API level 30）开始，由于强制分区存储，因此这些 API 再也无法使用，我也非常不推荐各位用这种 API 。具体后面会讲。
+
+需要 WRITE_EXTERNAL_STORAGE 或者 READ_EXTERNAL_STORAGE 权限。如需在 Android 10（API level 29）上使用，需要将 requestLegacyExternalStorage 设置为 true，以避免被分区存储限制。
+
+getExternalStorageDirectory 在 Android 9 上，返回的路径为 /storage/emulated/0 。
+
+接下来介绍媒体文件的读写，这里媒体文件指的是图片、音频、视频这一类文件。
+
+读媒体文件
+使用Intent
+使用 Intent.ACTION_GET_CONTENT 或者 Intent.ACTION_PICK 这类 action 来调用系统或者第三方app，获得一个用户选择的媒体文件路径。
+
+权限要求
+
+API level < 29（Android 10）：申请 READ_EXTERNAL_STORAGE
+
+这是因为访问早期的媒体库 Uri，要求 app 必须有读外部存储的权限，由于我们不知道我们获得的 Uri 是从何而来，因此需要申请读外部存储权限。
+
+API level ≥ 29（Android 10）：无需申请权限
+
+这是因为现在的 app，会对返回的 Uri 授予读权限，因此我们不需要申请权限。
+
+正确读取文件
+
+需要注意的是，对于这种方式获取到的 Uri 路径，正确的读取方式是使用 ContentResolver.openInputStream 这类方法来读取文件，而不是通过 ContentResolver 查询文件的路径，然后再用 File API 访问。
+
+如果你一定要查询文件路径，然后使用 File API 访问，必须在 Android 10 上将 requestLegacyExternalStorage 置 true 以禁用分区存储，且不要假设你一定能拿到文件路径，因为最新版本的 FileProvider 已经不会响应文件路径的查询。
+
+自行遍历外部存储的文件路径
+注意这个方法在 Android 11 及以上完全无法使用。我也非常不推荐使用这个方法。
+
+你的 app 可能不想用第三方的媒体文件选择器，决定自己做一个选择器。你可以直接通过Environment.getExternalStoragePublicDirectory 来遍历用户的文件。
+
+权限要求
+
+API level < 29（Android 10）：申请 READ_EXTERNAL_STORAGE
+
+API level = 29（Android 10）：申请 READ_EXTERNAL_STORAGE，且在 Manifest 中声明 android:requestLegacyExternalStorage="true" 。
+
+API level > 29（Android 10）：这个方法完全不可用。
+
+使用MediaStore API
+使用 MediaStore API 来读取文件，使用方法可以参考官方文档：
+
+Access media files from shared storage | Android Developers
+Create multiple APKs for different screen sizes
+developer.android.com
+
+权限要求
+
+API level < 29（Android 10）：申请 READ_EXTERNAL_STORAGE，MediaStore 在 Android 10 之前要求 app 必须有 READ_EXTERNAL_STORAGE 权限才能读取其中的文件。
+
+29 <= API level < 33（Android 13）：
+
+如果你只需要读写 app 自身保存到媒体库的文件，不需要申请权限。
+
+如果你想读取其他 app 写入到媒体库的文件，需要申请 READ_EXTERNAL_STORAGE。
+
+API level ≥ 33（Android 13）：
+
+如果你只需要读写 app 自身保存到媒体库的文件，不需要申请权限。
+
+如果你想读取其他 app 写入到媒体库的文件，根据文件类型，你需要申请对应的权限：
+
+READ_MEDIA_IMAGES：访问其他 app 写入的图片。
+READ_MEDIA_VIDEO：访问其他 app 写入的视频。
+READ_MEDIA_AUDIO：访问其他 app 写入的音频。
+注意，在 Android 13 上不要再尝试检查或者动态申请 READ_EXTERNAL_STORAGE 或者 WRITE_EXTERNAL_STORAGE 权限，系统会直接拒绝。
+
+写媒体文件
+请注意，在绝大部分情况下，我们只是保存自己的媒体文件到媒体库，并不需要替换或者删除属于其他 app 的文件。
+
+通过外部存储的文件路径直接写入
+直接通过Environment.getExternalStoragePublicDirectory 来遍历用户的文件，并对用户的文件进行一些替换，或者删除。
+
+这里是一个例子，将一个 Bitmap，以 png 图片的形式保存到用户的设备上，直接使用 File API：
+
+fun saveImageToFile(displayName: String, bitmap: Bitmap): Uri? {
+    val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+    val imageFile = File(directory, "$displayName.png")
+    if (!directory.isDirectory) {
+        directory.mkdir()
+    }
+    return if (directory.isDirectory) {
+        try {
+            imageFile.outputStream().use {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+            }
+            imageFile.toUri()
+        } catch (e: IOException) {
+            null
+        }
+    } else {
+        null
+    }
+}
+注意这个方法在 Android 11 及以上完全无法使用。但我推荐你在 Android 10 以下的系统上使用这个方法来保存媒体文件，这是因为MediaStore API在 Android 10 以下的系统上可能不会自动创建文件夹，导致保存文件失败。
+
+权限要求
+
+API level < 29（Android 10）：申请 WRITE_EXTERNAL_STORAGE。仅在这种情况下推荐用于保存媒体文件到用户的设备上。
+
+API level = 29（Android 10）：申请 WRITE_EXTERNAL_STORAGE，且在 Manifest 中声明 android:requestLegacyExternalStorage="true" 。
+
+API level > 29（Android 10）：这个方法完全不可用。
+
+注意事项
+
+上面只是做到了保存文件，但实际上并不会触发媒体库扫描器，所以此时用户在相册中并不能看到这张片，只能在文件管理中看到。
+
+可以通过如下代码触发对该文件的扫描：
+
+context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri))
+使用MediaStore API
+这里是一个例子，将一个 Bitmap，以 png 图片的形式保存到用户媒体库中。
+
+fun saveImageToMediaStore(context: Context, displayName: String, bitmap: Bitmap): Uri? {
+    val imageCollections = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    } else {
+        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+    }
+
+    val imageDetails = ContentValues().apply {
+        put(MediaStore.Images.Media.DISPLAY_NAME, displayName)
+        put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            put(MediaStore.Images.Media.IS_PENDING, 1)
+        }
+    }
+
+    val resolver = context.applicationContext.contentResolver
+    val imageContentUri = resolver.insert(imageCollections, imageDetails) ?: return null
+
+    return try {
+        resolver.openOutputStream(imageContentUri, "w").use { os ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            imageDetails.clear()
+            imageDetails.put(MediaStore.Images.Media.IS_PENDING, 0)
+            resolver.update(imageContentUri, imageDetails, null, null)
+        }
+
+        imageContentUri
+    } catch (e: FileNotFoundException) {
+        // Some legacy devices won't create directory for the Uri if dir not exist, resulting in
+        // a FileNotFoundException. To resolve this issue, we should use the File API to save the
+        // image, which allows us to create the directory ourselves.
+        null
+    }
+}
+具体的使用方法请参考官方文档：
+
+Access media files from shared storage | Android Developers
+Create multiple APKs for different screen sizes
+developer.android.c
+
+权限要求
+
+API level < 29（Android 10）：申请 WRITE_EXTERNAL_STORAGE。
+
+API level = 29（Android 10）：
+
+如果你只需要保存媒体文件到媒体库，不需要申请权限。
+
+如果你需要写其他 app 拥有的文件，推荐你使用如下两种方法之一。
+
+推荐使用 requestLegacyExternalStorage 禁用分区存储，然后使用和 API level < 29 中一样的代码进行操作。
+捕获 RecoverableSecurityException 并进行处理，参考：
+Access media files from shared storage | Android Developers
+Create multiple APKs for different screen sizes
+developer.android.com
+
+API level > 29（Android 10）：
+
+如果你只需要保存媒体文件到媒体库，不需要申请权限。
+
+如果你需要写其他 app 拥有的文件，则需要使用 MediaStore API 中的 create*Request 系列方法，例如 createWriteRequest, createTrashRequest 来写属于其他 app 的媒体文件，参考：
+
+Access media files from shared storage | Android Developers
+Create multiple APKs for different screen sizes
+developer.android.com
+
+注意，在 Android 13 上不要再尝试检查或者动态申请 READ_EXTERNAL_STORAGE 或者 WRITE_EXTERNAL_STORAGE 权限，系统会直接拒绝。
+
+注意事项
+
+尽管将媒体文件保存到媒体库，使用 MediaStore API，核心逻辑可以一套代码在全部平台上运行，但仍然有需要注意的地方。
+
+我在实际调查中发现，Android 10 以前的设备中，有一部分设备，在通过 MediaStore API 保存媒体文件到媒体库时，不会触发媒体库扫描，此时需要主动获取文件路径，并触发一次扫描：
+
+val filePath = getFilePathOfUri(context, imageUri)
+if (filePath != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+    context.sendBroadcast(
+        Intent(
+            Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(
+                File(filePath)
+            )
+        )
+    )
+}
+
+
+fun getFilePathOfUri(context: Context, uri: Uri): String? {
+    var result: String? = null;
+    context.contentResolver.query(uri, arrayOf(MediaStore.Images.Media.DATA), null, null, null)?.use { cursor ->
+        if (cursor.moveToFirst()) {
+            val dataColumnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
+            if (dataColumnIndex >= 0) {
+                result = cursor.getString(dataColumnIndex)
+            }
+        }
+    }
+    return result
+}
+我还在实际调查中发现，Android 10以前的设备中，有一部分设备，在通过 MediaStore API 保存媒体文件到媒体库时，如果媒体库保存文件路径上的文件夹不存在，并不会自动创建，最终导致写文件失败。由于 MediaStore API 并没有创建路径的能力，只能写入文件，这个问题仅凭 MediaStore API 无法解决。
+
+因此我建议对 API level < 29（Android 10）直接使用 File API 来写入外部存储，并主动触发一次媒体库扫描文件，在 API level ≥ 29（Android 10）时，使用 MediaStore API，且无需申请权限。
+
+English version:
+
+Android storage permission adaptation and reading/writing media files
+Over the years of my work, I have come across many storage-related codes, such as reading and writing media files. Most…
+medium.com

@@ -1,0 +1,8 @@
+https://lioil.win/2018/07/04/Android-USB-OTG.html
+https://www.freesion.com/article/9844298068/
+https://www.cnblogs.com/andy-songwei/p/7219065.html
+
+
+https://developer.android.google.cn/training/data-storage/manage-all-files?hl=zh-cn
+https://developer.android.com/training/data-storage/shared/documents-files?hl=zh-cn
+https://developer.android.google.cn/develop/connectivity/usb/accessory?hl=zh-cn#java
