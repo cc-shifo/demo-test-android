@@ -52,4 +52,13 @@
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_icon_cat" />
+
+    <Button
+        android:id="@+id/btn_activity_tiandi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="wms tiandi map"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_icon_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>

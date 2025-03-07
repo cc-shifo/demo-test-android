@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "name": "Custom Style",
+  "sources": {
+    "custom-source": {
+      "type": "raster",
+      "tiles": [
+        "https://tileserver.com/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256
+    }
+  },
+  "layers": [
+    {
+      "id": "custom-layer",
+      "type": "raster",
+      "source": "custom-source",
+      "paint": {
+        "raster-opacity": 0.8
+      }
+    }
+  ]
+}

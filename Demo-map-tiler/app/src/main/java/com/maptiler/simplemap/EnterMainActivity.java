@@ -124,6 +124,15 @@ public class EnterMainActivity extends AppCompatActivity {
                 mMarker.setIcon(mIconMap);
             }
         });
+
+        Button btnActivity002 = findViewById(R.id.btn_activity_tiandi);
+        btnActivity002.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EnterMainActivity.this, TestTianDiMapWMSActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
