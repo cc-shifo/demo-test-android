@@ -168,11 +168,10 @@ public class TestTianDiMapWMSActivity extends AppCompatActivity {
             mapboxMap.setStyle(new Style.Builder().fromUri("asset://empty.json"), new Style.OnStyleLoaded() {
                 @Override
                 public void onStyleLoaded(@NonNull Style style) {
-                    addTiandituLayerDeepSeek01(style);
-                    // addTianDiMapCopilotWMS(style);
-
+                    addTiandituLayerDeepSeek01(style);// 例子一
+                    // addTianDiMapCopilotWMS(style);// 例子二
                     // 在这里可以添加其他图层或标记
-                    // addTianDiMapDeepSpeek02(style);
+                    // addTianDiMapDeepSpeek02(style);// 例子三
                 }
             });
 
@@ -578,6 +577,9 @@ public class TestTianDiMapWMSActivity extends AppCompatActivity {
         addMarker();
     }
 
+    /**
+     * 矢量图，无标注
+     */
     private void addTiandituLayerDeepSeek01(@NonNull Style style) {
         // 设置天地图的URL
         TileSet tileSet = new TileSet("tianditu-vec", "http://t0.tianditu.gov.cn/vec_w/wmts?service=wmts"
