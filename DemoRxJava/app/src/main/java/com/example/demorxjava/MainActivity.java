@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mBinding.btnTakeUntil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testTakeUntil();
+//                testTakeUntil();
+                testContactError();
             }
         });
     }
@@ -89,6 +92,55 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d(TAG, "run: complete");
                                     }
                                 });
+
+    }
+
+    // 第一个next传输了，第二个error，第三个被第二个error提前终止
+    private void testContactError() {
+        Observable<Integer> ob1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(
+                    @io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+                emitter.onNext(1);
+                emitter.onComplete();
+            }
+        });
+
+        Observable<Integer> ob2 = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(
+                    @io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+                emitter.onError(new Throwable("error?"));
+            }
+        });
+        Observable<Integer> ob3 = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(
+                    @io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+                emitter.onNext(3);
+                emitter.onComplete();
+            }
+        });
+
+        Observable.concat(ob1, ob2, ob3)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Throwable {
+                        Log.d("concat", "onNext: " + integer);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.e("concat", "onError", throwable);
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Throwable {
+                        Log.d("concat", "onComplete");
+                    }
+                });
 
     }
 }
