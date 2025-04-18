@@ -44,7 +44,7 @@ public class DLApkViewModel extends ViewModel {
     public void downloadApk() {
         RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
         OkHttpClient client = retrofitUtil.createOkHttps();
-        Retrofit retrofit = retrofitUtil.getRetrofit("https://app.whty.com.cn:8443/")
+        Retrofit retrofit = retrofitUtil.getRetrofit("your url")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(client)
