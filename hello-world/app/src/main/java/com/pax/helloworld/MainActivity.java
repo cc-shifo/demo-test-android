@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("HelloWorld", "屏幕-正确方法real widthPixels：" + dmReal.widthPixels);
         Log.e("HelloWorld", "屏幕-正确方法density：" + dm.density);
         Log.e("HelloWorld", "屏幕-正确方法densityDpi：" + dm.densityDpi);
+        Log.e("HelloWorld", "屏幕-正确方法scaledDensity(关系公式dp=(sp * scale)/(dpi/160)) ：" + dm.scaledDensity);
         // float dp = dm.widthPixels/1.5f;// px = dp * (dpi/160)
         float x = dm.densityDpi/160f;// px = dp * (dpi/160)
         float dp = dm.widthPixels/x;// px = dp * (dpi/160)
