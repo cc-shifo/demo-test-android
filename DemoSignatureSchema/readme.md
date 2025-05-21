@@ -127,3 +127,5 @@
             }
 
 8、ApkSignerV2.java.txt是从google android source取的源码
+
+9、com.android.signapk是google android source取的signapk工具源码
