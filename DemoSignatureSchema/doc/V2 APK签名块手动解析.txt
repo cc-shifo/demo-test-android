@@ -1,0 +1,383 @@
+表格一
+APK 结构：
+[Local File Headers]
+[File Contents]
+[APK Signing Block]          ← V2/V3 签名在此（非 ZIP 条目）
+  ├── L1 size (excluding this field, include FROM V2 to Magic "APK Sig Block 42")
+  ├── V2 Signature Block
+  ├── V3 Signature Block（可选）
+  ├── ...
+  ├── 其他自定义pair: 8+4+value.length
+  ├── 填充区域
+  ├── L2 == L1
+  └── Magic "APK Sig Block 42"
+[Central Directory]          ← ZIP 中央目录（包含文件列表）
+[End of Central Directory]   ← ZIP 尾部记录
+
+
+表格二
+struct EndOfCentralDirectory {
+    uint32_t signature;           // 0x06054b50 (固定魔数)
+    uint16_t diskNumber;          // 磁盘编号
+    uint16_t startDisk;           // 起始磁盘
+    uint16_t numEntriesThisDisk;  // 当前磁盘条目数
+    uint16_t totalEntries;        // 总条目数
+    uint32_t centralDirSize;      // Central Directory大小
+    uint32_t centralDirOffset;    // ← 关键字段：Central Directory的起始偏移量
+    uint16_t commentLength;       // 注释长度
+    // 可变长度注释（可选）
+};
+
+
+表格三 
+签名块格式（APK sign block, ApkSigningBlock）
+ApkSignerV2.java#generateApkSigningBlock      
+// FORMAT:
+        // uint64: size (excluding this field) 后边数据（包含ID-value pairs数据域（V2,V3等等），L2数据域，magic数据域）长度，占8字节，标记为[L1]
+        //       repeated ID-value pairs:
+		//           pair1
+        //           uint64: size (excluding this field)，后边数据（ID+被签名数据）长度，占8字节，标记为[L-pairs]
+		//			 uint32: ID v2签名的ID值，占4字节，固定为0x7109871a。V3的ID固定为0xf05368c0，标记为[ID]
+        //           (size - 4) bytes: value 使用v2方案签名后的数据内容(V2 sign scheme block)，长度可变，占n字节，标记为[value]
+		//           pair2
+        //           uint64: size (excluding this field)，后边数据（ID+被签名数据）长度，占8字节，标记为[L-pairs]
+					 uint32: ID v3签名的ID值，占4字节，固定为0x7109871a。V3的ID固定为0xf05368c0，标记为[ID]
+        //           (size - 4) bytes: value 使用v3方案签名后的数据内容(V2 sign scheme block)，长度可变，占n字节，标记为[value]
+        //       remaining field
+        //       uint64:  size (same as the one above) 等同于L1，占8字节，标记为[L2]
+        //       uint128: magic 占16字节，标记为[magic]
+        int resultSize =
+                8 // size 
+                + 8 + 4 + apkSignatureSchemeV2Block.length + remaining field// v2Block as ID-value pair
+                + 8 // size
+                + 16 // magic
+                ;
+		// L--> 8字节，表示后边数据总长度，即resultSize，标记为[L1]
+		// value-->V2签名方案8字节，表示后边V2数据总长度，标记为L=4+apkSignatureSchemeV2Block.length
+				   V2签名方案ID，4字节，固定值0x7109871a
+				   V2签名方案签名块（表格四）
+				   V3签名方案8字节，表示后边V3数据总长度
+				   V3签名方案ID，4字节，固定值0x7109871a
+				   V3签名方案签名块（表格四）
+				   V4签名方案8字节，表示后边V3数据总长度
+				   V4签名方案ID，4字节，固定值0x7109871a
+				   V4签名方案签名块（表格四）
+				   remaining field
+				   8字节，数值等于[L1]，用于比对校验。标记为[L2]
+				   APK签名块魔法数（APK sign block magic），16字节，固定值“0x41, 0x50, 0x4b, 0x20, 0x53, 0x69, 0x67, 0x20, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x20, 0x34, 0x32”，即字符串"APK Sig Block 42"对应的ascii码
+			
+	
+表格四 V2签名方案块格式(V2 sign scheme block)		
+		// 1、V2签名方案块（存储在APK签名块（表格三APK Sign block）的value字段, ApkSignatureSchemeV2Block）
+		// 2、V2签名方案块由多个签名者（Signer，公钥，私有，签名算法三者确定一个签名者）块字段构成。
+		// L-->4字节，表示后边数据总长度
+		// value-->所有签名者块字段
+		           Signer1 block字段
+				      4字节，表示signer block长度
+					  signer block数据（表格五）
+		           Signer2 block字段
+				      4字节，表示signer block长度
+					  signer block数据（表格五）	
+				   ...
+
+				   
+		V2SignatureSchemeBlock.Signer signer = new V2SignatureSchemeBlock.Signer();
+        // FORMAT:
+        // * L: length-prefixed sequence of length-prefixed digests:
+        //   * uint32: signature algorithm ID
+        //   * length-prefixed bytes: digest of contents
+        // * length-prefixed sequence of certificates:
+        //   * length-prefixed bytes: X.509 certificate (ASN.1 DER encoded).
+        // * length-prefixed sequence of length-prefixed additional attributes:
+        //   * uint32: ID
+        //   * (length - 4) bytes: value	
+		4 + apkSignatureSchemeV2Block.length
+		
+表格五 签名者块(signer block)
+		Signer Block包含3个字段，待签名数据序列字段，签名序列数据字段，公钥字段
+		// L-->4字节，表示待签名数据序列长度
+		// value-->待签名数据序列，包含摘要区域字段，证书区域字段，额外属性区域字段
+		//         摘要区域字段：
+		//         L-->4字节，表示摘要区域数据长度
+				   value-->摘要区域数据，包括摘要1数据，摘要2数据，...摘要n数据
+				           摘要1数据
+						      固定4字节，数值4+4=8
+						      签名算法ID，占4字节
+							  L-->摘要长度，占4字节
+							  value-->摘要内容
+				           摘要2数据
+						      固定4字节，数值4+4=8
+						      签名算法ID，占4字节
+							  L-->摘要长度，占4字节
+							  value-->摘要内容
+				           ...
+		//         证书区域字段(存放证书序列)：
+		//         L-->证书区域数据长度，占4字节
+				   value-->证书区域数据，包括证书1数据，证书2数据，...证书n数据
+				           证书1数据
+							  L-->证书长度，占4字节
+							  value-->证书内容
+				           证书2数据
+							  L-->证书长度，占4字节
+							  value-->证书内容
+				           ...							  
+		//         额外属性区域字段(存放额外属性序列)：
+		//         L-->额外属性区域数据长度，占4字节
+				   value-->额外属性区域数据，包括属性1数据，属性2数据，...属性n数据
+				           属性1
+							  属性1长度length，占4字节
+							  属性1ID，占4字节
+							  属性1内容，内容长度=length - 4
+				           属性2
+							  属性2长度length，占4字节
+							  属性2ID，占4字节
+							  属性2内容，内容长度=length - 4
+				           ...							  
+		// L-->4字节，表示签名序列数据长度
+		// value-->签名序列(由签名拼接而成，签名是使用私钥对待签名数据进行签名产生的)，包含签名1数据，签名2数据，...签名n数据
+		//         签名1: 
+					    4字节（数值等于8=4+4）
+						4字节签名算法ID 
+						4字节签名长度
+						签名内容
+		//         签名2: 
+					    4字节（数值等于8=4+4）
+						4字节签名算法ID 
+						4字节签名长度
+						签名内容
+				   ...							  
+		// L-->4字节，表示公钥数据长度
+		// value-->公钥数据public key (X.509 SubjectPublicKeyInfo, ASN.1 DER encoded)  
+				  
+					  
+
+表格六 
+签名算法algorithm ID
+    public static final int SIGNATURE_RSA_PSS_WITH_SHA256 = 0x0101;
+    public static final int SIGNATURE_RSA_PSS_WITH_SHA512 = 0x0102;
+    public static final int SIGNATURE_RSA_PKCS1_V1_5_WITH_SHA256 = 0x0103;
+    public static final int SIGNATURE_RSA_PKCS1_V1_5_WITH_SHA512 = 0x0104;
+    public static final int SIGNATURE_ECDSA_WITH_SHA256 = 0x0201;
+    public static final int SIGNATURE_ECDSA_WITH_SHA512 = 0x0202;
+    public static final int SIGNATURE_DSA_WITH_SHA256 = 0x0301;
+    public static final int SIGNATURE_DSA_WITH_SHA512 = 0x0302;
+
+
+
+
+手动解析
+
+查看签名
+PS C:\Users\Administrator\Desktop> java -jar D:\Android\Sdk\build-tools\33.0.0\lib\apksigner.jar  verify -v .\PackageVerifier_V1.00.00_a016fd4_20250512175837_release.apk
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+
+
+一、找EOCD数据，从后往前查找
+    uint32_t signature;           // 0x06054b50 (固定魔数)
+    uint16_t diskNumber;          // 磁盘编号
+    uint16_t startDisk;           // 起始磁盘
+    uint16_t numEntriesThisDisk;  // 当前磁盘条目数
+    uint16_t totalEntries;        // 总条目数
+    uint32_t centralDirSize;      // Central Directory大小
+    uint32_t centralDirOffset;    // ← 关键字段：Central Directory的起始偏移量
+    uint16_t commentLength;       // 注释长度
+>>>>>>>>找EOCD magic，从后往前查找
+内存地址：0x00085f50
+内存地址：0x00085f59 
+EndOfCentralDirectory magic: 50 4b 05 06 // 固定值0x06054b50 占4bytes
+[EndOfCentralDirectory magic]位置：0x00085f59
+//085f40  00 00 00 00 00 00 00 bb 48 08 00 72 65 73 6f 75  .......籋..resou
+//085f50  72 63 65 73 2e 61 72 73 63 50 4b 05 06 00 00 00  rces.arscPK.....
+//085f60  00 07 00 07 00 c5 01 00 00 94 5d 08 00 00 00     .....?..擼....
+
+>>>>>>>>找centralDirSize
+内存地址：0x00085f60
+内存地址：0x00085f65
+[EndOfCentralDirectory centralDirSize]位置：0x00085f59 + 12 = 0x00085f65
+EndOfCentralDirectory centralDirSize: c5 01 00 00 // 0x000001c5 占4bytes
+//085f60  00 07 00 07 00 c5 01 00 00 94 5d 08 00 00 00     .....?..擼....
+
+>>>>>>>>找centralDirOffset位置：0x00085f59 + 16 = 0x00085f69
+EndOfCentralDirectory centralDirOffset: 94 5d 08 00 // 0x00085d94 占4bytes
+//085f60  00 07 00 07 00 c5 01 00 00 94 5d 08 00 00 00     .....?..擼...
+
+
+
+二、确定[Central Directory]，位置：在0x00085d94
+085d70  00 00 00 00 00 00 00 00 00 00 00 00 f8 0f 00 00  ............?..
+085d80  00 00 00 00 41 50 4b 20 53 69 67 20 42 6c 6f 63  ....APK Sig Bloc
+085d90  6b 20 34 32 50 4b 01 02 00 03 00 00 00 00 08 00  k 42PK..........
+085da0  21 08 21 02 7f 6b f0 d1 34 00 00 00 38 00 00 00  !.!..k鹧4...8...
+
+三、确定[APK Signing Block]数据，从后往前查找。
+                8 // size [L1] L1指的是后边内置长度值
+                + 8 + 4 + apkSignatureSchemeV2Block.length // v2Block as ID-value pair
+                + 8 // size [L2]
+                + 16 // magic
+				
+>>>>>>>>找魔法数位置：0x00085d84
+085d80  00 00 00 00 41 50 4b 20 53 69 67 20 42 6c 6f 63  ....APK Sig Bloc
+085d90  6b 20 34 32 50 4b 01 02 00 03 00 00 00 00 08 00  k 42PK..........
+
+>>>>>>>>末尾位置: 0x00085d93
+
+>>>>>>>>[L2]位置：0x00085d7c 数值=0x00000000 00000ff8
+085d70  00 00 00 00 00 00 00 00 00 00 00 00 f8 0f 00 00  ............?..
+085d80  00 00 00 00 41 50 4b 20 53 69 67 20 42 6c 6f 63  ....APK Sig Bloc
+085d90  6b 20 34 32 50 4b 01 02 00 03 00 00 00 00 08 00  k 42PK..........
+085da0  21 08 21 02 7f 6b f0 d1 34 00 00 00 38 00 00 00  !.!..k鹧4...8...
+085db0  39 00 00 00 00 00 00 00 00 00 00 00 a4 81 00 00  9.............
+085dc0  00 00 4d 45 54 41 2d 49 4e 46 2f 63 6f 6d 2f 61  ..META-INF/com/a
+
+>>>>>>>>计算[L2]位置数值：0x00000000 00000ff8
+
+>>>>>>>>[L1]位置：[Central Directory] - L2值（上偏移size）- 8([L1]长度)= 0x00085d94 - 0x0ff8 - 8= 0x00084d94，
+084d90  00 00 00 00 f8 0f 00 00 00 00 00 00 8b 06 00 00  ....?......?..
+084da0  00 00 00 00 1a 87 09 71 83 06 00 00 7f 06 00 00  .....?q?......
+084db0  41 04 00 00 2c 00 00 00 28 00 00 00 03 01 00 00  A...,...(.......
+>>>>>>>>计算[L1]位置数值：0x00000000 00000ff8
+>>>>>>>>对比[L1][L2]位置数值：相等，都等于0x00000000 00000ff8
+
+
+
+
+
+位置：在0x00085d94
+
+内存地址：0x0001CBC0
+内存地址：0x0001CBC8
+magic：41 50 4B 20 53 69 67 20 42 6C 6F 63 6B 20 34 32 // 对应 APK Sig Block 42
+
+内存地址：0x00085d80
+内存地址：0x00085d84
+magic：41 50 4B 20 53 69 67 20 42 6C 6F 63 6B 20 34 32 // 对应 APK Sig Block 42
+
+0x0001CBC0h ~ 0x0001CBC7h
+size of block 
+00 00 00 10 00 01 03 00
+找APK签名块魔法数magic
+
+
+
+
+
+
+
+
+
+
+
+内存地址：00085f60h
+内存地址：00085f69h
+[EndOfCentralDirectory centralDirOffset]位置：0x00085f59 + 16 = 0x00085f69
+EndOfCentralDirectory centralDirOffset: 94 5d 08 00 // 0x00085d94 占4bytes
+//085f60  00 07 00 07 00 c5 01 00 00 94 5d 08 00 00 00     .....?..擼....
+
+内存地址：00085f60h
+内存地址：00085f6dh
+[EndOfCentralDirectory centralDirOffset]位置：0x00085f59 + 20 = 0x00085f6d
+EndOfCentralDirectory commentLength: 00 00 // 0x0000 占2bytes
+
+校验过程省略
+[EndOfCentralDirectory centralDirOffset] + [EndOfCentralDirectory centralDirSize] 是否
+等于[EndOfCentralDirectory magic]位置
+0x00085d94 + 0x000001c5 = 0x00085f59 对上了
+
+
+[Central Directory] 位置：
+方式一
+[EndOfCentralDirectory magic]位置 - centralDirSize 
+	= 0x00085f59 - 0x000001c5 = 0x00085d94 // 大概在0x00085d94/ 16 * 16 = 0x00085d80附近
+// 085d70  00 00 00 00 00 00 00 00 00 00 00 00 f8 0f 00 00  ............?..
+// 085d80  00 00 00 00 41 50 4b 20 53 69 67 20 42 6c 6f 63  ....APK Sig Bloc
+// 085d90  6b 20 34 32 50 4b 01 02 00 03 00 00 00 00 08 00  k 42PK..........
+// 085da0  21 08 21 02 7f 6b f0 d1 34 00 00 00 38 00 00 00  !.!..k鹧4...8...
+方式二，直接从[EndOfCentralDirectory centralDirOffset]取值，该偏移就是从0开始的，用于标记[Central Directory]位置的。
+
+[APK Signing Block magic]位置：0x00085d80
+// 085d80  00 00 00 00 41 50 4b 20 53 69 67 20 42 6c 6f 63  ....APK Sig Bloc
+[APK Signing Block magic]位置  = 0x00085d94 - 16 = 0x00085d84
+[APK Signing Block L2]位置  = 0x00085d94 - 16 - 8 = 0x00085d7C;长度值 0x00000000 00000ff8=
+
+[APK Signing Block]位置：等于[Central Directory] 起始位置 - [APK Signing Block L2]长度值 - [L1] length 8字节长度
+	= 0x00085d94 -0xff8 - 8 = 0x00084d94
+// 大概在0x00084d94 / 16 * 16 附近0x00084d90附近
+// 084d60  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+// 084d70  10 00 00 00 10 00 01 00 02 00 00 00 19 01 03 01  ................
+// 084d80  00 00 00 00 10 00 01 00 03 00 00 00 00 00 03 7f  ................
+// 084d90  00 00 00 00 f8 0f 00 00 00 00 00 00 8b 06 00 00  ....?......?..
+// 084da0  00 00 00 00 1a 87 09 71 83 06 00 00 7f 06 00 00  .....?q?......
+// 084db0  41 04 00 00 2c 00 00 00 28 00 00 00 03 01 00 00  A...,...(.......
+
+[APK Signing Block L1]长度值位置：等于[APK Signing Block]位置
+	= 0x00084d94，长度值=0x00000000 00000ff8
+//084d90  00 00 00 00 f8 0f 00 00 00 00 00 00 8b 06 00 00  ....?......?..
+//084da0  00 00 00 00 1a 87 09 71 83 06 00 00 7f 06 00 00  .....?q?......
+//084db0  41 04 00 00 2c 00 00 00 28 00 00 00 03 01 00 00  A...,...(.......
+在此可以比较[L1]和[L2]值
+
+[APK Signing Block L-pairs]长度位置：[APK Signing Block]位置 + 8
+	=  0x00084d94 + 8 = 0x00084d9c，长度值=0x00000000 0000068b
+//084d80  00 00 00 00 10 00 01 00 03 00 00 00 00 00 03 7f  ................
+//084d90  00 00 00 00 f8 0f 00 00 00 00 00 00 8b 06 00 00  ....?......?..
+//084da0  00 00 00 00 1a 87 09 71 83 06 00 00 7f 06 00 00  .....?q?......
+//084db0  41 04 00 00 2c 00 00 00 28 00 00 00 03 01 00 00  A...,...(.......
+//084dc0  20 00 00 00 82 89 68 6f 40 a1 06 06 ca 10 b5 72   ...倝ho@?.?祌
+//084dd0  3b 19 51 0f af 7f 76 18 a7 67 8f 6a 40 ad a0 d0  ;.Q.?v.廽@瓲?
+//084de0  7e 3d 75 53 05 04 00 00 01 04 00 00 30 82 03 fd  ~=uS........0??
+//084df0  30 82 02 e5 a0 03 02 01 02 02 14 11 b7 1f a5 25  0?鍫.......??
+//084e00  e2 7b 5d 06 6c 46 c8 9d cb 10 e7 2f 16 8b ad 30  鈡].lF葷??.嫮0
+//084e10  0d 06 09 2a 86 48 86 f7 0d 01 01 0b 05 00 30 81  ...*咹嗺......0?
+//084e20  8c 31 0b 30 09 06 03 55 04 06 13 02 43 4e 31 0e  ?.0...U....CN1.
+//084e30  30 0c 06 03 55 04 08 0c 05 48 75 42 65 69 31 13  0...U....HuBei1.
+
+[APK Signing Block ID]长度位置：[APK Signing Block]位置 + 8 + 8
+	=  0x00084d94 + 8 + 8 = 0x00084da4，[ID]值=1a 87 09 71, 0x7109871a
+
+[APK Signing Block value]数据起始位置：[APK Signing Block]位置 + 8 + 8 + 4，
+	=  0x00084d94 + 8 + 8 + 4 = 0x00084da8
+//084da0  00 00 00 00 1a 87 09 71 83 06 00 00 7f 06 00 00  .....?q?......
+//084db0  41 04 00 00 2c 00 00 00 28 00 00 00 03 01 00 00  A...,...(.......
+//084dc0  20 00 00 00 82 89 68 6f 40 a1 06 06 ca 10 b5 72   ...倝ho@?.?祌
+//084dd0  3b 19 51 0f af 7f 76 18 a7 67 8f 6a 40 ad a0 d0  ;.Q.?v.廽@瓲?
+[APK Signing Block value]数据内容长度：等于[APK Signing Block L-pairs]长度值 - 4 =
+	=  0x00000000 0000068b - 4 = 0x00000000 00000687
+[APK Signing Block value]数据结束位置：[APK Signing Block value]数据起始位置 + 0x00000000 00000687
+	= 0x00084da8 + 0x00000000 00000687 = 0x0008542f，大概在0x0008541c附近
+//085400  30 6b 3d 8b 70 27 bc 06 b1 fd 52 f4 8e 91 ca bd  0k=媝'?饼R魩懯?
+//085410  a7 81 85 58 cb 52 e7 d6 98 26 68 d8 dc c1 2e 47  匵薘缰?h剀?G
+//085420  4e 7a 67 6c 4d 39 b1 ec c2 0d 02 03 01 00 01 00  NzglM9膘?......
+//085430  01 00 00 00 00 00 00 53 44 4b 50 00 a2 f0 5f ac  .......SDKP._?
+//085440  25 5a 3b b5 ff a3 3b 1a 0f a5 f4 a0 a4 44 c1 4a  %Z;??..ヴ牑D罦
+
+
+[APK Signing Block]结束位置：0x00084d94 + 8 + 8 + [L-pairs]长度值 + 8 + 16
+	= 0x00084d94 + 8 + 8 + 0x00000000 0000068b + 8 + 16 = 0x0008544d
+//085400  30 6b 3d 8b 70 27 bc 06 b1 fd 52 f4 8e 91 ca bd  0k=媝'?饼R魩懯?
+//085410  a7 81 85 58 cb 52 e7 d6 98 26 68 d8 dc c1 2e 47  匵薘缰?h剀?G
+//085420  4e 7a 67 6c 4d 39 b1 ec c2 0d 02 03 01 00 01 00  NzglM9膘?......
+//085430  01 00 00 00 00 00 00 53 44 4b 50 00 a2 f0 5f ac  .......SDKP._?
+//085440  25 5a 3b b5 ff a3 3b 1a 0f a5 f4 a0 a4 44 c1 4a  %Z;??..ヴ牑D罦
+//085450  de b0 88 d8 26 7f 1f ea b6 2c ea 5b 70 f1 1b 27  薨堌&..甓,闧p?'	
+
+
+
+
+magic：41 50 4B 20 53 69 67 20 42 6C 6F 63 6B 20 34 32对应 APK Sig Block 42
+内存地址：00085d80h
+内存地址：00085d84h
+APK Sign Scheme V2 format APK Sign Block
+L -- 0x00000683 4Bytes =1667 后边数据长度，签名者列表
+  value -- 
+          L -- 0000067F 4Bytes =1663 数据长度，签名者signer
+          L -- 00000441 4Bytes 数据长度，被签名的数据signed data
+          L -- 0000002C 4Bytes 数据长度，摘要digests
+          L -- 00000028 4Bytes 数据长度，摘要digests
+               00000103 4Bytes 签名算法id，0x0103 - 采用 SHA2-256 摘要的 RSASSA-PKCS1-v1_5 算法。此算法适用于需要确定性签名的构建系统。

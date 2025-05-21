@@ -1,0 +1,16 @@
+PS D:\Android\AndroidProjects\TestMySignature\app\build\outputs\apk\release> java -jar D:\Android\Sdk\build-tools\30.0.0\lib\apksigner.jar verify --verbose .\app-release.apk
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+PS D:\Android\AndroidProjects\TestMySignature\app\build\outputs\apk\release>  java -jar D:\Android\Sdk\build-tools\30.0.0\lib\apksigner.jar
+USAGE: apksigner <command> [options]
+       apksigner --version
+       apksigner --help
+
+EXAMPLE:
+       apksigner sign --ks release.jks app.apk
+       apksigner verify --verbose app.apk

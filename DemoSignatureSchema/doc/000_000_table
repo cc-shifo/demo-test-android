@@ -1,0 +1,81 @@
+V2/V3 (APK 签名块)
+存储位置：
+APK Signing Block 是一个二进制块，位于 ZIP 的 Central Directory 之前，但 不属于 ZIP 文件列表。
+
+APK 结构：
+
+[Local File Headers]
+[File Contents]
+[APK Signing Block]          ← V2/V3 签名在此（非 ZIP 条目）
+  ├── L1 size (excluding this field, include FROM V2 to Magic "APK Sig Block 42")
+  ├── V2 Signature Block
+  ├── V3 Signature Block（可选）
+  ├── ...
+  ├── 其他自定义pair: 8+4+value.length
+  ├── 填充区域
+  ├── L2 == L1
+  └── Magic "APK Sig Block 42"
+[Central Directory]          ← ZIP 中央目录（包含文件列表）
+[End of Central Directory]   ← ZIP 尾部记录
+
+签名块结构：
+
+cpp
+struct ApkSigningBlock {
+    uint64_t block_size;                // 块总大小
+    repeated IdValue pairs;             // 多个 ID-Value 对 uint64(ID (uint32), value（可变长度：“ID-值”对的长度 - 4 个字节）
+    uint64_t magic;                     // "APK Sig Block 42" (0x41 50 4B 20 53 69 67 20 42 6C 6F 63 6B 20 34 32)
+};
+
+// V2 签名块示例
+struct V2Block {
+    uint32_t id = 0x7109871a;          // 固定 ID
+    bytes signed_data;                 // 签名数据（证书、分块哈希等）
+};
+
+// V3 签名块示例
+struct V3Block {
+    uint32_t id = 0xf05368c0;          // 固定 ID
+    bytes signed_data;                 // 包含旧证书对新证书的签名（proof-of-rotation）
+};
+验证流程：
+计算整个 APK 的分块哈希树（Merkle Tree），与签名块中的哈希对比，确保任何篡改都会被检测到。
+
+
+
+[End of Central Directory] EOCD 的固定结构（22字节 + 注释）：
+
+cpp
+struct EndOfCentralDirectory {
+    uint32_t signature;           // 0x06054b50 (固定魔数)
+    uint16_t diskNumber;          // 磁盘编号
+    uint16_t startDisk;           // 起始磁盘
+    uint16_t numEntriesThisDisk;  // 当前磁盘条目数
+    uint16_t totalEntries;        // 总条目数
+    uint32_t centralDirSize;      // Central Directory大小
+    uint32_t centralDirOffset;    // ← 关键字段：Central Directory的起始偏移量
+    uint16_t commentLength;       // 注释长度
+    // 可变长度注释（可选）
+};
+定位 Central Directory 的步骤
+(1) 从文件末尾查找 EOCD
+
+
+签名者：含义指私钥，公钥证书，签名算法的组合。
+[签名者列表长度] (4 bytes)
+├── [签名者 0：index 从0开始]
+│   ├── 签名者数据长度 (4 bytes)
+│   ├── 签名算法 ID (4 bytes)
+│   ├── 签名数据长度 (4 bytes)
+│   ├── 签名数据 (加密摘要)
+│   ├── 证书链长度 (4 bytes)
+│   ├── 证书链数据 (X.509)
+│   ├── 摘要算法列表长度 (4 bytes)
+│   ├── 摘要算法列表 (算法ID)
+│   └── 附加属性列表 (可选)
+├── [签名者 1]
+│   └── ...（同签名者 0）
+└── [公钥列表]
+    ├── 公钥列表长度 (4 bytes)
+    ├── 公钥 1 (长度 + DER 数据)
+    └── 公钥 2 (长度 + DER 数据)
