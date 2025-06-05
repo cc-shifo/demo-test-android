@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/color_F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chrome Custom Tabs 兼容性检查"
+        android:textSize="24sp"
+        android:textColor="@color/color_333333"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="兼容性检查结果"
+            android:textSize="18sp"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="正在检测设备兼容性..."
+            android:textSize="16sp"
+            android:textColor="@color/color_666666"
+            android:padding="8dp"
+            android:background="@color/color_F0F0F0"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试打开网页"
+        android:backgroundTint="@color/color_4CAF50"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:enabled="false"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="实现步骤"
+            android:textSize="18sp"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. 添加依赖: androidx.browser:browser"
+            android:textSize="14sp"
+            android:textColor="@color/color_444444"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. 检查Custom Tabs支持"
+            android:textSize="14sp"
+            android:textColor="@color/color_444444"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. 配置并启动Custom Tabs"
+            android:textSize="14sp"
+            android:textColor="@color/color_444444"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4. 处理不支持的情况"
+            android:textSize="14sp"
+            android:textColor="@color/color_444444"/>
+    </LinearLayout>
+
+</LinearLayout>
