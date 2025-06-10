@@ -2,8 +2,43 @@
 
 buildscript {
     repositories {
-        google()
-        mavenCentral()
+        // maven {
+        //     url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        //     allowInsecureProtocol = true
+        // }
+        // maven {
+        //     url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+        //     allowInsecureProtocol = true
+        // }
+        // maven {
+        //     url 'http://maven.aliyun.com/nexus/content/repositories/google'
+        //     allowInsecureProtocol = true
+        // }
+        // maven {
+        //     url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin'
+        //     allowInsecureProtocol = true
+        // }
+
+        // google
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
+        // mavenCentral https://repo1.maven.org/maven2
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        // central仓和jcenter
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+
+        // gradlePluginPortal()
+        // https://maven.aliyun.com/nexus/content/repositories/gradle-plugin
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+
+        // google()
+        // mavenCentral()
 
     }
     dependencies {
@@ -16,8 +51,25 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
+        // google
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
+        // mavenCentral https://repo1.maven.org/maven2
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        // central仓和jcenter
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+
+        // https://maven.aliyun.com/nexus/content/repositories/gradle-plugin
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+
+        // google()
+        // mavenCentral()
     }
 }
 
