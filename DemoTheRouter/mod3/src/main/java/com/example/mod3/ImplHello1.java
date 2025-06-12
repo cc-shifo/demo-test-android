@@ -1,20 +1,16 @@
 package com.example.mod3;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.example.modinter.Hello1Provider;
 import com.therouter.inject.ServiceProvider;
 
-@ServiceProvider(returnType = Hello1Provider.class, params = {Integer.class, Integer.class, String.class})
 public class ImplHello1 implements Hello1Provider {
     private int a;
-    private int b;
-    private String s;
-    public ImplHello1() {
-    }
 
-    public ImplHello1(int a, int b, String s) {
+    public ImplHello1(int a) {
         this.a = a;
-        this.b = b;
-        this.s = s;
     }
 
     @Override
@@ -34,12 +30,17 @@ public class ImplHello1 implements Hello1Provider {
 
     @Override
     public int test1ParamB() {
-        return b;
-
+        return a * 2;
     }
 
     @Override
     public String test1ParamC() {
-        return s;
+        return "ImplHello1#test1ParamC";
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ImplHello1#toString, a=" + a + ", b(2a)=" + a * 2;
     }
 }

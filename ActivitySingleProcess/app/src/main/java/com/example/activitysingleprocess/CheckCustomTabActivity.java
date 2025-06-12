@@ -1,7 +1,10 @@
 package com.example.activitysingleprocess;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +17,8 @@ import androidx.browser.customtabs.CustomTabsClient;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
+
+import java.util.List;
 
 public class CheckCustomTabActivity extends AppCompatActivity {
 
@@ -45,8 +50,21 @@ public class CheckCustomTabActivity extends AppCompatActivity {
         });
         tvStatus.setOnClickListener(v -> {
             tvStatus.setText("正在检测设备兼容性...");
-            checkCustomTabsSupport();
+            // checkCustomTabsSupport();
+            isCustomTabsAvailable();
         });
+    }
+
+    private void isCustomTabsAvailable() {
+        PackageManager pm = getPackageManager();
+        Intent serviceIntent = new Intent("android.support.customtabs.action.CustomTabsService");
+        List<ResolveInfo> resolveInfos = pm.queryIntentServices(serviceIntent, 0);
+        isCustomTabsSupported = resolveInfos != null && !resolveInfos.isEmpty();
+        if (!isCustomTabsSupported) {
+            tvStatus.setText("❌ Custom Tabs not supported\n\nNo browser available that supports Custom Tabs");
+        } else {
+            tvStatus.setText("✅ Custom Tabs supported\n\nDefault Custom Tabs browser: " + resolveInfos.size());
+        }
     }
 
     // 检查设备是否支持Custom Tabs

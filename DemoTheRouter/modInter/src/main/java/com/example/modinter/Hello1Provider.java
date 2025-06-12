@@ -1,9 +1,11 @@
 package com.example.modinter;
 
+import com.therouter.inject.NewInstance;
 import com.therouter.inject.Singleton;
 
-@Singleton
+@NewInstance
 public interface Hello1Provider {
+
     String test1();
 
     String test2();

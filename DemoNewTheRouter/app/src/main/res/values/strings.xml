@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DemoNewTheRouter</string>
+
+    <string name="activity_0">activity 0</string>
+    <string name="activity_1">Activity 1</string>
+    <string name="activity_2">activity 2</string>
+    <string name="mod_interface_1">interface 1</string>
+    <string name="mod_interface_1_single">interface 1 single</string>
+</resources>

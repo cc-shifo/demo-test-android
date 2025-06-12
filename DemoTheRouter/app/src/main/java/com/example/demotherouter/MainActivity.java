@@ -55,17 +55,34 @@ public class MainActivity extends AppCompatActivity {
         mBinding.btnModInterface1Single.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Hello1Provider p = TheRouter.get(Hello1Provider.class);
+                Hello1Provider p0 = TheRouter.get(Hello1Provider.class);
                 // 内部单例key使用了参数，不同参数将导致不同对象。
-                Hello1Provider p = TheRouter.get(Hello1Provider.class, 4, 5, "6");
+                Hello1Provider p1 = TheRouter.get(Hello1Provider.class, 4, 5, "6");
                 // Hello1Provider p = TheRouter.get(Hello1Provider.class, 1, 2, "3");
-                if (p != null) {
-                    int a = p.test1ParamA();
-                    int b = p.test1ParamB();
-                    String c = p.test1ParamC();
-                    mBinding.tvHelloWorld.setText(p.test1() + ": single?" + p +
+                if (p1 != null) {
+                    int a = p1.test1ParamA();
+                    int b = p1.test1ParamB();
+                    String c = p1.test1ParamC();
+                    mBinding.tvHelloWorld.setText(p1.test1() + ": single?" + p1 +
                             "," + a + ", " + b + ", " + c);
                 }
+                Hello1Provider p2 = TheRouter.get(Hello1Provider.class, 1, 2, "3");
+                if (p2 != null) {
+                    int a = p2.test1ParamA();
+                    int b = p2.test1ParamB();
+                    String c = p2.test1ParamC();
+                    mBinding.tvHelloWorld.setText(p2.test1() + ": single?" + p2 +
+                            "," + a + ", " + b + ", " + c);
+                }
+
+                // Hello1Provider p1 = TestClassConstructor.create(1, 2, "3");
+                // if (p1 != null) {
+                //     int a = p.test1ParamA();
+                //     int b = p.test1ParamB();
+                //     String c = p.test1ParamC();
+                //     mBinding.tvHelloWorld.setText(p1.test1() + ": single?" + p1 +
+                //             "," + a + ", " + b + ", " + c);
+                // }
             }
         });
     }

@@ -1,0 +1,16 @@
+ext {
+    // deps_vers = [
+    //         compileSdk : 35,
+    //         minSdk     : 24,
+    //         targetSdk  : 35,
+    //         versionCode: 1,
+    //         versionName: "1.0",
+    // ]
+
+    deps = [:]
+    deps.compileSdk = 35
+    deps.minSdk = 24
+    deps.targetSdk = 35
+    deps.versionCode = 1
+    deps.versionName = "1.0"
+}
