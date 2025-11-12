@@ -85,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("onWindowFocusChanged", "onWindowFocusChanged: " + mBinding.homeView.getBottom());
 //        Log.d("onWindowFocusChanged", "onWindowFocusChanged: " + mBinding.homeView.getHeight());
 
+        // 系统状态栏
+        // 应用区域
+        //          标题栏
+        //          应用内容区域
+        // 系统导航栏
+
         // 屏幕
         DisplayManagerCompat displayManager = DisplayManagerCompat.getInstance(this);
         Display display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
@@ -151,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().findViewById(Window.ID_ANDROID_CONTENT).getDrawingRect(outRect2);
         //错误方法，也不叫错误吧。相对应绘制区的坐标, outRect2.top=0, bottom=1024,outRect2.height=1024
         Log.e("HelloWorld", "View绘制区域顶部-错误方法：" + outRect2.top);
-        //这个方法获取到的view就是程序不包括标题栏的部分
+        //这个方法获取到的view就是程序不包括标题栏的部分。当前使用的是有toolbar主题，此id是我们setContentView设置的的父布局。
         View view = getWindow().findViewById(Window.ID_ANDROID_CONTENT);
-        Log.e("HelloWorld", "View绘制区域顶部-正确方法top：" + view.getTop());//112，相对应屏幕的坐标，要用这种方法
+        Log.e("HelloWorld", "View绘制区域顶部-正确方法top：" + view.getTop());//112，相对应父布局的坐标，要用这种方法
         //那么相对应屏幕的坐标top=112 - outRect1.top=48相对应屏幕高度 是不是等于64=action bar
         Log.e("HelloWorld", "View绘制区域顶部-正确方法Bottom：" + view.getBottom());//1136，应用区域的坐标，如果是
         //相对应屏幕的坐标的话，1136坐标的下面是什么？1136坐标离1184还有一段距离(48)呢！但是view.getTop()=112为什么
