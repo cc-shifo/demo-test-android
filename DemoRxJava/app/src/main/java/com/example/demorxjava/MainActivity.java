@@ -37,8 +37,17 @@ public class MainActivity extends AppCompatActivity {
         mBinding.btnTakeUntil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                testTakeUntil();
-                testContactError();
+                // testTakeUntil();
+                // testContactError();
+                testDisposeComplete();
+            }
+        });
+        mBinding.btnDispose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mDisComplete != null && !mDisComplete.isDisposed()) {
+                    mDisComplete.dispose();
+                }
             }
         });
     }
@@ -53,45 +62,45 @@ public class MainActivity extends AppCompatActivity {
 
     private void testTakeUntil() {
         mDisposable = Observable.interval(0, 15, TimeUnit.SECONDS)
-                                // .flatMap(new Function<Long, ObservableSource<Long>>() {
-                                //     @Override
-                                //     public ObservableSource<Long> apply(Long aLong)
-                                //             throws Throwable {
-                                //         return aLong;
-                                //     }
-                                // })
-                                .takeUntil(new Predicate<Long>() {
-                                    @Override
-                                    public boolean test(Long aLong) throws Throwable {
-                                        Log.d(TAG, "test: " + aLong);
-                                        if (aLong == 5) {
-                                            return  true;
-                                        } else {
-                                            Thread.sleep(17000);
-                                        }
-                                        return false;
-                                    }
-                                })
-                                .onTerminateDetach()
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Consumer<Long>() {
-                                    @Override
-                                    public void accept(Long aLong) throws Throwable {
-                                        Log.d(TAG, "accept: onNext= " + aLong);
-                                    }
-                                }, new Consumer<Throwable>() {
-                                    @Override
-                                    public void accept(Throwable throwable) throws Throwable {
+                // .flatMap(new Function<Long, ObservableSource<Long>>() {
+                //     @Override
+                //     public ObservableSource<Long> apply(Long aLong)
+                //             throws Throwable {
+                //         return aLong;
+                //     }
+                // })
+                .takeUntil(new Predicate<Long>() {
+                    @Override
+                    public boolean test(Long aLong) throws Throwable {
+                        Log.d(TAG, "test: " + aLong);
+                        if (aLong == 5) {
+                            return true;
+                        } else {
+                            Thread.sleep(17000);
+                        }
+                        return false;
+                    }
+                })
+                .onTerminateDetach()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Throwable {
+                        Log.d(TAG, "accept: onNext= " + aLong);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
 
-                                        Log.e(TAG, "accept: throwable", throwable);
-                                    }
-                                }, new Action() {
-                                    @Override
-                                    public void run() throws Throwable {
-                                        Log.d(TAG, "run: complete");
-                                    }
-                                });
+                        Log.e(TAG, "accept: throwable", throwable);
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Throwable {
+                        Log.d(TAG, "run: complete");
+                    }
+                });
 
     }
 
@@ -124,6 +133,43 @@ public class MainActivity extends AppCompatActivity {
 
         Observable.concat(ob1, ob2, ob3)
                 .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Throwable {
+                        Log.d("concat", "onNext: " + integer);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.e("concat", "onError", throwable);
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Throwable {
+                        Log.d("concat", "onComplete");
+                    }
+                });
+
+    }
+
+    private Disposable mDisComplete;
+    private void testDisposeComplete() {
+        mDisComplete = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(
+                    @io.reactivex.rxjava3.annotations.NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+                for (int i = 0; i < 1000; i++) {
+                    emitter.onNext(i);
+                    try {
+                        Thread.currentThread().sleep(1000);
+                    } catch (InterruptedException e) {
+                        // throw new RuntimeException(e);
+                    }
+                }
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Integer>() {
                     @Override
