@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         // Activity.requestPermissions(String[], int)
         //
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {// Android 11
-            // Manifest.permission.BLUETOOTH_ADMIN permission which can be gained with a simple <uses-permission> manifest tag
+            // Manifest.permission.BLUETOOTH_ADMIN permission which can be gained with a simple <uses-permission>
+            // manifest tag
             // Manifest.permission.BLUETOOTH_ADMIN
             // Manifest.permission.BLUETOOTH
             if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_ADMIN)
@@ -154,28 +155,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enableBluetooth() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.BLUETOOTH_CONNECT},
-                        PackageManager.PERMISSION_GRANTED);
-                return;
-            }
-        }
-
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
-            // Manifest.permission.BLUETOOTH_ADMIN只需要在Manifest中声明即可，不需要动态申请权限
-            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_ADMIN)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // Manifest.permission.BLUETOOTH_ADMIN permission which can be gained with a simple <uses-permission>
-                // manifest tag
-                Log.e(TAG, "enableBluetooth: " + Manifest.permission.BLUETOOTH_ADMIN
-                     + " permission which can be gained with a simple <uses-permission> manifest tag");
-                Toast.makeText(this, "请先授予 " + Manifest.permission.BLUETOOTH_ADMIN + " 权限", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
+        if (!checkBTPermission()) {
+            return;
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -187,24 +168,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Build.VERSION.SDK_INT <= Build.VERSION_CODES.R Manifest.permission.BLUETOOTH_ADMIN
-        BluetoothManager wifiManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        BluetoothAdapter bluetoothAdapter = wifiManager.getAdapter();
-        boolean isDisabled = bluetoothAdapter.disable();
-        if (isDisabled) {
-            Log.d(TAG, "onClick: 蓝牙已禁用");
-        } else {
-            Log.d(TAG, "onClick: 蓝牙禁用失败");
-        }
+        enableBTBelowApi33(true);
     }
 
     private void disableBluetooth() {
+        if (!checkBTPermission()) {
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // send action to enable or disable bluetooth
+            Intent intent = new Intent("android.bluetooth.adapter.action.REQUEST_DISABLE");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // startActivityForResult(intent, 8888);
+            // 或者
+            mResultLauncher.launch(intent);
+        } else {
+            // Build.VERSION.SDK_INT <= Build.VERSION_CODES.R Manifest.permission.BLUETOOTH_ADMIN
+            enableBTBelowApi33(false);
+        }
+    }
+
+    private boolean checkBTPermission() {
+        // Android 12 及以上版本需要动态申请权限 Manifest.permission.BLUETOOTH_CONNECT
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.BLUETOOTH_CONNECT},
                         PackageManager.PERMISSION_GRANTED);
-                return;
+                return false;
             }
         }
 
@@ -218,27 +211,54 @@ public class MainActivity extends AppCompatActivity {
                         + " permission which can be gained with a simple <uses-permission> manifest tag");
                 Toast.makeText(this, "请先授予 " + Manifest.permission.BLUETOOTH_ADMIN + " 权限", Toast.LENGTH_SHORT)
                         .show();
-                return;
+                return false;
             }
         }
+        return true;
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // send action to enable or disable bluetooth
-            Intent intent = new Intent("android.bluetooth.adapter.action.REQUEST_DISABLE");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            // startActivityForResult(intent, 8888);
-            // 或者
-            mResultLauncher.launch(intent);
-        } else {
-            // Build.VERSION.SDK_INT <= Build.VERSION_CODES.R Manifest.permission.BLUETOOTH_ADMIN
-            BluetoothManager wifiManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-            BluetoothAdapter bluetoothAdapter = wifiManager.getAdapter();
-            boolean isDisabled = bluetoothAdapter.disable();
-            if (isDisabled) {
-                Log.d(TAG, "onClick: 蓝牙已禁用");
+    /**
+     * 此接口为Android 12及以下版本有效。Android 13不再支持BluetoothAdapter#enable()和#disable()方法。
+     * Android 12 及以上版本需要动态申请权限 Manifest.permission.BLUETOOTH_CONNECT
+     * <p>
+     * Android 12及以下版本，通过BluetoothAdapter#enable()和#disable()方法启用或禁用蓝牙。
+     * @param on true是启用，false是禁用蓝牙
+     * @apiNote android 13及以上版本 CoreService不再支持此功能。
+     * <p><a href="https://developer.android.com/reference/android/Manifest.permission#enable_bluetooth">enable</a></p>
+     * 方式一，通用方法。用户APP调整到Settings页面，手动打开或关闭蓝牙。
+     * 需要通过 Intent 打开蓝牙设置页面
+     * Intent intentOpenBluetoothSettings = new Intent();
+     * intentOpenBluetoothSettings.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+     * startActivity(intentOpenBluetoothSettings);
+     * 方式二，使用startActivityForResult启动ActivityResultLauncher，发送Intent Action
+     * enable方法
+     * startActivity， 发送 Intent Action BluetoothAdapter.ACTION_REQUEST_ENABLE
+     * Activity.onActivityResult中处理结果的方法不准。
+     * disable方法
+     * startActivity， 发送 android.bluetooth.adapter.action.REQUEST_DISABLE
+     * Activity.onActivityResult中处理结果的方法不准。
+     * 注册广播，监听Intent.ACTION_STATE_CHANGED,获取监听Intent.EXTRA_STATE and 监听Intent.EXTRA_PREVIOUS_STATE
+     * 获取蓝牙的状态either BluetoothAdapter.STATE_OFF or BluetoothAdapter.STATE_ON
+     */
+
+    private void enableBTBelowApi33(boolean on) {
+        BluetoothManager wifiManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter bluetoothAdapter = wifiManager.getAdapter();
+        if (on) {
+            boolean isEnabled = bluetoothAdapter.enable();
+            if (isEnabled) {
+                Log.d(TAG, "onClick: 蓝牙已启用");
             } else {
-                Log.d(TAG, "onClick: 蓝牙禁用失败");
+                Log.d(TAG, "onClick: 蓝牙启用失败");
             }
+            return;
+        }
+
+        boolean isDisabled = bluetoothAdapter.disable();
+        if (isDisabled) {
+            Log.d(TAG, "onClick: 蓝牙已禁用");
+        } else {
+            Log.d(TAG, "onClick: 蓝牙禁用失败");
         }
     }
 }
