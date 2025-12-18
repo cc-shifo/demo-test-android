@@ -1,0 +1,162 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.dokka.javadoc)
+
+}
+
+android {
+    namespace 'com.example.demodokka'
+    compileSdk {
+        version = release(36)
+    }
+
+    defaultConfig {
+        applicationId "com.example.demodokka"
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
+
+
+import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
+
+tasks.register("mydokkaJavadoc") {
+    // dependsOn("dokkaGenerate")
+    // dependsOn("dokkaGenerateModuleJavadoc")
+    dependsOn("dokkaGenerateJavadoc")
+    // dependsOn("dokkaGeneratePublicationJavadoc")
+    group = "documentation"
+    description = "生成Javadoc格式文档（Dokka 2.x兼容）"
+    doFirst {
+        delete(file("$layout.buildDirectory/dokka/javadoc"))
+    }
+
+
+    System.out.println("dokkaSourceSets.sourceRoots: ${project.projectDir.getAbsolutePath()}/testdoc-src")
+    System.out.println("dokkaSourceSets.sourceRoots: ${project.android.sourceSets.main.java.srcDirs}/testdoc-src")
+    System.out.println("dokkaSourceSets.sourceRoots: ${project.projectDir}/testdoc-src/")
+}
+
+dokka {
+    moduleName.set("SDK Javadoc")
+    moduleVersion.set("1.0.0")
+    // basePublicationsDirectory.set(file("${project.buildDir}/dokka/javadoc1"))
+    basePublicationsDirectory.set(layout.buildDirectory.dir("dokka/javadoc1"))
+
+
+    // debug info
+    project.android.sourceSets.main.java.srcDirs.forEach {
+        println("#### 0.project.android.sourceSets.main.java.srcDirs: $it")
+        println("#### 0.project.projectDir.absolutePath: ${project.projectDir.absolutePath}")
+    }
+    println("#### 1.layout.projectDirectory: $layout.projectDirectory")
+    def mainJavaSrcDir = layout.projectDirectory.dir('src/main/java').asFile
+    println("#### 1.mainJavaSrcDir: $mainJavaSrcDir")
+    def packageRootDir = layout.projectDirectory.dir('src/main/java/com/example/demodokka').asFile
+    println("#### 1.packageRootDir: $packageRootDir")
+    project.configurations.getNames().forEach {
+        println("#### 0.project.configurations.$it")
+    }
+    println("#### 1.dokkaSourceSets.names: ${dokkaSourceSets.names}")
+    dokkaSourceSets.names.forEach {
+        println("#### 2.dokkaSourceSets.$it: ${project.projectDir.absolutePath}/testdoc-src")
+    }
+
+
+    dokkaSourceSets.register("mytest")
+    println("#### 3.dokkaSourceSets.names: ${dokkaSourceSets.names}")
+    // debug info
+    dokkaSourceSets.names.forEach {
+        println("#### 4.dokkaSourceSets.$it: ${project.projectDir.absolutePath}/testdoc-src")
+    }
+
+    dokkaSourceSets.named("mytest") {
+        // ${project.android.sourceSets.main.java.srcDirs}
+        sourceRoots.from(files("${project.projectDir.absolutePath}/testdoc-src",
+                "$packageRootDir/abc",
+                "$mainJavaSrcDir/com/example/demodokka/MainActivity.java"
+        ))
+        jdkVersion.set(17)
+        reportUndocumented.set(true)
+        skipDeprecated.set(false)
+        // suppressGeneratedFiles.set(false)
+        skipEmptyPackages.set(true)
+        suppressedFiles.from(files(
+                "${project.projectDir.absolutePath}/testdoc-src/TestInterface.java"
+        ))
+        documentedVisibilities.set([VisibilityModifier.Public, VisibilityModifier.Protected])
+
+        // classpath.from(
+        //         // 1. Android SDK 类路径
+        //         files(project.android.getBootClasspath()),
+        //         // 2. 项目的编译依赖
+        //         // project.configurations.getByName("compileClasspath"),
+        //         // project.configurations.getByName("releaseImplementation"),
+        //         // 3. 【重要】项目自身编译输出的字节码目录
+        //         // 请根据您的构建变体（debug/release）调整路径
+        //         fileTree(dir: "${project.buildDir}/intermediates/javac/debug/classes", includes: ['**/*.class'])
+        // )
+        perPackageOption {
+            matchingRegex.set(".*impl.*")
+            suppress.set(true)
+        }
+    }
+
+    // skip sourceRoots
+    dokkaSourceSets.register("myskipsource")
+    dokkaSourceSets.named("myskipsource") {
+        sourceRoots.from(files("${project.projectDir.absolutePath}/prepared-skip-src"))
+        suppress.set(true)
+    }
+
+    // 所有的都是Public和Protected
+    // dokkaSourceSets.configureEach {
+    //     documentedVisibilities.set([VisibilityModifier.Public,
+    //                                 VisibilityModifier.Protected])
+    // }
+
+    dokkaPublications.getNames().forEach {
+        println("#### 5.dokkaPublications.$it")
+    }
+
+    // dokkaPublications.named("mytest") {
+    //     suppressInheritedMembers.set(true)
+    //     failOnWarning.set(false)
+    // }
+    dokkaPublications.configureEach {
+        suppressInheritedMembers.set(true)
+        failOnWarning.set(false)
+    }
+
+    pluginsConfiguration.getNames().forEach {
+        println("#### 6.pluginsConfiguration.$it")
+    }
+    // pluginsConfiguration.named("html") {
+    //     footerMessage.set("(c) Custom Format Dokka example")
+    // }
+}

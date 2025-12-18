@@ -1,0 +1,81 @@
+{
+  "moduleName": "Dokka Gradle Javadoc Example",
+  "moduleVersion": null,
+  "outputDir": "D:\\Android\\AndroidProjects\\dokka\\dokka-master\\examples\\gradle-v2\\javadoc-example\\build\\dokka\\javadoc",
+  "cacheRoot": null,
+  "offlineMode": false,
+  "sourceSets": [
+    {
+      "displayName": "jvm",
+      "sourceSetID": {
+        "scopeId": ":",
+        "sourceSetName": "main"
+      },
+      "classpath": [
+        "C:\\Users\\Administrator\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib\\2.2.0\\fdfc65fbc42fda253a26f61dac3c0aca335fae96\\kotlin-stdlib-2.2.0.jar",
+        "C:\\Users\\Administrator\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains\\annotations\\13.0\\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\\annotations-13.0.jar"
+      ],
+      "sourceRoots": [
+        "D:\\Android\\AndroidProjects\\dokka\\dokka-master\\examples\\gradle-v2\\javadoc-example\\src\\main\\kotlin"
+      ],
+      "dependentSourceSets": [
+      ],
+      "samples": [
+      ],
+      "includes": [
+        "D:\\Android\\AndroidProjects\\dokka\\dokka-master\\examples\\gradle-v2\\javadoc-example\\Module.md"
+      ],
+      "includeNonPublic": false,
+      "reportUndocumented": false,
+      "skipEmptyPackages": true,
+      "skipDeprecated": false,
+      "jdkVersion": 11,
+      "sourceLinks": [
+        {
+          "localDirectory": "D:/Android/AndroidProjects/dokka/dokka-master/examples/gradle-v2/javadoc-example/src/main/kotlin",
+          "remoteUrl": "https://github.com/Kotlin/dokka/tree/master/examples/gradle/dokka-gradle-javadoc-example/src/main/kotlin",
+          "remoteLineSuffix": "#L"
+        }
+      ],
+      "perPackageOptions": [
+      ],
+      "externalDocumentationLinks": [
+        {
+          "url": "https://docs.oracle.com/en/java/javase/11/docs/api/",
+          "packageListUrl": "https://docs.oracle.com/en/java/javase/11/docs/api/element-list"
+        },
+        {
+          "url": "https://kotlinlang.org/api/core/",
+          "packageListUrl": "https://kotlinlang.org/api/core/package-list"
+        }
+      ],
+      "languageVersion": null,
+      "apiVersion": null,
+      "noStdlibLink": false,
+      "noJdkLink": false,
+      "suppressedFiles": [
+      ],
+      "analysisPlatform": "jvm",
+      "documentedVisibilities": [
+        "PUBLIC",
+        "PROTECTED"
+      ]
+    }
+  ],
+  "pluginsClasspath": [
+    "C:\\Users\\Administrator\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.dokka\\javadoc-plugin\\2.1.0\\4869aa2f162bc0e82e85b95d971ab808b9146ed5\\javadoc-plugin-2.1.0.jar",
+    "C:\\Users\\Administrator\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.dokka\\templating-plugin\\2.1.0\\c3c13a48444b9c22e5286e88581ce0334e25352d\\templating-plugin-2.1.0.jar",
+    "C:\\Users\\Administrator\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.dokka\\dokka-base\\2.1.0\\3379db5f1799a2ae6c98603214367743d4d6863f\\dokka-base-2.1.0.jar"
+  ],
+  "pluginsConfiguration": [
+  ],
+  "modules": [
+  ],
+  "failOnWarning": false,
+  "delayTemplateSubstitution": false,
+  "suppressObviousFunctions": true,
+  "includes": [
+  ],
+  "suppressInheritedMembers": false,
+  "finalizeCoroutines": false
+}
