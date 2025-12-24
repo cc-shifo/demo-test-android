@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    // implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -40,6 +41,8 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    runtimeOnly libs.kotlin.as1.java.plugin
+
 }
 
 
@@ -55,7 +58,6 @@ tasks.register("mydokkaJavadoc") {
     doFirst {
         delete(file("$layout.buildDirectory/dokka/javadoc"))
     }
-
 
     System.out.println("dokkaSourceSets.sourceRoots: ${project.projectDir.getAbsolutePath()}/testdoc-src")
     System.out.println("dokkaSourceSets.sourceRoots: ${project.android.sourceSets.main.java.srcDirs}/testdoc-src")
@@ -160,3 +162,203 @@ dokka {
     //     footerMessage.set("(c) Custom Format Dokka example")
     // }
 }
+
+// https://docs.gradle.org.cn/current/userguide/declaring_configurations.html
+// 配置 compileClasspath 依赖. javadoc无法解析aar
+// project.configurations {
+//     // declare a resolvable configuration that is going to resolve the compile classpath of the application
+//     resolvable("compileClasspath") {
+//         // canBeConsumed = false
+//         // canBeDeclared = false
+//         extendsFrom(implementation)
+//     }
+//     // declare a resolvable configuration that is going to resolve the runtime classpath of the application
+//     resolvable("runtimeClasspath") {
+//         // canBeConsumed = false
+//         // canBeDeclared = false
+//         extendsFrom(implementation)
+//     }
+// }
+
+// android.applicationVariants.all { variant ->
+//     // Only consider release
+//     if (variant.buildType.name == "release") {
+//         def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
+//             group "ApiDoc"
+//             description "Generates Javadoc for $variant.name."
+//
+//             // Source files from the variant
+//             source = variant.javaCompiler.source
+//             // Classpath from the variant + android.jar
+//             classpath = variant.javaCompiler.classpath + files(project.android.getBootClasspath()) +
+//                     files("$buildDir/intermediates/classes/release")
+//
+//             /* add the excluded packages */
+//             exclude "**/R**"
+//             exclude "**/BuildConfig*"
+//
+//             options.windowTitle = "My Library"
+//             options.memberLevel = JavadocMemberLevel.PROTECTED
+//             options.linkSource false
+//             options.author = true
+//             // options.links("http://docs.oracle.com/javase/7/docs/api/", "http://d.android.com/reference");
+//
+//             failOnError false
+//         }
+//
+//         task.dependsOn assemble
+//
+//         // generateApiDoc.dependsOn task
+//     }
+// }
+
+// AGP < 8
+// project.configurations {
+//     // declare a resolvable configuration that is going to resolve the compile classpath of the application
+//     register("compileClasspath") {
+//         // canBeConsumed = false
+//         // canBeDeclared = false
+//         extendsFrom(implementation)
+//     }
+//     // declare a resolvable configuration that is going to resolve the runtime classpath of the application
+//     register("runtimeClasspath") {
+//         // canBeConsumed = false
+//         // canBeDeclared = false
+//         extendsFrom(implementation)
+//     }
+// }
+
+tasks.register("sdkjavadoc", Javadoc) {
+    doFirst {
+        delete("$project.buildDir/doc/javadoc")
+    }
+    dependsOn(build)
+    destinationDir = layout.buildDirectory.dir("doc/javadoc").get().asFile
+
+    title = "Doc 1.0.0"
+    // source = android.sourceSets.main.java.srcDirs
+    def packageRootDir = layout.projectDirectory.dir('src/main/java/com/example/demodokka').asFile
+    def mainJavaSrcDir = layout.projectDirectory.dir('src/main/java').asFile
+    println("### Exclude: packageRootDir=${packageRootDir}")
+    println("### Exclude: mainJavaSrcDir=${mainJavaSrcDir}")
+    source = files(
+            // ${project.android.sourceSets.main.java.srcDirs}
+            "${project.projectDir.absolutePath}/testdoc-src",
+            "$packageRootDir/abc",
+            "$mainJavaSrcDir/com/example/demodokka/MainActivity.java",
+    )
+    // includes("com/example/demodokka/**")
+    // debug info
+    // source.forEach {
+    //     println("### 1. source: classpath=${it.absolutePath}")
+    // }
+
+    // 文件唯一时，模式匹配排除.
+    exclude(
+            "**/R",
+            "**/R.**",
+            "**/R\$**",
+            "**/BuildConfig*",
+            "**/TestError2.java",
+            // "**/TestError3.java"
+    )
+    // 文件非唯一时，精准匹配排除.
+    def excludedPaths = [
+            "${project.projectDir.absolutePath}/testdoc-src/TestHide.java",
+            "$packageRootDir/abc/bean/TestError4.java"
+    ].collect { file(it).absolutePath }
+    exclude(new Spec<FileTreeElement>() {
+        @Override
+        boolean isSatisfiedBy(FileTreeElement element) {
+            return excludedPaths.contains(element.file.absolutePath)
+        }
+    })
+    // exclude { element ->
+    //     excludedPaths.contains(element.file.absolutePath)
+    // }
+    // print source files
+    // println("### 2. Source files: ${source.files}")
+
+    // AGP < 8
+    // classpath = files(android.getBootClasspath()) +
+    //         files("$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes") +
+    //         // files("$buildDir/intermediates/javac/release/classes") +
+    //         // project.configurations.compileClasspath +
+    //         // project.configurations.getByName("androidRuntimeClasspath")
+    //         project.configurations.getByName("releaseCompileClasspath") +
+    //         project.configurations.getByName("releaseRuntimeClasspath") +
+            // files(build.javaCompile.classpath.files)
+            // project.configurations.compile
+
+    // AGP >= 8
+    classpath += files(android.applicationVariants.collect { variant ->
+        println("$variant.javaCompiler")
+        variant.javaCompileProvider.get().classpath.files
+    })
+    // debug info
+    classpath.forEach {
+        println("### 3. Exclude: classpath=${it.absolutePath}")
+    }
+    // project.configurations.compileClasspath.forEach {
+    //     println("### Exclude: configuration=${it.absolutePath}")
+    // }
+
+    // 添加选项
+    options {
+        // encoding = "UTF-8"
+        addStringOption('Xdoclint:html,syntax', '-quiet')
+        addBooleanOption('Xdoclint:all,-missing', true)
+        // 或完全禁用检查
+        // addBooleanOption('Xdoclint:none', true)
+    }
+
+    (StandardJavadocDocletOptions)options.setMemberLevel(JavadocMemberLevel.PROTECTED)
+    // 中英文在options.addStringOption中配置无效，需调用函数进行设置。
+    options.encoding("UTF-8")
+    options.locale('en_US')
+    options.jFlags("-Duser.language=en", "-Duser.country=US")
+    failOnError = true
+}
+
+// afterEvaluate {
+//     // sdkjavadoc.classpath += files(android.libraryVariants.collect { variant ->
+//     sdkjavadoc.classpath += files(android.applicationVariants.collect { variant ->
+//         variant.javaCompileProvider.get().classpath.files
+//     })
+// }
+
+
+
+
+// ok
+// dokka {
+//     // used as project name in the header
+//     // moduleName.set("Dokka Gradle Javadoc Example")
+//     dokkaSourceSets {
+//         dokkaPublications.configureEach {
+//             suppressInheritedMembers.set(true)
+//             suppressObviousFunctions.set(true)
+//
+//         }
+//         demodocsrc {
+//             // 注意末尾不要带路径分隔符
+//             // sourceRoots.from(files("${project.projectDir}/prepared-src"))
+//             sourceRoots.from(files(
+//                     // "${project.projectDir}/prepare-src"
+//                     // project.android.sourceSets.main.java.srcDirs
+//                     "src/main/java/com/example/demodokka/MainActivity.java",
+//                     "src/main/java/com/example/demodokka/abc/TestError2.java",
+//                     "src/main/java/com/example/demodokka/abc/bean/TestError4.java"
+//             ))
+//
+//
+//             jdkVersion.set(17)
+//             perPackageOption {
+//                 matchingRegex.set(".*internal.*")
+//                 suppress.set(true)
+//                 reportUndocumented.set(false)
+//                 skipEmptyPackages.set(true)
+//             }
+//         }
+//     }
+// }
