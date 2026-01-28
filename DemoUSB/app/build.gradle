@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android' // id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -23,12 +24,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
+    // 2.0开始将迁移 kotlinOptions 中的 jvmTarget 到 compileOptions 中
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
 }

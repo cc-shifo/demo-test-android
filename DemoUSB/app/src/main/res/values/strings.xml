@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DemoUDisk</string>
+    <string name="list_file_100">list file 100</string>
+    <string name="read_other">read other</string>
+    <string name="read">read</string>
+    <string name="write">write</string>
+    <string name="clear_text">clear text</string>
+    <string name="file_content">file content</string>
+    <string name="create">create</string>
+    <string name="open">open</string>
+    <string name="create_document">create document</string>
 </resources>

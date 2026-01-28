@@ -185,6 +185,25 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, USBActivity.class);
             startActivity(intent);
         });
+
+        mBinding.btnTestSaf.setOnClickListener(v-> {
+            Intent intent = new Intent(MainActivity.this, TestSAF.class);
+            startActivity(intent);
+        });
+        mBinding.btnTestMedia.setOnClickListener(v-> {
+            Intent intent = new Intent(MainActivity.this, TestMedia.class);
+            startActivity(intent);
+        });
+
+        mBinding.btnTestDoc.setOnClickListener(v-> {
+            Intent intent = new Intent(MainActivity.this, TestDocument.class);
+            startActivity(intent);
+        });
+
+        mBinding.btnTestKotlin.setOnClickListener(v-> {
+            Intent intent = new Intent(MainActivity.this, TestKotlinActivity.class);
+            startActivity(intent);
+        });
     }
 
     /**
