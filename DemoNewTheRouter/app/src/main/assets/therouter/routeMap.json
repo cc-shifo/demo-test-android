@@ -1,0 +1,23 @@
+[
+  {
+    "path": "/mod2/Mod2Activity1",
+    "className": "com.example.mod2.Mod2Activity1",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/mod1/Mod1Activity1",
+    "className": "com.example.mod1.Mod1Activity1",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/mod0/Mod0Activity1",
+    "className": "com.example.mod0.Mop0Activity1",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]
