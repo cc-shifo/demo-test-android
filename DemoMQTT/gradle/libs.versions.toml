@@ -8,7 +8,10 @@ material = "1.13.0"
 activity = "1.12.2"
 constraintlayout = "2.2.1"
 pahoclientmqttv3 = "1.2.5"
+pahoclientmqttv5 = "1.2.5"
 pahomqttv3service = "1.1.1"
+recyclerview = "1.4.0"
+localbroadcastmanager = "1.1.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -19,8 +22,12 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 pahoclientmqttv3 = { group = "org.eclipse.paho", name = "org.eclipse.paho.client.mqttv3", version.ref = "pahoclientmqttv3" }
+pahoclientmqttv5 = { group = "org.eclipse.paho", name = "org.eclipse.paho.mqttv5.client", version.ref = "pahoclientmqttv5" }
 pahoandroidservice = { group = "org.eclipse.paho", name = "org.eclipse.paho.android.service", version.ref = "pahomqttv3service" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+localbroadcastmanager = { group = "androidx.localbroadcastmanager", name = "localbroadcastmanager", version.ref = "localbroadcastmanager" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

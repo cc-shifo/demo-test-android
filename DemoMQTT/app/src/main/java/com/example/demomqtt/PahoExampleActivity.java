@@ -15,11 +15,15 @@ package com.example.demomqtt;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
@@ -28,6 +32,7 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -35,6 +40,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import java.util.ArrayList;
 
 public class PahoExampleActivity extends AppCompatActivity {
+    private static final String TAG = "PahoExampleActivity";
     private HistoryAdapter mAdapter;
 
     MqttAndroidClient mqttAndroidClient;
@@ -54,25 +60,25 @@ public class PahoExampleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                publishMessage();
-            }
-        });
+        // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        // fab.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //     public void onClick(View view) {
+        //         publishMessage();
+        //     }
+        // });
 
-
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.history_recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new HistoryAdapter(new ArrayList<String>());
-        mRecyclerView.setAdapter(mAdapter);
+        //
+        // RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.history_recycler_view);
+        // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        // mRecyclerView.setLayoutManager(mLayoutManager);
+        //
+        // mAdapter = new HistoryAdapter(new ArrayList<String>());
+        // mRecyclerView.setAdapter(mAdapter);
 
         clientId = clientId + System.currentTimeMillis();
 
-        mqttAndroidClient = new MqttAndroidClient(getApplicationContext(), serverUri, clientId);
+        mqttAndroidClient = new MqttAndroidClient(this, serverUri, clientId);
         mqttAndroidClient.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
@@ -141,9 +147,9 @@ public class PahoExampleActivity extends AppCompatActivity {
 
     private void addToHistory(String mainText){
         System.out.println("LOG: " + mainText);
-        mAdapter.add(mainText);
-        Snackbar.make(findViewById(android.R.id.content), mainText, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        // mAdapter.add(mainText);
+        // Snackbar.make(findViewById(android.R.id.content), mainText, Snackbar.LENGTH_LONG)
+        //         .setAction("Action", null).show();
 
     }
 

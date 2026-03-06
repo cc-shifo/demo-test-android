@@ -1,0 +1,13 @@
+int attr angleCount 0x7f040001
+int attr borderRadius 0x7f040002
+int attr currentAngle 0x7f040003
+int attr type 0x7f040004
+int id circle 0x7f0c0001
+int id multi 0x7f0c0002
+int id round 0x7f0c0003
+int string app_name 0x7f150001
+int[] styleable RoundImageView { 0x7f040001, 0x7f040002, 0x7f040003, 0x7f040004 }
+int styleable RoundImageView_angleCount 0
+int styleable RoundImageView_borderRadius 1
+int styleable RoundImageView_currentAngle 2
+int styleable RoundImageView_type 3

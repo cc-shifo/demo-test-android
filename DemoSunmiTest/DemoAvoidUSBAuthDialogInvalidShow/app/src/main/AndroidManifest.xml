@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fanzhong.demo.myapplication">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+            <!--sunmi begin-->
+        <activity android:name=".MainActivity" android:launchMode="singleTop">
+            <!--sunmi eng-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!--sunmi begin-->
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <!--sunmi eng-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--sunmi begin-->
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+            <!--sunmi eng-->
+        </activity>
+    </application>
+
+</manifest>
