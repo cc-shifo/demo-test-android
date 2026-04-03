@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DemoLogcat</string>
+    <string name="java_logcat">java logcat</string>
+    <string name="kotlin_logcat">kotlin logcat</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+</resources>

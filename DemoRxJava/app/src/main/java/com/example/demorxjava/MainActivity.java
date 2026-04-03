@@ -60,6 +60,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void testFlatMap() {
+        mDisComplete = Observable.just("1", "2", "3", "4", "5")
+                .flatMap(new Function<String, ObservableSource<String>>() {
+                    @Override
+                    public ObservableSource<String> apply(String s) throws Throwable {
+                        return Observable.just(s);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Throwable {
+                        Log.d(TAG, "accept: " + s);
+                    }
+                });
+    }
     private void testTakeUntil() {
         mDisposable = Observable.interval(0, 15, TimeUnit.SECONDS)
                 // .flatMap(new Function<Long, ObservableSource<Long>>() {
@@ -67,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 //     public ObservableSource<Long> apply(Long aLong)
                 //             throws Throwable {
                 //         return aLong;
+                //     }
+                // })
+                // .map(new Function<Long, Boolean>() {
+                //     @Override
+                //     public Boolean apply(Long aLong) throws Throwable {
+                //         return false;
                 //     }
                 // })
                 .takeUntil(new Predicate<Long>() {
