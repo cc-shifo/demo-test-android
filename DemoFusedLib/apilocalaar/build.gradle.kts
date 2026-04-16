@@ -44,8 +44,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // method 1
     // depend on local aar
-    api(project(":localrepo:helloworld1"))
-    api(project(":localrepo:helloworld2"))
-    api(project(":localrepo:helloworld3"))
+    // implementation(project(":localrepo:helloworld1"))
+    // implementation(project(":localrepo:helloworld2"))
+    // implementation(project(":localrepo:helloworld3"))
+
+    // method 2 depend on modules directly
+    implementation(project(":aarhelloworld1"))
+    implementation(project(":aarhelloworld2"))
+    implementation(project(":aarhelloworld3"))
 }

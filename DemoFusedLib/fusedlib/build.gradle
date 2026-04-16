@@ -6,7 +6,7 @@ plugins {
 androidFusedLibrary {
     namespace = "com.example.mylibrary"
     minSdk {
-        version = release(26)
+        version = release(25)
     }
 
     // If aarMetadata is not explicitly specified,
@@ -38,11 +38,17 @@ publishing {
 }
 
 dependencies {
-    include(project(":localrepo:helloworld1"))
-    include(project(":localrepo:helloworld2"))
-    include(project(":localrepo:helloworld3"))
-    include(project(":aaraggregation"))
+    // include(project(":localrepo:helloworld1"))
+    // include(project(":localrepo:helloworld2"))
+    // include(project(":localrepo:helloworld3"))
+    include(project(":aarhelloworld1"))
+    include(project(":aarhelloworld2"))
+    include(project(":aarhelloworld3"))
+    include(project(":apilocalaar"))
     include(project(":libhelloworld1"))
     include(project(":libhelloworld2"))
+}
 
+tasks.register("clean", Delete.class) {
+    delete(layout.buildDirectory)
 }

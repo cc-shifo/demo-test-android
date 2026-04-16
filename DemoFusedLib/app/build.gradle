@@ -53,10 +53,37 @@ dependencies {
     implementation libs.androidx.compose.material3
     implementation libs.androidx.constraintlayout
 
-    // test dependencies on modules
-    implementation(project(':apilocalaar'))
-    implementation(project(":libhelloworld1"))
-    implementation(project(":libhelloworld2"))
+    // test method 1
+    // depend on modules directly
+    // implementation(project(":aarhelloworld1"))
+    // implementation(project(":aarhelloworld2"))
+    // implementation(project(":aarhelloworld3"))
+    // implementation(project(":apilocalaar"))
+    // implementation(project(":libhelloworld1"))
+    // implementation(project(":libhelloworld2"))
+
+    // test method 2
+    // depend on local aar under libs dirs
+    // implementation fileTree(include: ["*.jar", "*.aar"], dir: "libs")
+    // implementation files("libs/aarhelloworld1-debug.aar")
+    // implementation files("libs/aarhelloworld2-debug.aar")
+    // implementation files("libs/aarhelloworld3-debug.aar")
+    // implementation files("libs/apilocalaar-debug.aar")
+    // implementation files("libs/libhelloworld1-debug.aar")
+    // implementation files("libs/libhelloworld2-debug.aar")
+
+    // test method 3 my-fused-library-1.0.aar
+    // depend on my-fused-library-1.0.aar which includes all aars.
+    implementation files("libs/my-fused-library-1.0.aar")
+
+    // test method 4 my-fused-library-1.0.aar
+    // depend on modules, aars in local repository, under libs dirs
+    // implementation(project(":localrepo:helloworld1"))
+    // implementation(project(":localrepo:helloworld2"))
+    // implementation(project(":localrepo:helloworld3"))
+    // implementation(project(":apilocalaar"))
+    // implementation(project(":libhelloworld1"))
+    // implementation(project(":libhelloworld2"))
 
 
     testImplementation libs.junit
