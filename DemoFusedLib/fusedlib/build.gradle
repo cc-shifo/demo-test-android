@@ -1,0 +1,48 @@
+plugins {
+    alias(libs.plugins.android.fusedlibrary)
+    alias(libs.plugins.maven.publish) // id 'maven-publish'
+}
+
+androidFusedLibrary {
+    namespace = "com.example.mylibrary"
+    minSdk {
+        version = release(26)
+    }
+
+    // If aarMetadata is not explicitly specified,
+    // aar metadata will be generated based on dependencies.
+    aarMetadata {
+        minCompileSdk = 33
+        // minCompileSdkExtension = 1
+    }
+
+}
+
+publishing {
+    publications {
+        register(MavenPublication) {
+            groupId = "my-company"
+            artifactId = "my-fused-library"
+            version = "1.0"
+            afterEvaluate {
+                from components.fusedLibraryComponent
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "localaar"
+            url = uri(layout.buildDirectory.dir("build_repo"))
+        }
+    }
+}
+
+dependencies {
+    include(project(":localrepo:helloworld1"))
+    include(project(":localrepo:helloworld2"))
+    include(project(":localrepo:helloworld3"))
+    include(project(":aaraggregation"))
+    include(project(":libhelloworld1"))
+    include(project(":libhelloworld2"))
+
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DemoFusedLib</string>
+    <string name="lib2">lib2</string>
+    <string name="lib1">lib1</string>
+    <string name="aar2">aar2</string>
+    <string name="aar3">aar3</string>
+    <string name="aar1">aar1</string>
+    <string name="local_aar_all">local aar all</string>
+</resources>

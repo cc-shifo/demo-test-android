@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btn_aar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aar1" />
+    <Button
+        android:id="@+id/btn_aar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aar2" />
+    <Button
+        android:id="@+id/btn_aar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aar3" />
+    <Button
+        android:id="@+id/btn_local_aar_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/local_aar_all" />
+    <Button
+        android:id="@+id/btn_lib1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lib1" />
+    <Button
+        android:id="@+id/btn_lib2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lib2" />
+</LinearLayout>

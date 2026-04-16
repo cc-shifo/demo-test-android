@@ -1,0 +1,17 @@
+// 内置默认配置的名称为default。
+// 之后引用方式:
+// dependencies {
+//     implementation project(path: ':localrepo:helloworld1')  // 冗长
+// }
+configurations.maybeCreate("default")
+artifacts.add("default", file('aarhelloworld1-release.aar'))
+// 如果自己定成任意名称，
+// configurations.maybeCreate("myCustomConfig")
+// artifacts.add("myCustomConfig", file('aarhelloworld1-release.aar'))
+// 则引用方式也变化，需要带上配置名称：
+// dependencies {
+//     implementation project(path: ':localrepo:helloworld1', configuration: 'myCustomConfig')  // 冗长
+// }
+tasks.register('clean', Delete) {
+    delete file('build')
+}

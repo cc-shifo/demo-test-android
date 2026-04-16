@@ -17,8 +17,11 @@
 
 package com.demo.demopaymodule.utils;
 
-import android.annotation.Nullable;
+
 import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
+import androidx.core.util.Preconditions;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -31,7 +34,7 @@ import java.util.function.IntFunction;
  * sugar methods for {@link ByteBuffer}. Useful for networking and packet manipulations.
  * {@hide}
  */
-@android.ravenwood.annotation.RavenwoodKeepWholeClass
+// @android.ravenwood.annotation.RavenwoodKeepWholeClass
 public final class BitUtils {
     private BitUtils() {}
 
@@ -139,19 +142,19 @@ public final class BitUtils {
         return 1L << bitIndex;
     }
 
-    public static String flagsToString(int flags, IntFunction<String> getFlagName) {
-        StringBuilder builder = new StringBuilder();
-        int count = 0;
-        while (flags != 0) {
-            final int flag = 1 << Integer.numberOfTrailingZeros(flags);
-            flags &= ~flag;
-            if (count > 0) builder.append(", ");
-            builder.append(getFlagName.apply(flag));
-            count++;
-        }
-        TextUtils.wrap(builder, "[", "]");
-        return builder.toString();
-    }
+    // public static String flagsToString(int flags, IntFunction<String> getFlagName) {
+    //     StringBuilder builder = new StringBuilder();
+    //     int count = 0;
+    //     while (flags != 0) {
+    //         final int flag = 1 << Integer.numberOfTrailingZeros(flags);
+    //         flags &= ~flag;
+    //         if (count > 0) builder.append(", ");
+    //         builder.append(getFlagName.apply(flag));
+    //         count++;
+    //     }
+    //     TextUtils.wrap(builder, "[", "]");
+    //     return builder.toString();
+    // }
 
     /**
      * Converts long to byte array

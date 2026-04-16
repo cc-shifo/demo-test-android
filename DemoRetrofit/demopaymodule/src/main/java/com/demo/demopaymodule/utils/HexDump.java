@@ -16,10 +16,12 @@
 
 package com.demo.demopaymodule.utils;
 
-import android.annotation.Nullable;
-import android.compat.annotation.UnsupportedAppUsage;
+// import android.annotation.Nullable;
+// import android.compat.annotation.UnsupportedAppUsage;
 
-@android.ravenwood.annotation.RavenwoodKeepWholeClass
+import androidx.annotation.Nullable;
+
+// @android.ravenwood.annotation.RavenwoodKeepWholeClass
 public class HexDump
 {
     private final static char[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -102,19 +104,19 @@ public class HexDump
         return toHexString(toByteArray(b));
     }
 
-    @UnsupportedAppUsage
+    // @UnsupportedAppUsage
     public static String toHexString(byte[] array)
     {
         return toHexString(array, 0, array.length, true);
     }
 
-    @UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
+    // @UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public static String toHexString(byte[] array, boolean upperCase)
     {
         return toHexString(array, 0, array.length, upperCase);
     }
 
-    @UnsupportedAppUsage
+    // @UnsupportedAppUsage
     public static String toHexString(byte[] array, int offset, int length)
     {
         return toHexString(array, offset, length, true);
@@ -136,7 +138,7 @@ public class HexDump
         return new String(buf);
     }
 
-    @UnsupportedAppUsage
+    // @UnsupportedAppUsage
     public static String toHexString(int i)
     {
         return toHexString(toByteArray(i));
@@ -170,7 +172,7 @@ public class HexDump
         throw new RuntimeException ("Invalid hex char '" + c + "'");
     }
 
-    @UnsupportedAppUsage
+    // @UnsupportedAppUsage
     public static byte[] hexStringToByteArray(String hexString)
     {
         int length = hexString.length();

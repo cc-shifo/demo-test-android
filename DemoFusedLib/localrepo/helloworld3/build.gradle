@@ -1,0 +1,6 @@
+// 内置默认配置的名称为default。
+configurations.maybeCreate("default")
+artifacts.add("default", file('aarhelloworld3-release.aar'))
+tasks.register('clean', Delete) {
+    delete file('build')
+}
