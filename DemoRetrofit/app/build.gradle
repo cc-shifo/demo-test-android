@@ -95,11 +95,6 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.2'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
 
-    if (needdemopayModule.toBoolean()) {
-        implementation project(path: ':demopaymodule')
-    }
-    
-    implementation project(path: ':demopaymodule')
     if (needAModule.toBoolean()) {
         implementation project(path: ':Amodule')
     }

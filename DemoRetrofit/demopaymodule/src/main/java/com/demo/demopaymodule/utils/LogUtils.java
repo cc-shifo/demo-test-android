@@ -1,12 +1,3 @@
-/*
- * = COPYRIGHT
- *     TianYu
- *
- * Description:
- *
- * Date                    Author                    Action
- * 2020-06-30              LiuJian                    update
- */
 
 package com.demo.demopaymodule.utils;
 

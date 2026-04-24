@@ -1,12 +1,3 @@
-/*
- * = COPYRIGHT
- *          Wuhan Tianyu
- * Description: // Detail description about the function of this module,
- *             // interfaces with the other modules, and dependencies.
- * Revision History:
- * Date	                 Author	                Action
- * 20200616 	        liujian                  Create
- */
 
 package com.demo.demopaymodule;
 

@@ -2,7 +2,6 @@ package com.demo.myhttp;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -31,14 +30,11 @@ public class HomeViewModel extends ViewModel {
 
     public void respToString() {
         ReqAppsOnStore appsOnStore = new ReqAppsOnStore();
-        appsOnStore.setSn("000024P43511970100008589");
-        appsOnStore.setPn("P20LH");
-        appsOnStore.setPageSize(10);
-        appsOnStore.setCurrentPageNo(1);
+
 
 //                mBinding.tvHttpRequest.setText(toJsonStringTest(appsOnStore));
         RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
-        Retrofit retrofit = retrofitUtil.getRetrofit("https://app.whty.com.cn:8443/")
+        Retrofit retrofit = retrofitUtil.getRetrofit("https://www.demo123456.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(retrofitUtil.createOkHttps())

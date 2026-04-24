@@ -44,15 +44,13 @@ public class DLApkViewModel extends ViewModel {
     public void downloadApk() {
         RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
         OkHttpClient client = retrofitUtil.createOkHttps();
-        Retrofit retrofit = retrofitUtil.getRetrofit("your url")
+        Retrofit retrofit = retrofitUtil.getRetrofit("http://posmarket.oss-cn-hangzhou.aliyuncs.com/download")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(client)
                 .build();
 
         DLReqBody body = new DLReqBody();
-        body.setSn("000024P43511970100008589");
-        body.setPn("P20LH");
         body.setAppId("325332984125194242");
         retrofit.create(IDownloadApk.class).getApkUrl(body)
                 .map(new Function<DLRespBody, String>() {

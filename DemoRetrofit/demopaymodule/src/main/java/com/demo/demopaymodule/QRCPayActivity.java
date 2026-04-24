@@ -1,29 +1,22 @@
 package com.demo.demopaymodule;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.demo.demopaymodule.apicommon.ServerRespCode;
 import com.demo.demopaymodule.common.RouterJumpPath;
 import com.demo.demopaymodule.component.ICnPayment;
 import com.demo.demopaymodule.component.ImplCnPayment;
 import com.demo.demopaymodule.databinding.AQrcPayBinding;
-import com.demo.demopaymodule.dialog.ProcessStateDialog;
-import com.demo.demopaymodule.dialog.ProcessStateView;
 import com.demo.demopaymodule.utils.LogUtils;
 
 
@@ -34,7 +27,6 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
     private static final String TXN_SN = "TXN_SN";
     private static final String IS_BACK_CAMERA = "IS_BACK_CAMERA";
     private PayViewModel mModel;
-    private ProcessStateDialog mProcessStateDialog;
 
     private boolean mScanStarted;
     @Autowired(name = "TXN_SN")
@@ -121,7 +113,6 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
             }
         });
         mBinding.activityCustomToolbar.tittleTv.setText(R.string.qrc_pay);
-        mProcessStateDialog = new ProcessStateDialog(this);
     }
 
     @Override
@@ -130,95 +121,15 @@ public class QRCPayActivity extends BasicActivity<AQrcPayBinding> {
         mScanStarted = savedInstanceState.getBoolean(SCAN_STARTED);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!mScanStarted) {
-            mScanStarted = true;
-            mModel.getPaymentResult().observe(this, new Observer<Integer>() {
-                @Override
-                public void onChanged(Integer integer) {
-                    mCallbackExecuted = false;
-                    if (integer == ServerRespCode.SUCCESS) {
-                        mProcessStateDialog.dismiss();
-                        if (mUpdateCallback != null) {
-                            mProcessStateDialog.dismiss();
-                            mUpdateCallback.onPaymentFinish(ImplCnPayment.ErrorCode.SUCCESS,
-                                    mModel.getChannel(),
-                                    mModel.getOrderId());
-                            mCallbackExecuted = true;
-                            finish();
-                        }
-                    } else if (integer == ServerRespCode.REQUIRE_PAYMENT_PWD) {
-                        //todo inquire txt status
-                        mProcessStateDialog.setState(ProcessStateView.State.STATE_PROCESSING,
-                                "等待用户输入密码", null);
-                        mModel.startInquiry();
-                    } else if (integer == ImplCnPayment.ErrorCode.SHOULD_INQUIRE_ERROR) {
-                        mProcessStateDialog.setState(ProcessStateView.State.STATE_PROCESSING,
-                                "等待用户输入密码", null);
-                    } else {
-                        mProcessStateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                finish();
-                            }
-                        });
-                        mProcessStateDialog.setState(ProcessStateView.State.STATE_FAILED,
-                                "error: " + integer.toString(), null);
-                    }
-                }
-            });
-            startScanQRCApp(mAmt, mUseBackCamera);
-        }
-    }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState,
-                                    @NonNull PersistableBundle outPersistentState) {
-        outState.putBoolean(SCAN_STARTED, mScanStarted);
-        super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // value integer 2 is defined by external activity.
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            String qrc = data.getStringExtra("result");
-            if (qrc != null && !qrc.isEmpty()) {
-                LogUtils.d("barcode: " + qrc);
-                mProcessStateDialog.setState(ProcessStateView.State.STATE_PROCESSING, "processing"
-                        , null);
-                mProcessStateDialog.show();
-                mModel.startPay(mAmt, qrc, mSN);
-            } else {
-                QRCPayActivity.this.finish();
-            }
-        }
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mProcessStateDialog != null && mProcessStateDialog.isShowing()) {
-            mProcessStateDialog.dismiss();
-        }
         if (!mCallbackExecuted && mUpdateCallback != null) {
             mUpdateCallback.onPaymentFinish(ImplCnPayment.ErrorCode.OTHER_ERROR, null, null);
         }
         mModel.releaseViewModel();
     }
 
-    private void startScanQRCApp(String amt, boolean backCamera) {
-        LogUtils.e("startScanQRCApp");
-        Intent it = new Intent("android.intent.action.MAIN");
-        it.setClassName("com.whty.smartpos.tycodescan",
-                "com.whty.smartpos.tycodescan.ScanActivity");
-        it.putExtra("type", getString(R.string.qrc_pay));
-        it.putExtra("amount", amt);
-        int cameraType = backCamera ? 0 : 1;
-        it.putExtra("SCAN_CAMERA_ID", cameraType);
-        startActivityForResult(it, 2);
-    }
 }

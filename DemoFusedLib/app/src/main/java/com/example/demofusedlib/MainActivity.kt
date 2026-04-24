@@ -51,4 +51,8 @@ class MainActivity : AppCompatActivity() {
             mBinding.helloWorld.text = LibHelloWorld2.helloWorld()
         }
     }
+
+    override fun onContentChanged() {
+        super.onContentChanged()
+    }
 }
