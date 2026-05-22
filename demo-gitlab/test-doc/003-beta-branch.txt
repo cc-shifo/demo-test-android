@@ -1,0 +1,13 @@
+# 从本地alpha分支创建本地beta分支
+git checkout -b release/beta-v1.3.0 release/alpha-v1.3.0
+
+# 打第一个Beta标签
+git tag -a v1.3.0-beta.1 -m "beta 001"
+# 本地beta分支和tag一起推送到远程端。
+git push origin release/beta-v1.3.0 --tags
+
+
+git add 003-beta-branch.txt
+git commit -m "修复beta bug-01"
+git tag -a v1.3.0-beta.2 -m "beta 002"
+git push origin release/beta-v1.3.0 --tags

@@ -1,0 +1,98 @@
+本地master强制推送到远程其他分支
+git push --force --set-upstream --progress origin master:xwxt
+
+
+删除远程分支
+git push origin --delete old-branch-name
+
+修改本地分支名称
+git branch -m old-branch-name new-branch-name
+
+
+将本地当前分支推送到远程分支
+git push origin local-branch:new-branch-name
+git push origin new-branch-name
+
+
+在Git中，设置上游分支（upstream branch）是为了让本地分支与远程分支建立关联，从而简化后续的推送和拉取操作。上游分支通常与远程分支密切相关，它定义了本地分支在远程仓库中跟踪的分支。
+使用 git push 命令设置上游分支
+git push --set-upstream <remote源地址origin/远程分支名> <branch本地分支名>
+或者使用等效的 --set-upstream 选项：
+git push --set-upstream <remote源地址origin/远程分支> <branch本地分支名>
+例如，假设你在本地创建了一个名为 branch 的分支：
+$ git checkout -b branch
+Switched to a new branch 'branch'
+然后使用以下命令设置上游分支：
+$ git push -u origin branch
+这样，本地分支 branch 就会跟踪远程仓库 origin 中的 branch 分支
+
+为现有远程分支设置上游分支
+如果你已经从远程仓库拉取或克隆了某个分支，可以使用以下命令将本地分支与远程分支关联：
+$ git checkout --track origin源地址/<branch远程分支名>
+例如：
+$ git checkout --track origin/dev
+Branch 'dev' set up to track remote branch 'dev' from 'origin'
+Switched to a new branch 'dev'
+
+为现有本地分支设置上游分支
+如果你已经在本地创建了一个分支，可以使用以下命令设置上游分支：
+$ git branch -u <remote>/<branch>
+例如：
+$ git checkout -b feature
+Switched to a new branch 'feature'
+$ git branch -u origin/master
+Branch 'feature' set up to track remote branch 'master' from 'origin'
+这样，本地 feature 分支就会跟踪远程仓库 origin 中的 master 分支。
+
+上游分支的优势
+设置上游分支的主要优势在于：
+简化操作：设置上游分支后，可以直接使用 git pull 和 git push 命令，而无需每次都指定远程仓库和分支名称。
+同步更新：可以轻松获取远程仓库的新提交，并选择性地合并到本地分支。
+自动关联：Git会自动知道需要将新提交推送到哪个远程分支。
+通过以上方法，你可以轻松地在Git中设置上游分支，从而提高工作效率。
+
+
+远程已经没有了某个远程分支A，但是本地上git branch -r还是可以查看到该远程分支A，请问在本地怎样删除这个远程分支A
+删除本地缓存的远程分支跟踪
+当远程分支已经被删除，但本地 git branch -r 仍然显示该远程分支时，这是因为本地 Git 还保留着远程分支的引用缓存。以下是解决方法：
+方法一：使用 git fetch --prune
+这是最推荐的方法，它会同步远程分支状态并清理本地过时的远程分支引用：
+
+bash
+git fetch --prune
+# 或者简写
+git fetch -p
+这个命令会：
+
+从远程获取最新分支信息
+
+自动删除本地存储的、远程已经不存在的分支引用
+
+方法二：手动删除特定远程分支引用
+如果只想删除特定的远程分支引用（如 origin/branchA）：
+
+bash
+git branch -d -r origin/branchA
+或者强制删除：
+
+bash
+git branch -D -r origin/branchA
+方法三：直接删除本地远程引用文件
+远程分支引用存储在 .git/refs/remotes/origin/ 目录下，你也可以直接删除对应的文件：
+
+bash
+rm .git/refs/remotes/origin/branchA
+验证删除结果
+执行以下命令查看远程分支列表，确认分支已被删除：
+
+bash
+git branch -r
+为什么会出现这种情况？
+Git 会缓存远程分支信息以提高性能，这些信息不会自动随远程删除而更新。需要手动执行 fetch --prune 来同步状态。
+
+删除本地分支
+删除多个分支
+git branch -d 分支1 分支2 分支3
+这个命令会在分支已经合并到当前分支时删除它，如果分支有未合并的更改，Git 会阻止删除。
+git branch -D 分支名
+使用大写的 -D 会强制删除分支，即使它包含未合并的更改

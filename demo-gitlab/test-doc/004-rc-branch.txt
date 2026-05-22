@@ -1,0 +1,31 @@
+# 从本地beta分支创建本地rc分支
+git checkout -b release/rc-v1.3.0 release/beta-v1.3.0
+
+# 打第一个rc标签
+git tag -a v1.3.0-rc.1 -m "rc 001"
+# 本地rc分支和tag一起推送到远程端。
+git push origin release/rc-v1.3.0 --tags
+
+# 假设修复rc bug-01
+git add 004-rc-branch.txt
+git commit -m "修复rc bug-01，仅仅阻塞问题"
+git tag -a v1.3.0-rc.2 -m "rc 002"
+git push origin release/rc-v1.3.0 --tags
+
+# 假设修复rc bug-002
+# 当前分支查看tag。git tag --merged <分支名>
+git tag --merged
+# 显示的内容
+# $ git tag --merged
+# v1.0.0-alpha.2
+# v1.3.0-alpha.1
+# v1.3.0-beta.1
+# v1.3.0-beta.2
+# v1.3.0-rc.1
+# v1.3.0-rc.2
+
+git commit -m "修复rc bug-02"
+git tag -a v1.3.0-rc.3 -m "rc 003"
+git push origin release/rc-v1.3.0 --tags
+# 查看tag
+git tag --merged

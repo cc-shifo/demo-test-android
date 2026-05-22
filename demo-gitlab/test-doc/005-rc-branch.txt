@@ -1,0 +1,8 @@
+git add 005-rc-branch
+git commit -m "修复 rc bug-006，备注等下将rc.6合并进master分支的步骤"
+# 重要：创建新的干净标签
+git tag -a v1.3.0 -m "Official release"
+git push origin release/v1.3.0 --tags
+
+git checkout master
+git merge --no-ff release/rc-v1.3.0

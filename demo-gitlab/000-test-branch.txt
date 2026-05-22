@@ -1,0 +1,23 @@
+# 将本地创建分支，并切换到新建的分支
+# git checkout -b rlease/test-v1.0.0
+git checkout -b rlease/test-v1.0.0
+# 将本地当前分支推送到远程分支
+# git push origin local-branch:new-branch-name
+# git push origin new-branch-name
+# 提交本地代码与到远程分支 git push -u oirigin rlease/test-v1.0.0
+git push origin rlease/test-v1.0.0:rlease/test-v1.0.0
+# 第一次提交tag
+git tag -a v1.0.0-test.1 -m "test branch分支模拟alpha,beta,rc1阶段"
+git push origin v1.0.0-test.1
+# 如果此时，切换到master分支git checkout main，查看master上是否有这个tag，结果是不会看到这个tag的git tag --merged main
+
+
+# 模拟修改bug
+git add 000-test-branch.txt
+git commit -m "rlease/test-v1.0.0 branch fix bug"
+git push origin rlease/test-v1.0.0
+
+# 提交tag
+git tag -a v1.0.0-test.2 -m "test branch分支模拟alpha,beta,rc2阶段"
+# 推送tag到远程分支
+git push origin v1.0.0-test.2

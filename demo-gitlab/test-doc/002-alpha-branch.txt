@@ -1,0 +1,20 @@
+# 从本地develop创建本地Alpha分支，并切换到本地Alpha分支
+git checkout -b release/alpha-v1.3.0 dev
+
+# -u 建立本地与远程分支的关联
+git push -u origin release/alpha-v1.3.0  
+# 打第一个Alpha标签Alpha 标签
+git tag v1.3.0-alpha.1 -m "Initial alpha for internal testing"
+# 将当前分支内容推送到远程的release/alpha-v1.3.0分支，--tags表示同时推送所有标签
+git push origin release/alpha-v1.3.0 --tags
+
+
+
+
+
+
+# 添加修改。当做修复bug用。
+git add 002-alpha-branch.txt
+git commit -m "fix bug-001"
+git tag -a v1.0.0-alpha.2 -m "Fixed bug-001"
+git push origin release/alpha-v1.3.0 --tags

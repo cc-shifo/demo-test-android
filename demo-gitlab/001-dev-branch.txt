@@ -1,0 +1,12 @@
+# 将本地创建分支，并切换到新建的分支
+# git checkout -b branch
+git checkout -b dev
+# 将本地当前分支推送到远程分支
+# git push origin local-branch:new-branch-name
+# git push origin new-branch-name
+git push origin dev:dev
+git config user.email "xxxxxx@qq.com"
+git config user.name "xxxxxx@qq.com"
+git add dev-branch.txt
+git commit -m "dev branch 25-08-18-1744-001"
+git push origin dev

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DemoSetLanguage</string>
+
+    <string name="testText">testText</string>
+    <string name="next">next</string>
+    <string name="curr_Language">english</string>
+    <string name="switch_txt">简体中文</string>
+    <string name="switch_txt_en">En </string>
+    <string name="switch_txt_ch">Ch</string>
+    <string name="current_lng_label">Current Language:</string>
+    <string name="lng_english">English</string>
+    <string name="lng_chinese">Chinese</string>
+
+    <string name="global_text">global text</string>
+    <string name="set_text">set text manually</string>
+    <string name="do_it">Do it!!!</string>
+</resources>

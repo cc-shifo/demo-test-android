@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DemoSetLanguage</string>
+    <string name="testText">测试Text</string>
+    <string name="next">下一个</string>
+    <string name="curr_Language">中文</string>
+    <string name="switch_txt">English</string>
+    <string name="switch_txt_en">英文</string>
+    <string name="switch_txt_ch">中文</string>
+    <string name="current_lng_label">当前语言是:</string>
+    <string name="lng_english">英文</string>
+    <string name="lng_chinese">简体中文</string>
+
+    <string name="global_text">全局APP文本</string>
+    <string name="set_text">手动设置文本</string>
+    <string name="do_it">行动下来做吧！！！</string>
+
+</resources>
