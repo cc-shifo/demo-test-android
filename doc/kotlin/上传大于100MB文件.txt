@@ -1,0 +1,21 @@
+1、干净环境
+要求大文件没有被add或者commit。如果非干净的请使用git reset、pull，删除本地文件等操作，让本地和远程仓库内容保持同步。
+2 安装环境
+$ git lfs install
+Updated Git hooks.
+Git LFS initialized.
+
+3 跟踪
+$ git lfs track kotlin-reference-en.pdf
+Tracking "kotlin-reference-en.pdf"
+之后会生成.gitattributes文件
+
+4 添加文件
+$ git add .gitattributes
+$ git add kotlin-reference-en.pdf
+
+5 commit添加日志
+$ git commit -m "大于100MB kotlin文档"
+
+6 push
+$ git push origin master
