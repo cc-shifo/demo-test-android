@@ -18,3 +18,8 @@ local.properties
 /.idea/gradle.xml
 /.idea/sonarlint/issuestore/index.pb
 /.idea/misc.xml
+/.idea/AndroidProjectSystem.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/migrations.xml
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
