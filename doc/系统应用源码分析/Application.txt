@@ -1,0 +1,3 @@
+一、Application的创建时机
+
+ActivityThread接收到从AMS返回的IApplication.Stub().bindApplication调用

@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         l.filter({ it % 2 == 1 })
         l.filter { it % 2 == 1 }
         l.let { }
+        l.forEach { }
 
         val mutL1 = MutableList(5) {}
         val mutL2 = mutableListOf<Int>(1, 2, 3, 4, 5, 6, 7)
@@ -89,6 +90,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 显示匿名函数转Lambda 表达式，把所有能省的都省掉：
+
+        object : Thread() {
+            override fun run() {
+                Thread.sleep(3000)
+                println("使用Thread对象表达式：${Thread.currentThread().id}")
+            }
+        }.start()
+
+
+
+        val t1 = Thread(object : Runnable {
+            override fun run() {
+                Thread.sleep(3000)
+                println("使用Thread对象表达式：${Thread.currentThread().id}")
+            }
+        })
+        // SAM接口转Lambda
+        val t2 = Thread({ ->
+            Thread.sleep(3000)
+            println("使用Thread对象表达式：${Thread.currentThread().id}")
+        })
+
+        val t3 = Thread{
+            Thread.sleep(3000)
+            println("使用Thread对象表达式：${Thread.currentThread().id}")
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
