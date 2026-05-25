@@ -16,6 +16,7 @@ import com.example.demosetlanguage.util.ViewUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.io.FileInputStream
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -112,10 +113,19 @@ class MainActivity : AppCompatActivity() {
             println("使用Thread对象表达式：${Thread.currentThread().id}")
         })
 
+        // 尾部Lambda可移动到函数外，之后省略括号。
         val t3 = Thread{
             Thread.sleep(3000)
             println("使用Thread对象表达式：${Thread.currentThread().id}")
         }
+
+        // 单一表达式函数体
+        fun String.stream1(): FileInputStream {
+            return FileInputStream(this)
+        }
+        fun String.stream2() = FileInputStream(this)
+        fun String.stream3(): FileInputStream = FileInputStream(this)
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
