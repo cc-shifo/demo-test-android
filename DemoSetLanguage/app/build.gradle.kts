@@ -2,6 +2,20 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+// This sets a default JDK for all Java-based tools on your system, including Gradle and Maven.
+// JAVA_HOME=/path/to/java17
+
+
+// 命令行运行，直接指定运行gradle时的jdk版本
+// & "C:\Program Files\Java\jdk-21\bin\java.exe" -jar gradle\wrapper\gradle-wrapper.jar :kdsmartposlib:build
+// 指定编译当前模块所使用的jdk版本
+// https://docs.gradle.org/current/userguide/toolchains.html#sec:using-java-toolchains
+// java {
+//     toolchain {
+//         languageVersion = JavaLanguageVersion.of(17)
+//     }
+// }
+
 android {
     namespace = "com.example.demosetlanguage"
     compileSdk {

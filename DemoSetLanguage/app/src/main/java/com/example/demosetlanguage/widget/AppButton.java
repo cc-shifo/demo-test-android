@@ -1,5 +1,6 @@
 package com.example.demosetlanguage.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import androidx.annotation.StringRes;
 import com.example.demosetlanguage.util.StringUtil;
 
 
+@SuppressLint("AppCompatCustomView")
 public class AppButton extends Button implements LanguageChangableView {
     private int textId ;//文字id
     private int hintId ;//hint的id

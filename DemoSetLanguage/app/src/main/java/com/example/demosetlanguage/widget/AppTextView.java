@@ -1,5 +1,6 @@
 package com.example.demosetlanguage.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.annotation.StringRes;
 import com.example.demosetlanguage.util.StringUtil;
 
 
+@SuppressLint("AppCompatCustomView")
 public class AppTextView extends TextView implements LanguageChangableView {
     private static final String TAG = "AppTextView";
     private int textId;//文字id

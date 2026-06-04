@@ -11,6 +11,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+// 可以更换jdk
+// .\gradlew.bat updateDaemonJvm --jvm-version=17
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
@@ -21,6 +24,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+
 
 rootProject.name = "DemoSetLanguage"
 include(":app")
