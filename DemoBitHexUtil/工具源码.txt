@@ -1,0 +1,11 @@
+frameworks/base/core/java/com/android/internal/util/HexDump.java
+
+// check.txt LogUtil.txt
+androidx.test:monitor:1.7.1@aar
+
+import fr.devnied.bitlib.BytesUtils;
+import net.sf.scuba.tlv.TLVInputStream;
+import net.sf.scuba.tlv.TLVUtil;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
