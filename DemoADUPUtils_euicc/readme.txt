@@ -1,0 +1,1 @@
+uicc dircotory is copied from D:\Android\Sdk\sources\android-33\com\android\internal\telephon
