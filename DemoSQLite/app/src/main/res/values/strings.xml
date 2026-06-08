@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SQLiteDemo</string>
+    <string name="action_settings">设置</string>
+    <string name="activity_title_home">笔记</string>
+    <string name="msg_no_notes">空空如也!</string>
+    <string name="lbl_new_note_title">新建</string>
+    <string name="lbl_edit_note_title">编辑</string>
+    <string name="hint_enter_note">请输入文本!</string>
+</resources>
